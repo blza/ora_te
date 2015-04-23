@@ -14,6 +14,7 @@ type ty_vchar_to_vchar is table of varchar2( 32767 char ) index by varchar2( 100
 * So say if we want to substitute $1 for 'Dolly' and $2 for 'back' in template expression <br/>
 * 'I said hello, $1, / Well, hello, $1 / It's so nice to have you $2 where you belong'<br/>
 * For it we just pass pk_te.p( 'Dolly', 'back' ) into this version of substitute.<br/>
+*
 * @param a_te ty_te template expression compiled for numbered placeholders
 * @param a_numbered_replacements nested table of varchar2. Holds  values to place instead of placeholders
 * @return clob - a large character lob with substituted values (if any)
@@ -59,6 +60,7 @@ END;
 * So say if we want to substitute {$who} for 'Dolly' and {$how} for 'nice' in template expression<br/>
 * 'I said hello, {$who}, / Well, hello, {$who} / It's so {$how} to have you back where you belong'<br/>
 * we just pass pk_te.m( pk_te.p( 'who', 'Dolly' ), pk_te.p( 'how' , 'back' ) ) into this version of substitute function.
+*
 * @param a_te ty_te template expression compiled for named placeholders
 * @param a_named_replacements a nested table of nested tables of varchar2 - named values to place instead of placeholders
 * @return clob - a large character lob with substituted values (if any)
@@ -108,6 +110,7 @@ END;
 
 
 /** Substitutes values from p without 'compiling' template expression
+*
 * @param a_string a string representing not compiled template expression having numbered placeholders
 * @param a_numbered_replacements a nested table of varchar2 - values to place instead of placeholders
 * @param a_ph_start a string that denotes the beginning of numbered placeholder
@@ -142,6 +145,7 @@ begin
 end;
 
 /** Substitutes values from m without 'compiling' template expression
+*
 * @param a_string a string representing not compiled template expression having named placeholders
 * @param a_named_replacements a nested table of nested tables of varchar2 - named values to place in placeholders
 * @param a_ph_start a string that denotes the beginning of named placeholder

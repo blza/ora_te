@@ -10,6 +10,7 @@ create or replace TYPE BODY TY_TE AS
 */
 
 /** Constructor implementation
+*
 * @param a_type Can be either ty_te.EL_NAMED() or ty_te.EL_NUMBERED(). Denotes the type of placehoders that were<br/>
 * searched while compiling.
 * @return self
@@ -41,6 +42,7 @@ end;
 
 
 /** Parse string for numbered templates in the from $1, $2, etc.
+*
 * @param a_template_string a template string
 * @param  a_ph_start a string that denotes the beginning of numbered placeholder 
 * @return The instance of template expression (ty_te) or null if no placeholders were found or if a_ph_start is null
@@ -110,6 +112,7 @@ END compile_numbered;
 
 
 /** Parse string for named templates in the from {$placehoder}
+*
 * @param a_template_string a template string
 * @param a_ph_start a string that denotes the beginning of named placeholder
 * @param a_ph_end a string that denotes the end of named placeholder
