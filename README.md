@@ -1,5 +1,5 @@
 # ora_te
-Simple template engine for Oracle in a form of UDTs and a package.
+Simple template engine for Oracle DBMS in a form of UDTs and a package.
 
 This small project is about using simple template expressions in Oracle DBMS.
 So one could occasionally abandon an ugly Oracle concat syntax like 
