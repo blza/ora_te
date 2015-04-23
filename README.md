@@ -26,7 +26,7 @@ in favor of more readable one
     ) 
   ;
 ```  
-or another that is even more suitable for reading
+or another that is even more suitable for reading and understanding
 ```
   v_te := ty_te.compile_named( 
     'create global temporary table {$table_name} on commit preserve rows
