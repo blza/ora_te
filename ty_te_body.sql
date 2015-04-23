@@ -41,7 +41,8 @@ begin
 end; 
 
 
-/** Parse string for numbered templates in the from $1, $2, etc.
+/** Parse string for numbered templates in the from $1, $2, etc.<br>
+* Stores result of parsing in compiled_template_ nested table.
 *
 * @param a_template_string a template string
 * @param  a_ph_start a string that denotes the beginning of numbered placeholder 
@@ -111,7 +112,8 @@ BEGIN
 END compile_numbered;
 
 
-/** Parse string for named templates in the from {$placehoder}
+/** Parse string for named templates in the from {$placehoder}<br/>
+* Stores result of parsing in compiled_template_ nested table.
 *
 * @param a_template_string a template string
 * @param a_ph_start a string that denotes the beginning of named placeholder
