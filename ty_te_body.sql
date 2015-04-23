@@ -1,14 +1,19 @@
 create or replace TYPE BODY TY_TE AS
 
 /**
-  TY_TE (Template Expression)
-
-  A type that represents a compiled template expression. 
-  By template expression (TE) we mean a string with numbered or named placeholders.
-  By compiling TE we mean parsing it, finding numbered or named placeholders and storing the whole expression
-    in the form of a nested table of string or placehoders (ty_sph).
+* TY_TE (Template Expression)<br/>
+* A type that represents a compiled template expression.<br/>
+* By template expression (TE) we understand a string with numbered or named placeholders.<br/>
+* By compiling TE we understand parsing it, finding numbered or named placeholders and storing the whole expression<br/>
+* in the form of a nested table of ty_sph.<br/>
+* @headcom
 */
 
+/** Constructor implementation
+* @param a_type Can be either ty_te.EL_NAMED() or ty_te.EL_NUMBERED(). Denotes the type of placehoders that were<br/>
+* searched while compiling.
+* @return self
+*/
 CONSTRUCTOR FUNCTION ty_te( SELF IN OUT NOCOPY ty_te, a_type in pls_integer ) 
   RETURN SELF AS RESULT AS
 BEGIN
@@ -17,8 +22,7 @@ BEGIN
   RETURN;
 END ty_te;
 
-/**
-Escapes special chars to use as regexp pattern
+/** Escapes special chars to use as regexp pattern. Can be used outside of the type as a universal to escape such characters.
 */
 static function escape_regexp_special( a_not_escaped in varchar2 ) return varchar2
 as 
@@ -26,9 +30,8 @@ begin
   return regexp_replace( a_not_escaped, '(\[|\]|\\|\$|\?)', '\\\1' );
 end; 
 
-/**
-Escapes regexp backreference to prevent treating substrings of form '\1' in 
-substitution values as backreference
+/** Escapes regexp backreference to prevent treating substrings of form '\1' .. '\9' in <br/>
+* substitution values as backreference to matched pattern. Can be used as universal function outside the type to escape such backrefs.
 */
 static function escape_backreference( a_not_escaped in varchar2 ) return varchar2
 as 
@@ -37,14 +40,10 @@ begin
 end; 
 
 
-/** 
-Parse string for numbered templates in the from $1, $2, etc.
-
-Accepts
-  a_template_string clob -- a template string
-  a_ph_start in varchar2 -- a string that denotes the beginning of numbered placeholder
-Returns
-  The instance of template expression (ty_te) or null if no placeholders were found or if a_ph_start is null
+/** Parse string for numbered templates in the from $1, $2, etc.
+* @param a_template_string a template string
+* @param  a_ph_start a string that denotes the beginning of numbered placeholder 
+* @return The instance of template expression (ty_te) or null if no placeholders were found or if a_ph_start is null
 */
 static function compile_numbered( a_template_string in clob, a_ph_start in varchar2 := '$' ) return ty_te AS
   v_ph_pos_start pls_integer;
@@ -110,16 +109,12 @@ BEGIN
 END compile_numbered;
 
 
-/** 
-Parse string for named templates in the from {$placehoder}
-
-Accepts
-  a_template_string clob -- a template string
-  a_ph_start in varchar2 -- a string that denotes the beginning of named placeholder
-  a_ph_end in varchar2 -- a string that denotes the end of named placeholder
-Returns
-  The instance of template expression (ty_te) or null if no placeholders were found or if or 
-  a_ph_start or a_ph_end is null
+/** Parse string for named templates in the from {$placehoder}
+* @param a_template_string a template string
+* @param a_ph_start a string that denotes the beginning of named placeholder
+* @param a_ph_end a string that denotes the end of named placeholder
+* @return The instance of template expression (ty_te) or null if no placeholders were found or if or <br/>
+* a_ph_start or a_ph_end is null
 */
 static function compile_named( 
   a_template_string in clob, a_ph_start in varchar2 := '{$', a_ph_end in varchar2 := '}' ) return ty_te 
@@ -192,16 +187,14 @@ BEGIN
 END;
 
 
-/**
-Just to be used as class constant
+/** Just to be used as class constant
 */
 static function EL_NUMBERED return pls_integer as
 begin
 	return 1;
 end; 
 
-/**
-Just to be used as class constant
+/** Just to be used as class constant
 */
 static function EL_NAMED return pls_integer as
 begin
