@@ -4,7 +4,7 @@ Simple template engine for Oracle DBMS in a form of UDTs and a package.
 
 This small project is about developing a simple template engine to be used in Oracle SQL/PL SQL.
 So one could occasionally abandon an ugly Oracle concat syntax like 
-```
+```plsql
   execute immediate 
     'create global temporary table ' || v_d.tmp_table || ' on commit preserve rows 
     as 
@@ -13,7 +13,7 @@ So one could occasionally abandon an ugly Oracle concat syntax like
   ;
 ```  
 in favor of more readable one
-```
+```plsql
   v_te := ty_te.compile_numbered( 
     'create global temporary table $1 on commit preserve rows
     as
@@ -28,7 +28,7 @@ in favor of more readable one
   ;
 ```  
 or another that is even more suitable for reading and understanding
-```
+```plsql
   v_te := ty_te.compile_named( 
     'create global temporary table {$table_name} on commit preserve rows
     as
