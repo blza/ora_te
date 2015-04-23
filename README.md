@@ -1,7 +1,8 @@
 # ora_te
+## Description
 Simple template engine for Oracle DBMS in a form of UDTs and a package.
 
-This small project is about using simple template expressions in Oracle DBMS.
+This small project is about developing a simple template engine to be used in Oracle SQL/PL SQL.
 So one could occasionally abandon an ugly Oracle concat syntax like 
 ```
   execute immediate 
@@ -47,5 +48,13 @@ or another that is even more suitable for reading and understanding
     ) 
   ;
 ```  
-...Unit tests are coming
+## Compatibility and requirements.
+Developed for and tested on Oracle 11r2.
 
+You only have to have Resource role to deploy and use UDTs and the package.
+
+## Installation
+Just download all files and run deploy_te.sql.
+
+## Regression testing
+Unit tests are coming.
