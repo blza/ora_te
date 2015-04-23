@@ -58,3 +58,6 @@ Just download all files and run deploy_te.sql.
 
 ## Regression testing
 Unit tests are coming.
+
+## Licence
+Mit licence applies, so give credits.
