@@ -3,16 +3,16 @@ Simple template engine for Oracle in a form of UDTs and a package.
 
 This small project is about using simple template expressions in Oracle DBMS.
 So one could occasionally abandon an ugly Oracle concat syntax like 
-
+```
   execute immediate 
     'create global temporary table ' || v_d.tmp_table || ' on commit preserve rows 
     as 
     select * from ' || v_d.source_owner || '.' || v_d.source_table || '@' || DBLINK_NAME || '
     where  nvl(id_rec,1) > ' || to_char( v_last_seq_id )
   ;
-  
+```  
 in favor of more readable one
-
+```
   v_te := ty_te.compile_numbered( 
     'create global temporary table $1 on commit preserve rows
     as
@@ -25,9 +25,9 @@ in favor of more readable one
       , pk_te.p( v_d.tmp_table, v_d.source_owner, v_d.source_table, DBLINK_NAME, v_last_seq_id ) 
     ) 
   ;
-  
+```  
 or another that is even more suitable for reading
-
+```
   v_te := ty_te.compile_named( 
     'create global temporary table {$table_name} on commit preserve rows
     as
@@ -46,6 +46,6 @@ or another that is even more suitable for reading
       )
     ) 
   ;
-  
+```  
 ...Unit tests are coming
 
