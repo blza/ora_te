@@ -5,48 +5,31 @@ Simple template engine for Oracle DBMS in a form of UDTs and a package.
 This small project is about developing a simple template engine to be used in Oracle SQL/PL SQL.
 So one could occasionally abandon an ugly Oracle concat syntax like 
 ```plsql
-  execute immediate 
-    'create global temporary table ' || v_d.tmp_table || ' on commit preserve rows 
-    as 
-    select * from ' || v_d.source_owner || '.' || v_d.source_table || '@' || DBLINK_NAME || '
-    where  nvl(id_rec,1) > ' || to_char( v_last_seq_id )
+  v_who := 'Dolly';
+  v_where := 'where you belong';
+  v_text := 'I said hello, '|| v_who ||', / Well, hello, ' 
+    || v_who || ' / It's so nice to have you back ' || v_where || '.'
   ;
 ```  
 in favor of more readable one
 ```plsql
   v_te := ty_te.compile_numbered( 
-    'create global temporary table $1 on commit preserve rows
-    as
-    select * from $2.$3@$4
-    where nvl(id_rec,1) > $5'
+    'I said hello, $1, / Well, hello, $1 / It's so nice to have you back $2.'
   );
-  execute immediate
-    pk_te.substitute( 
-      v_te
-      , pk_te.p( v_d.tmp_table, v_d.source_owner, v_d.source_table, DBLINK_NAME, v_last_seq_id ) 
-    ) 
-  ;
+  v_text := pk_te.substitute( v_te, pk_te.p( 'Dolly', 'where you belong' ) );
 ```  
 or another that is even more suitable for reading and understanding
 ```plsql
   v_te := ty_te.compile_named( 
-    'create global temporary table {$table_name} on commit preserve rows
-    as
-    select * from {$owner}.{$src_table}@{$dblink}
-    where nvl(id_rec,1) > {$lastseq}'
+    'I said hello, {$who}, / Well, hello, {$who} / It's so nice to have you back {$where}.'
   );
-  execute immediate
-    pk_te.substitute( 
-      v_te
-      , pk_te.m( 
-        pk_te.p( 'table_name', v_d.tmp_table )
-        , pk_te.p( 'owner', v_d.source_owner )
-        , pk_te.p( 'src_table', v_d.source_table ) 
-        , pk_te.p( 'dblink', DBLINK_NAME )
-        , pk_te.p( 'lastseq', v_last_seq_id ) 
-      )
-    ) 
-  ;
+  v_text := pk_te.substitute( 
+    v_te
+    , pk_te.m( 
+      pk_te.p( 'who', 'Dolly' )
+      , pk_te.p( 'where', 'where you belong' )
+    )
+  );
 ```  
 ## Compatibility and requirements.
 Developed for and tested on Oracle 11r2.
