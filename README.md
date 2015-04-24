@@ -51,13 +51,18 @@ or another that is even more suitable for reading and understanding
 ## Compatibility and requirements.
 Developed for and tested on Oracle 11r2.
 
-You only have to have Resource role to deploy and use UDTs and the package.
+UDTs and the package are self contained, no additional dependencies. You only have to have Resource role to deploy and use UDTs and the package.
 
 ## Installation
-Just download all files and run deploy_te.sql.
+Just download all files and run `deploy_te.sql` from the root directory.
 
 ## Regression testing
-Unit tests are coming.
+Unit tests can be found in ut subdirectory.
+
+To deploy unit tests run `ut/deploy_ut.sql`.
+To actually run unit tests run `ut/run_tests.sql`.
+
+Profiling info is to come...
 
 ## Licence
-Mit licence applies, so give credits.
+Mit licence applies.
