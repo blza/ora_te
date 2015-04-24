@@ -24,7 +24,7 @@ v_te := ty_te.compile_named(
   'I said hello, {$who}, / Well, hello, {$who} / It''s so nice to have you back {$where}.'
 );
 v_where := 'where you belong';
--- note that we can also use variables, not just literals
+-- note the use of variable
 v_text := pk_te.substitute( 
   v_te
   , pk_te.m( 
@@ -42,7 +42,7 @@ UDTs and the package are self contained, no additional dependencies. You only ha
 Just download all files and run `deploy_te.sql` from the root directory.
 
 ## Documentation
-See wiki.
+See https://github.com/blza/ora_te/wiki
 
 ## Regression testing
 Unit tests can be found in ut subdirectory.
