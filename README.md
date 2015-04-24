@@ -56,6 +56,9 @@ UDTs and the package are self contained, no additional dependencies. You only ha
 ## Installation
 Just download all files and run `deploy_te.sql` from the root directory.
 
+## Documentation
+Is coming...
+
 ## Regression testing
 Unit tests can be found in ut subdirectory.
 
