@@ -42,7 +42,7 @@ UDTs and the package are self contained, no additional dependencies. You only ha
 Just download all files and run `deploy_te.sql` from the root directory.
 
 ## Documentation
-Is coming...
+See wiki.
 
 ## Regression testing
 Unit tests can be found in ut subdirectory.
@@ -50,7 +50,8 @@ Unit tests can be found in ut subdirectory.
 To deploy unit tests run `ut/deploy_ut.sql`.
 To actually run unit tests run `ut/run_tests.sql`.
 
-Profiling info is to come...
+## Imposed cost of invocation
+Profiling info and comparison to standart concat is to come.
 
 ## Licence
 Mit licence applies.
