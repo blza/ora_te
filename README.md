@@ -8,26 +8,28 @@ So one could occasionally abandon an ugly Oracle concat syntax like
   v_who := 'Dolly';
   v_where := 'where you belong';
   v_text := 'I said hello, '|| v_who ||', / Well, hello, ' 
-    || v_who || ' / It's so nice to have you back ' || v_where || '.'
+    || v_who || ' / It''s so nice to have you back ' || v_where || '.'
   ;
 ```  
 in favor of more readable one
 ```plsql
   v_te := ty_te.compile_numbered( 
-    'I said hello, $1, / Well, hello, $1 / It's so nice to have you back $2.'
+    'I said hello, $1, / Well, hello, $1 / It''s so nice to have you back $2.'
   );
   v_text := pk_te.substitute( v_te, pk_te.p( 'Dolly', 'where you belong' ) );
 ```  
 or another that is even more suitable for reading and understanding
 ```plsql
   v_te := ty_te.compile_named( 
-    'I said hello, {$who}, / Well, hello, {$who} / It's so nice to have you back {$where}.'
+    'I said hello, {$who}, / Well, hello, {$who} / It''s so nice to have you back {$where}.'
   );
+  v_where := 'where you belong';
+  -- note that we can also use variables, not just literals
   v_text := pk_te.substitute( 
     v_te
     , pk_te.m( 
       pk_te.p( 'who', 'Dolly' )
-      , pk_te.p( 'where', 'where you belong' )
+      , pk_te.p( 'where', v_where )
     )
   );
 ```  
