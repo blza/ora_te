@@ -1,1 +1,1 @@
-create or replace type ty_sph_tbl is table of ty_sph;
+create or replace type ty_sph_tbl force as table of ty_sph;
