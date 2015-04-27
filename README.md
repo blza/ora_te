@@ -42,7 +42,8 @@ UDTs and the package are self contained, no additional dependencies. You only ha
 Just download all files and run `deploy_te.sql` from the root directory.
 
 ## Documentation
-See https://github.com/blza/ora_te/wiki
+For usage see https://github.com/blza/ora_te/wiki .
+For package and UDTs specifications see `doc` folder.
 
 ## Performance
 Profiling results and comparision to concat is to come...
