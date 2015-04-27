@@ -1,0 +1,364 @@
+<HTML xmlns:lxslt="http://xml.apache.org/xslt" xmlns:exslt="http://exslt.org/common">
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<TITLE>ora_te</TITLE>
+<LINK TITLE="Style" HREF="../stylesheet.css" TYPE="text/css" REL="stylesheet">
+<!--
+        sameCase=ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz
+        namesLowerCase=FALSE
+        namesUpperCase=FALSE
+        namesDefaultCase=TRUE
+        defaultNamesCase=UPPER
+        namesFromCase=ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz
+        namesToCase=ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz-->
+</HEAD>
+<BODY BGCOLOR="white">
+<TABLE CELLSPACING="0" CELLPADDING="1" WIDTH="100%" BORDER="0">
+<TR>
+<TD CLASS="NavBarRow1" COLSPAN="2">
+<TABLE CELLSPACING="3" CELLPADDING="0" BORDER="0">
+<TR VALIGN="top" ALIGN="center">
+<TD CLASS="NavBarRow1"><A HREF="../summary.html"><FONT CLASS="NavBarFont1"><B>Overview</B></FONT></A> &nbsp;</TD><TD CLASS="NavBarRow1"><A HREF="../deprecated-list.html"><FONT CLASS="NavBarFont1"><B>Deprecated</B></FONT></A> &nbsp;</TD><TD CLASS="NavBarRow1"><A HREF="../index-list.html"><FONT CLASS="NavBarFont1"><B>Index</B></FONT></A> &nbsp;</TD><TD CLASS="NavBarRow1"><A HREF="../generator.html"><FONT CLASS="NavBarFont1"><B>Generator</B></FONT></A> &nbsp;</TD>
+</TR>
+</TABLE>
+</TD><TD rowspan="3" VALIGN="top" ALIGN="right"><EM><b>ora_te</b></EM></TD>
+</TR>
+<TR>
+<TD CLASS="NavBarRow3" VALIGN="top"><FONT SIZE="-2">
+      SUMMARY:  <A HREF="#field_summary">FIELD</A> | <A HREF="#type_summary">TYPE</A> | <A HREF="#method_summary">METHOD</A></FONT></TD><TD CLASS="NavBarRow3" VALIGN="top"><FONT SIZE="-2">
+    DETAIL:  <A HREF="#field_detail">FIELD</A> | <A HREF="#type_detail">TYPE</A> | <A HREF="#method_detail">METHOD</A></FONT></TD>
+</TR>
+</TABLE>
+<HR>
+<H2>
+<FONT SIZE="-1"></FONT>
+<BR>Package&nbsp;PK_TE</H2> The package that provides functions to substitute values instead of placeholders.
+<P></P>
+<DL></DL>
+<HR>
+<P></P>
+<A NAME="field_summary"></A><A NAME="type_summary"></A>
+<TABLE WIDTH="100%" CELLSPACING="0" CELLPADDING="3" BORDER="1">
+<TR CLASS="TableHeadingColor">
+<TD COLSPAN="2"><FONT SIZE="+2"><B>Type Summary</B></FONT></TD>
+</TR>
+<TR CLASS="TableRowColor">
+<TD WIDTH="1%" VALIGN="top" ALIGN="right"><FONT SIZE="-1"><CODE>&nbsp;<!--
+       schemaName=
+       typeName=table OF varchar2(32767 CHAR) INDEX BY varchar2(100 CHAR)
+       localTypeName=
+       schema=
+       fieldType=table OF varchar2(32767 CHAR) INDEX BY varchar2(100 CHAR)
+       synonymsFile=,,--><!--GenerateTypeLink: default reached-->table OF varchar2(32767 CHAR) INDEX BY varchar2(100 CHAR)</CODE></FONT></TD>
+<!-- 
+		siblingCount=0 
+		argumentCount=0 
+		predecessorCount=0 
+		siblingNoArgumentCount=0--><TD><CODE><B><A HREF="#TY_VCHAR_TO_VCHAR">TY_VCHAR_TO_VCHAR</A></B>()</CODE>
+<BR>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      </TD>
+</TR>
+</TABLE>
+<P></P>
+<A NAME="method_summary"></A>
+<TABLE WIDTH="100%" CELLSPACING="0" CELLPADDING="3" BORDER="1">
+<TR CLASS="TableHeadingColor">
+<TD COLSPAN="2"><FONT SIZE="+2"><B>Method Summary</B></FONT></TD>
+</TR>
+<TR CLASS="TableRowColor">
+<TD WIDTH="1%" VALIGN="top" ALIGN="right"><FONT SIZE="-1"><CODE>&nbsp;<!--
+       schemaName=
+       typeName=CLOB
+       localTypeName=
+       schema=
+       fieldType=CLOB
+       synonymsFile=,,--><!--GenerateTypeLink: default reached-->CLOB</CODE></FONT></TD>
+<!-- 
+		siblingCount=3 
+		argumentCount=2 
+		predecessorCount=0 
+		siblingNoArgumentCount=0--><A NAME="SUBSTITUTE"></A><TD><CODE><B><A HREF="#SUBSTITUTE(TY_TE,P)">SUBSTITUTE</A></B>(A_TE IN OUT NOCOPY TY_TE, A_NUMBERED_REPLACEMENTS IN P)</CODE>
+<BR>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+       Replaces numbered placeholders in compiled Template Expression with values from nested table of varchar2 (p).<br/>
+ Using <br/>
+ <pre>type p is table of varchar2;</pre>
+ makes it possible to use some syntactic sugar for defining values to be placed instead of placeholders.<br/>
+ So say if we want to substitute $1 for 'Dolly' and $2 for 'back' in template expression <br/>
+ 'I said hello, $1, / Well, hello, $1 / It's so nice to have you $2 where you belong'<br/>
+ For it we just pass pk_te.p( 'Dolly', 'back' ) into this version of substitute.<br/>
+</TD>
+</TR>
+<TR CLASS="TableRowColor">
+<TD WIDTH="1%" VALIGN="top" ALIGN="right"><FONT SIZE="-1"><CODE>&nbsp;<!--
+       schemaName=
+       typeName=CLOB
+       localTypeName=
+       schema=
+       fieldType=CLOB
+       synonymsFile=,,--><!--GenerateTypeLink: default reached-->CLOB</CODE></FONT></TD>
+<!-- 
+		siblingCount=3 
+		argumentCount=2 
+		predecessorCount=1 
+		siblingNoArgumentCount=0--><TD><CODE><B><A HREF="#SUBSTITUTE(TY_TE,M)">SUBSTITUTE</A></B>(A_TE IN OUT NOCOPY TY_TE, A_NAMED_REPLACEMENTS IN M)</CODE>
+<BR>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+       Replaces named placeholders in compiled Template Expression with values from nested table of nested tables of varchar2 (m).<br/>
+ Using <br/>
+ <pre>type m is table of p;</pre>
+ makes it possible to use syntactic sugar for defining values to be placed instead of placeholders.<br/>
+ So say if we want to substitute {$who} for 'Dolly' and {$how} for 'nice' in template expression<br/>
+ 'I said hello, {$who}, / Well, hello, {$who} / It's so {$how} to have you back where you belong'<br/>
+ we just pass pk_te.m( pk_te.p( 'who', 'Dolly' ), pk_te.p( 'how' , 'back' ) ) into this version of substitute function.</TD>
+</TR>
+<TR CLASS="TableRowColor">
+<TD WIDTH="1%" VALIGN="top" ALIGN="right"><FONT SIZE="-1"><CODE>&nbsp;<!--
+       schemaName=
+       typeName=CLOB
+       localTypeName=
+       schema=
+       fieldType=CLOB
+       synonymsFile=,,--><!--GenerateTypeLink: default reached-->CLOB</CODE></FONT></TD>
+<!-- 
+		siblingCount=3 
+		argumentCount=3 
+		predecessorCount=2 
+		siblingNoArgumentCount=0--><TD><CODE><B><A HREF="#SUBSTITUTE(CLOB,P,VARCHAR2)">SUBSTITUTE</A></B>(A_STRING IN CLOB, A_NUMBERED_REPLACEMENTS IN P, A_PH_START IN VARCHAR2 DEFAULT '$')</CODE>
+<BR>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+       Substitutes values from p without 'compiling' template expression
+</TD>
+</TR>
+<TR CLASS="TableRowColor">
+<TD WIDTH="1%" VALIGN="top" ALIGN="right"><FONT SIZE="-1"><CODE>&nbsp;<!--
+       schemaName=
+       typeName=CLOB
+       localTypeName=
+       schema=
+       fieldType=CLOB
+       synonymsFile=,,--><!--GenerateTypeLink: default reached-->CLOB</CODE></FONT></TD>
+<!-- 
+		siblingCount=3 
+		argumentCount=4 
+		predecessorCount=3 
+		siblingNoArgumentCount=0--><TD><CODE><B><A HREF="#SUBSTITUTE(CLOB,M,VARCHAR2,VARCHAR2)">SUBSTITUTE</A></B>(A_STRING IN CLOB, A_NAMED_REPLACEMENTS IN M, A_PH_START IN VARCHAR2 DEFAULT '{$', A_PH_END IN VARCHAR2 DEFAULT '}')</CODE>
+<BR>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+       Substitutes values from m without 'compiling' template expression
+</TD>
+</TR>
+</TABLE>
+<P></P>
+<A NAME="trigger_summary"></A><A NAME="field_detail"></A><A NAME="type_detail"></A>
+<TABLE WIDTH="100%" CELLSPACING="0" CELLPADDING="3" BORDER="1">
+<TR CLASS="TableHeadingColor">
+<TD COLSPAN="1"><FONT SIZE="+2"><B>Type Detail</B></FONT></TD>
+</TR>
+</TABLE>
+<A NAME="TY_VCHAR_TO_VCHAR"></A>
+<H3>TY_VCHAR_TO_VCHAR</H3>
+<PRE> <!--
+       schemaName=
+       typeName=table OF varchar2(32767 CHAR) INDEX BY varchar2(100 CHAR)
+       localTypeName=
+       schema=
+       fieldType=table OF varchar2(32767 CHAR) INDEX BY varchar2(100 CHAR)
+       synonymsFile=,,--><!--GenerateTypeLink: default reached-->table OF varchar2(32767 CHAR) INDEX BY varchar2(100 CHAR) <B>TY_VCHAR_TO_VCHAR</B>()</PRE>
+<DL>
+<DD></DD>
+<DD>
+<DL></DL>
+</DD>
+<P></P>
+<DL></DL>
+</DL>
+<HR>
+<A NAME="method_detail"></A>
+<TABLE WIDTH="100%" CELLSPACING="0" CELLPADDING="3" BORDER="1">
+<TR CLASS="TableHeadingColor">
+<TD COLSPAN="1"><FONT SIZE="+2"><B>Method Detail</B></FONT></TD>
+</TR>
+</TABLE>
+<A NAME="SUBSTITUTE(TY_TE,P)"></A>
+<H3>SUBSTITUTE</H3>
+<PRE> <!--
+       schemaName=
+       typeName=CLOB
+       localTypeName=
+       schema=
+       fieldType=CLOB
+       synonymsFile=,,--><!--GenerateTypeLink: default reached-->CLOB <B>SUBSTITUTE</B>(A_TE IN OUT NOCOPY TY_TE, <BR>                 A_NUMBERED_REPLACEMENTS IN P)</PRE>
+<DL>
+<DD> Replaces numbered placeholders in compiled Template Expression with values from nested table of varchar2 (p).<br/>
+ Using <br/>
+ <pre>type p is table of varchar2;</pre>
+ makes it possible to use some syntactic sugar for defining values to be placed instead of placeholders.<br/>
+ So say if we want to substitute $1 for 'Dolly' and $2 for 'back' in template expression <br/>
+ 'I said hello, $1, / Well, hello, $1 / It's so nice to have you $2 where you belong'<br/>
+ For it we just pass pk_te.p( 'Dolly', 'back' ) into this version of substitute.<br/>
+</DD>
+<DD>
+<DL>
+<DT>Parameters:
+        <DD>
+<CODE>A_TE</CODE> -
+              ty_te template expression compiled for numbered placeholders</DD>
+<DD>
+<CODE>A_NUMBERED_REPLACEMENTS</CODE> -
+              nested table of varchar2. Holds  values to place instead of placeholders</DD>
+</DT>
+<DT>Returns:
+          <DD>clob - a large character lob with substituted values (if any)</DD>
+</DT>
+<DT>Throws:
+        <DD>
+<CODE>EX_TE_IS_NULL</CODE> -
+               if null template expression is passed</DD>
+<DD>
+<CODE>EX_TE_OF_WRONG_TYPE</CODE> -
+               if passed template expression was compiled for named placeholders</DD>
+</DT>
+</DL>
+</DD>
+<P></P>
+<DL></DL>
+</DL>
+<HR>
+<A NAME="SUBSTITUTE(TY_TE,M)"></A>
+<H3>SUBSTITUTE</H3>
+<PRE> <!--
+       schemaName=
+       typeName=CLOB
+       localTypeName=
+       schema=
+       fieldType=CLOB
+       synonymsFile=,,--><!--GenerateTypeLink: default reached-->CLOB <B>SUBSTITUTE</B>(A_TE IN OUT NOCOPY TY_TE, <BR>                 A_NAMED_REPLACEMENTS IN M)</PRE>
+<DL>
+<DD> Replaces named placeholders in compiled Template Expression with values from nested table of nested tables of varchar2 (m).<br/>
+ Using <br/>
+ <pre>type m is table of p;</pre>
+ makes it possible to use syntactic sugar for defining values to be placed instead of placeholders.<br/>
+ So say if we want to substitute {$who} for 'Dolly' and {$how} for 'nice' in template expression<br/>
+ 'I said hello, {$who}, / Well, hello, {$who} / It's so {$how} to have you back where you belong'<br/>
+ we just pass pk_te.m( pk_te.p( 'who', 'Dolly' ), pk_te.p( 'how' , 'back' ) ) into this version of substitute function.
+</DD>
+<DD>
+<DL>
+<DT>Parameters:
+        <DD>
+<CODE>A_TE</CODE> -
+              ty_te template expression compiled for named placeholders</DD>
+<DD>
+<CODE>A_NAMED_REPLACEMENTS</CODE> -
+              a nested table of nested tables of varchar2 - named values to place instead of placeholders</DD>
+</DT>
+<DT>Returns:
+          <DD>clob - a large character lob with substituted values (if any)</DD>
+</DT>
+<DT>Throws:
+        <DD>
+<CODE>EX_TE_IS_NULL</CODE> -
+               if null template expression is passed</DD>
+<DD>
+<CODE>EX_TE_OF_WRONG_TYPE</CODE> -
+               if passed template expression was compiled for numbered placeholders</DD>
+</DT>
+</DL>
+</DD>
+<P></P>
+<DL></DL>
+</DL>
+<HR>
+<A NAME="SUBSTITUTE(CLOB,P,VARCHAR2)"></A>
+<H3>SUBSTITUTE</H3>
+<PRE> <!--
+       schemaName=
+       typeName=CLOB
+       localTypeName=
+       schema=
+       fieldType=CLOB
+       synonymsFile=,,--><!--GenerateTypeLink: default reached-->CLOB <B>SUBSTITUTE</B>(A_STRING IN CLOB, <BR>                 A_NUMBERED_REPLACEMENTS IN P, <BR>                 A_PH_START IN VARCHAR2 DEFAULT '$')</PRE>
+<DL>
+<DD> Substitutes values from p without 'compiling' template expression
+</DD>
+<DD>
+<DL>
+<DT>Parameters:
+        <DD>
+<CODE>A_STRING</CODE> -
+              a string representing not compiled template expression having numbered placeholders</DD>
+<DD>
+<CODE>A_NUMBERED_REPLACEMENTS</CODE> -
+              a nested table of varchar2 - values to place instead of placeholders</DD>
+<DD>
+<CODE>A_PH_START</CODE> -
+              a string that denotes the beginning of numbered placeholder</DD>
+</DT>
+<DT>Returns:
+          <DD>clob - a large character lob with substituted values (if any)</DD>
+</DT>
+</DL>
+</DD>
+<P></P>
+<DL></DL>
+</DL>
+<HR>
+<A NAME="SUBSTITUTE(CLOB,M,VARCHAR2,VARCHAR2)"></A>
+<H3>SUBSTITUTE</H3>
+<PRE> <!--
+       schemaName=
+       typeName=CLOB
+       localTypeName=
+       schema=
+       fieldType=CLOB
+       synonymsFile=,,--><!--GenerateTypeLink: default reached-->CLOB <B>SUBSTITUTE</B>(A_STRING IN CLOB, <BR>                 A_NAMED_REPLACEMENTS IN M, <BR>                 A_PH_START IN VARCHAR2 DEFAULT '{$', <BR>                 A_PH_END IN VARCHAR2 DEFAULT '}')</PRE>
+<DL>
+<DD> Substitutes values from m without 'compiling' template expression
+</DD>
+<DD>
+<DL>
+<DT>Parameters:
+        <DD>
+<CODE>A_STRING</CODE> -
+              a string representing not compiled template expression having named placeholders</DD>
+<DD>
+<CODE>A_NAMED_REPLACEMENTS</CODE> -
+              a nested table of nested tables of varchar2 - named values to place in placeholders</DD>
+<DD>
+<CODE>A_PH_START</CODE> -
+              a string that denotes the beginning of named placeholder</DD>
+<DD>
+<CODE>A_PH_END</CODE> -
+              a string that denotes the end of named placeholder</DD>
+</DT>
+<DT>Returns:
+          <DD>clob - a large character lob with substituted values (if any)</DD>
+</DT>
+</DL>
+</DD>
+<P></P>
+<DL></DL>
+</DL>
+<HR>
+<A NAME="trigger_detail"></A>
+<TABLE CELLSPACING="0" CELLPADDING="1" WIDTH="100%" BORDER="0">
+<TR>
+<TD CLASS="NavBarRow1" COLSPAN="2">
+<TABLE CELLSPACING="3" CELLPADDING="0" BORDER="0">
+<TR VALIGN="top" ALIGN="center">
+<TD CLASS="NavBarRow1"><A HREF="../summary.html"><FONT CLASS="NavBarFont1"><B>Overview</B></FONT></A> &nbsp;</TD><TD CLASS="NavBarRow1"><A HREF="../deprecated-list.html"><FONT CLASS="NavBarFont1"><B>Deprecated</B></FONT></A> &nbsp;</TD><TD CLASS="NavBarRow1"><A HREF="../index-list.html"><FONT CLASS="NavBarFont1"><B>Index</B></FONT></A> &nbsp;</TD><TD CLASS="NavBarRow1"><A HREF="../generator.html"><FONT CLASS="NavBarFont1"><B>Generator</B></FONT></A> &nbsp;</TD>
+</TR>
+</TABLE>
+</TD><TD rowspan="3" VALIGN="top" ALIGN="right"><EM><b>ora_te</b></EM></TD>
+</TR>
+<TR>
+<TD CLASS="NavBarRow3" VALIGN="top"><FONT SIZE="-2">
+      SUMMARY:  <A HREF="#field_summary">FIELD</A> | <A HREF="#type_summary">TYPE</A> | <A HREF="#method_summary">METHOD</A></FONT></TD><TD CLASS="NavBarRow3" VALIGN="top"><FONT SIZE="-2">
+    DETAIL:  <A HREF="#field_detail">FIELD</A> | <A HREF="#type_detail">TYPE</A> | <A HREF="#method_detail">METHOD</A></FONT></TD>
+</TR>
+</TABLE>
+<HR>
+</BODY>
+</HTML>

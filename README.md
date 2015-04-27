@@ -44,13 +44,14 @@ Just download all files and run `deploy_te.sql` from the root directory.
 ## Documentation
 Is coming...
 
+## Performance
+Profiling results and comparision to concat is to come...
+
 ## Regression testing
 Unit tests can be found in ut subdirectory.
 
 To deploy unit tests run `ut/deploy_ut.sql`.
 To actually run unit tests run `ut/run_tests.sql`.
-
-Profiling info is to come...
 
 ## Licence
 Mit licence applies.

@@ -1,0 +1,774 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE APPLICATION SYSTEM "application.dtd">
+<APPLICATION NAME="ora_te">
+  <OVERVIEW><![CDATA[This documentation is generated from source code. For subprogram descriptions navigate to 'Object and Package Bodies' section.
+]]></OVERVIEW>
+  <PACKAGE NAME="PK_TE" SCHEMA="">
+    <EXCEPTION NAME="EX_TE_GENERAL"/>
+    <CONSTANT DEFAULT="-20999" NAME="CEX_TE_GENERAL">
+      <RETURN TYPE="PLS_INTEGER"/>
+    </CONSTANT>
+    <PRAGMA NAME="EXCEPTION_INIT"/>
+    <EXCEPTION NAME="EX_TE_OF_WRONG_TYPE"/>
+    <CONSTANT DEFAULT="-20998" NAME="CEX_TE_OF_WRONG_TYPE">
+      <RETURN TYPE="PLS_INTEGER"/>
+    </CONSTANT>
+    <PRAGMA NAME="EXCEPTION_INIT"/>
+    <EXCEPTION NAME="EX_TE_IS_NULL"/>
+    <CONSTANT DEFAULT="-20997" NAME="CEX_TE_IS_NULL">
+      <RETURN TYPE="PLS_INTEGER"/>
+    </CONSTANT>
+    <PRAGMA NAME="EXCEPTION_INIT"/>
+    <TYPE NAME="P">
+      <RETURN TYPE="table OF varchar2(32767 CHAR)"/>
+    </TYPE>
+    <TYPE NAME="M">
+      <RETURN TYPE="table OF p"/>
+    </TYPE>
+    <FUNCTION NAME="SUBSTITUTE">
+      <ARGUMENT MODE="IN OUT NOCOPY" NAME="A_TE" TYPE="TY_TE"/>
+      <ARGUMENT MODE="IN" NAME="A_NUMBERED_REPLACEMENTS" TYPE="P"/>
+      <RETURN TYPE="CLOB"/>
+      <SUMMARY END_COLUMN="89" END_LINE="17" LINES="1" START_COLUMN="12" START_LINE="17"/>
+    </FUNCTION>
+    <FUNCTION NAME="SUBSTITUTE">
+      <ARGUMENT MODE="IN OUT NOCOPY" NAME="A_TE" TYPE="TY_TE"/>
+      <ARGUMENT MODE="IN" NAME="A_NAMED_REPLACEMENTS" TYPE="M"/>
+      <RETURN TYPE="CLOB"/>
+      <SUMMARY END_COLUMN="86" END_LINE="18" LINES="1" START_COLUMN="12" START_LINE="18"/>
+    </FUNCTION>
+    <FUNCTION NAME="SUBSTITUTE">
+      <ARGUMENT MODE="IN" NAME="A_STRING" TYPE="CLOB"/>
+      <ARGUMENT MODE="IN" NAME="A_NUMBERED_REPLACEMENTS" TYPE="P"/>
+      <ARGUMENT DEFAULT="'$'" MODE="IN" NAME="A_PH_START" TYPE="VARCHAR2"/>
+      <RETURN TYPE="CLOB"/>
+      <SUMMARY END_COLUMN="112" END_LINE="20" LINES="1" START_COLUMN="12" START_LINE="20"/>
+    </FUNCTION>
+    <FUNCTION NAME="SUBSTITUTE">
+      <ARGUMENT MODE="IN" NAME="A_STRING" TYPE="CLOB"/>
+      <ARGUMENT MODE="IN" NAME="A_NAMED_REPLACEMENTS" TYPE="M"/>
+      <ARGUMENT DEFAULT="'{$'" MODE="IN" NAME="A_PH_START" TYPE="VARCHAR2"/>
+      <ARGUMENT DEFAULT="'}'" MODE="IN" NAME="A_PH_END" TYPE="VARCHAR2"/>
+      <RETURN TYPE="CLOB"/>
+      <SUMMARY END_COLUMN="139" END_LINE="21" LINES="1" START_COLUMN="12" START_LINE="21"/>
+    </FUNCTION>
+    <SUMMARY END_COLUMN="10" END_LINE="23" LINES="23" START_COLUMN="27" START_LINE="1"/>
+  </PACKAGE>
+  <PACKAGE_BODY NAME="PK_TE" SCHEMA="">
+    <COMMENT><![CDATA[ The package that provides functions to substitute values instead of placeholders.
+]]></COMMENT>
+    <TAG TYPE="@HEADCOM">
+      <COMMENT>
+      </COMMENT>
+    </TAG>
+    <TYPE NAME="TY_VCHAR_TO_VCHAR">
+      <RETURN TYPE="table OF varchar2(32767 CHAR) INDEX BY varchar2(100 CHAR)"/>
+    </TYPE>
+    <FUNCTION NAME="SUBSTITUTE">
+      <COMMENT_FIRST_LINE><![CDATA[ Replaces numbered placeholders in compiled Template Expression with values from nested table of varchar2 (p).<br/>
+ Using <br/>
+ <pre>type p is table of varchar2;</pre>
+ makes it possible to use some syntactic sugar for defining values to be placed instead of placeholders.<br/>
+ So say if we want to substitute $1 for 'Dolly' and $2 for 'back' in template expression <br/>
+ 'I said hello, $1, / Well, hello, $1 / It's so nice to have you $2 where you belong'<br/>
+ For it we just pass pk_te.p( 'Dolly', 'back' ) into this version of substitute.<br/>
+]]></COMMENT_FIRST_LINE>
+      <COMMENT><![CDATA[ Replaces numbered placeholders in compiled Template Expression with values from nested table of varchar2 (p).<br/>
+ Using <br/>
+ <pre>type p is table of varchar2;</pre>
+ makes it possible to use some syntactic sugar for defining values to be placed instead of placeholders.<br/>
+ So say if we want to substitute $1 for 'Dolly' and $2 for 'back' in template expression <br/>
+ 'I said hello, $1, / Well, hello, $1 / It's so nice to have you $2 where you belong'<br/>
+ For it we just pass pk_te.p( 'Dolly', 'back' ) into this version of substitute.<br/>
+]]></COMMENT>
+      <ARGUMENT MODE="IN OUT NOCOPY" NAME="A_TE" TYPE="TY_TE">
+        <COMMENT><![CDATA[ty_te template expression compiled for numbered placeholders]]></COMMENT>
+      </ARGUMENT>
+      <ARGUMENT MODE="IN" NAME="A_NUMBERED_REPLACEMENTS" TYPE="P">
+        <COMMENT><![CDATA[nested table of varchar2. Holds  values to place instead of placeholders]]></COMMENT>
+      </ARGUMENT>
+      <RETURN TYPE="CLOB">
+        <COMMENT><![CDATA[clob - a large character lob with substituted values (if any)]]></COMMENT>
+      </RETURN>
+      <THROWS NAME="EX_TE_IS_NULL">
+        <COMMENT><![CDATA[ if null template expression is passed]]></COMMENT>
+      </THROWS>
+      <THROWS NAME="EX_TE_OF_WRONG_TYPE">
+        <COMMENT><![CDATA[ if passed template expression was compiled for named placeholders]]></COMMENT>
+      </THROWS>
+      <TAG TYPE="@PARAM">
+        <COMMENT><![CDATA[a_te ty_te template expression compiled for numbered placeholders]]></COMMENT>
+      </TAG>
+      <TAG TYPE="@PARAM">
+        <COMMENT><![CDATA[a_numbered_replacements nested table of varchar2. Holds  values to place instead of placeholders]]></COMMENT>
+      </TAG>
+      <TAG TYPE="@THROWS">
+        <COMMENT><![CDATA[EX_TE_IS_NULL if null template expression is passed]]></COMMENT>
+      </TAG>
+      <TAG TYPE="@THROWS">
+        <COMMENT><![CDATA[EX_TE_OF_WRONG_TYPE if passed template expression was compiled for named placeholders]]></COMMENT>
+      </TAG>
+      <TAG TYPE="@RETURN">
+        <COMMENT><![CDATA[clob - a large character lob with substituted values (if any)]]></COMMENT>
+      </TAG>
+      <SUMMARY END_COLUMN="4" END_LINE="53" LINES="30" START_COLUMN="10" START_LINE="24"/>
+    </FUNCTION>
+    <FUNCTION NAME="SUBSTITUTE">
+      <COMMENT_FIRST_LINE><![CDATA[ Replaces named placeholders in compiled Template Expression with values from nested table of nested tables of varchar2 (m).<br/>
+ Using <br/>
+ <pre>type m is table of p;</pre>
+ makes it possible to use syntactic sugar for defining values to be placed instead of placeholders.<br/>
+ So say if we want to substitute {$who} for 'Dolly' and {$how} for 'nice' in template expression<br/>
+ 'I said hello, {$who}, / Well, hello, {$who} / It's so {$how} to have you back where you belong'<br/>
+ we just pass pk_te.m( pk_te.p( 'who', 'Dolly' ), pk_te.p( 'how' , 'back' ) ) into this version of substitute function.]]></COMMENT_FIRST_LINE>
+      <COMMENT><![CDATA[ Replaces named placeholders in compiled Template Expression with values from nested table of nested tables of varchar2 (m).<br/>
+ Using <br/>
+ <pre>type m is table of p;</pre>
+ makes it possible to use syntactic sugar for defining values to be placed instead of placeholders.<br/>
+ So say if we want to substitute {$who} for 'Dolly' and {$how} for 'nice' in template expression<br/>
+ 'I said hello, {$who}, / Well, hello, {$who} / It's so {$how} to have you back where you belong'<br/>
+ we just pass pk_te.m( pk_te.p( 'who', 'Dolly' ), pk_te.p( 'how' , 'back' ) ) into this version of substitute function.
+]]></COMMENT>
+      <ARGUMENT MODE="IN OUT NOCOPY" NAME="A_TE" TYPE="TY_TE">
+        <COMMENT><![CDATA[ty_te template expression compiled for named placeholders]]></COMMENT>
+      </ARGUMENT>
+      <ARGUMENT MODE="IN" NAME="A_NAMED_REPLACEMENTS" TYPE="M">
+        <COMMENT><![CDATA[a nested table of nested tables of varchar2 - named values to place instead of placeholders]]></COMMENT>
+      </ARGUMENT>
+      <RETURN TYPE="CLOB">
+        <COMMENT><![CDATA[clob - a large character lob with substituted values (if any)]]></COMMENT>
+      </RETURN>
+      <THROWS NAME="EX_TE_IS_NULL">
+        <COMMENT><![CDATA[ if null template expression is passed]]></COMMENT>
+      </THROWS>
+      <THROWS NAME="EX_TE_OF_WRONG_TYPE">
+        <COMMENT><![CDATA[ if passed template expression was compiled for numbered placeholders]]></COMMENT>
+      </THROWS>
+      <TAG TYPE="@PARAM">
+        <COMMENT><![CDATA[a_te ty_te template expression compiled for named placeholders]]></COMMENT>
+      </TAG>
+      <TAG TYPE="@PARAM">
+        <COMMENT><![CDATA[a_named_replacements a nested table of nested tables of varchar2 - named values to place instead of placeholders]]></COMMENT>
+      </TAG>
+      <TAG TYPE="@THROWS">
+        <COMMENT><![CDATA[EX_TE_IS_NULL if null template expression is passed]]></COMMENT>
+      </TAG>
+      <TAG TYPE="@THROWS">
+        <COMMENT><![CDATA[EX_TE_OF_WRONG_TYPE if passed template expression was compiled for numbered placeholders]]></COMMENT>
+      </TAG>
+      <TAG TYPE="@RETURN">
+        <COMMENT><![CDATA[clob - a large character lob with substituted values (if any)]]></COMMENT>
+      </TAG>
+      <SUMMARY END_COLUMN="4" END_LINE="109" LINES="40" START_COLUMN="10" START_LINE="70"/>
+    </FUNCTION>
+    <FUNCTION NAME="SUBSTITUTE">
+      <COMMENT_FIRST_LINE><![CDATA[ Substitutes values from p without 'compiling' template expression
+]]></COMMENT_FIRST_LINE>
+      <COMMENT><![CDATA[ Substitutes values from p without 'compiling' template expression
+]]></COMMENT>
+      <ARGUMENT MODE="IN" NAME="A_STRING" TYPE="CLOB">
+        <COMMENT><![CDATA[a string representing not compiled template expression having numbered placeholders]]></COMMENT>
+      </ARGUMENT>
+      <ARGUMENT MODE="IN" NAME="A_NUMBERED_REPLACEMENTS" TYPE="P">
+        <COMMENT><![CDATA[a nested table of varchar2 - values to place instead of placeholders]]></COMMENT>
+      </ARGUMENT>
+      <ARGUMENT DEFAULT="'$'" MODE="IN" NAME="A_PH_START" TYPE="VARCHAR2">
+        <COMMENT><![CDATA[a string that denotes the beginning of numbered placeholder]]></COMMENT>
+      </ARGUMENT>
+      <RETURN TYPE="CLOB">
+        <COMMENT><![CDATA[clob - a large character lob with substituted values (if any)]]></COMMENT>
+      </RETURN>
+      <TAG TYPE="@PARAM">
+        <COMMENT><![CDATA[a_string a string representing not compiled template expression having numbered placeholders]]></COMMENT>
+      </TAG>
+      <TAG TYPE="@PARAM">
+        <COMMENT><![CDATA[a_numbered_replacements a nested table of varchar2 - values to place instead of placeholders]]></COMMENT>
+      </TAG>
+      <TAG TYPE="@PARAM">
+        <COMMENT><![CDATA[a_ph_start a string that denotes the beginning of numbered placeholder]]></COMMENT>
+      </TAG>
+      <TAG TYPE="@RETURN">
+        <COMMENT><![CDATA[clob - a large character lob with substituted values (if any)]]></COMMENT>
+      </TAG>
+      <SUMMARY END_COLUMN="4" END_LINE="145" LINES="27" START_COLUMN="10" START_LINE="119"/>
+    </FUNCTION>
+    <FUNCTION NAME="SUBSTITUTE">
+      <COMMENT_FIRST_LINE><![CDATA[ Substitutes values from m without 'compiling' template expression
+]]></COMMENT_FIRST_LINE>
+      <COMMENT><![CDATA[ Substitutes values from m without 'compiling' template expression
+]]></COMMENT>
+      <ARGUMENT MODE="IN" NAME="A_STRING" TYPE="CLOB">
+        <COMMENT><![CDATA[a string representing not compiled template expression having named placeholders]]></COMMENT>
+      </ARGUMENT>
+      <ARGUMENT MODE="IN" NAME="A_NAMED_REPLACEMENTS" TYPE="M">
+        <COMMENT><![CDATA[a nested table of nested tables of varchar2 - named values to place in placeholders]]></COMMENT>
+      </ARGUMENT>
+      <ARGUMENT DEFAULT="'{$'" MODE="IN" NAME="A_PH_START" TYPE="VARCHAR2">
+        <COMMENT><![CDATA[a string that denotes the beginning of named placeholder]]></COMMENT>
+      </ARGUMENT>
+      <ARGUMENT DEFAULT="'}'" MODE="IN" NAME="A_PH_END" TYPE="VARCHAR2">
+        <COMMENT><![CDATA[a string that denotes the end of named placeholder]]></COMMENT>
+      </ARGUMENT>
+      <RETURN TYPE="CLOB">
+        <COMMENT><![CDATA[clob - a large character lob with substituted values (if any)]]></COMMENT>
+      </RETURN>
+      <TAG TYPE="@PARAM">
+        <COMMENT><![CDATA[a_string a string representing not compiled template expression having named placeholders]]></COMMENT>
+      </TAG>
+      <TAG TYPE="@PARAM">
+        <COMMENT><![CDATA[a_named_replacements a nested table of nested tables of varchar2 - named values to place in placeholders]]></COMMENT>
+      </TAG>
+      <TAG TYPE="@PARAM">
+        <COMMENT><![CDATA[a_ph_start a string that denotes the beginning of named placeholder]]></COMMENT>
+      </TAG>
+      <TAG TYPE="@PARAM">
+        <COMMENT><![CDATA[a_ph_end a string that denotes the end of named placeholder]]></COMMENT>
+      </TAG>
+      <TAG TYPE="@RETURN">
+        <COMMENT><![CDATA[clob - a large character lob with substituted values (if any)]]></COMMENT>
+      </TAG>
+      <SUMMARY END_COLUMN="4" END_LINE="183" LINES="29" START_COLUMN="10" START_LINE="155"/>
+    </FUNCTION>
+    <SUMMARY END_COLUMN="10" END_LINE="186" LINES="186" START_COLUMN="32" START_LINE="1"/>
+  </PACKAGE_BODY>
+  <OBJECT_TYPE NAME="TY_SPH" SCHEMA="">
+    <VARIABLE NAME="TYPE_" VERSION="1">
+      <RETURN TYPE="NUMBER(1,0)"/>
+    </VARIABLE>
+    <VARIABLE NAME="STRING_" VERSION="1">
+      <RETURN TYPE="CLOB"/>
+    </VARIABLE>
+    <VARIABLE NAME="PH_NAME" VERSION="1">
+      <RETURN TYPE="VARCHAR2(100 CHAR)"/>
+    </VARIABLE>
+    <VARIABLE NAME="PH_NUMBER" VERSION="1">
+      <RETURN TYPE="NUMBER(38,0)"/>
+    </VARIABLE>
+    <FUNCTION NAME="TY_SPH" SCOPE="CONSTRUCTOR" VERSION="1">
+      <ARGUMENT MODE="IN OUT NOCOPY" NAME="SELF" TYPE="TY_SPH"/>
+      <RETURN TYPE="CONSTRUCTOR FUNCTION SELF AS RESULT"/>
+      <SUMMARY END_COLUMN="83" END_LINE="6" LINES="1" START_COLUMN="32" START_LINE="6"/>
+    </FUNCTION>
+    <FUNCTION NAME="EL_STRING" SCOPE="STATIC" VERSION="1">
+      <RETURN TYPE="STATIC FUNCTION PLS_INTEGER"/>
+      <SUMMARY END_COLUMN="44" END_LINE="7" LINES="1" START_COLUMN="27" START_LINE="7"/>
+    </FUNCTION>
+    <FUNCTION NAME="EL_PH_NUMBERED" SCOPE="STATIC" VERSION="1">
+      <RETURN TYPE="STATIC FUNCTION PLS_INTEGER"/>
+      <SUMMARY END_COLUMN="49" END_LINE="8" LINES="1" START_COLUMN="27" START_LINE="8"/>
+    </FUNCTION>
+    <FUNCTION NAME="EL_PH_NAMED" SCOPE="STATIC" VERSION="1">
+      <RETURN TYPE="STATIC FUNCTION PLS_INTEGER"/>
+      <SUMMARY END_COLUMN="46" END_LINE="9" LINES="1" START_COLUMN="27" START_LINE="9"/>
+    </FUNCTION>
+    <FUNCTION NAME="CREATE_NUMBERED_PH" SCOPE="STATIC" VERSION="1">
+      <ARGUMENT MODE="IN" NAME="A_NUMBER" TYPE="PLS_INTEGER"/>
+      <RETURN TYPE="STATIC FUNCTION TY_SPH"/>
+      <SUMMARY END_COLUMN="80" END_LINE="10" LINES="1" START_COLUMN="27" START_LINE="10"/>
+    </FUNCTION>
+    <FUNCTION NAME="CREATE_NAMED_PH" SCOPE="STATIC" VERSION="1">
+      <ARGUMENT MODE="IN" NAME="A_NAME" TYPE="VARCHAR2"/>
+      <RETURN TYPE="STATIC FUNCTION TY_SPH"/>
+      <SUMMARY END_COLUMN="72" END_LINE="11" LINES="1" START_COLUMN="27" START_LINE="11"/>
+    </FUNCTION>
+    <FUNCTION NAME="CREATE_WRAPPED_STRING" SCOPE="STATIC" VERSION="1">
+      <ARGUMENT MODE="IN" NAME="A_STRING" TYPE="CLOB"/>
+      <RETURN TYPE="STATIC FUNCTION TY_SPH"/>
+      <SUMMARY END_COLUMN="76" END_LINE="12" LINES="1" START_COLUMN="27" START_LINE="12"/>
+    </FUNCTION>
+    <FUNCTION NAME="IS_STRING" SCOPE="MEMBER" VERSION="1">
+      <RETURN TYPE="MEMBER FUNCTION PLS_INTEGER"/>
+      <SUMMARY END_COLUMN="38" END_LINE="13" LINES="1" START_COLUMN="21" START_LINE="13"/>
+    </FUNCTION>
+    <SUMMARY END_COLUMN="2" END_LINE="14" LINES="14" START_COLUMN="24" START_LINE="1"/>
+  </OBJECT_TYPE>
+  <OBJECT_BODY NAME="TY_SPH" SCHEMA="">
+    <COMMENT><![CDATA[ TY_SPH (String Or Placeholder)<br/>
+ A type that represents wrapped clob or numbered/named placeholder.<br/>
+ You can create ty_sph of particular type by calling corresponding static functions.<br/>
+ This type is used in internals of TY_TE as a container of either string, or numbered/named placeholder<br/>
+]]></COMMENT>
+    <TAG TYPE="@HEADCOM">
+      <COMMENT>
+      </COMMENT>
+    </TAG>
+    <FUNCTION NAME="TY_SPH" SCOPE="CONSTRUCTOR" VERSION="1">
+      <COMMENT_FIRST_LINE><![CDATA[ Constructor implementation
+]]></COMMENT_FIRST_LINE>
+      <COMMENT><![CDATA[ Constructor implementation
+]]></COMMENT>
+      <ARGUMENT MODE="IN OUT NOCOPY" NAME="SELF" TYPE="TY_SPH"/>
+      <RETURN TYPE="CONSTRUCTOR FUNCTION SELF AS RESULT">
+        <COMMENT><![CDATA[self]]></COMMENT>
+      </RETURN>
+      <TAG TYPE="@RETURN">
+        <COMMENT><![CDATA[self]]></COMMENT>
+      </TAG>
+      <SUMMARY END_COLUMN="12" END_LINE="17" LINES="5" START_COLUMN="22" START_LINE="13"/>
+    </FUNCTION>
+    <FUNCTION NAME="CREATE_NUMBERED_PH" SCOPE="STATIC" VERSION="1">
+      <COMMENT_FIRST_LINE><![CDATA[ Creates instance of ty_sph by wrapping numbered placeholder
+]]></COMMENT_FIRST_LINE>
+      <COMMENT><![CDATA[ Creates instance of ty_sph by wrapping numbered placeholder
+]]></COMMENT>
+      <ARGUMENT MODE="IN" NAME="A_NUMBER" TYPE="PLS_INTEGER">
+        <COMMENT><![CDATA[placeholder number]]></COMMENT>
+      </ARGUMENT>
+      <RETURN TYPE="STATIC FUNCTION TY_SPH">
+        <COMMENT><![CDATA[instance of ty_sph]]></COMMENT>
+      </RETURN>
+      <TAG TYPE="@PARAM">
+        <COMMENT><![CDATA[a_number placeholder number]]></COMMENT>
+      </TAG>
+      <TAG TYPE="@RETURN">
+        <COMMENT><![CDATA[instance of ty_sph]]></COMMENT>
+      </TAG>
+      <SUMMARY END_COLUMN="4" END_LINE="31" LINES="9" START_COLUMN="17" START_LINE="23"/>
+    </FUNCTION>
+    <FUNCTION NAME="CREATE_NAMED_PH" SCOPE="STATIC" VERSION="1">
+      <COMMENT_FIRST_LINE><![CDATA[ Creates instance of ty_sph by wrapping numbered placeholder
+]]></COMMENT_FIRST_LINE>
+      <COMMENT><![CDATA[ Creates instance of ty_sph by wrapping numbered placeholder
+]]></COMMENT>
+      <ARGUMENT MODE="IN" NAME="A_NAME" TYPE="VARCHAR2">
+        <COMMENT><![CDATA[placeholder name]]></COMMENT>
+      </ARGUMENT>
+      <RETURN TYPE="STATIC FUNCTION TY_SPH">
+        <COMMENT><![CDATA[instance of ty_sph]]></COMMENT>
+      </RETURN>
+      <TAG TYPE="@PARAM">
+        <COMMENT><![CDATA[a_name placeholder name]]></COMMENT>
+      </TAG>
+      <TAG TYPE="@RETURN">
+        <COMMENT><![CDATA[instance of ty_sph]]></COMMENT>
+      </TAG>
+      <SUMMARY END_COLUMN="4" END_LINE="45" LINES="9" START_COLUMN="17" START_LINE="37"/>
+    </FUNCTION>
+    <FUNCTION NAME="CREATE_WRAPPED_STRING" SCOPE="STATIC" VERSION="1">
+      <COMMENT_FIRST_LINE><![CDATA[ Creates instance of ty_sph by wrapping string
+]]></COMMENT_FIRST_LINE>
+      <COMMENT><![CDATA[ Creates instance of ty_sph by wrapping string
+]]></COMMENT>
+      <ARGUMENT MODE="IN" NAME="A_STRING" TYPE="CLOB">
+        <COMMENT><![CDATA[a string to wrap]]></COMMENT>
+      </ARGUMENT>
+      <RETURN TYPE="STATIC FUNCTION TY_SPH">
+        <COMMENT><![CDATA[instance of ty_sph]]></COMMENT>
+      </RETURN>
+      <TAG TYPE="@PARAM">
+        <COMMENT><![CDATA[a_string a string to wrap]]></COMMENT>
+      </TAG>
+      <TAG TYPE="@RETURN">
+        <COMMENT><![CDATA[instance of ty_sph]]></COMMENT>
+      </TAG>
+      <SUMMARY END_COLUMN="4" END_LINE="59" LINES="9" START_COLUMN="17" START_LINE="51"/>
+    </FUNCTION>
+    <FUNCTION NAME="EL_STRING" SCOPE="STATIC" VERSION="1">
+      <COMMENT_FIRST_LINE><![CDATA[ Just to be used as class constant
+]]></COMMENT_FIRST_LINE>
+      <COMMENT><![CDATA[ Just to be used as class constant
+]]></COMMENT>
+      <RETURN TYPE="STATIC FUNCTION PLS_INTEGER"/>
+      <SUMMARY END_COLUMN="4" END_LINE="66" LINES="4" START_COLUMN="17" START_LINE="63"/>
+    </FUNCTION>
+    <FUNCTION NAME="EL_PH_NUMBERED" SCOPE="STATIC" VERSION="1">
+      <COMMENT_FIRST_LINE><![CDATA[ Just to be used as class constant
+]]></COMMENT_FIRST_LINE>
+      <COMMENT><![CDATA[ Just to be used as class constant
+]]></COMMENT>
+      <RETURN TYPE="STATIC FUNCTION PLS_INTEGER"/>
+      <SUMMARY END_COLUMN="4" END_LINE="73" LINES="4" START_COLUMN="17" START_LINE="70"/>
+    </FUNCTION>
+    <FUNCTION NAME="EL_PH_NAMED" SCOPE="STATIC" VERSION="1">
+      <COMMENT_FIRST_LINE><![CDATA[ Just to be used as class constant
+]]></COMMENT_FIRST_LINE>
+      <COMMENT><![CDATA[ Just to be used as class constant
+]]></COMMENT>
+      <RETURN TYPE="STATIC FUNCTION PLS_INTEGER"/>
+      <SUMMARY END_COLUMN="4" END_LINE="80" LINES="4" START_COLUMN="17" START_LINE="77"/>
+    </FUNCTION>
+    <FUNCTION NAME="IS_STRING" SCOPE="MEMBER" VERSION="1">
+      <COMMENT_FIRST_LINE><![CDATA[ Check if current instance is the wrapper of clob.]]></COMMENT_FIRST_LINE>
+      <COMMENT><![CDATA[ Check if current instance is the wrapper of clob.
+]]></COMMENT>
+      <RETURN TYPE="MEMBER FUNCTION PLS_INTEGER">
+        <COMMENT><![CDATA[1 if the instance is a wrapper of clob, 0 otherwise.]]></COMMENT>
+      </RETURN>
+      <TAG TYPE="@RETURN">
+        <COMMENT><![CDATA[1 if the instance is a wrapper of clob, 0 otherwise.]]></COMMENT>
+      </TAG>
+      <SUMMARY END_COLUMN="4" END_LINE="92" LINES="8" START_COLUMN="17" START_LINE="85"/>
+    </FUNCTION>
+    <SUMMARY END_COLUMN="4" END_LINE="95" LINES="95" START_COLUMN="29" START_LINE="1"/>
+  </OBJECT_BODY>
+  <OBJECT_TYPE NAME="TY_SPH_TBL" SCHEMA="">
+    <COLLECTIONTYPE NAME="TABLE"/>
+    <SUPERTYPE NAME="TY_SPH">
+      <RETURN COLLECTIONTYPE="TABLE" NAME="COLLECTION" SUPERTYPE="TY_SPH" TYPE="TABLE OF TY_SPH">
+        <COMMENT><![CDATA[Collection Type : table OF ty_sph]]></COMMENT>
+      </RETURN>
+    </SUPERTYPE>
+    <SUMMARY END_COLUMN="59" END_LINE="1" LINES="1" START_COLUMN="24" START_LINE="1"/>
+  </OBJECT_TYPE>
+  <OBJECT_TYPE NAME="TY_TE" SCHEMA="">
+    <VARIABLE NAME="COMPILED_TEMPLATE_" VERSION="1">
+      <RETURN TYPE="TY_SPH_TBL"/>
+    </VARIABLE>
+    <VARIABLE NAME="TYPE_" VERSION="1">
+      <RETURN TYPE="NUMBER(1,0)"/>
+    </VARIABLE>
+    <FUNCTION NAME="TY_TE" SCOPE="CONSTRUCTOR" VERSION="1">
+      <ARGUMENT MODE="IN OUT NOCOPY" NAME="SELF" TYPE="TY_TE"/>
+      <ARGUMENT MODE="IN" NAME="A_TYPE" TYPE="PLS_INTEGER"/>
+      <RETURN TYPE="CONSTRUCTOR FUNCTION SELF AS RESULT"/>
+      <SUMMARY END_COLUMN="32" END_LINE="5" LINES="2" START_COLUMN="32" START_LINE="4"/>
+    </FUNCTION>
+    <FUNCTION NAME="COMPILE_NUMBERED" SCOPE="STATIC" VERSION="1">
+      <ARGUMENT MODE="IN" NAME="A_TEMPLATE_STRING" TYPE="CLOB"/>
+      <ARGUMENT DEFAULT="'$'" MODE="IN" NAME="A_PH_START" TYPE="VARCHAR2"/>
+      <RETURN TYPE="STATIC FUNCTION TY_TE"/>
+      <SUMMARY END_COLUMN="104" END_LINE="6" LINES="1" START_COLUMN="21" START_LINE="6"/>
+    </FUNCTION>
+    <FUNCTION NAME="COMPILE_NAMED" SCOPE="STATIC" VERSION="1">
+      <ARGUMENT MODE="IN" NAME="A_TEMPLATE_STRING" TYPE="CLOB"/>
+      <ARGUMENT DEFAULT="'{$'" MODE="IN" NAME="A_PH_START" TYPE="VARCHAR2"/>
+      <ARGUMENT DEFAULT="'}'" MODE="IN" NAME="A_PH_END" TYPE="VARCHAR2"/>
+      <RETURN TYPE="STATIC FUNCTION TY_TE"/>
+      <SUMMARY END_COLUMN="101" END_LINE="8" LINES="2" START_COLUMN="21" START_LINE="7"/>
+    </FUNCTION>
+    <FUNCTION NAME="ESCAPE_REGEXP_SPECIAL" SCOPE="STATIC" VERSION="1">
+      <ARGUMENT MODE="IN" NAME="A_NOT_ESCAPED" TYPE="VARCHAR2"/>
+      <RETURN TYPE="STATIC FUNCTION VARCHAR2"/>
+      <SUMMARY END_COLUMN="79" END_LINE="9" LINES="1" START_COLUMN="21" START_LINE="9"/>
+    </FUNCTION>
+    <FUNCTION NAME="ESCAPE_BACKREFERENCE" SCOPE="STATIC" VERSION="1">
+      <ARGUMENT MODE="IN" NAME="A_NOT_ESCAPED" TYPE="VARCHAR2"/>
+      <RETURN TYPE="STATIC FUNCTION VARCHAR2"/>
+      <SUMMARY END_COLUMN="78" END_LINE="10" LINES="1" START_COLUMN="21" START_LINE="10"/>
+    </FUNCTION>
+    <FUNCTION NAME="EL_NUMBERED" SCOPE="STATIC" VERSION="1">
+      <RETURN TYPE="STATIC FUNCTION PLS_INTEGER"/>
+      <SUMMARY END_COLUMN="40" END_LINE="11" LINES="1" START_COLUMN="21" START_LINE="11"/>
+    </FUNCTION>
+    <FUNCTION NAME="EL_NAMED" SCOPE="STATIC" VERSION="1">
+      <RETURN TYPE="STATIC FUNCTION PLS_INTEGER"/>
+      <SUMMARY END_COLUMN="37" END_LINE="12" LINES="1" START_COLUMN="21" START_LINE="12"/>
+    </FUNCTION>
+    <SUMMARY END_COLUMN="2" END_LINE="13" LINES="13" START_COLUMN="24" START_LINE="1"/>
+  </OBJECT_TYPE>
+  <OBJECT_BODY NAME="TY_TE" SCHEMA="">
+    <COMMENT><![CDATA[ TY_TE (Template Expression)<br/>
+ A type that represents a compiled template expression.<br/>
+ By template expression (TE) we understand a string with numbered or named placeholders.<br/>
+ By compiling TE we understand parsing it, finding numbered or named placeholders and storing the whole expression<br/>
+ in the form of a nested table of ty_sph.<br/>
+]]></COMMENT>
+    <TAG TYPE="@HEADCOM">
+      <COMMENT>
+      </COMMENT>
+    </TAG>
+    <FUNCTION NAME="TY_TE" SCOPE="CONSTRUCTOR" VERSION="1">
+      <COMMENT_FIRST_LINE><![CDATA[ Constructor implementation
+]]></COMMENT_FIRST_LINE>
+      <COMMENT><![CDATA[ Constructor implementation
+]]></COMMENT>
+      <ARGUMENT MODE="IN OUT NOCOPY" NAME="SELF" TYPE="TY_TE"/>
+      <ARGUMENT MODE="IN" NAME="A_TYPE" TYPE="PLS_INTEGER">
+        <COMMENT><![CDATA[Can be either ty_te.EL_NAMED() or ty_te.EL_NUMBERED(). Denotes the type of placehoders that were<br/>
+ searched while compiling.]]></COMMENT>
+      </ARGUMENT>
+      <RETURN TYPE="CONSTRUCTOR FUNCTION SELF AS RESULT">
+        <COMMENT><![CDATA[self]]></COMMENT>
+      </RETURN>
+      <TAG TYPE="@PARAM">
+        <COMMENT><![CDATA[a_type Can be either ty_te.EL_NAMED() or ty_te.EL_NUMBERED(). Denotes the type of placehoders that were<br/>
+ searched while compiling.]]></COMMENT>
+      </TAG>
+      <TAG TYPE="@RETURN">
+        <COMMENT><![CDATA[self]]></COMMENT>
+      </TAG>
+      <SUMMARY END_COLUMN="10" END_LINE="24" LINES="7" START_COLUMN="22" START_LINE="18"/>
+    </FUNCTION>
+    <FUNCTION NAME="ESCAPE_REGEXP_SPECIAL" SCOPE="STATIC" VERSION="1">
+      <COMMENT_FIRST_LINE><![CDATA[ Escapes special chars to use as regexp pattern.]]></COMMENT_FIRST_LINE>
+      <COMMENT><![CDATA[ Escapes special chars to use as regexp pattern. Can be used outside of the type as a universal to escape such characters.
+]]></COMMENT>
+      <ARGUMENT MODE="IN" NAME="A_NOT_ESCAPED" TYPE="VARCHAR2"/>
+      <RETURN TYPE="STATIC FUNCTION VARCHAR2"/>
+      <SUMMARY END_COLUMN="4" END_LINE="32" LINES="5" START_COLUMN="17" START_LINE="28"/>
+    </FUNCTION>
+    <FUNCTION NAME="ESCAPE_BACKREFERENCE" SCOPE="STATIC" VERSION="1">
+      <COMMENT_FIRST_LINE><![CDATA[ Escapes regexp backreference to prevent treating substrings of form '\1' ..]]></COMMENT_FIRST_LINE>
+      <COMMENT><![CDATA[ Escapes regexp backreference to prevent treating substrings of form '\1' .. '\9' in <br/>
+ substitution values as backreference to matched pattern. Can be used as universal function outside the type to escape such backrefs.
+]]></COMMENT>
+      <ARGUMENT MODE="IN" NAME="A_NOT_ESCAPED" TYPE="VARCHAR2"/>
+      <RETURN TYPE="STATIC FUNCTION VARCHAR2"/>
+      <SUMMARY END_COLUMN="4" END_LINE="41" LINES="5" START_COLUMN="17" START_LINE="37"/>
+    </FUNCTION>
+    <FUNCTION NAME="COMPILE_NUMBERED" SCOPE="STATIC" VERSION="1">
+      <COMMENT_FIRST_LINE><![CDATA[ Parse string for numbered templates in the from $1, $2, etc.<br>
+ Stores result of parsing in compiled_template_ nested table.]]></COMMENT_FIRST_LINE>
+      <COMMENT><![CDATA[ Parse string for numbered templates in the from $1, $2, etc.<br>
+ Stores result of parsing in compiled_template_ nested table.
+]]></COMMENT>
+      <ARGUMENT MODE="IN" NAME="A_TEMPLATE_STRING" TYPE="CLOB">
+        <COMMENT><![CDATA[a template string]]></COMMENT>
+      </ARGUMENT>
+      <ARGUMENT DEFAULT="'$'" MODE="IN" NAME="A_PH_START" TYPE="VARCHAR2">
+        <COMMENT><![CDATA[a string that denotes the beginning of numbered placeholder]]></COMMENT>
+      </ARGUMENT>
+      <RETURN TYPE="STATIC FUNCTION TY_TE">
+        <COMMENT><![CDATA[The instance of template expression (ty_te) or null if no placeholders were found or if a_ph_start is null]]></COMMENT>
+      </RETURN>
+      <TAG TYPE="@PARAM">
+        <COMMENT><![CDATA[a_template_string a template string]]></COMMENT>
+      </TAG>
+      <TAG TYPE="@PARAM">
+        <COMMENT><![CDATA[a_ph_start a string that denotes the beginning of numbered placeholder]]></COMMENT>
+      </TAG>
+      <TAG TYPE="@RETURN">
+        <COMMENT><![CDATA[The instance of template expression (ty_te) or null if no placeholders were found or if a_ph_start is null]]></COMMENT>
+      </TAG>
+      <SUMMARY END_COLUMN="21" END_LINE="112" LINES="62" START_COLUMN="17" START_LINE="51"/>
+    </FUNCTION>
+    <FUNCTION NAME="COMPILE_NAMED" SCOPE="STATIC" VERSION="1">
+      <COMMENT_FIRST_LINE><![CDATA[ Parse string for named templates in the from {$placehoder}<br/>
+ Stores result of parsing in compiled_template_ nested table.]]></COMMENT_FIRST_LINE>
+      <COMMENT><![CDATA[ Parse string for named templates in the from {$placehoder}<br/>
+ Stores result of parsing in compiled_template_ nested table.
+]]></COMMENT>
+      <ARGUMENT MODE="IN" NAME="A_TEMPLATE_STRING" TYPE="CLOB">
+        <COMMENT><![CDATA[a template string]]></COMMENT>
+      </ARGUMENT>
+      <ARGUMENT DEFAULT="'{$'" MODE="IN" NAME="A_PH_START" TYPE="VARCHAR2">
+        <COMMENT><![CDATA[a string that denotes the beginning of named placeholder]]></COMMENT>
+      </ARGUMENT>
+      <ARGUMENT DEFAULT="'}'" MODE="IN" NAME="A_PH_END" TYPE="VARCHAR2">
+        <COMMENT><![CDATA[a string that denotes the end of named placeholder]]></COMMENT>
+      </ARGUMENT>
+      <RETURN TYPE="STATIC FUNCTION TY_TE">
+        <COMMENT><![CDATA[The instance of template expression (ty_te) or null if no placeholders were found or if or <br/>
+ a_ph_start or a_ph_end is null]]></COMMENT>
+      </RETURN>
+      <TAG TYPE="@PARAM">
+        <COMMENT><![CDATA[a_template_string a template string]]></COMMENT>
+      </TAG>
+      <TAG TYPE="@PARAM">
+        <COMMENT><![CDATA[a_ph_start a string that denotes the beginning of named placeholder]]></COMMENT>
+      </TAG>
+      <TAG TYPE="@PARAM">
+        <COMMENT><![CDATA[a_ph_end a string that denotes the end of named placeholder]]></COMMENT>
+      </TAG>
+      <TAG TYPE="@RETURN">
+        <COMMENT><![CDATA[The instance of template expression (ty_te) or null if no placeholders were found or if or <br/>
+ a_ph_start or a_ph_end is null]]></COMMENT>
+      </TAG>
+      <SUMMARY END_COLUMN="4" END_LINE="192" LINES="69" START_COLUMN="17" START_LINE="124"/>
+    </FUNCTION>
+    <FUNCTION NAME="EL_NUMBERED" SCOPE="STATIC" VERSION="1">
+      <COMMENT_FIRST_LINE><![CDATA[ Just to be used as class constant
+]]></COMMENT_FIRST_LINE>
+      <COMMENT><![CDATA[ Just to be used as class constant
+]]></COMMENT>
+      <RETURN TYPE="STATIC FUNCTION PLS_INTEGER"/>
+      <SUMMARY END_COLUMN="4" END_LINE="200" LINES="4" START_COLUMN="17" START_LINE="197"/>
+    </FUNCTION>
+    <FUNCTION NAME="EL_NAMED" SCOPE="STATIC" VERSION="1">
+      <COMMENT_FIRST_LINE><![CDATA[ Just to be used as class constant
+]]></COMMENT_FIRST_LINE>
+      <COMMENT><![CDATA[ Just to be used as class constant
+]]></COMMENT>
+      <RETURN TYPE="STATIC FUNCTION PLS_INTEGER"/>
+      <SUMMARY END_COLUMN="4" END_LINE="207" LINES="4" START_COLUMN="17" START_LINE="204"/>
+    </FUNCTION>
+    <SUMMARY END_COLUMN="4" END_LINE="209" LINES="209" START_COLUMN="29" START_LINE="1"/>
+  </OBJECT_BODY>
+  <PACKAGE NAME="PK_TE_UT" SCHEMA="">
+    <PROCEDURE NAME="RUN_TESTS">
+      <SUMMARY END_COLUMN="20" END_LINE="3" LINES="1" START_COLUMN="11" START_LINE="3"/>
+    </PROCEDURE>
+    <SUMMARY END_COLUMN="13" END_LINE="5" LINES="5" START_COLUMN="27" START_LINE="1"/>
+  </PACKAGE>
+  <PACKAGE_BODY NAME="PK_TE_UT" SCHEMA="">
+    <COMMENT><![CDATA[ Unit tests for pk_te package
+]]></COMMENT>
+    <TAG TYPE="@HEADCOM">
+      <COMMENT>
+      </COMMENT>
+    </TAG>
+    <PROCEDURE NAME="GET_CALLER_INFO">
+      <COMMENT_FIRST_LINE><![CDATA[ Gets calling module info including owner, type, name, line at desired call stack depth
+ The refactored version of one that
+ <a href="http://tkyte.blogspot.com/2009/10/httpasktomoraclecomtkytewhocalledme.html">Tom Kyte wrote<a>
+]]></COMMENT_FIRST_LINE>
+      <COMMENT><![CDATA[ Gets calling module info including owner, type, name, line at desired call stack depth
+ The refactored version of one that
+ <a href="http://tkyte.blogspot.com/2009/10/httpasktomoraclecomtkytewhocalledme.html">Tom Kyte wrote<a>
+]]></COMMENT>
+      <ARGUMENT MODE="IN" NAME="A_DESIRED_DEPTH" TYPE="PLS_INTEGER">
+        <COMMENT><![CDATA[the depth in the call stack from this function and up <br/>
+ So say providing 2 as a depth we can get not the caller of GET_CALLER_INFO but the caller of the function that called GET_CALLER_INFO]]></COMMENT>
+      </ARGUMENT>
+      <ARGUMENT MODE="OUT" NAME="A_REAL_DEPTH" TYPE="PLS_INTEGER">
+        <COMMENT><![CDATA[returns the real depth if it's less then desired]]></COMMENT>
+      </ARGUMENT>
+      <ARGUMENT MODE="OUT" NAME="A_CALLER_TYPE" TYPE="VARCHAR2">
+        <COMMENT><![CDATA[returns caller type ('PACKAGE', 'PACKAGE BODY', etc.)]]></COMMENT>
+      </ARGUMENT>
+      <ARGUMENT MODE="OUT" NAME="A_CALLER_OWNER" TYPE="VARCHAR2">
+        <COMMENT><![CDATA[returns caller owner]]></COMMENT>
+      </ARGUMENT>
+      <ARGUMENT MODE="OUT" NAME="A_CALLER_NAME" TYPE="VARCHAR2">
+        <COMMENT><![CDATA[returns caller name]]></COMMENT>
+      </ARGUMENT>
+      <ARGUMENT MODE="OUT" NAME="A_LINE_NUMBER" TYPE="PLS_INTEGER">
+        <COMMENT><![CDATA[returns caller line number]]></COMMENT>
+      </ARGUMENT>
+      <TAG TYPE="@PARAM">
+        <COMMENT><![CDATA[a_desired_depth the depth in the call stack from this function and up <br/>
+ So say providing 2 as a depth we can get not the caller of GET_CALLER_INFO but the caller of the function that called GET_CALLER_INFO]]></COMMENT>
+      </TAG>
+      <TAG TYPE="@PARAM">
+        <COMMENT><![CDATA[a_real_depth returns the real depth if it's less then desired]]></COMMENT>
+      </TAG>
+      <TAG TYPE="@PARAM">
+        <COMMENT><![CDATA[a_caller_type returns caller type ('PACKAGE', 'PACKAGE BODY', etc.)]]></COMMENT>
+      </TAG>
+      <TAG TYPE="@PARAM">
+        <COMMENT><![CDATA[a_caller_owner returns caller owner]]></COMMENT>
+      </TAG>
+      <TAG TYPE="@PARAM">
+        <COMMENT><![CDATA[a_caller_name returns caller name]]></COMMENT>
+      </TAG>
+      <TAG TYPE="@PARAM">
+        <COMMENT><![CDATA[a_line_number returns caller line number]]></COMMENT>
+      </TAG>
+      <SUMMARY END_COLUMN="4" END_LINE="100" LINES="82" START_COLUMN="11" START_LINE="19"/>
+    </PROCEDURE>
+    <PROCEDURE NAME="ASSERT">
+      <COMMENT_FIRST_LINE><![CDATA[ Accert procedure.]]></COMMENT_FIRST_LINE>
+      <COMMENT><![CDATA[ Accert procedure. Is to be called from unit test functions. Automatically gets caller info and stores<br/>
+ it and the result of accertion in ut_report table. As all unit tests are Package body procedures their name can only<br/>
+ be infered during analysis of package body source code. This analysis is done when accessing ut_report_deciphered view
+]]></COMMENT>
+      <ARGUMENT MODE="IN" NAME="A" TYPE="BOOLEAN">
+        <COMMENT><![CDATA[accertion as a boolean value. If accertion is true, 'Passed' is inserted in ut_report along with caller info, 'Failed' otherwise.]]></COMMENT>
+      </ARGUMENT>
+      <TAG TYPE="@PARAM">
+        <COMMENT><![CDATA[a accertion as a boolean value. If accertion is true, 'Passed' is inserted in ut_report along with caller info, 'Failed' otherwise.]]></COMMENT>
+      </TAG>
+      <SUMMARY END_COLUMN="4" END_LINE="151" LINES="44" START_COLUMN="11" START_LINE="108"/>
+    </PROCEDURE>
+    <PROCEDURE NAME="PRINT_MAP">
+      <COMMENT_FIRST_LINE><![CDATA[ Prints values stored in pk_te.m nested table of nested tables of varchar.]]></COMMENT_FIRST_LINE>
+      <COMMENT><![CDATA[ Prints values stored in pk_te.m nested table of nested tables of varchar.
+ Only pk_te.p having 2 elements ( key => value ) are considered appropriate
+]]></COMMENT>
+      <ARGUMENT MODE="IN" NAME="A_MAP" TYPE="PK_TE.M">
+        <COMMENT><![CDATA[a map to print contents of]]></COMMENT>
+      </ARGUMENT>
+      <TAG TYPE="@PARAM">
+        <COMMENT><![CDATA[a_map a map to print contents of]]></COMMENT>
+      </TAG>
+      <SUMMARY END_COLUMN="4" END_LINE="171" LINES="14" START_COLUMN="11" START_LINE="158"/>
+    </PROCEDURE>
+    <PROCEDURE NAME="NUMBERED_STRAIGHT">
+      <COMMENT_FIRST_LINE><![CDATA[
+]]></COMMENT_FIRST_LINE>
+      <COMMENT><![CDATA[
+]]></COMMENT>
+      <SUMMARY END_COLUMN="4" END_LINE="184" LINES="8" START_COLUMN="11" START_LINE="177"/>
+    </PROCEDURE>
+    <PROCEDURE NAME="NUMBERED_USER_START">
+      <SUMMARY END_COLUMN="4" END_LINE="193" LINES="8" START_COLUMN="11" START_LINE="186"/>
+    </PROCEDURE>
+    <PROCEDURE NAME="NUMBERED_REPEATED">
+      <SUMMARY END_COLUMN="4" END_LINE="204" LINES="9" START_COLUMN="11" START_LINE="196"/>
+    </PROCEDURE>
+    <PROCEDURE NAME="SKIPPED_$2_NULL_IN_MAP">
+      <SUMMARY END_COLUMN="4" END_LINE="215" LINES="9" START_COLUMN="11" START_LINE="207"/>
+    </PROCEDURE>
+    <PROCEDURE NAME="NO_$_TEMPLATES_NUMBERED">
+      <SUMMARY END_COLUMN="4" END_LINE="222" LINES="6" START_COLUMN="11" START_LINE="217"/>
+    </PROCEDURE>
+    <PROCEDURE NAME="NUMBERED_$1_FOLLEWED_BY_$2">
+      <SUMMARY END_COLUMN="4" END_LINE="232" LINES="9" START_COLUMN="11" START_LINE="224"/>
+    </PROCEDURE>
+    <PROCEDURE NAME="NUMBERED_EMPTY_P">
+      <SUMMARY END_COLUMN="4" END_LINE="242" LINES="9" START_COLUMN="11" START_LINE="234"/>
+    </PROCEDURE>
+    <PROCEDURE NAME="SUBSTITUTE_M_AND_NUMBERED">
+      <SUMMARY END_COLUMN="4" END_LINE="257" LINES="14" START_COLUMN="11" START_LINE="244"/>
+    </PROCEDURE>
+    <PROCEDURE NAME="SUBSTITUTE_NULL_TE">
+      <SUMMARY END_COLUMN="4" END_LINE="272" LINES="13" START_COLUMN="11" START_LINE="260"/>
+    </PROCEDURE>
+    <PROCEDURE NAME="NAMED_STRAIGHT">
+      <SUMMARY END_COLUMN="4" END_LINE="292" LINES="17" START_COLUMN="11" START_LINE="276"/>
+    </PROCEDURE>
+    <PROCEDURE NAME="NAMED_REPEATED">
+      <SUMMARY END_COLUMN="4" END_LINE="312" LINES="18" START_COLUMN="11" START_LINE="295"/>
+    </PROCEDURE>
+    <PROCEDURE NAME="DOT_IN_NAMED_TE">
+      <SUMMARY END_COLUMN="4" END_LINE="332" LINES="17" START_COLUMN="11" START_LINE="316"/>
+    </PROCEDURE>
+    <PROCEDURE NAME="NAMED_MISSING_IN_M">
+      <SUMMARY END_COLUMN="4" END_LINE="351" LINES="17" START_COLUMN="11" START_LINE="335"/>
+    </PROCEDURE>
+    <PROCEDURE NAME="SUBSTITUTE_P_AND_NAMED">
+      <SUMMARY END_COLUMN="4" END_LINE="367" LINES="14" START_COLUMN="11" START_LINE="354"/>
+    </PROCEDURE>
+    <PROCEDURE NAME="NAMED_ENCAPSULATED_TE">
+      <SUMMARY END_COLUMN="4" END_LINE="387" LINES="18" START_COLUMN="11" START_LINE="370"/>
+    </PROCEDURE>
+    <PROCEDURE NAME="NAMED_USER_START">
+      <SUMMARY END_COLUMN="4" END_LINE="406" LINES="17" START_COLUMN="11" START_LINE="390"/>
+    </PROCEDURE>
+    <PROCEDURE NAME="NAMED_USER_START_USER_END">
+      <SUMMARY END_COLUMN="4" END_LINE="424" LINES="17" START_COLUMN="11" START_LINE="408"/>
+    </PROCEDURE>
+    <PROCEDURE NAME="SUBST_NUM_STRAIGHT">
+      <SUMMARY END_COLUMN="4" END_LINE="432" LINES="7" START_COLUMN="11" START_LINE="426"/>
+    </PROCEDURE>
+    <PROCEDURE NAME="SUBST_NUM_BACKREF">
+      <SUMMARY END_COLUMN="4" END_LINE="440" LINES="7" START_COLUMN="11" START_LINE="434"/>
+    </PROCEDURE>
+    <PROCEDURE NAME="SUBST_NUM_NULL_REPL">
+      <SUMMARY END_COLUMN="4" END_LINE="447" LINES="6" START_COLUMN="11" START_LINE="442"/>
+    </PROCEDURE>
+    <PROCEDURE NAME="SUBST_NUM_NO_TE_IN_MAP">
+      <SUMMARY END_COLUMN="4" END_LINE="455" LINES="7" START_COLUMN="11" START_LINE="449"/>
+    </PROCEDURE>
+    <PROCEDURE NAME="SUBST_NUM_USER_START">
+      <SUMMARY END_COLUMN="4" END_LINE="463" LINES="7" START_COLUMN="11" START_LINE="457"/>
+    </PROCEDURE>
+    <PROCEDURE NAME="SUBST_NAMED_STRAIGHT">
+      <SUMMARY END_COLUMN="4" END_LINE="479" LINES="14" START_COLUMN="11" START_LINE="466"/>
+    </PROCEDURE>
+    <PROCEDURE NAME="SUBST_NAMED_EMPTY_AND_NULL_P">
+      <SUMMARY END_COLUMN="4" END_LINE="495" LINES="14" START_COLUMN="11" START_LINE="482"/>
+    </PROCEDURE>
+    <PROCEDURE NAME="SUBST_NAMED_BACKREF">
+      <SUMMARY END_COLUMN="4" END_LINE="511" LINES="14" START_COLUMN="11" START_LINE="498"/>
+    </PROCEDURE>
+    <PROCEDURE NAME="SUBST_NAMED_REPEADTED">
+      <SUMMARY END_COLUMN="4" END_LINE="528" LINES="15" START_COLUMN="11" START_LINE="514"/>
+    </PROCEDURE>
+    <PROCEDURE NAME="RUN_TESTS">
+      <COMMENT_FIRST_LINE><![CDATA[ Public package procedure that actually run tests.]]></COMMENT_FIRST_LINE>
+      <COMMENT><![CDATA[ Public package procedure that actually run tests. Test results are stored in ut_report.
+]]></COMMENT>
+      <SUMMARY END_COLUMN="4" END_LINE="560" LINES="29" START_COLUMN="11" START_LINE="532"/>
+    </PROCEDURE>
+    <SUMMARY END_COLUMN="13" END_LINE="562" LINES="562" START_COLUMN="32" START_LINE="1"/>
+  </PACKAGE_BODY>
+  <GENERATOR>
+    <OBJECTS>
+      <PROCESSED COUNT="12"/>
+      <SKIPPED COUNT="1"/>
+    </OBJECTS>
+    <CREATED DATE="28.04.15" TIME="2:12"/>
+    <SETTINGS DEFAULT_KEYWORDS_CASE="UPPER" DEFAULT_NAMES_CASE="UPPER" IGNORE_INFORMAL_COMMENTS="FALSE" INPUT_ENCODING="Cp1251" KEYWORDS_TO_DEFAULT_CASE="TRUE" KEYWORDS_TO_LOWER_CASE="FALSE" KEYWORDS_TO_UPPER_CASE="FALSE" NAMES_TO_DEFAULT_CASE="TRUE" NAMES_TO_LOWER_CASE="FALSE" NAMES_TO_UPPER_CASE="FALSE" SHOW_SKIPPED_PACKAGES="FALSE" VERBOSE="FALSE"/>
+  </GENERATOR>
+</APPLICATION>

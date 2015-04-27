@@ -1,0 +1,405 @@
+<HTML xmlns:lxslt="http://xml.apache.org/xslt" xmlns:exslt="http://exslt.org/common">
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<TITLE>ora_te</TITLE>
+<LINK TITLE="Style" HREF="../stylesheet.css" TYPE="text/css" REL="stylesheet">
+<!--
+        sameCase=ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz
+        namesLowerCase=FALSE
+        namesUpperCase=FALSE
+        namesDefaultCase=TRUE
+        defaultNamesCase=UPPER
+        namesFromCase=ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz
+        namesToCase=ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz-->
+</HEAD>
+<BODY BGCOLOR="white">
+<TABLE CELLSPACING="0" CELLPADDING="1" WIDTH="100%" BORDER="0">
+<TR>
+<TD CLASS="NavBarRow1" COLSPAN="2">
+<TABLE CELLSPACING="3" CELLPADDING="0" BORDER="0">
+<TR VALIGN="top" ALIGN="center">
+<TD CLASS="NavBarRow1"><A HREF="../summary.html"><FONT CLASS="NavBarFont1"><B>Overview</B></FONT></A> &nbsp;</TD><TD CLASS="NavBarRow1"><A HREF="../deprecated-list.html"><FONT CLASS="NavBarFont1"><B>Deprecated</B></FONT></A> &nbsp;</TD><TD CLASS="NavBarRow1"><A HREF="../index-list.html"><FONT CLASS="NavBarFont1"><B>Index</B></FONT></A> &nbsp;</TD><TD CLASS="NavBarRow1"><A HREF="../generator.html"><FONT CLASS="NavBarFont1"><B>Generator</B></FONT></A> &nbsp;</TD>
+</TR>
+</TABLE>
+</TD><TD rowspan="3" VALIGN="top" ALIGN="right"><EM><b>ora_te</b></EM></TD>
+</TR>
+<TR>
+<TD CLASS="NavBarRow3" VALIGN="top"><FONT SIZE="-2">
+      SUMMARY:  <A HREF="#field_summary">FIELD</A> | <A HREF="#type_summary">TYPE</A> | <A HREF="#method_summary">METHOD</A></FONT></TD><TD CLASS="NavBarRow3" VALIGN="top"><FONT SIZE="-2">
+    DETAIL:  <A HREF="#field_detail">FIELD</A> | <A HREF="#type_detail">TYPE</A> | <A HREF="#method_detail">METHOD</A></FONT></TD>
+</TR>
+</TABLE>
+<HR>
+<H2>
+<FONT SIZE="-1"></FONT>
+<BR>Object Type&nbsp;TY_SPH</H2> TY_SPH (String Or Placeholder)<br/>
+ A type that represents wrapped clob or numbered/named placeholder.<br/>
+ You can create ty_sph of particular type by calling corresponding static functions.<br/>
+ This type is used in internals of TY_TE as a container of either string, or numbered/named placeholder<br/>
+<P></P>
+<DL></DL>
+<HR>
+<P></P>
+<A NAME="field_summary"></A><A NAME="type_summary"></A><A NAME="method_summary"></A>
+<TABLE WIDTH="100%" CELLSPACING="0" CELLPADDING="3" BORDER="1">
+<TR CLASS="TableHeadingColor">
+<TD COLSPAN="2"><FONT SIZE="+2"><B>Method Summary</B></FONT></TD>
+</TR>
+<TR CLASS="TableRowColor">
+<TD WIDTH="1%" VALIGN="top" ALIGN="right"><FONT SIZE="-1"><CODE>&nbsp;<!--
+       schemaName=
+       typeName=STATIC FUNCTION TY_SPH
+       localTypeName=
+       schema=
+       fieldType=STATIC FUNCTION TY_SPH
+       synonymsFile=,,--><!--GenerateTypeLink: default reached-->STATIC FUNCTION TY_SPH</CODE></FONT></TD>
+<!-- 
+		siblingCount=0 
+		argumentCount=1 
+		predecessorCount=0 
+		siblingNoArgumentCount=0--><A NAME="CREATE_NAMED_PH"></A><TD><CODE><B><A HREF="#CREATE_NAMED_PH(VARCHAR2)">CREATE_NAMED_PH</A></B>(A_NAME IN VARCHAR2)</CODE>
+<BR>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+       Creates instance of ty_sph by wrapping numbered placeholder
+</TD>
+</TR>
+<TR CLASS="TableRowColor">
+<TD WIDTH="1%" VALIGN="top" ALIGN="right"><FONT SIZE="-1"><CODE>&nbsp;<!--
+       schemaName=
+       typeName=STATIC FUNCTION TY_SPH
+       localTypeName=
+       schema=
+       fieldType=STATIC FUNCTION TY_SPH
+       synonymsFile=,,--><!--GenerateTypeLink: default reached-->STATIC FUNCTION TY_SPH</CODE></FONT></TD>
+<!-- 
+		siblingCount=0 
+		argumentCount=1 
+		predecessorCount=0 
+		siblingNoArgumentCount=0--><A NAME="CREATE_NUMBERED_PH"></A><TD><CODE><B><A HREF="#CREATE_NUMBERED_PH(PLS_INTEGER)">CREATE_NUMBERED_PH</A></B>(A_NUMBER IN PLS_INTEGER)</CODE>
+<BR>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+       Creates instance of ty_sph by wrapping numbered placeholder
+</TD>
+</TR>
+<TR CLASS="TableRowColor">
+<TD WIDTH="1%" VALIGN="top" ALIGN="right"><FONT SIZE="-1"><CODE>&nbsp;<!--
+       schemaName=
+       typeName=STATIC FUNCTION TY_SPH
+       localTypeName=
+       schema=
+       fieldType=STATIC FUNCTION TY_SPH
+       synonymsFile=,,--><!--GenerateTypeLink: default reached-->STATIC FUNCTION TY_SPH</CODE></FONT></TD>
+<!-- 
+		siblingCount=0 
+		argumentCount=1 
+		predecessorCount=0 
+		siblingNoArgumentCount=0--><A NAME="CREATE_WRAPPED_STRING"></A><TD><CODE><B><A HREF="#CREATE_WRAPPED_STRING(CLOB)">CREATE_WRAPPED_STRING</A></B>(A_STRING IN CLOB)</CODE>
+<BR>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+       Creates instance of ty_sph by wrapping string
+</TD>
+</TR>
+<TR CLASS="TableRowColor">
+<TD WIDTH="1%" VALIGN="top" ALIGN="right"><FONT SIZE="-1"><CODE>&nbsp;<!--
+       schemaName=
+       typeName=STATIC FUNCTION PLS_INTEGER
+       localTypeName=
+       schema=
+       fieldType=STATIC FUNCTION PLS_INTEGER
+       synonymsFile=,,--><!--GenerateTypeLink: default reached-->STATIC FUNCTION PLS_INTEGER</CODE></FONT></TD>
+<!-- 
+		siblingCount=0 
+		argumentCount=0 
+		predecessorCount=0 
+		siblingNoArgumentCount=0--><TD><CODE><B><A HREF="#EL_PH_NAMED">EL_PH_NAMED</A></B>()</CODE>
+<BR>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+       Just to be used as class constant
+</TD>
+</TR>
+<TR CLASS="TableRowColor">
+<TD WIDTH="1%" VALIGN="top" ALIGN="right"><FONT SIZE="-1"><CODE>&nbsp;<!--
+       schemaName=
+       typeName=STATIC FUNCTION PLS_INTEGER
+       localTypeName=
+       schema=
+       fieldType=STATIC FUNCTION PLS_INTEGER
+       synonymsFile=,,--><!--GenerateTypeLink: default reached-->STATIC FUNCTION PLS_INTEGER</CODE></FONT></TD>
+<!-- 
+		siblingCount=0 
+		argumentCount=0 
+		predecessorCount=0 
+		siblingNoArgumentCount=0--><TD><CODE><B><A HREF="#EL_PH_NUMBERED">EL_PH_NUMBERED</A></B>()</CODE>
+<BR>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+       Just to be used as class constant
+</TD>
+</TR>
+<TR CLASS="TableRowColor">
+<TD WIDTH="1%" VALIGN="top" ALIGN="right"><FONT SIZE="-1"><CODE>&nbsp;<!--
+       schemaName=
+       typeName=STATIC FUNCTION PLS_INTEGER
+       localTypeName=
+       schema=
+       fieldType=STATIC FUNCTION PLS_INTEGER
+       synonymsFile=,,--><!--GenerateTypeLink: default reached-->STATIC FUNCTION PLS_INTEGER</CODE></FONT></TD>
+<!-- 
+		siblingCount=0 
+		argumentCount=0 
+		predecessorCount=0 
+		siblingNoArgumentCount=0--><TD><CODE><B><A HREF="#EL_STRING">EL_STRING</A></B>()</CODE>
+<BR>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+       Just to be used as class constant
+</TD>
+</TR>
+<TR CLASS="TableRowColor">
+<TD WIDTH="1%" VALIGN="top" ALIGN="right"><FONT SIZE="-1"><CODE>&nbsp;<!--
+       schemaName=
+       typeName=MEMBER FUNCTION PLS_INTEGER
+       localTypeName=
+       schema=
+       fieldType=MEMBER FUNCTION PLS_INTEGER
+       synonymsFile=,,--><!--GenerateTypeLink: default reached-->MEMBER FUNCTION PLS_INTEGER</CODE></FONT></TD>
+<!-- 
+		siblingCount=0 
+		argumentCount=0 
+		predecessorCount=0 
+		siblingNoArgumentCount=0--><TD><CODE><B><A HREF="#IS_STRING">IS_STRING</A></B>()</CODE>
+<BR>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+       Check if current instance is the wrapper of clob.</TD>
+</TR>
+<TR CLASS="TableRowColor">
+<TD WIDTH="1%" VALIGN="top" ALIGN="right"><FONT SIZE="-1"><CODE>&nbsp;<!--
+       schemaName=
+       typeName=CONSTRUCTOR FUNCTION SELF AS RESULT
+       localTypeName=
+       schema=
+       fieldType=CONSTRUCTOR FUNCTION SELF AS RESULT
+       synonymsFile=,,--><!--GenerateTypeLink: default reached-->CONSTRUCTOR FUNCTION SELF AS RESULT</CODE></FONT></TD>
+<!-- 
+		siblingCount=0 
+		argumentCount=1 
+		predecessorCount=0 
+		siblingNoArgumentCount=0--><A NAME="TY_SPH"></A><TD><CODE><B><A HREF="#TY_SPH(TY_SPH)">TY_SPH</A></B>(SELF IN OUT NOCOPY TY_SPH)</CODE>
+<BR>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+       Constructor implementation
+</TD>
+</TR>
+</TABLE>
+<P></P>
+<A NAME="trigger_summary"></A><A NAME="field_detail"></A><A NAME="type_detail"></A><A NAME="method_detail"></A>
+<TABLE WIDTH="100%" CELLSPACING="0" CELLPADDING="3" BORDER="1">
+<TR CLASS="TableHeadingColor">
+<TD COLSPAN="1"><FONT SIZE="+2"><B>Method Detail</B></FONT></TD>
+</TR>
+</TABLE>
+<A NAME="CREATE_NAMED_PH(VARCHAR2)"></A>
+<H3>CREATE_NAMED_PH</H3>
+<PRE> <!--
+       schemaName=
+       typeName=STATIC FUNCTION TY_SPH
+       localTypeName=
+       schema=
+       fieldType=STATIC FUNCTION TY_SPH
+       synonymsFile=,,--><!--GenerateTypeLink: default reached-->STATIC FUNCTION TY_SPH <B>CREATE_NAMED_PH</B>(A_NAME IN VARCHAR2)</PRE>
+<DL>
+<DD> Creates instance of ty_sph by wrapping numbered placeholder
+</DD>
+<DD>
+<DL>
+<DT>Parameters:
+        <DD>
+<CODE>A_NAME</CODE> -
+              placeholder name</DD>
+</DT>
+<DT>Returns:
+          <DD>instance of ty_sph</DD>
+</DT>
+</DL>
+</DD>
+<P></P>
+<DL></DL>
+</DL>
+<HR>
+<A NAME="CREATE_NUMBERED_PH(PLS_INTEGER)"></A>
+<H3>CREATE_NUMBERED_PH</H3>
+<PRE> <!--
+       schemaName=
+       typeName=STATIC FUNCTION TY_SPH
+       localTypeName=
+       schema=
+       fieldType=STATIC FUNCTION TY_SPH
+       synonymsFile=,,--><!--GenerateTypeLink: default reached-->STATIC FUNCTION TY_SPH <B>CREATE_NUMBERED_PH</B>(A_NUMBER IN PLS_INTEGER)</PRE>
+<DL>
+<DD> Creates instance of ty_sph by wrapping numbered placeholder
+</DD>
+<DD>
+<DL>
+<DT>Parameters:
+        <DD>
+<CODE>A_NUMBER</CODE> -
+              placeholder number</DD>
+</DT>
+<DT>Returns:
+          <DD>instance of ty_sph</DD>
+</DT>
+</DL>
+</DD>
+<P></P>
+<DL></DL>
+</DL>
+<HR>
+<A NAME="CREATE_WRAPPED_STRING(CLOB)"></A>
+<H3>CREATE_WRAPPED_STRING</H3>
+<PRE> <!--
+       schemaName=
+       typeName=STATIC FUNCTION TY_SPH
+       localTypeName=
+       schema=
+       fieldType=STATIC FUNCTION TY_SPH
+       synonymsFile=,,--><!--GenerateTypeLink: default reached-->STATIC FUNCTION TY_SPH <B>CREATE_WRAPPED_STRING</B>(A_STRING IN CLOB)</PRE>
+<DL>
+<DD> Creates instance of ty_sph by wrapping string
+</DD>
+<DD>
+<DL>
+<DT>Parameters:
+        <DD>
+<CODE>A_STRING</CODE> -
+              a string to wrap</DD>
+</DT>
+<DT>Returns:
+          <DD>instance of ty_sph</DD>
+</DT>
+</DL>
+</DD>
+<P></P>
+<DL></DL>
+</DL>
+<HR>
+<A NAME="EL_PH_NAMED"></A>
+<H3>EL_PH_NAMED</H3>
+<PRE> <!--
+       schemaName=
+       typeName=STATIC FUNCTION PLS_INTEGER
+       localTypeName=
+       schema=
+       fieldType=STATIC FUNCTION PLS_INTEGER
+       synonymsFile=,,--><!--GenerateTypeLink: default reached-->STATIC FUNCTION PLS_INTEGER <B>EL_PH_NAMED</B>()</PRE>
+<DL>
+<DD> Just to be used as class constant
+</DD>
+<DD>
+<DL></DL>
+</DD>
+<P></P>
+<DL></DL>
+</DL>
+<HR>
+<A NAME="EL_PH_NUMBERED"></A>
+<H3>EL_PH_NUMBERED</H3>
+<PRE> <!--
+       schemaName=
+       typeName=STATIC FUNCTION PLS_INTEGER
+       localTypeName=
+       schema=
+       fieldType=STATIC FUNCTION PLS_INTEGER
+       synonymsFile=,,--><!--GenerateTypeLink: default reached-->STATIC FUNCTION PLS_INTEGER <B>EL_PH_NUMBERED</B>()</PRE>
+<DL>
+<DD> Just to be used as class constant
+</DD>
+<DD>
+<DL></DL>
+</DD>
+<P></P>
+<DL></DL>
+</DL>
+<HR>
+<A NAME="EL_STRING"></A>
+<H3>EL_STRING</H3>
+<PRE> <!--
+       schemaName=
+       typeName=STATIC FUNCTION PLS_INTEGER
+       localTypeName=
+       schema=
+       fieldType=STATIC FUNCTION PLS_INTEGER
+       synonymsFile=,,--><!--GenerateTypeLink: default reached-->STATIC FUNCTION PLS_INTEGER <B>EL_STRING</B>()</PRE>
+<DL>
+<DD> Just to be used as class constant
+</DD>
+<DD>
+<DL></DL>
+</DD>
+<P></P>
+<DL></DL>
+</DL>
+<HR>
+<A NAME="IS_STRING"></A>
+<H3>IS_STRING</H3>
+<PRE> <!--
+       schemaName=
+       typeName=MEMBER FUNCTION PLS_INTEGER
+       localTypeName=
+       schema=
+       fieldType=MEMBER FUNCTION PLS_INTEGER
+       synonymsFile=,,--><!--GenerateTypeLink: default reached-->MEMBER FUNCTION PLS_INTEGER <B>IS_STRING</B>()</PRE>
+<DL>
+<DD> Check if current instance is the wrapper of clob.
+</DD>
+<DD>
+<DL>
+<DT>Returns:
+          <DD>1 if the instance is a wrapper of clob, 0 otherwise.</DD>
+</DT>
+</DL>
+</DD>
+<P></P>
+<DL></DL>
+</DL>
+<HR>
+<A NAME="TY_SPH(TY_SPH)"></A>
+<H3>TY_SPH</H3>
+<PRE> <!--
+       schemaName=
+       typeName=CONSTRUCTOR FUNCTION SELF AS RESULT
+       localTypeName=
+       schema=
+       fieldType=CONSTRUCTOR FUNCTION SELF AS RESULT
+       synonymsFile=,,--><!--GenerateTypeLink: default reached-->CONSTRUCTOR FUNCTION SELF AS RESULT <B>TY_SPH</B>(SELF IN OUT NOCOPY TY_SPH)</PRE>
+<DL>
+<DD> Constructor implementation
+</DD>
+<DD>
+<DL>
+<DT>Returns:
+          <DD>self</DD>
+</DT>
+</DL>
+</DD>
+<P></P>
+<DL></DL>
+</DL>
+<HR>
+<A NAME="trigger_detail"></A>
+<TABLE CELLSPACING="0" CELLPADDING="1" WIDTH="100%" BORDER="0">
+<TR>
+<TD CLASS="NavBarRow1" COLSPAN="2">
+<TABLE CELLSPACING="3" CELLPADDING="0" BORDER="0">
+<TR VALIGN="top" ALIGN="center">
+<TD CLASS="NavBarRow1"><A HREF="../summary.html"><FONT CLASS="NavBarFont1"><B>Overview</B></FONT></A> &nbsp;</TD><TD CLASS="NavBarRow1"><A HREF="../deprecated-list.html"><FONT CLASS="NavBarFont1"><B>Deprecated</B></FONT></A> &nbsp;</TD><TD CLASS="NavBarRow1"><A HREF="../index-list.html"><FONT CLASS="NavBarFont1"><B>Index</B></FONT></A> &nbsp;</TD><TD CLASS="NavBarRow1"><A HREF="../generator.html"><FONT CLASS="NavBarFont1"><B>Generator</B></FONT></A> &nbsp;</TD>
+</TR>
+</TABLE>
+</TD><TD rowspan="3" VALIGN="top" ALIGN="right"><EM><b>ora_te</b></EM></TD>
+</TR>
+<TR>
+<TD CLASS="NavBarRow3" VALIGN="top"><FONT SIZE="-2">
+      SUMMARY:  <A HREF="#field_summary">FIELD</A> | <A HREF="#type_summary">TYPE</A> | <A HREF="#method_summary">METHOD</A></FONT></TD><TD CLASS="NavBarRow3" VALIGN="top"><FONT SIZE="-2">
+    DETAIL:  <A HREF="#field_detail">FIELD</A> | <A HREF="#type_detail">TYPE</A> | <A HREF="#method_detail">METHOD</A></FONT></TD>
+</TR>
+</TABLE>
+<HR>
+</BODY>
+</HTML>
