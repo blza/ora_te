@@ -24,7 +24,7 @@ v_te := ty_te.compile_named(
   'I said hello, {$who}, / Well, hello, {$who} / It''s so nice to have you back {$where}.'
 );
 v_where := 'where you belong';
--- note that we can also use variables, not just literals
+-- note the use of variable
 v_text := pk_te.substitute( 
   v_te
   , pk_te.m( 
@@ -42,7 +42,7 @@ UDTs and the package are self contained, no additional dependencies. You only ha
 Just download all files and run `deploy_te.sql` from the root directory.
 
 ## Documentation
-Is coming...
+See https://github.com/blza/ora_te/wiki
 
 ## Performance
 Profiling results and comparision to concat is to come...
@@ -52,6 +52,9 @@ Unit tests can be found in ut subdirectory.
 
 To deploy unit tests run `ut/deploy_ut.sql`.
 To actually run unit tests run `ut/run_tests.sql`.
+
+## Imposed cost of invocation
+Profiling info and comparison to standart concat is to come.
 
 ## Licence
 Mit licence applies.
