@@ -11,11 +11,11 @@ create or replace PACKAGE PK_TE AS
   CEX_TE_IS_NULL constant pls_integer := -20997;
   pragma EXCEPTION_INIT( EX_TE_IS_NULL, -20997 );
  
-  type p is table of varchar2( 32767 char );
-  type m is table of p;
+  subtype p is ty_p;
+  subtype m is ty_m;
 
-  function substitute( a_te in out nocopy ty_te, a_numbered_replacements p ) return clob;
-  function substitute( a_te in out nocopy ty_te, a_named_replacements m ) return clob;
+  function substitute( a_te in ty_te, a_numbered_replacements p ) return clob;
+  function substitute( a_te in ty_te, a_named_replacements m ) return clob;
   
   function substitute( a_string in clob, a_numbered_replacements p, a_ph_start in varchar2 := '$' ) return clob;
   function substitute( a_string in clob, a_named_replacements m, a_ph_start in varchar2 := '{$', a_ph_end in varchar2 := '}' ) return clob;

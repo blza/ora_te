@@ -21,7 +21,7 @@ type ty_vchar_to_vchar is table of varchar2( 32767 char ) index by varchar2( 100
 * @throws  EX_TE_IS_NULL if null template expression is passed
 * @throws EX_TE_OF_WRONG_TYPE if passed template expression was compiled for named placeholders
 */
-function substitute( a_te in out nocopy ty_te, a_numbered_replacements p ) return clob AS
+function substitute( a_te in ty_te, a_numbered_replacements p ) return clob AS
   v_res clob;
   EL_STRING constant pls_integer := ty_sph.EL_STRING();
   EL_PH_NUMBERED constant pls_integer := ty_sph.EL_PH_NUMBERED();
@@ -67,7 +67,7 @@ END;
 * @throws EX_TE_IS_NULL if null template expression is passed
 * @throws EX_TE_OF_WRONG_TYPE if passed template expression was compiled for numbered placeholders
 */
-function substitute( a_te in out nocopy ty_te, a_named_replacements m ) return clob 
+function substitute( a_te in ty_te, a_named_replacements m ) return clob 
 AS
   v_res clob;
   EL_STRING constant pls_integer := ty_sph.EL_STRING();

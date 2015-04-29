@@ -16,7 +16,7 @@ in favor of more readable one
 v_te := ty_te.compile_numbered( 
   'I said hello, $1, / Well, hello, $1 / It''s so nice to have you back $2.'
 );
-v_text := pk_te.substitute( v_te, pk_te.p( 'Dolly', 'where you belong' ) );
+v_text := pk_te.substitute( v_te, ty_p( 'Dolly', 'where you belong' ) );
 ```  
 or another that is even more suitable for reading and understanding
 ```plsql
@@ -27,9 +27,9 @@ v_where := 'where you belong';
 -- note the use of variable
 v_text := pk_te.substitute( 
   v_te
-  , pk_te.m( 
-    pk_te.p( 'who', 'Dolly' )
-    , pk_te.p( 'where', v_where )
+  , ty_m( 
+    ty_p( 'who', 'Dolly' )
+    , ty_p( 'where', v_where )
   )
 );
 ```  

@@ -1,3 +1,4 @@
+@prereqs.sql
 @ty_sph.sql
 @ty_sph_body.sql
 @ty_sph_tbl.sql
