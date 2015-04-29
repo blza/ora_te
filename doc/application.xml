@@ -1,8 +1,6 @@
 <?xml version="1.1" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE APPLICATION SYSTEM "application.dtd">
-<APPLICATION NAME="ora_te">
-  <OVERVIEW><![CDATA[This documentation is generated from source code. For subprogram descriptions navigate to 'Object and Package Bodies' section.
-]]></OVERVIEW>
+<APPLICATION NAME="MyApplication">
   <PACKAGE NAME="PK_TE" SCHEMA="">
     <EXCEPTION NAME="EX_TE_GENERAL"/>
     <CONSTANT DEFAULT="-20999" NAME="CEX_TE_GENERAL">
@@ -20,22 +18,22 @@
     </CONSTANT>
     <PRAGMA NAME="EXCEPTION_INIT"/>
     <TYPE NAME="P">
-      <RETURN TYPE="table OF varchar2(32767 CHAR)"/>
+      <RETURN TYPE="ty_p"/>
     </TYPE>
     <TYPE NAME="M">
-      <RETURN TYPE="table OF p"/>
+      <RETURN TYPE="ty_m"/>
     </TYPE>
     <FUNCTION NAME="SUBSTITUTE">
-      <ARGUMENT MODE="IN OUT NOCOPY" NAME="A_TE" TYPE="TY_TE"/>
+      <ARGUMENT MODE="IN" NAME="A_TE" TYPE="TY_TE"/>
       <ARGUMENT MODE="IN" NAME="A_NUMBERED_REPLACEMENTS" TYPE="P"/>
       <RETURN TYPE="CLOB"/>
-      <SUMMARY END_COLUMN="89" END_LINE="17" LINES="1" START_COLUMN="12" START_LINE="17"/>
+      <SUMMARY END_COLUMN="78" END_LINE="17" LINES="1" START_COLUMN="12" START_LINE="17"/>
     </FUNCTION>
     <FUNCTION NAME="SUBSTITUTE">
-      <ARGUMENT MODE="IN OUT NOCOPY" NAME="A_TE" TYPE="TY_TE"/>
+      <ARGUMENT MODE="IN" NAME="A_TE" TYPE="TY_TE"/>
       <ARGUMENT MODE="IN" NAME="A_NAMED_REPLACEMENTS" TYPE="M"/>
       <RETURN TYPE="CLOB"/>
-      <SUMMARY END_COLUMN="86" END_LINE="18" LINES="1" START_COLUMN="12" START_LINE="18"/>
+      <SUMMARY END_COLUMN="75" END_LINE="18" LINES="1" START_COLUMN="12" START_LINE="18"/>
     </FUNCTION>
     <FUNCTION NAME="SUBSTITUTE">
       <ARGUMENT MODE="IN" NAME="A_STRING" TYPE="CLOB"/>
@@ -81,7 +79,7 @@
  'I said hello, $1, / Well, hello, $1 / It's so nice to have you $2 where you belong'<br/>
  For it we just pass pk_te.p( 'Dolly', 'back' ) into this version of substitute.<br/>
 ]]></COMMENT>
-      <ARGUMENT MODE="IN OUT NOCOPY" NAME="A_TE" TYPE="TY_TE">
+      <ARGUMENT MODE="IN" NAME="A_TE" TYPE="TY_TE">
         <COMMENT><![CDATA[ty_te template expression compiled for numbered placeholders]]></COMMENT>
       </ARGUMENT>
       <ARGUMENT MODE="IN" NAME="A_NUMBERED_REPLACEMENTS" TYPE="P">
@@ -129,7 +127,7 @@
  'I said hello, {$who}, / Well, hello, {$who} / It's so {$how} to have you back where you belong'<br/>
  we just pass pk_te.m( pk_te.p( 'who', 'Dolly' ), pk_te.p( 'how' , 'back' ) ) into this version of substitute function.
 ]]></COMMENT>
-      <ARGUMENT MODE="IN OUT NOCOPY" NAME="A_TE" TYPE="TY_TE">
+      <ARGUMENT MODE="IN" NAME="A_TE" TYPE="TY_TE">
         <COMMENT><![CDATA[ty_te template expression compiled for named placeholders]]></COMMENT>
       </ARGUMENT>
       <ARGUMENT MODE="IN" NAME="A_NAMED_REPLACEMENTS" TYPE="M">
@@ -231,6 +229,24 @@
     </FUNCTION>
     <SUMMARY END_COLUMN="10" END_LINE="186" LINES="186" START_COLUMN="32" START_LINE="1"/>
   </PACKAGE_BODY>
+  <OBJECT_TYPE NAME="TY_P" SCHEMA="">
+    <COLLECTIONTYPE NAME="TABLE"/>
+    <SUPERTYPE NAME="CLOB">
+      <RETURN COLLECTIONTYPE="TABLE" NAME="COLLECTION" SUPERTYPE="CLOB" TYPE="TABLE OF CLOB">
+        <COMMENT><![CDATA[Collection Type : table OF clob]]></COMMENT>
+      </RETURN>
+    </SUPERTYPE>
+    <SUMMARY END_COLUMN="51" END_LINE="1" LINES="1" START_COLUMN="24" START_LINE="1"/>
+  </OBJECT_TYPE>
+  <OBJECT_TYPE NAME="TY_M" SCHEMA="">
+    <COLLECTIONTYPE NAME="TABLE"/>
+    <SUPERTYPE NAME="TY_P">
+      <RETURN COLLECTIONTYPE="TABLE" NAME="COLLECTION" SUPERTYPE="TY_P" TYPE="TABLE OF TY_P">
+        <COMMENT><![CDATA[Collection Type : table OF ty_p]]></COMMENT>
+      </RETURN>
+    </SUPERTYPE>
+    <SUMMARY END_COLUMN="51" END_LINE="1" LINES="1" START_COLUMN="24" START_LINE="1"/>
+  </OBJECT_TYPE>
   <OBJECT_TYPE NAME="TY_SPH" SCHEMA="">
     <VARIABLE NAME="TYPE_" VERSION="1">
       <RETURN TYPE="NUMBER(1,0)"/>
@@ -661,11 +677,11 @@
       <SUMMARY END_COLUMN="4" END_LINE="151" LINES="44" START_COLUMN="11" START_LINE="108"/>
     </PROCEDURE>
     <PROCEDURE NAME="PRINT_MAP">
-      <COMMENT_FIRST_LINE><![CDATA[ Prints values stored in pk_te.m nested table of nested tables of varchar.]]></COMMENT_FIRST_LINE>
-      <COMMENT><![CDATA[ Prints values stored in pk_te.m nested table of nested tables of varchar.
- Only pk_te.p having 2 elements ( key => value ) are considered appropriate
+      <COMMENT_FIRST_LINE><![CDATA[ Prints values stored in ty_m nested table of nested tables of varchar.]]></COMMENT_FIRST_LINE>
+      <COMMENT><![CDATA[ Prints values stored in ty_m nested table of nested tables of varchar.
+ Only ty_p having 2 elements ( key => value ) are considered appropriate
 ]]></COMMENT>
-      <ARGUMENT MODE="IN" NAME="A_MAP" TYPE="PK_TE.M">
+      <ARGUMENT MODE="IN" NAME="A_MAP" TYPE="TY_M">
         <COMMENT><![CDATA[a map to print contents of]]></COMMENT>
       </ARGUMENT>
       <TAG TYPE="@PARAM">
@@ -765,10 +781,10 @@
   </PACKAGE_BODY>
   <GENERATOR>
     <OBJECTS>
-      <PROCESSED COUNT="12"/>
+      <PROCESSED COUNT="13"/>
       <SKIPPED COUNT="1"/>
     </OBJECTS>
-    <CREATED DATE="28.04.15" TIME="2:12"/>
+    <CREATED DATE="29.04.15" TIME="19:27"/>
     <SETTINGS DEFAULT_KEYWORDS_CASE="UPPER" DEFAULT_NAMES_CASE="UPPER" IGNORE_INFORMAL_COMMENTS="FALSE" INPUT_ENCODING="Cp1251" KEYWORDS_TO_DEFAULT_CASE="TRUE" KEYWORDS_TO_LOWER_CASE="FALSE" KEYWORDS_TO_UPPER_CASE="FALSE" NAMES_TO_DEFAULT_CASE="TRUE" NAMES_TO_LOWER_CASE="FALSE" NAMES_TO_UPPER_CASE="FALSE" SHOW_SKIPPED_PACKAGES="FALSE" VERBOSE="FALSE"/>
   </GENERATOR>
 </APPLICATION>

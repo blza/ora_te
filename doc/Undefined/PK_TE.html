@@ -1,7 +1,7 @@
 <HTML xmlns:lxslt="http://xml.apache.org/xslt" xmlns:exslt="http://exslt.org/common">
 <HEAD>
 <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<TITLE>ora_te</TITLE>
+<TITLE>MyApplication</TITLE>
 <LINK TITLE="Style" HREF="../stylesheet.css" TYPE="text/css" REL="stylesheet">
 <!--
         sameCase=ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz
@@ -21,7 +21,7 @@
 <TD CLASS="NavBarRow1"><A HREF="../summary.html"><FONT CLASS="NavBarFont1"><B>Overview</B></FONT></A> &nbsp;</TD><TD CLASS="NavBarRow1"><A HREF="../deprecated-list.html"><FONT CLASS="NavBarFont1"><B>Deprecated</B></FONT></A> &nbsp;</TD><TD CLASS="NavBarRow1"><A HREF="../index-list.html"><FONT CLASS="NavBarFont1"><B>Index</B></FONT></A> &nbsp;</TD><TD CLASS="NavBarRow1"><A HREF="../generator.html"><FONT CLASS="NavBarFont1"><B>Generator</B></FONT></A> &nbsp;</TD>
 </TR>
 </TABLE>
-</TD><TD rowspan="3" VALIGN="top" ALIGN="right"><EM><b>ora_te</b></EM></TD>
+</TD><TD rowspan="3" VALIGN="top" ALIGN="right"><EM><b>MyApplication</b></EM></TD>
 </TR>
 <TR>
 <TD CLASS="NavBarRow3" VALIGN="top"><FONT SIZE="-2">
@@ -88,11 +88,11 @@
 <TR CLASS="TableRowColor">
 <TD WIDTH="1%" VALIGN="top" ALIGN="right"><FONT SIZE="-1"><CODE>&nbsp;<!--
        schemaName=
-       typeName=table OF p
+       typeName=ty_m
        localTypeName=
        schema=
-       fieldType=table OF p
-       synonymsFile=,,--><!--GenerateTypeLink: default reached-->table OF p</CODE></FONT></TD>
+       fieldType=ty_m
+       synonymsFile=,,--><!--GenerateTypeLink: default reached-->ty_m</CODE></FONT></TD>
 <!-- 
 		siblingCount=0 
 		argumentCount=0 
@@ -105,11 +105,11 @@
 <TR CLASS="TableRowColor">
 <TD WIDTH="1%" VALIGN="top" ALIGN="right"><FONT SIZE="-1"><CODE>&nbsp;<!--
        schemaName=
-       typeName=table OF varchar2(32767 CHAR)
+       typeName=ty_p
        localTypeName=
        schema=
-       fieldType=table OF varchar2(32767 CHAR)
-       synonymsFile=,,--><!--GenerateTypeLink: default reached-->table OF varchar2(32767 CHAR)</CODE></FONT></TD>
+       fieldType=ty_p
+       synonymsFile=,,--><!--GenerateTypeLink: default reached-->ty_p</CODE></FONT></TD>
 <!-- 
 		siblingCount=0 
 		argumentCount=0 
@@ -138,7 +138,7 @@
 		siblingCount=3 
 		argumentCount=2 
 		predecessorCount=0 
-		siblingNoArgumentCount=0--><A NAME="SUBSTITUTE"></A><TD><CODE><B><A HREF="#SUBSTITUTE(TY_TE,P)">SUBSTITUTE</A></B>(A_TE IN OUT NOCOPY TY_TE, A_NUMBERED_REPLACEMENTS IN P)</CODE>
+		siblingNoArgumentCount=0--><A NAME="SUBSTITUTE"></A><TD><CODE><B><A HREF="#SUBSTITUTE(TY_TE,P)">SUBSTITUTE</A></B>(A_TE IN TY_TE, A_NUMBERED_REPLACEMENTS IN P)</CODE>
 <BR>
       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
       </TD>
@@ -155,7 +155,7 @@
 		siblingCount=3 
 		argumentCount=2 
 		predecessorCount=1 
-		siblingNoArgumentCount=0--><TD><CODE><B><A HREF="#SUBSTITUTE(TY_TE,M)">SUBSTITUTE</A></B>(A_TE IN OUT NOCOPY TY_TE, A_NAMED_REPLACEMENTS IN M)</CODE>
+		siblingNoArgumentCount=0--><TD><CODE><B><A HREF="#SUBSTITUTE(TY_TE,M)">SUBSTITUTE</A></B>(A_TE IN TY_TE, A_NAMED_REPLACEMENTS IN M)</CODE>
 <BR>
       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
       </TD>
@@ -245,11 +245,11 @@
 <H3>M</H3>
 <PRE>public <!--
        schemaName=
-       typeName=table OF p
+       typeName=ty_m
        localTypeName=
        schema=
-       fieldType=table OF p
-       synonymsFile=,,--><!--GenerateTypeLink: default reached-->table OF p <B>M</B>()</PRE>
+       fieldType=ty_m
+       synonymsFile=,,--><!--GenerateTypeLink: default reached-->ty_m <B>M</B>()</PRE>
 <DL>
 <DD></DD>
 <DD>
@@ -263,11 +263,11 @@
 <H3>P</H3>
 <PRE>public <!--
        schemaName=
-       typeName=table OF varchar2(32767 CHAR)
+       typeName=ty_p
        localTypeName=
        schema=
-       fieldType=table OF varchar2(32767 CHAR)
-       synonymsFile=,,--><!--GenerateTypeLink: default reached-->table OF varchar2(32767 CHAR) <B>P</B>()</PRE>
+       fieldType=ty_p
+       synonymsFile=,,--><!--GenerateTypeLink: default reached-->ty_p <B>P</B>()</PRE>
 <DL>
 <DD></DD>
 <DD>
@@ -291,7 +291,7 @@
        localTypeName=
        schema=
        fieldType=CLOB
-       synonymsFile=,,--><!--GenerateTypeLink: default reached-->CLOB <B>SUBSTITUTE</B>(A_TE IN OUT NOCOPY TY_TE, <BR>                       A_NUMBERED_REPLACEMENTS IN P)</PRE>
+       synonymsFile=,,--><!--GenerateTypeLink: default reached-->CLOB <B>SUBSTITUTE</B>(A_TE IN TY_TE, <BR>                       A_NUMBERED_REPLACEMENTS IN P)</PRE>
 <DL>
 <DD></DD>
 <DD>
@@ -309,7 +309,7 @@
        localTypeName=
        schema=
        fieldType=CLOB
-       synonymsFile=,,--><!--GenerateTypeLink: default reached-->CLOB <B>SUBSTITUTE</B>(A_TE IN OUT NOCOPY TY_TE, <BR>                       A_NAMED_REPLACEMENTS IN M)</PRE>
+       synonymsFile=,,--><!--GenerateTypeLink: default reached-->CLOB <B>SUBSTITUTE</B>(A_TE IN TY_TE, <BR>                       A_NAMED_REPLACEMENTS IN M)</PRE>
 <DL>
 <DD></DD>
 <DD>
@@ -364,7 +364,7 @@
 <TD CLASS="NavBarRow1"><A HREF="../summary.html"><FONT CLASS="NavBarFont1"><B>Overview</B></FONT></A> &nbsp;</TD><TD CLASS="NavBarRow1"><A HREF="../deprecated-list.html"><FONT CLASS="NavBarFont1"><B>Deprecated</B></FONT></A> &nbsp;</TD><TD CLASS="NavBarRow1"><A HREF="../index-list.html"><FONT CLASS="NavBarFont1"><B>Index</B></FONT></A> &nbsp;</TD><TD CLASS="NavBarRow1"><A HREF="../generator.html"><FONT CLASS="NavBarFont1"><B>Generator</B></FONT></A> &nbsp;</TD>
 </TR>
 </TABLE>
-</TD><TD rowspan="3" VALIGN="top" ALIGN="right"><EM><b>ora_te</b></EM></TD>
+</TD><TD rowspan="3" VALIGN="top" ALIGN="right"><EM><b>MyApplication</b></EM></TD>
 </TR>
 <TR>
 <TD CLASS="NavBarRow3" VALIGN="top"><FONT SIZE="-2">
