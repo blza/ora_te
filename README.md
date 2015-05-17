@@ -45,9 +45,6 @@ Just download all files and run `deploy_te.sql` from the root directory.
 For usage see https://github.com/blza/ora_te/wiki .
 For package and UDTs specifications see `doc` folder.
 
-## Performance
-Profiling results and comparision to concat is to come...
-
 ## Regression testing
 Unit tests can be found in ut subdirectory.
 
@@ -55,7 +52,7 @@ To deploy unit tests run `ut/deploy_ut.sql`.
 To actually run unit tests run `ut/run_tests.sql`.
 
 ## Imposed cost of invocation
-Profiling info and comparison to standart concat is to come.
+Profiling info and comparison to standart concat are to come.
 
 ## Licence
 Mit licence applies.
