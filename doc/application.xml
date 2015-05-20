@@ -1,6 +1,8 @@
 <?xml version="1.1" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE APPLICATION SYSTEM "application.dtd">
-<APPLICATION NAME="MyApplication">
+<APPLICATION NAME="ora_te">
+  <OVERVIEW><![CDATA[This documentation is generated from source code. For subprogram descriptions navigate to 'Object and Package Bodies' section.
+]]></OVERVIEW>
   <PACKAGE NAME="PK_TE" SCHEMA="">
     <EXCEPTION NAME="EX_TE_GENERAL"/>
     <CONSTANT DEFAULT="-20999" NAME="CEX_TE_GENERAL">
@@ -17,30 +19,84 @@
       <RETURN TYPE="PLS_INTEGER"/>
     </CONSTANT>
     <PRAGMA NAME="EXCEPTION_INIT"/>
+    <EXCEPTION NAME="EX_CURSOR_OF_WRONG_TYPE"/>
+    <CONSTANT DEFAULT="-20996" NAME="CEX_CURSOR_OF_WRONG_TYPE">
+      <RETURN TYPE="PLS_INTEGER"/>
+    </CONSTANT>
+    <PRAGMA NAME="EXCEPTION_INIT"/>
     <TYPE NAME="P">
       <RETURN TYPE="ty_p"/>
     </TYPE>
     <TYPE NAME="M">
       <RETURN TYPE="ty_m"/>
     </TYPE>
+    <TYPE NAME="REFCUR">
+      <RETURN TYPE="sys_refcursor"/>
+    </TYPE>
+    <TYPE NAME="TY_M_TAB">
+      <COMMENT_FIRST_LINE><![CDATA[These types are for internal use only
+]]></COMMENT_FIRST_LINE>
+      <COMMENT><![CDATA[These types are for internal use only
+]]></COMMENT>
+      <RETURN TYPE="table OF ty_m"/>
+    </TYPE>
+    <TYPE NAME="TY_M_CACHE">
+      <RETURN TYPE="table OF ty_m_tab INDEX BY binary_integer"/>
+    </TYPE>
+    <TYPE NAME="TY_P_TAB">
+      <RETURN TYPE="table OF ty_p"/>
+    </TYPE>
+    <TYPE NAME="TY_P_CACHE">
+      <RETURN TYPE="table OF ty_p_tab INDEX BY binary_integer"/>
+    </TYPE>
     <FUNCTION NAME="SUBSTITUTE">
+      <COMMENT_FIRST_LINE><![CDATA[end types for internal use only
+]]></COMMENT_FIRST_LINE>
+      <COMMENT><![CDATA[end types for internal use only
+]]></COMMENT>
       <ARGUMENT MODE="IN" NAME="A_TE" TYPE="TY_TE"/>
       <ARGUMENT MODE="IN" NAME="A_NUMBERED_REPLACEMENTS" TYPE="P"/>
+      <ARGUMENT DEFAULT="NULL" MODE="IN" NAME="A_C1" TYPE="PK_TE.REFCUR"/>
+      <ARGUMENT DEFAULT="NULL" MODE="IN" NAME="A_C2" TYPE="PK_TE.REFCUR"/>
+      <ARGUMENT DEFAULT="NULL" MODE="IN" NAME="A_C3" TYPE="PK_TE.REFCUR"/>
+      <ARGUMENT DEFAULT="NULL" MODE="IN" NAME="A_C4" TYPE="PK_TE.REFCUR"/>
+      <ARGUMENT DEFAULT="NULL" MODE="IN" NAME="A_C5" TYPE="PK_TE.REFCUR"/>
+      <ARGUMENT DEFAULT="NULL" MODE="IN" NAME="A_C6" TYPE="PK_TE.REFCUR"/>
+      <ARGUMENT DEFAULT="NULL" MODE="IN" NAME="A_C7" TYPE="PK_TE.REFCUR"/>
+      <ARGUMENT DEFAULT="NULL" MODE="IN" NAME="A_C8" TYPE="PK_TE.REFCUR"/>
+      <ARGUMENT DEFAULT="NULL" MODE="IN" NAME="A_C9" TYPE="PK_TE.REFCUR"/>
       <RETURN TYPE="CLOB"/>
-      <SUMMARY END_COLUMN="78" END_LINE="17" LINES="1" START_COLUMN="12" START_LINE="17"/>
+      <SUMMARY END_COLUMN="16" END_LINE="32" LINES="3" START_COLUMN="12" START_LINE="30"/>
     </FUNCTION>
     <FUNCTION NAME="SUBSTITUTE">
       <ARGUMENT MODE="IN" NAME="A_TE" TYPE="TY_TE"/>
       <ARGUMENT MODE="IN" NAME="A_NAMED_REPLACEMENTS" TYPE="M"/>
+      <ARGUMENT DEFAULT="NULL" MODE="IN" NAME="A_C1" TYPE="PK_TE.REFCUR"/>
+      <ARGUMENT DEFAULT="NULL" MODE="IN" NAME="A_C2" TYPE="PK_TE.REFCUR"/>
+      <ARGUMENT DEFAULT="NULL" MODE="IN" NAME="A_C3" TYPE="PK_TE.REFCUR"/>
+      <ARGUMENT DEFAULT="NULL" MODE="IN" NAME="A_C4" TYPE="PK_TE.REFCUR"/>
+      <ARGUMENT DEFAULT="NULL" MODE="IN" NAME="A_C5" TYPE="PK_TE.REFCUR"/>
+      <ARGUMENT DEFAULT="NULL" MODE="IN" NAME="A_C6" TYPE="PK_TE.REFCUR"/>
+      <ARGUMENT DEFAULT="NULL" MODE="IN" NAME="A_C7" TYPE="PK_TE.REFCUR"/>
+      <ARGUMENT DEFAULT="NULL" MODE="IN" NAME="A_C8" TYPE="PK_TE.REFCUR"/>
+      <ARGUMENT DEFAULT="NULL" MODE="IN" NAME="A_C9" TYPE="PK_TE.REFCUR"/>
       <RETURN TYPE="CLOB"/>
-      <SUMMARY END_COLUMN="75" END_LINE="18" LINES="1" START_COLUMN="12" START_LINE="18"/>
+      <SUMMARY END_COLUMN="16" END_LINE="35" LINES="3" START_COLUMN="12" START_LINE="33"/>
+    </FUNCTION>
+    <FUNCTION NAME="SUBSTITUTE">
+      <ARGUMENT MODE="IN" NAME="A_TE" TYPE="TY_TE"/>
+      <ARGUMENT MODE="IN" NAME="A_CURSOR" TYPE="PK_TE.REFCUR"/>
+      <ARGUMENT DEFAULT="NULL" MODE="IN" NAME="A_CONCAT_BY" TYPE="VARCHAR2"/>
+      <RETURN TYPE="CLOB"/>
+      <SUMMARY END_COLUMN="115" END_LINE="36" LINES="1" START_COLUMN="12" START_LINE="36"/>
     </FUNCTION>
     <FUNCTION NAME="SUBSTITUTE">
       <ARGUMENT MODE="IN" NAME="A_STRING" TYPE="CLOB"/>
       <ARGUMENT MODE="IN" NAME="A_NUMBERED_REPLACEMENTS" TYPE="P"/>
       <ARGUMENT DEFAULT="'$'" MODE="IN" NAME="A_PH_START" TYPE="VARCHAR2"/>
+      <ARGUMENT DEFAULT="''" MODE="IN" NAME="A_PH_END" TYPE="VARCHAR2"/>
       <RETURN TYPE="CLOB"/>
-      <SUMMARY END_COLUMN="112" END_LINE="20" LINES="1" START_COLUMN="12" START_LINE="20"/>
+      <SUMMARY END_COLUMN="140" END_LINE="38" LINES="1" START_COLUMN="12" START_LINE="38"/>
     </FUNCTION>
     <FUNCTION NAME="SUBSTITUTE">
       <ARGUMENT MODE="IN" NAME="A_STRING" TYPE="CLOB"/>
@@ -48,9 +104,46 @@
       <ARGUMENT DEFAULT="'{$'" MODE="IN" NAME="A_PH_START" TYPE="VARCHAR2"/>
       <ARGUMENT DEFAULT="'}'" MODE="IN" NAME="A_PH_END" TYPE="VARCHAR2"/>
       <RETURN TYPE="CLOB"/>
-      <SUMMARY END_COLUMN="139" END_LINE="21" LINES="1" START_COLUMN="12" START_LINE="21"/>
+      <SUMMARY END_COLUMN="139" END_LINE="39" LINES="1" START_COLUMN="12" START_LINE="39"/>
     </FUNCTION>
-    <SUMMARY END_COLUMN="10" END_LINE="23" LINES="23" START_COLUMN="27" START_LINE="1"/>
+    <FUNCTION NAME="SUBSTITUTE_">
+      <COMMENT_FIRST_LINE><![CDATA[Following functions are not to be directly called.]]></COMMENT_FIRST_LINE>
+      <COMMENT><![CDATA[Following functions are not to be directly called. Definition in specification is required to support compile order in the body of package
+]]></COMMENT>
+      <ARGUMENT MODE="IN" NAME="A_TE" TYPE="TY_TE"/>
+      <ARGUMENT MODE="IN" NAME="A_NUMBERED_REPLACEMENTS" TYPE="P"/>
+      <ARGUMENT MODE="IN" NAME="A_C1" TYPE="PK_TE.REFCUR"/>
+      <ARGUMENT MODE="IN" NAME="A_C2" TYPE="PK_TE.REFCUR"/>
+      <ARGUMENT MODE="IN" NAME="A_C3" TYPE="PK_TE.REFCUR"/>
+      <ARGUMENT MODE="IN" NAME="A_C4" TYPE="PK_TE.REFCUR"/>
+      <ARGUMENT MODE="IN" NAME="A_C5" TYPE="PK_TE.REFCUR"/>
+      <ARGUMENT MODE="IN" NAME="A_C6" TYPE="PK_TE.REFCUR"/>
+      <ARGUMENT MODE="IN" NAME="A_C7" TYPE="PK_TE.REFCUR"/>
+      <ARGUMENT MODE="IN" NAME="A_C8" TYPE="PK_TE.REFCUR"/>
+      <ARGUMENT MODE="IN" NAME="A_C9" TYPE="PK_TE.REFCUR"/>
+      <ARGUMENT MODE="IN OUT NOCOPY" NAME="A_P_CACHE" TYPE="TY_P_CACHE"/>
+      <ARGUMENT MODE="IN OUT NOCOPY" NAME="A_M_CACHE" TYPE="TY_M_CACHE"/>
+      <RETURN TYPE="CLOB"/>
+      <SUMMARY END_COLUMN="16" END_LINE="45" LINES="4" START_COLUMN="12" START_LINE="42"/>
+    </FUNCTION>
+    <FUNCTION NAME="SUBSTITUTE_">
+      <ARGUMENT MODE="IN" NAME="A_TE" TYPE="TY_TE"/>
+      <ARGUMENT MODE="IN" NAME="A_NAMED_REPLACEMENTS" TYPE="M"/>
+      <ARGUMENT MODE="IN" NAME="A_C1" TYPE="PK_TE.REFCUR"/>
+      <ARGUMENT MODE="IN" NAME="A_C2" TYPE="PK_TE.REFCUR"/>
+      <ARGUMENT MODE="IN" NAME="A_C3" TYPE="PK_TE.REFCUR"/>
+      <ARGUMENT MODE="IN" NAME="A_C4" TYPE="PK_TE.REFCUR"/>
+      <ARGUMENT MODE="IN" NAME="A_C5" TYPE="PK_TE.REFCUR"/>
+      <ARGUMENT MODE="IN" NAME="A_C6" TYPE="PK_TE.REFCUR"/>
+      <ARGUMENT MODE="IN" NAME="A_C7" TYPE="PK_TE.REFCUR"/>
+      <ARGUMENT MODE="IN" NAME="A_C8" TYPE="PK_TE.REFCUR"/>
+      <ARGUMENT MODE="IN" NAME="A_C9" TYPE="PK_TE.REFCUR"/>
+      <ARGUMENT MODE="IN OUT NOCOPY" NAME="A_P_CACHE" TYPE="TY_P_CACHE"/>
+      <ARGUMENT MODE="IN OUT NOCOPY" NAME="A_M_CACHE" TYPE="TY_M_CACHE"/>
+      <RETURN TYPE="CLOB"/>
+      <SUMMARY END_COLUMN="16" END_LINE="49" LINES="4" START_COLUMN="12" START_LINE="46"/>
+    </FUNCTION>
+    <SUMMARY END_COLUMN="10" END_LINE="50" LINES="50" START_COLUMN="27" START_LINE="1"/>
   </PACKAGE>
   <PACKAGE_BODY NAME="PK_TE" SCHEMA="">
     <COMMENT><![CDATA[ The package that provides functions to substitute values instead of placeholders.
@@ -62,6 +155,175 @@
     <TYPE NAME="TY_VCHAR_TO_VCHAR">
       <RETURN TYPE="table OF varchar2(32767 CHAR) INDEX BY varchar2(100 CHAR)"/>
     </TYPE>
+    <FUNCTION NAME="SUBSTITUTE_">
+      <COMMENT_FIRST_LINE><![CDATA[ Replaces placeholders in compiled Template Expression with values from cursor in iteration.<br/>
+ Caches results returned from cursor so there's no need to reopen it if more than one loop structures refering this cursor are defined in template expression.<br/>
+ Each individual substitution is concatenated with the following with optional a_concat_by in between.<br/>
+ Cursor must return instances of ty_p or ty_m UDTs (depending on ty_te type) otherwise the function will throw.]]></COMMENT_FIRST_LINE>
+      <COMMENT><![CDATA[ Replaces placeholders in compiled Template Expression with values from cursor in iteration.<br/>
+ Caches results returned from cursor so there's no need to reopen it if more than one loop structures refering this cursor are defined in template expression.<br/>
+ Each individual substitution is concatenated with the following with optional a_concat_by in between.<br/>
+ Cursor must return instances of ty_p or ty_m UDTs (depending on ty_te type) otherwise the function will throw.
+]]></COMMENT>
+      <ARGUMENT MODE="IN" NAME="A_LOOP_IDX" TYPE="PLS_INTEGER">
+        <COMMENT><![CDATA[loop index (1-9) to select appropriate cache]]></COMMENT>
+      </ARGUMENT>
+      <ARGUMENT MODE="IN" NAME="A_TE" TYPE="TY_TE">
+        <COMMENT><![CDATA[ty_te compiled template expression]]></COMMENT>
+      </ARGUMENT>
+      <ARGUMENT MODE="IN" NAME="A_CURSOR" TYPE="PK_TE.REFCUR">
+        <COMMENT><![CDATA[a cursor that must return instances of ty_p or of ty_m]]></COMMENT>
+      </ARGUMENT>
+      <ARGUMENT DEFAULT="NULL" MODE="IN" NAME="A_CONCAT_BY" TYPE="VARCHAR2">
+        <COMMENT><![CDATA[if present each individual substitutions are concatenated in a loop with a_concat_by in between]]></COMMENT>
+      </ARGUMENT>
+      <ARGUMENT MODE="IN" NAME="A_C1" TYPE="PK_TE.REFCUR">
+        <COMMENT><![CDATA[a sys_refcursor to be used in loop structure substitution]]></COMMENT>
+      </ARGUMENT>
+      <ARGUMENT MODE="IN" NAME="A_C2" TYPE="PK_TE.REFCUR">
+        <COMMENT><![CDATA[a sys_refcursor to be used in loop structure substitution]]></COMMENT>
+      </ARGUMENT>
+      <ARGUMENT MODE="IN" NAME="A_C3" TYPE="PK_TE.REFCUR">
+        <COMMENT><![CDATA[a sys_refcursor to be used in loop structure substitution]]></COMMENT>
+      </ARGUMENT>
+      <ARGUMENT MODE="IN" NAME="A_C4" TYPE="PK_TE.REFCUR">
+        <COMMENT><![CDATA[a sys_refcursor to be used in loop structure substitution]]></COMMENT>
+      </ARGUMENT>
+      <ARGUMENT MODE="IN" NAME="A_C5" TYPE="PK_TE.REFCUR">
+        <COMMENT><![CDATA[a sys_refcursor to be used in loop structure substitution]]></COMMENT>
+      </ARGUMENT>
+      <ARGUMENT MODE="IN" NAME="A_C6" TYPE="PK_TE.REFCUR">
+        <COMMENT><![CDATA[a sys_refcursor to be used in loop structure substitution]]></COMMENT>
+      </ARGUMENT>
+      <ARGUMENT MODE="IN" NAME="A_C7" TYPE="PK_TE.REFCUR">
+        <COMMENT><![CDATA[a sys_refcursor to be used in loop structure substitution]]></COMMENT>
+      </ARGUMENT>
+      <ARGUMENT MODE="IN" NAME="A_C8" TYPE="PK_TE.REFCUR">
+        <COMMENT><![CDATA[a sys_refcursor to be used in loop structure substitution]]></COMMENT>
+      </ARGUMENT>
+      <ARGUMENT MODE="IN" NAME="A_C9" TYPE="PK_TE.REFCUR">
+        <COMMENT><![CDATA[a sys_refcursor to be used in loop structure substitution]]></COMMENT>
+      </ARGUMENT>
+      <ARGUMENT MODE="IN OUT NOCOPY" NAME="A_P_CACHE" TYPE="TY_P_CACHE">
+        <COMMENT><![CDATA[a cache that stores results of cursor fetches returning ty_p instances]]></COMMENT>
+      </ARGUMENT>
+      <ARGUMENT MODE="IN OUT NOCOPY" NAME="A_M_CACHE" TYPE="TY_M_CACHE">
+        <COMMENT><![CDATA[a cache that stores results of cursor fetches returning ty_m instances]]></COMMENT>
+      </ARGUMENT>
+      <RETURN TYPE="CLOB">
+        <COMMENT><![CDATA[clob - a large character lob with substituted values (if any)]]></COMMENT>
+      </RETURN>
+      <THROWS NAME="EX_TE_IS_NULL">
+        <COMMENT><![CDATA[ if null template expression is passed]]></COMMENT>
+      </THROWS>
+      <THROWS NAME="EX_CURSOR_OF_WRONG_TYPE">
+        <COMMENT><![CDATA[ if passed cursor does not return instances of ty_p]]></COMMENT>
+      </THROWS>
+      <THROWS NAME="CEX_TE_OF_WRONG_TYPE">
+        <COMMENT><![CDATA[ if passed compiled template expression is not of type ty_te.EL_NUMBERED()]]></COMMENT>
+      </THROWS>
+      <TAG TYPE="@PARAM">
+        <COMMENT><![CDATA[a_loop_idx loop index (1-9) to select appropriate cache]]></COMMENT>
+      </TAG>
+      <TAG TYPE="@PARAM">
+        <COMMENT><![CDATA[a_te ty_te compiled template expression]]></COMMENT>
+      </TAG>
+      <TAG TYPE="@PARAM">
+        <COMMENT><![CDATA[a_cursor a cursor that must return instances of ty_p or of ty_m]]></COMMENT>
+      </TAG>
+      <TAG TYPE="@PARAM">
+        <COMMENT><![CDATA[a_concat_by if present each individual substitutions are concatenated in a loop with a_concat_by in between]]></COMMENT>
+      </TAG>
+      <TAG TYPE="@PARAM">
+        <COMMENT><![CDATA[a_c1 a sys_refcursor to be used in loop structure substitution]]></COMMENT>
+      </TAG>
+      <TAG TYPE="@PARAM">
+        <COMMENT><![CDATA[a_c2 a sys_refcursor to be used in loop structure substitution]]></COMMENT>
+      </TAG>
+      <TAG TYPE="@PARAM">
+        <COMMENT><![CDATA[a_c3 a sys_refcursor to be used in loop structure substitution]]></COMMENT>
+      </TAG>
+      <TAG TYPE="@PARAM">
+        <COMMENT><![CDATA[a_c4 a sys_refcursor to be used in loop structure substitution]]></COMMENT>
+      </TAG>
+      <TAG TYPE="@PARAM">
+        <COMMENT><![CDATA[a_c5 a sys_refcursor to be used in loop structure substitution]]></COMMENT>
+      </TAG>
+      <TAG TYPE="@PARAM">
+        <COMMENT><![CDATA[a_c6 a sys_refcursor to be used in loop structure substitution]]></COMMENT>
+      </TAG>
+      <TAG TYPE="@PARAM">
+        <COMMENT><![CDATA[a_c7 a sys_refcursor to be used in loop structure substitution]]></COMMENT>
+      </TAG>
+      <TAG TYPE="@PARAM">
+        <COMMENT><![CDATA[a_c8 a sys_refcursor to be used in loop structure substitution]]></COMMENT>
+      </TAG>
+      <TAG TYPE="@PARAM">
+        <COMMENT><![CDATA[a_c9 a sys_refcursor to be used in loop structure substitution]]></COMMENT>
+      </TAG>
+      <TAG TYPE="@PARAM">
+        <COMMENT><![CDATA[a_p_cache a cache that stores results of cursor fetches returning ty_p instances]]></COMMENT>
+      </TAG>
+      <TAG TYPE="@PARAM">
+        <COMMENT><![CDATA[a_m_cache a cache that stores results of cursor fetches returning ty_m instances]]></COMMENT>
+      </TAG>
+      <TAG TYPE="@THROWS">
+        <COMMENT><![CDATA[EX_TE_IS_NULL if null template expression is passed]]></COMMENT>
+      </TAG>
+      <TAG TYPE="@THROWS">
+        <COMMENT><![CDATA[EX_CURSOR_OF_WRONG_TYPE if passed cursor does not return instances of ty_p]]></COMMENT>
+      </TAG>
+      <TAG TYPE="@THROWS">
+        <COMMENT><![CDATA[CEX_TE_OF_WRONG_TYPE if passed compiled template expression is not of type ty_te.EL_NUMBERED()]]></COMMENT>
+      </TAG>
+      <TAG TYPE="@RETURN">
+        <COMMENT><![CDATA[clob - a large character lob with substituted values (if any)]]></COMMENT>
+      </TAG>
+      <SUMMARY END_COLUMN="4" END_LINE="107" LINES="71" START_COLUMN="10" START_LINE="37"/>
+    </FUNCTION>
+    <PROCEDURE NAME="INIT_CACHE_">
+      <COMMENT_FIRST_LINE><![CDATA[ Initializes cache with empty collections
+]]></COMMENT_FIRST_LINE>
+      <COMMENT><![CDATA[ Initializes cache with empty collections
+]]></COMMENT>
+      <ARGUMENT MODE="IN OUT NOCOPY" NAME="A_P_CACHE" TYPE="TY_P_CACHE">
+        <COMMENT><![CDATA[a table of nested tables containg ty_p values]]></COMMENT>
+      </ARGUMENT>
+      <ARGUMENT MODE="IN OUT NOCOPY" NAME="A_M_CACHE" TYPE="TY_M_CACHE">
+        <COMMENT><![CDATA[a table of nested tables containg ty_m values]]></COMMENT>
+      </ARGUMENT>
+      <TAG TYPE="@PARAM">
+        <COMMENT><![CDATA[a_p_cache a table of nested tables containg ty_p values]]></COMMENT>
+      </TAG>
+      <TAG TYPE="@PARAM">
+        <COMMENT><![CDATA[a_m_cache a table of nested tables containg ty_m values]]></COMMENT>
+      </TAG>
+      <SUMMARY END_COLUMN="4" END_LINE="122" LINES="8" START_COLUMN="11" START_LINE="115"/>
+    </PROCEDURE>
+    <FUNCTION NAME="DISPATCH_NESTED_TE_SUBST_">
+      <COMMENT_FIRST_LINE><![CDATA[ Dispatches reqest to substitute cursor values into loop structure to the call of appropriate substitute_ function
+
+]]></COMMENT_FIRST_LINE>
+      <COMMENT><![CDATA[ Dispatches reqest to substitute cursor values into loop structure to the call of appropriate substitute_ function
+
+]]></COMMENT>
+      <ARGUMENT MODE="IN OUT NOCOPY" NAME="A_P_CACHE" TYPE="TY_P_CACHE"/>
+      <ARGUMENT MODE="IN OUT NOCOPY" NAME="A_M_CACHE" TYPE="TY_M_CACHE"/>
+      <ARGUMENT MODE="IN OUT NOCOPY" NAME="A_LOOP_TE" TYPE="TY_TE"/>
+      <ARGUMENT MODE="IN" NAME="A_LOOP_NUMBER" TYPE="PLS_INTEGER"/>
+      <ARGUMENT MODE="IN" NAME="A_CONCAT_BY" TYPE="VARCHAR2"/>
+      <ARGUMENT MODE="IN" NAME="A_C1" TYPE="PK_TE.REFCUR"/>
+      <ARGUMENT MODE="IN" NAME="A_C2" TYPE="PK_TE.REFCUR"/>
+      <ARGUMENT MODE="IN" NAME="A_C3" TYPE="PK_TE.REFCUR"/>
+      <ARGUMENT MODE="IN" NAME="A_C4" TYPE="PK_TE.REFCUR"/>
+      <ARGUMENT MODE="IN" NAME="A_C5" TYPE="PK_TE.REFCUR"/>
+      <ARGUMENT MODE="IN" NAME="A_C6" TYPE="PK_TE.REFCUR"/>
+      <ARGUMENT MODE="IN" NAME="A_C7" TYPE="PK_TE.REFCUR"/>
+      <ARGUMENT MODE="IN" NAME="A_C8" TYPE="PK_TE.REFCUR"/>
+      <ARGUMENT MODE="IN" NAME="A_C9" TYPE="PK_TE.REFCUR"/>
+      <RETURN TYPE="CLOB"/>
+      <SUMMARY END_COLUMN="4" END_LINE="158" LINES="31" START_COLUMN="10" START_LINE="128"/>
+    </FUNCTION>
     <FUNCTION NAME="SUBSTITUTE">
       <COMMENT_FIRST_LINE><![CDATA[ Replaces numbered placeholders in compiled Template Expression with values from nested table of varchar2 (p).<br/>
  Using <br/>
@@ -85,6 +347,33 @@
       <ARGUMENT MODE="IN" NAME="A_NUMBERED_REPLACEMENTS" TYPE="P">
         <COMMENT><![CDATA[nested table of varchar2. Holds  values to place instead of placeholders]]></COMMENT>
       </ARGUMENT>
+      <ARGUMENT DEFAULT="NULL" MODE="IN" NAME="A_C1" TYPE="PK_TE.REFCUR">
+        <COMMENT><![CDATA[a sys_refcursor to be used in loop structure substitution]]></COMMENT>
+      </ARGUMENT>
+      <ARGUMENT DEFAULT="NULL" MODE="IN" NAME="A_C2" TYPE="PK_TE.REFCUR">
+        <COMMENT><![CDATA[a sys_refcursor to be used in loop structure substitution]]></COMMENT>
+      </ARGUMENT>
+      <ARGUMENT DEFAULT="NULL" MODE="IN" NAME="A_C3" TYPE="PK_TE.REFCUR">
+        <COMMENT><![CDATA[a sys_refcursor to be used in loop structure substitution]]></COMMENT>
+      </ARGUMENT>
+      <ARGUMENT DEFAULT="NULL" MODE="IN" NAME="A_C4" TYPE="PK_TE.REFCUR">
+        <COMMENT><![CDATA[a sys_refcursor to be used in loop structure substitution]]></COMMENT>
+      </ARGUMENT>
+      <ARGUMENT DEFAULT="NULL" MODE="IN" NAME="A_C5" TYPE="PK_TE.REFCUR">
+        <COMMENT><![CDATA[a sys_refcursor to be used in loop structure substitution]]></COMMENT>
+      </ARGUMENT>
+      <ARGUMENT DEFAULT="NULL" MODE="IN" NAME="A_C6" TYPE="PK_TE.REFCUR">
+        <COMMENT><![CDATA[a sys_refcursor to be used in loop structure substitution]]></COMMENT>
+      </ARGUMENT>
+      <ARGUMENT DEFAULT="NULL" MODE="IN" NAME="A_C7" TYPE="PK_TE.REFCUR">
+        <COMMENT><![CDATA[a sys_refcursor to be used in loop structure substitution]]></COMMENT>
+      </ARGUMENT>
+      <ARGUMENT DEFAULT="NULL" MODE="IN" NAME="A_C8" TYPE="PK_TE.REFCUR">
+        <COMMENT><![CDATA[a sys_refcursor to be used in loop structure substitution]]></COMMENT>
+      </ARGUMENT>
+      <ARGUMENT DEFAULT="NULL" MODE="IN" NAME="A_C9" TYPE="PK_TE.REFCUR">
+        <COMMENT><![CDATA[a sys_refcursor to be used in loop structure substitution]]></COMMENT>
+      </ARGUMENT>
       <RETURN TYPE="CLOB">
         <COMMENT><![CDATA[clob - a large character lob with substituted values (if any)]]></COMMENT>
       </RETURN>
@@ -100,6 +389,33 @@
       <TAG TYPE="@PARAM">
         <COMMENT><![CDATA[a_numbered_replacements nested table of varchar2. Holds  values to place instead of placeholders]]></COMMENT>
       </TAG>
+      <TAG TYPE="@PARAM">
+        <COMMENT><![CDATA[a_c1 a sys_refcursor to be used in loop structure substitution]]></COMMENT>
+      </TAG>
+      <TAG TYPE="@PARAM">
+        <COMMENT><![CDATA[a_c2 a sys_refcursor to be used in loop structure substitution]]></COMMENT>
+      </TAG>
+      <TAG TYPE="@PARAM">
+        <COMMENT><![CDATA[a_c3 a sys_refcursor to be used in loop structure substitution]]></COMMENT>
+      </TAG>
+      <TAG TYPE="@PARAM">
+        <COMMENT><![CDATA[a_c4 a sys_refcursor to be used in loop structure substitution]]></COMMENT>
+      </TAG>
+      <TAG TYPE="@PARAM">
+        <COMMENT><![CDATA[a_c5 a sys_refcursor to be used in loop structure substitution]]></COMMENT>
+      </TAG>
+      <TAG TYPE="@PARAM">
+        <COMMENT><![CDATA[a_c6 a sys_refcursor to be used in loop structure substitution]]></COMMENT>
+      </TAG>
+      <TAG TYPE="@PARAM">
+        <COMMENT><![CDATA[a_c7 a sys_refcursor to be used in loop structure substitution]]></COMMENT>
+      </TAG>
+      <TAG TYPE="@PARAM">
+        <COMMENT><![CDATA[a_c8 a sys_refcursor to be used in loop structure substitution]]></COMMENT>
+      </TAG>
+      <TAG TYPE="@PARAM">
+        <COMMENT><![CDATA[a_c9 a sys_refcursor to be used in loop structure substitution]]></COMMENT>
+      </TAG>
       <TAG TYPE="@THROWS">
         <COMMENT><![CDATA[EX_TE_IS_NULL if null template expression is passed]]></COMMENT>
       </TAG>
@@ -109,7 +425,7 @@
       <TAG TYPE="@RETURN">
         <COMMENT><![CDATA[clob - a large character lob with substituted values (if any)]]></COMMENT>
       </TAG>
-      <SUMMARY END_COLUMN="4" END_LINE="53" LINES="30" START_COLUMN="10" START_LINE="24"/>
+      <SUMMARY END_COLUMN="4" END_LINE="231" LINES="46" START_COLUMN="10" START_LINE="186"/>
     </FUNCTION>
     <FUNCTION NAME="SUBSTITUTE">
       <COMMENT_FIRST_LINE><![CDATA[ Replaces named placeholders in compiled Template Expression with values from nested table of nested tables of varchar2 (m).<br/>
@@ -118,20 +434,52 @@
  makes it possible to use syntactic sugar for defining values to be placed instead of placeholders.<br/>
  So say if we want to substitute {$who} for 'Dolly' and {$how} for 'nice' in template expression<br/>
  'I said hello, {$who}, / Well, hello, {$who} / It's so {$how} to have you back where you belong'<br/>
- we just pass pk_te.m( pk_te.p( 'who', 'Dolly' ), pk_te.p( 'how' , 'back' ) ) into this version of substitute function.]]></COMMENT_FIRST_LINE>
+ we just pass pk_te.m( pk_te.p( 'who', 'Dolly' ), pk_te.p( 'how' , 'back' ) ) into this version of substitute function.<br/>
+ Also accepts up to 9 optional cursor parameters what can be used to substitute values inside loop structures defined in<br/>
+ template expression.]]></COMMENT_FIRST_LINE>
       <COMMENT><![CDATA[ Replaces named placeholders in compiled Template Expression with values from nested table of nested tables of varchar2 (m).<br/>
  Using <br/>
  <pre>type m is table of p;</pre>
  makes it possible to use syntactic sugar for defining values to be placed instead of placeholders.<br/>
  So say if we want to substitute {$who} for 'Dolly' and {$how} for 'nice' in template expression<br/>
  'I said hello, {$who}, / Well, hello, {$who} / It's so {$how} to have you back where you belong'<br/>
- we just pass pk_te.m( pk_te.p( 'who', 'Dolly' ), pk_te.p( 'how' , 'back' ) ) into this version of substitute function.
+ we just pass pk_te.m( pk_te.p( 'who', 'Dolly' ), pk_te.p( 'how' , 'back' ) ) into this version of substitute function.<br/>
+ Also accepts up to 9 optional cursor parameters what can be used to substitute values inside loop structures defined in<br/>
+ template expression.
+ Also accepts two optional cache parameters that cache results from those cursors
 ]]></COMMENT>
       <ARGUMENT MODE="IN" NAME="A_TE" TYPE="TY_TE">
         <COMMENT><![CDATA[ty_te template expression compiled for named placeholders]]></COMMENT>
       </ARGUMENT>
       <ARGUMENT MODE="IN" NAME="A_NAMED_REPLACEMENTS" TYPE="M">
         <COMMENT><![CDATA[a nested table of nested tables of varchar2 - named values to place instead of placeholders]]></COMMENT>
+      </ARGUMENT>
+      <ARGUMENT DEFAULT="NULL" MODE="IN" NAME="A_C1" TYPE="PK_TE.REFCUR">
+        <COMMENT><![CDATA[a sys_refcursor to be used in loop structure substitution]]></COMMENT>
+      </ARGUMENT>
+      <ARGUMENT DEFAULT="NULL" MODE="IN" NAME="A_C2" TYPE="PK_TE.REFCUR">
+        <COMMENT><![CDATA[a sys_refcursor to be used in loop structure substitution]]></COMMENT>
+      </ARGUMENT>
+      <ARGUMENT DEFAULT="NULL" MODE="IN" NAME="A_C3" TYPE="PK_TE.REFCUR">
+        <COMMENT><![CDATA[a sys_refcursor to be used in loop structure substitution]]></COMMENT>
+      </ARGUMENT>
+      <ARGUMENT DEFAULT="NULL" MODE="IN" NAME="A_C4" TYPE="PK_TE.REFCUR">
+        <COMMENT><![CDATA[a sys_refcursor to be used in loop structure substitution]]></COMMENT>
+      </ARGUMENT>
+      <ARGUMENT DEFAULT="NULL" MODE="IN" NAME="A_C5" TYPE="PK_TE.REFCUR">
+        <COMMENT><![CDATA[a sys_refcursor to be used in loop structure substitution]]></COMMENT>
+      </ARGUMENT>
+      <ARGUMENT DEFAULT="NULL" MODE="IN" NAME="A_C6" TYPE="PK_TE.REFCUR">
+        <COMMENT><![CDATA[a sys_refcursor to be used in loop structure substitution]]></COMMENT>
+      </ARGUMENT>
+      <ARGUMENT DEFAULT="NULL" MODE="IN" NAME="A_C7" TYPE="PK_TE.REFCUR">
+        <COMMENT><![CDATA[a sys_refcursor to be used in loop structure substitution]]></COMMENT>
+      </ARGUMENT>
+      <ARGUMENT DEFAULT="NULL" MODE="IN" NAME="A_C8" TYPE="PK_TE.REFCUR">
+        <COMMENT><![CDATA[a sys_refcursor to be used in loop structure substitution]]></COMMENT>
+      </ARGUMENT>
+      <ARGUMENT DEFAULT="NULL" MODE="IN" NAME="A_C9" TYPE="PK_TE.REFCUR">
+        <COMMENT><![CDATA[a sys_refcursor to be used in loop structure substitution]]></COMMENT>
       </ARGUMENT>
       <RETURN TYPE="CLOB">
         <COMMENT><![CDATA[clob - a large character lob with substituted values (if any)]]></COMMENT>
@@ -148,6 +496,33 @@
       <TAG TYPE="@PARAM">
         <COMMENT><![CDATA[a_named_replacements a nested table of nested tables of varchar2 - named values to place instead of placeholders]]></COMMENT>
       </TAG>
+      <TAG TYPE="@PARAM">
+        <COMMENT><![CDATA[a_c1 a sys_refcursor to be used in loop structure substitution]]></COMMENT>
+      </TAG>
+      <TAG TYPE="@PARAM">
+        <COMMENT><![CDATA[a_c2 a sys_refcursor to be used in loop structure substitution]]></COMMENT>
+      </TAG>
+      <TAG TYPE="@PARAM">
+        <COMMENT><![CDATA[a_c3 a sys_refcursor to be used in loop structure substitution]]></COMMENT>
+      </TAG>
+      <TAG TYPE="@PARAM">
+        <COMMENT><![CDATA[a_c4 a sys_refcursor to be used in loop structure substitution]]></COMMENT>
+      </TAG>
+      <TAG TYPE="@PARAM">
+        <COMMENT><![CDATA[a_c5 a sys_refcursor to be used in loop structure substitution]]></COMMENT>
+      </TAG>
+      <TAG TYPE="@PARAM">
+        <COMMENT><![CDATA[a_c6 a sys_refcursor to be used in loop structure substitution]]></COMMENT>
+      </TAG>
+      <TAG TYPE="@PARAM">
+        <COMMENT><![CDATA[a_c7 a sys_refcursor to be used in loop structure substitution]]></COMMENT>
+      </TAG>
+      <TAG TYPE="@PARAM">
+        <COMMENT><![CDATA[a_c8 a sys_refcursor to be used in loop structure substitution]]></COMMENT>
+      </TAG>
+      <TAG TYPE="@PARAM">
+        <COMMENT><![CDATA[a_c9 a sys_refcursor to be used in loop structure substitution]]></COMMENT>
+      </TAG>
       <TAG TYPE="@THROWS">
         <COMMENT><![CDATA[EX_TE_IS_NULL if null template expression is passed]]></COMMENT>
       </TAG>
@@ -157,7 +532,265 @@
       <TAG TYPE="@RETURN">
         <COMMENT><![CDATA[clob - a large character lob with substituted values (if any)]]></COMMENT>
       </TAG>
-      <SUMMARY END_COLUMN="4" END_LINE="109" LINES="40" START_COLUMN="10" START_LINE="70"/>
+      <SUMMARY END_COLUMN="4" END_LINE="317" LINES="56" START_COLUMN="10" START_LINE="262"/>
+    </FUNCTION>
+    <FUNCTION NAME="SUBSTITUTE_">
+      <COMMENT_FIRST_LINE><![CDATA[ Replaces numbered placeholders in compiled Template Expression with values from nested table of varchar2 (p).<br/>
+ Simmilar to function substitute for numbered placeholders but is used in subsequent recursive calls to substitute values into loop structures<br/>
+ Redefines cursor parameters as required and adds two cache in out nocopy parameters.]]></COMMENT_FIRST_LINE>
+      <COMMENT><![CDATA[ Replaces numbered placeholders in compiled Template Expression with values from nested table of varchar2 (p).<br/>
+ Simmilar to function substitute for numbered placeholders but is used in subsequent recursive calls to substitute values into loop structures<br/>
+ Redefines cursor parameters as required and adds two cache in out nocopy parameters.
+]]></COMMENT>
+      <ARGUMENT MODE="IN" NAME="A_TE" TYPE="TY_TE">
+        <COMMENT><![CDATA[ty_te template expression compiled for numbered placeholders]]></COMMENT>
+      </ARGUMENT>
+      <ARGUMENT MODE="IN" NAME="A_NUMBERED_REPLACEMENTS" TYPE="P">
+        <COMMENT><![CDATA[nested table of varchar2. Holds  values to place instead of placeholders]]></COMMENT>
+      </ARGUMENT>
+      <ARGUMENT MODE="IN" NAME="A_C1" TYPE="PK_TE.REFCUR">
+        <COMMENT><![CDATA[a sys_refcursor to be used in loop structure substitution]]></COMMENT>
+      </ARGUMENT>
+      <ARGUMENT MODE="IN" NAME="A_C2" TYPE="PK_TE.REFCUR">
+        <COMMENT><![CDATA[a sys_refcursor to be used in loop structure substitution]]></COMMENT>
+      </ARGUMENT>
+      <ARGUMENT MODE="IN" NAME="A_C3" TYPE="PK_TE.REFCUR">
+        <COMMENT><![CDATA[a sys_refcursor to be used in loop structure substitution]]></COMMENT>
+      </ARGUMENT>
+      <ARGUMENT MODE="IN" NAME="A_C4" TYPE="PK_TE.REFCUR">
+        <COMMENT><![CDATA[a sys_refcursor to be used in loop structure substitution]]></COMMENT>
+      </ARGUMENT>
+      <ARGUMENT MODE="IN" NAME="A_C5" TYPE="PK_TE.REFCUR">
+        <COMMENT><![CDATA[a sys_refcursor to be used in loop structure substitution]]></COMMENT>
+      </ARGUMENT>
+      <ARGUMENT MODE="IN" NAME="A_C6" TYPE="PK_TE.REFCUR">
+        <COMMENT><![CDATA[a sys_refcursor to be used in loop structure substitution]]></COMMENT>
+      </ARGUMENT>
+      <ARGUMENT MODE="IN" NAME="A_C7" TYPE="PK_TE.REFCUR">
+        <COMMENT><![CDATA[a sys_refcursor to be used in loop structure substitution]]></COMMENT>
+      </ARGUMENT>
+      <ARGUMENT MODE="IN" NAME="A_C8" TYPE="PK_TE.REFCUR">
+        <COMMENT><![CDATA[a sys_refcursor to be used in loop structure substitution]]></COMMENT>
+      </ARGUMENT>
+      <ARGUMENT MODE="IN" NAME="A_C9" TYPE="PK_TE.REFCUR">
+        <COMMENT><![CDATA[a sys_refcursor to be used in loop structure substitution]]></COMMENT>
+      </ARGUMENT>
+      <ARGUMENT MODE="IN OUT NOCOPY" NAME="A_P_CACHE" TYPE="TY_P_CACHE">
+        <COMMENT><![CDATA[a cache that stores results of cursor fetches returning ty_p instances]]></COMMENT>
+      </ARGUMENT>
+      <ARGUMENT MODE="IN OUT NOCOPY" NAME="A_M_CACHE" TYPE="TY_M_CACHE">
+        <COMMENT><![CDATA[a cache that stores results of cursor fetches returning ty_m instances]]></COMMENT>
+      </ARGUMENT>
+      <RETURN TYPE="CLOB">
+        <COMMENT><![CDATA[clob - a large character lob with substituted values (if any)]]></COMMENT>
+      </RETURN>
+      <THROWS NAME="EX_TE_IS_NULL">
+        <COMMENT><![CDATA[ if null template expression is passed]]></COMMENT>
+      </THROWS>
+      <THROWS NAME="EX_TE_OF_WRONG_TYPE">
+        <COMMENT><![CDATA[ if passed template expression was compiled for named placeholders]]></COMMENT>
+      </THROWS>
+      <TAG TYPE="@PARAM">
+        <COMMENT><![CDATA[a_te ty_te template expression compiled for numbered placeholders]]></COMMENT>
+      </TAG>
+      <TAG TYPE="@PARAM">
+        <COMMENT><![CDATA[a_numbered_replacements nested table of varchar2. Holds  values to place instead of placeholders]]></COMMENT>
+      </TAG>
+      <TAG TYPE="@PARAM">
+        <COMMENT><![CDATA[a_c1 a sys_refcursor to be used in loop structure substitution]]></COMMENT>
+      </TAG>
+      <TAG TYPE="@PARAM">
+        <COMMENT><![CDATA[a_c2 a sys_refcursor to be used in loop structure substitution]]></COMMENT>
+      </TAG>
+      <TAG TYPE="@PARAM">
+        <COMMENT><![CDATA[a_c3 a sys_refcursor to be used in loop structure substitution]]></COMMENT>
+      </TAG>
+      <TAG TYPE="@PARAM">
+        <COMMENT><![CDATA[a_c4 a sys_refcursor to be used in loop structure substitution]]></COMMENT>
+      </TAG>
+      <TAG TYPE="@PARAM">
+        <COMMENT><![CDATA[a_c5 a sys_refcursor to be used in loop structure substitution]]></COMMENT>
+      </TAG>
+      <TAG TYPE="@PARAM">
+        <COMMENT><![CDATA[a_c6 a sys_refcursor to be used in loop structure substitution]]></COMMENT>
+      </TAG>
+      <TAG TYPE="@PARAM">
+        <COMMENT><![CDATA[a_c7 a sys_refcursor to be used in loop structure substitution]]></COMMENT>
+      </TAG>
+      <TAG TYPE="@PARAM">
+        <COMMENT><![CDATA[a_c8 a sys_refcursor to be used in loop structure substitution]]></COMMENT>
+      </TAG>
+      <TAG TYPE="@PARAM">
+        <COMMENT><![CDATA[a_c9 a sys_refcursor to be used in loop structure substitution]]></COMMENT>
+      </TAG>
+      <TAG TYPE="@PARAM">
+        <COMMENT><![CDATA[a_p_cache a cache that stores results of cursor fetches returning ty_p instances]]></COMMENT>
+      </TAG>
+      <TAG TYPE="@PARAM">
+        <COMMENT><![CDATA[a_m_cache a cache that stores results of cursor fetches returning ty_m instances]]></COMMENT>
+      </TAG>
+      <TAG TYPE="@THROWS">
+        <COMMENT><![CDATA[EX_TE_IS_NULL if null template expression is passed]]></COMMENT>
+      </TAG>
+      <TAG TYPE="@THROWS">
+        <COMMENT><![CDATA[EX_TE_OF_WRONG_TYPE if passed template expression was compiled for named placeholders]]></COMMENT>
+      </TAG>
+      <TAG TYPE="@RETURN">
+        <COMMENT><![CDATA[clob - a large character lob with substituted values (if any)]]></COMMENT>
+      </TAG>
+      <SUMMARY END_COLUMN="4" END_LINE="385" LINES="43" START_COLUMN="10" START_LINE="343"/>
+    </FUNCTION>
+    <FUNCTION NAME="SUBSTITUTE_">
+      <COMMENT_FIRST_LINE><![CDATA[ Replaces named placeholders in compiled Template Expression with values from nested table of nested tables of varchar2 (m).<br/>
+ Simmilar to function substitute for named placeholders but is used in subsequent recursive calls to substitute values into loop structures<br/>
+ Redefines cursor parameters as required and adds two cache in out nocopy parameters.]]></COMMENT_FIRST_LINE>
+      <COMMENT><![CDATA[ Replaces named placeholders in compiled Template Expression with values from nested table of nested tables of varchar2 (m).<br/>
+ Simmilar to function substitute for named placeholders but is used in subsequent recursive calls to substitute values into loop structures<br/>
+ Redefines cursor parameters as required and adds two cache in out nocopy parameters.
+]]></COMMENT>
+      <ARGUMENT MODE="IN" NAME="A_TE" TYPE="TY_TE">
+        <COMMENT><![CDATA[ty_te template expression compiled for named placeholders]]></COMMENT>
+      </ARGUMENT>
+      <ARGUMENT MODE="IN" NAME="A_NAMED_REPLACEMENTS" TYPE="M">
+        <COMMENT><![CDATA[a nested table of nested tables of varchar2 - named values to place instead of placeholders]]></COMMENT>
+      </ARGUMENT>
+      <ARGUMENT MODE="IN" NAME="A_C1" TYPE="PK_TE.REFCUR">
+        <COMMENT><![CDATA[a sys_refcursor to be used in loop structure substitution]]></COMMENT>
+      </ARGUMENT>
+      <ARGUMENT MODE="IN" NAME="A_C2" TYPE="PK_TE.REFCUR">
+        <COMMENT><![CDATA[a sys_refcursor to be used in loop structure substitution]]></COMMENT>
+      </ARGUMENT>
+      <ARGUMENT MODE="IN" NAME="A_C3" TYPE="PK_TE.REFCUR">
+        <COMMENT><![CDATA[a sys_refcursor to be used in loop structure substitution]]></COMMENT>
+      </ARGUMENT>
+      <ARGUMENT MODE="IN" NAME="A_C4" TYPE="PK_TE.REFCUR">
+        <COMMENT><![CDATA[a sys_refcursor to be used in loop structure substitution]]></COMMENT>
+      </ARGUMENT>
+      <ARGUMENT MODE="IN" NAME="A_C5" TYPE="PK_TE.REFCUR">
+        <COMMENT><![CDATA[a sys_refcursor to be used in loop structure substitution]]></COMMENT>
+      </ARGUMENT>
+      <ARGUMENT MODE="IN" NAME="A_C6" TYPE="PK_TE.REFCUR">
+        <COMMENT><![CDATA[a sys_refcursor to be used in loop structure substitution]]></COMMENT>
+      </ARGUMENT>
+      <ARGUMENT MODE="IN" NAME="A_C7" TYPE="PK_TE.REFCUR">
+        <COMMENT><![CDATA[a sys_refcursor to be used in loop structure substitution]]></COMMENT>
+      </ARGUMENT>
+      <ARGUMENT MODE="IN" NAME="A_C8" TYPE="PK_TE.REFCUR">
+        <COMMENT><![CDATA[a sys_refcursor to be used in loop structure substitution]]></COMMENT>
+      </ARGUMENT>
+      <ARGUMENT MODE="IN" NAME="A_C9" TYPE="PK_TE.REFCUR">
+        <COMMENT><![CDATA[a sys_refcursor to be used in loop structure substitution]]></COMMENT>
+      </ARGUMENT>
+      <ARGUMENT MODE="IN OUT NOCOPY" NAME="A_P_CACHE" TYPE="TY_P_CACHE">
+        <COMMENT><![CDATA[a cache that stores results of cursor fetches returning ty_p instances]]></COMMENT>
+      </ARGUMENT>
+      <ARGUMENT MODE="IN OUT NOCOPY" NAME="A_M_CACHE" TYPE="TY_M_CACHE">
+        <COMMENT><![CDATA[a cache that stores results of cursor fetches returning ty_m instances]]></COMMENT>
+      </ARGUMENT>
+      <RETURN TYPE="CLOB">
+        <COMMENT><![CDATA[clob - a large character lob with substituted values (if any)]]></COMMENT>
+      </RETURN>
+      <THROWS NAME="EX_TE_IS_NULL">
+        <COMMENT><![CDATA[ if null template expression is passed]]></COMMENT>
+      </THROWS>
+      <THROWS NAME="EX_TE_OF_WRONG_TYPE">
+        <COMMENT><![CDATA[ if passed template expression was compiled for numbered placeholders]]></COMMENT>
+      </THROWS>
+      <TAG TYPE="@PARAM">
+        <COMMENT><![CDATA[a_te ty_te template expression compiled for named placeholders]]></COMMENT>
+      </TAG>
+      <TAG TYPE="@PARAM">
+        <COMMENT><![CDATA[a_named_replacements a nested table of nested tables of varchar2 - named values to place instead of placeholders]]></COMMENT>
+      </TAG>
+      <TAG TYPE="@PARAM">
+        <COMMENT><![CDATA[a_c1 a sys_refcursor to be used in loop structure substitution]]></COMMENT>
+      </TAG>
+      <TAG TYPE="@PARAM">
+        <COMMENT><![CDATA[a_c2 a sys_refcursor to be used in loop structure substitution]]></COMMENT>
+      </TAG>
+      <TAG TYPE="@PARAM">
+        <COMMENT><![CDATA[a_c3 a sys_refcursor to be used in loop structure substitution]]></COMMENT>
+      </TAG>
+      <TAG TYPE="@PARAM">
+        <COMMENT><![CDATA[a_c4 a sys_refcursor to be used in loop structure substitution]]></COMMENT>
+      </TAG>
+      <TAG TYPE="@PARAM">
+        <COMMENT><![CDATA[a_c5 a sys_refcursor to be used in loop structure substitution]]></COMMENT>
+      </TAG>
+      <TAG TYPE="@PARAM">
+        <COMMENT><![CDATA[a_c6 a sys_refcursor to be used in loop structure substitution]]></COMMENT>
+      </TAG>
+      <TAG TYPE="@PARAM">
+        <COMMENT><![CDATA[a_c7 a sys_refcursor to be used in loop structure substitution]]></COMMENT>
+      </TAG>
+      <TAG TYPE="@PARAM">
+        <COMMENT><![CDATA[a_c8 a sys_refcursor to be used in loop structure substitution]]></COMMENT>
+      </TAG>
+      <TAG TYPE="@PARAM">
+        <COMMENT><![CDATA[a_c9 a sys_refcursor to be used in loop structure substitution]]></COMMENT>
+      </TAG>
+      <TAG TYPE="@PARAM">
+        <COMMENT><![CDATA[a_p_cache a cache that stores results of cursor fetches returning ty_p instances]]></COMMENT>
+      </TAG>
+      <TAG TYPE="@PARAM">
+        <COMMENT><![CDATA[a_m_cache a cache that stores results of cursor fetches returning ty_m instances]]></COMMENT>
+      </TAG>
+      <TAG TYPE="@THROWS">
+        <COMMENT><![CDATA[EX_TE_IS_NULL if null template expression is passed]]></COMMENT>
+      </TAG>
+      <TAG TYPE="@THROWS">
+        <COMMENT><![CDATA[EX_TE_OF_WRONG_TYPE if passed template expression was compiled for numbered placeholders]]></COMMENT>
+      </TAG>
+      <TAG TYPE="@RETURN">
+        <COMMENT><![CDATA[clob - a large character lob with substituted values (if any)]]></COMMENT>
+      </TAG>
+      <SUMMARY END_COLUMN="4" END_LINE="464" LINES="54" START_COLUMN="10" START_LINE="411"/>
+    </FUNCTION>
+    <FUNCTION NAME="SUBSTITUTE">
+      <COMMENT_FIRST_LINE><![CDATA[ Replaces placeholders in compiled Template Expression with values from cursor in iteration.<br/>
+ Each individual substitution is concatenated with the following with optional a_concat_by in between.<br/>
+ Cursor must return instances of ty_p or ty_m UDTs otherwise the function will throw.]]></COMMENT_FIRST_LINE>
+      <COMMENT><![CDATA[ Replaces placeholders in compiled Template Expression with values from cursor in iteration.<br/>
+ Each individual substitution is concatenated with the following with optional a_concat_by in between.<br/>
+ Cursor must return instances of ty_p or ty_m UDTs otherwise the function will throw.
+]]></COMMENT>
+      <ARGUMENT MODE="IN" NAME="A_TE" TYPE="TY_TE">
+        <COMMENT><![CDATA[ty_te compiled template expression]]></COMMENT>
+      </ARGUMENT>
+      <ARGUMENT MODE="IN" NAME="A_CURSOR" TYPE="PK_TE.REFCUR">
+        <COMMENT><![CDATA[a cursor that must return either instances of ty_m or instances of ty_p]]></COMMENT>
+      </ARGUMENT>
+      <ARGUMENT DEFAULT="NULL" MODE="IN" NAME="A_CONCAT_BY" TYPE="VARCHAR2">
+        <COMMENT><![CDATA[if present each individual substitutions are concatenated in a loop with a_concat_by in between]]></COMMENT>
+      </ARGUMENT>
+      <RETURN TYPE="CLOB">
+        <COMMENT><![CDATA[clob - a large character lob with substituted values (if any)]]></COMMENT>
+      </RETURN>
+      <THROWS NAME="EX_TE_IS_NULL">
+        <COMMENT><![CDATA[ if null template expression is passed]]></COMMENT>
+      </THROWS>
+      <THROWS NAME="EX_CURSOR_OF_WRONG_TYPE">
+        <COMMENT><![CDATA[ if passed cursor does not return instances of ty_m or instances of ty_p]]></COMMENT>
+      </THROWS>
+      <TAG TYPE="@PARAM">
+        <COMMENT><![CDATA[a_te ty_te compiled template expression]]></COMMENT>
+      </TAG>
+      <TAG TYPE="@PARAM">
+        <COMMENT><![CDATA[a_cursor a cursor that must return either instances of ty_m or instances of ty_p]]></COMMENT>
+      </TAG>
+      <TAG TYPE="@PARAM">
+        <COMMENT><![CDATA[a_concat_by if present each individual substitutions are concatenated in a loop with a_concat_by in between]]></COMMENT>
+      </TAG>
+      <TAG TYPE="@THROWS">
+        <COMMENT><![CDATA[EX_TE_IS_NULL if null template expression is passed]]></COMMENT>
+      </TAG>
+      <TAG TYPE="@THROWS">
+        <COMMENT><![CDATA[EX_CURSOR_OF_WRONG_TYPE if passed cursor does not return instances of ty_m or instances of ty_p]]></COMMENT>
+      </TAG>
+      <TAG TYPE="@RETURN">
+        <COMMENT><![CDATA[clob - a large character lob with substituted values (if any)]]></COMMENT>
+      </TAG>
+      <SUMMARY END_COLUMN="4" END_LINE="537" LINES="59" START_COLUMN="10" START_LINE="479"/>
     </FUNCTION>
     <FUNCTION NAME="SUBSTITUTE">
       <COMMENT_FIRST_LINE><![CDATA[ Substitutes values from p without 'compiling' template expression
@@ -173,6 +806,7 @@
       <ARGUMENT DEFAULT="'$'" MODE="IN" NAME="A_PH_START" TYPE="VARCHAR2">
         <COMMENT><![CDATA[a string that denotes the beginning of numbered placeholder]]></COMMENT>
       </ARGUMENT>
+      <ARGUMENT DEFAULT="''" MODE="IN" NAME="A_PH_END" TYPE="VARCHAR2"/>
       <RETURN TYPE="CLOB">
         <COMMENT><![CDATA[clob - a large character lob with substituted values (if any)]]></COMMENT>
       </RETURN>
@@ -188,7 +822,7 @@
       <TAG TYPE="@RETURN">
         <COMMENT><![CDATA[clob - a large character lob with substituted values (if any)]]></COMMENT>
       </TAG>
-      <SUMMARY END_COLUMN="4" END_LINE="145" LINES="27" START_COLUMN="10" START_LINE="119"/>
+      <SUMMARY END_COLUMN="4" END_LINE="586" LINES="38" START_COLUMN="10" START_LINE="549"/>
     </FUNCTION>
     <FUNCTION NAME="SUBSTITUTE">
       <COMMENT_FIRST_LINE><![CDATA[ Substitutes values from m without 'compiling' template expression
@@ -225,9 +859,101 @@
       <TAG TYPE="@RETURN">
         <COMMENT><![CDATA[clob - a large character lob with substituted values (if any)]]></COMMENT>
       </TAG>
-      <SUMMARY END_COLUMN="4" END_LINE="183" LINES="29" START_COLUMN="10" START_LINE="155"/>
+      <SUMMARY END_COLUMN="4" END_LINE="624" LINES="29" START_COLUMN="10" START_LINE="596"/>
     </FUNCTION>
-    <SUMMARY END_COLUMN="10" END_LINE="186" LINES="186" START_COLUMN="32" START_LINE="1"/>
+    <SUMMARY END_COLUMN="10" END_LINE="628" LINES="628" START_COLUMN="32" START_LINE="1"/>
+  </PACKAGE_BODY>
+  <PACKAGE NAME="PK_TE_CROSSREF" SCHEMA="">
+    <TYPE NAME="TY_TE_TBL">
+      <RETURN TYPE="table OF ty_te INDEX BY binary_integer"/>
+    </TYPE>
+    <VARIABLE NAME="G_TE_TBL">
+      <RETURN TYPE="TY_TE_TBL"/>
+    </VARIABLE>
+    <FUNCTION NAME="INSERT_LOOP_TE">
+      <ARGUMENT MODE="IN" NAME="A_TE" TYPE="TY_TE"/>
+      <RETURN TYPE="PLS_INTEGER"/>
+      <SUMMARY END_COLUMN="57" END_LINE="6" LINES="1" START_COLUMN="10" START_LINE="6"/>
+    </FUNCTION>
+    <FUNCTION NAME="GET_LOOP_TE">
+      <ARGUMENT MODE="IN" NAME="A_ID" TYPE="PLS_INTEGER"/>
+      <RETURN TYPE="TY_TE"/>
+      <SUMMARY END_COLUMN="54" END_LINE="7" LINES="1" START_COLUMN="10" START_LINE="7"/>
+    </FUNCTION>
+    <FUNCTION NAME="DELETE_LOOP_TE">
+      <ARGUMENT MODE="IN" NAME="A_ID" TYPE="PLS_INTEGER"/>
+      <RETURN TYPE="BOOLEAN"/>
+      <SUMMARY END_COLUMN="59" END_LINE="8" LINES="1" START_COLUMN="10" START_LINE="8"/>
+    </FUNCTION>
+    <SUMMARY END_COLUMN="19" END_LINE="10" LINES="10" START_COLUMN="27" START_LINE="1"/>
+  </PACKAGE>
+  <PACKAGE_BODY NAME="PK_TE_CROSSREF" SCHEMA="">
+    <COMMENT><![CDATA[ Package that enables referecing ty_te instances from ty_sph instances by unique ID <br/>
+ Package global collection variable is used to store instances of ty_te and to return them by ID.<br/>
+ This workaround is used while working with loop structures defined in template expression.
+]]></COMMENT>
+    <TAG TYPE="@HEADCOM">
+      <COMMENT>
+      </COMMENT>
+    </TAG>
+    <FUNCTION NAME="INSERT_LOOP_TE">
+      <COMMENT_FIRST_LINE><![CDATA[ Store instance of ty_te in global collection
+]]></COMMENT_FIRST_LINE>
+      <COMMENT><![CDATA[ Store instance of ty_te in global collection
+]]></COMMENT>
+      <ARGUMENT MODE="IN" NAME="A_TE" TYPE="TY_TE">
+        <COMMENT><![CDATA[an instance of ty_te to store]]></COMMENT>
+      </ARGUMENT>
+      <RETURN TYPE="PLS_INTEGER">
+        <COMMENT><![CDATA[pls_integer -- an unique ID (within sesion) of stored ty_te]]></COMMENT>
+      </RETURN>
+      <TAG TYPE="@PARAM">
+        <COMMENT><![CDATA[a_te an instance of ty_te to store]]></COMMENT>
+      </TAG>
+      <TAG TYPE="@RETURN">
+        <COMMENT><![CDATA[pls_integer -- an unique ID (within sesion) of stored ty_te]]></COMMENT>
+      </TAG>
+      <SUMMARY END_COLUMN="19" END_LINE="27" LINES="13" START_COLUMN="10" START_LINE="15"/>
+    </FUNCTION>
+    <FUNCTION NAME="GET_LOOP_TE">
+      <COMMENT_FIRST_LINE><![CDATA[ Get instance of ty_te from global collection
+]]></COMMENT_FIRST_LINE>
+      <COMMENT><![CDATA[ Get instance of ty_te from global collection
+]]></COMMENT>
+      <ARGUMENT MODE="IN" NAME="A_ID" TYPE="PLS_INTEGER">
+        <COMMENT><![CDATA[an unique ID of stored ty_te]]></COMMENT>
+      </ARGUMENT>
+      <RETURN TYPE="TY_TE">
+        <COMMENT><![CDATA[ty_te or null if the instance of ty_te was not found in the global collection]]></COMMENT>
+      </RETURN>
+      <TAG TYPE="@PARAM">
+        <COMMENT><![CDATA[a_id an unique ID of stored ty_te]]></COMMENT>
+      </TAG>
+      <TAG TYPE="@RETURN">
+        <COMMENT><![CDATA[ty_te or null if the instance of ty_te was not found in the global collection]]></COMMENT>
+      </TAG>
+      <SUMMARY END_COLUMN="16" END_LINE="40" LINES="7" START_COLUMN="10" START_LINE="34"/>
+    </FUNCTION>
+    <FUNCTION NAME="DELETE_LOOP_TE">
+      <COMMENT_FIRST_LINE><![CDATA[ Delete instance of ty_te from global collection by given ID
+]]></COMMENT_FIRST_LINE>
+      <COMMENT><![CDATA[ Delete instance of ty_te from global collection by given ID
+]]></COMMENT>
+      <ARGUMENT MODE="IN" NAME="A_ID" TYPE="PLS_INTEGER">
+        <COMMENT><![CDATA[an unique ID of stored ty_te to delete]]></COMMENT>
+      </ARGUMENT>
+      <RETURN TYPE="BOOLEAN">
+        <COMMENT><![CDATA[boolean -- true if the instance of ty_te was found in the global collection and deleted, false otherwise]]></COMMENT>
+      </RETURN>
+      <TAG TYPE="@PARAM">
+        <COMMENT><![CDATA[a_id an unique ID of stored ty_te to delete]]></COMMENT>
+      </TAG>
+      <TAG TYPE="@RETURN">
+        <COMMENT><![CDATA[boolean -- true if the instance of ty_te was found in the global collection and deleted, false otherwise]]></COMMENT>
+      </TAG>
+      <SUMMARY END_COLUMN="19" END_LINE="56" LINES="9" START_COLUMN="10" START_LINE="48"/>
+    </FUNCTION>
+    <SUMMARY END_COLUMN="19" END_LINE="61" LINES="61" START_COLUMN="32" START_LINE="1"/>
   </PACKAGE_BODY>
   <OBJECT_TYPE NAME="TY_P" SCHEMA="">
     <COLLECTIONTYPE NAME="TABLE"/>
@@ -260,43 +986,63 @@
     <VARIABLE NAME="PH_NUMBER" VERSION="1">
       <RETURN TYPE="NUMBER(38,0)"/>
     </VARIABLE>
+    <VARIABLE NAME="LOOP_NUMBER" VERSION="1">
+      <RETURN TYPE="NUMBER(38,0)"/>
+    </VARIABLE>
+    <VARIABLE NAME="CONCAT_BY" VERSION="1">
+      <RETURN TYPE="VARCHAR2(400 CHAR)"/>
+    </VARIABLE>
+    <VARIABLE NAME="NESTED_TE_ID" VERSION="1">
+      <RETURN TYPE="NUMBER(38,0)"/>
+    </VARIABLE>
     <FUNCTION NAME="TY_SPH" SCOPE="CONSTRUCTOR" VERSION="1">
       <ARGUMENT MODE="IN OUT NOCOPY" NAME="SELF" TYPE="TY_SPH"/>
       <RETURN TYPE="CONSTRUCTOR FUNCTION SELF AS RESULT"/>
-      <SUMMARY END_COLUMN="83" END_LINE="6" LINES="1" START_COLUMN="32" START_LINE="6"/>
+      <SUMMARY END_COLUMN="83" END_LINE="9" LINES="1" START_COLUMN="32" START_LINE="9"/>
     </FUNCTION>
     <FUNCTION NAME="EL_STRING" SCOPE="STATIC" VERSION="1">
       <RETURN TYPE="STATIC FUNCTION PLS_INTEGER"/>
-      <SUMMARY END_COLUMN="44" END_LINE="7" LINES="1" START_COLUMN="27" START_LINE="7"/>
+      <SUMMARY END_COLUMN="44" END_LINE="10" LINES="1" START_COLUMN="27" START_LINE="10"/>
     </FUNCTION>
     <FUNCTION NAME="EL_PH_NUMBERED" SCOPE="STATIC" VERSION="1">
       <RETURN TYPE="STATIC FUNCTION PLS_INTEGER"/>
-      <SUMMARY END_COLUMN="49" END_LINE="8" LINES="1" START_COLUMN="27" START_LINE="8"/>
+      <SUMMARY END_COLUMN="49" END_LINE="11" LINES="1" START_COLUMN="27" START_LINE="11"/>
     </FUNCTION>
     <FUNCTION NAME="EL_PH_NAMED" SCOPE="STATIC" VERSION="1">
       <RETURN TYPE="STATIC FUNCTION PLS_INTEGER"/>
-      <SUMMARY END_COLUMN="46" END_LINE="9" LINES="1" START_COLUMN="27" START_LINE="9"/>
+      <SUMMARY END_COLUMN="46" END_LINE="12" LINES="1" START_COLUMN="27" START_LINE="12"/>
+    </FUNCTION>
+    <FUNCTION NAME="EL_NESTED_TE" SCOPE="STATIC" VERSION="1">
+      <RETURN TYPE="STATIC FUNCTION PLS_INTEGER"/>
+      <SUMMARY END_COLUMN="47" END_LINE="13" LINES="1" START_COLUMN="27" START_LINE="13"/>
     </FUNCTION>
     <FUNCTION NAME="CREATE_NUMBERED_PH" SCOPE="STATIC" VERSION="1">
       <ARGUMENT MODE="IN" NAME="A_NUMBER" TYPE="PLS_INTEGER"/>
       <RETURN TYPE="STATIC FUNCTION TY_SPH"/>
-      <SUMMARY END_COLUMN="80" END_LINE="10" LINES="1" START_COLUMN="27" START_LINE="10"/>
+      <SUMMARY END_COLUMN="80" END_LINE="14" LINES="1" START_COLUMN="27" START_LINE="14"/>
     </FUNCTION>
     <FUNCTION NAME="CREATE_NAMED_PH" SCOPE="STATIC" VERSION="1">
       <ARGUMENT MODE="IN" NAME="A_NAME" TYPE="VARCHAR2"/>
       <RETURN TYPE="STATIC FUNCTION TY_SPH"/>
-      <SUMMARY END_COLUMN="72" END_LINE="11" LINES="1" START_COLUMN="27" START_LINE="11"/>
+      <SUMMARY END_COLUMN="72" END_LINE="15" LINES="1" START_COLUMN="27" START_LINE="15"/>
     </FUNCTION>
     <FUNCTION NAME="CREATE_WRAPPED_STRING" SCOPE="STATIC" VERSION="1">
       <ARGUMENT MODE="IN" NAME="A_STRING" TYPE="CLOB"/>
       <RETURN TYPE="STATIC FUNCTION TY_SPH"/>
-      <SUMMARY END_COLUMN="76" END_LINE="12" LINES="1" START_COLUMN="27" START_LINE="12"/>
+      <SUMMARY END_COLUMN="76" END_LINE="16" LINES="1" START_COLUMN="27" START_LINE="16"/>
+    </FUNCTION>
+    <FUNCTION NAME="CREATE_NESTED_TE" SCOPE="STATIC" VERSION="1">
+      <ARGUMENT MODE="IN" NAME="A_TE_ID" TYPE="PLS_INTEGER"/>
+      <ARGUMENT DEFAULT="0" MODE="IN" NAME="A_LOOP_NUMBER" TYPE="PLS_INTEGER"/>
+      <ARGUMENT DEFAULT="''" MODE="IN" NAME="A_CONCAT_BY" TYPE="VARCHAR2"/>
+      <RETURN TYPE="STATIC FUNCTION TY_SPH"/>
+      <SUMMARY END_COLUMN="137" END_LINE="17" LINES="1" START_COLUMN="21" START_LINE="17"/>
     </FUNCTION>
     <FUNCTION NAME="IS_STRING" SCOPE="MEMBER" VERSION="1">
       <RETURN TYPE="MEMBER FUNCTION PLS_INTEGER"/>
-      <SUMMARY END_COLUMN="38" END_LINE="13" LINES="1" START_COLUMN="21" START_LINE="13"/>
+      <SUMMARY END_COLUMN="38" END_LINE="18" LINES="1" START_COLUMN="21" START_LINE="18"/>
     </FUNCTION>
-    <SUMMARY END_COLUMN="2" END_LINE="14" LINES="14" START_COLUMN="24" START_LINE="1"/>
+    <SUMMARY END_COLUMN="2" END_LINE="19" LINES="19" START_COLUMN="24" START_LINE="1"/>
   </OBJECT_TYPE>
   <OBJECT_BODY NAME="TY_SPH" SCHEMA="">
     <COMMENT><![CDATA[ TY_SPH (String Or Placeholder)<br/>
@@ -379,13 +1125,42 @@
       </TAG>
       <SUMMARY END_COLUMN="4" END_LINE="59" LINES="9" START_COLUMN="17" START_LINE="51"/>
     </FUNCTION>
+    <FUNCTION NAME="CREATE_NESTED_TE" SCOPE="STATIC" VERSION="1">
+      <COMMENT_FIRST_LINE><![CDATA[ Creates instance of ty_sph by wrapping an instance of ty_te.]]></COMMENT_FIRST_LINE>
+      <COMMENT><![CDATA[ Creates instance of ty_sph by wrapping an instance of ty_te. Can also assign loop number if nested template expression comes <br/>
+ from loop declaration and the string that will be inserted between individual loop substitutions.
+]]></COMMENT>
+      <ARGUMENT MODE="IN" NAME="A_TE_ID" TYPE="PLS_INTEGER"/>
+      <ARGUMENT DEFAULT="0" MODE="IN" NAME="A_LOOP_NUMBER" TYPE="PLS_INTEGER">
+        <COMMENT><![CDATA[an optional loop number if template expression comes from loop declaration]]></COMMENT>
+      </ARGUMENT>
+      <ARGUMENT DEFAULT="''" MODE="IN" NAME="A_CONCAT_BY" TYPE="VARCHAR2">
+        <COMMENT><![CDATA[a string that comes from loop declaration and that will be inserted between individual loop substitutions.]]></COMMENT>
+      </ARGUMENT>
+      <RETURN TYPE="STATIC FUNCTION TY_SPH">
+        <COMMENT><![CDATA[instance of ty_sph]]></COMMENT>
+      </RETURN>
+      <TAG TYPE="@PARAM">
+        <COMMENT><![CDATA[a_te a nested te]]></COMMENT>
+      </TAG>
+      <TAG TYPE="@PARAM">
+        <COMMENT><![CDATA[a_loop_number an optional loop number if template expression comes from loop declaration]]></COMMENT>
+      </TAG>
+      <TAG TYPE="@PARAM">
+        <COMMENT><![CDATA[a_concat_by a string that comes from loop declaration and that will be inserted between individual loop substitutions.]]></COMMENT>
+      </TAG>
+      <TAG TYPE="@RETURN">
+        <COMMENT><![CDATA[instance of ty_sph]]></COMMENT>
+      </TAG>
+      <SUMMARY END_COLUMN="4" END_LINE="79" LINES="11" START_COLUMN="17" START_LINE="69"/>
+    </FUNCTION>
     <FUNCTION NAME="EL_STRING" SCOPE="STATIC" VERSION="1">
       <COMMENT_FIRST_LINE><![CDATA[ Just to be used as class constant
 ]]></COMMENT_FIRST_LINE>
       <COMMENT><![CDATA[ Just to be used as class constant
 ]]></COMMENT>
       <RETURN TYPE="STATIC FUNCTION PLS_INTEGER"/>
-      <SUMMARY END_COLUMN="4" END_LINE="66" LINES="4" START_COLUMN="17" START_LINE="63"/>
+      <SUMMARY END_COLUMN="4" END_LINE="87" LINES="4" START_COLUMN="17" START_LINE="84"/>
     </FUNCTION>
     <FUNCTION NAME="EL_PH_NUMBERED" SCOPE="STATIC" VERSION="1">
       <COMMENT_FIRST_LINE><![CDATA[ Just to be used as class constant
@@ -393,7 +1168,7 @@
       <COMMENT><![CDATA[ Just to be used as class constant
 ]]></COMMENT>
       <RETURN TYPE="STATIC FUNCTION PLS_INTEGER"/>
-      <SUMMARY END_COLUMN="4" END_LINE="73" LINES="4" START_COLUMN="17" START_LINE="70"/>
+      <SUMMARY END_COLUMN="4" END_LINE="94" LINES="4" START_COLUMN="17" START_LINE="91"/>
     </FUNCTION>
     <FUNCTION NAME="EL_PH_NAMED" SCOPE="STATIC" VERSION="1">
       <COMMENT_FIRST_LINE><![CDATA[ Just to be used as class constant
@@ -401,7 +1176,11 @@
       <COMMENT><![CDATA[ Just to be used as class constant
 ]]></COMMENT>
       <RETURN TYPE="STATIC FUNCTION PLS_INTEGER"/>
-      <SUMMARY END_COLUMN="4" END_LINE="80" LINES="4" START_COLUMN="17" START_LINE="77"/>
+      <SUMMARY END_COLUMN="4" END_LINE="101" LINES="4" START_COLUMN="17" START_LINE="98"/>
+    </FUNCTION>
+    <FUNCTION NAME="EL_NESTED_TE" SCOPE="STATIC" VERSION="1">
+      <RETURN TYPE="STATIC FUNCTION PLS_INTEGER"/>
+      <SUMMARY END_COLUMN="4" END_LINE="107" LINES="4" START_COLUMN="17" START_LINE="104"/>
     </FUNCTION>
     <FUNCTION NAME="IS_STRING" SCOPE="MEMBER" VERSION="1">
       <COMMENT_FIRST_LINE><![CDATA[ Check if current instance is the wrapper of clob.]]></COMMENT_FIRST_LINE>
@@ -413,9 +1192,9 @@
       <TAG TYPE="@RETURN">
         <COMMENT><![CDATA[1 if the instance is a wrapper of clob, 0 otherwise.]]></COMMENT>
       </TAG>
-      <SUMMARY END_COLUMN="4" END_LINE="92" LINES="8" START_COLUMN="17" START_LINE="85"/>
+      <SUMMARY END_COLUMN="4" END_LINE="119" LINES="8" START_COLUMN="17" START_LINE="112"/>
     </FUNCTION>
-    <SUMMARY END_COLUMN="4" END_LINE="95" LINES="95" START_COLUMN="29" START_LINE="1"/>
+    <SUMMARY END_COLUMN="4" END_LINE="122" LINES="122" START_COLUMN="29" START_LINE="1"/>
   </OBJECT_BODY>
   <OBJECT_TYPE NAME="TY_SPH_TBL" SCHEMA="">
     <COLLECTIONTYPE NAME="TABLE"/>
@@ -437,42 +1216,98 @@
       <ARGUMENT MODE="IN OUT NOCOPY" NAME="SELF" TYPE="TY_TE"/>
       <ARGUMENT MODE="IN" NAME="A_TYPE" TYPE="PLS_INTEGER"/>
       <RETURN TYPE="CONSTRUCTOR FUNCTION SELF AS RESULT"/>
-      <SUMMARY END_COLUMN="32" END_LINE="5" LINES="2" START_COLUMN="32" START_LINE="4"/>
+      <SUMMARY END_COLUMN="20" END_LINE="5" LINES="2" START_COLUMN="26" START_LINE="4"/>
+    </FUNCTION>
+    <FUNCTION NAME="EL_NUMBERED" SCOPE="STATIC" VERSION="1">
+      <RETURN TYPE="STATIC FUNCTION PLS_INTEGER"/>
+      <SUMMARY END_COLUMN="40" END_LINE="6" LINES="1" START_COLUMN="21" START_LINE="6"/>
+    </FUNCTION>
+    <FUNCTION NAME="EL_NAMED" SCOPE="STATIC" VERSION="1">
+      <RETURN TYPE="STATIC FUNCTION PLS_INTEGER"/>
+      <SUMMARY END_COLUMN="37" END_LINE="7" LINES="1" START_COLUMN="21" START_LINE="7"/>
     </FUNCTION>
     <FUNCTION NAME="COMPILE_NUMBERED" SCOPE="STATIC" VERSION="1">
       <ARGUMENT MODE="IN" NAME="A_TEMPLATE_STRING" TYPE="CLOB"/>
       <ARGUMENT DEFAULT="'$'" MODE="IN" NAME="A_PH_START" TYPE="VARCHAR2"/>
+      <ARGUMENT DEFAULT="''" MODE="IN" NAME="A_PH_END" TYPE="VARCHAR2"/>
+      <ARGUMENT DEFAULT="'{%'" MODE="IN" NAME="A_LOOP_PH_BEGIN" TYPE="VARCHAR2"/>
+      <ARGUMENT DEFAULT="'%'" MODE="IN" NAME="A_LOOP_PH_BODY" TYPE="VARCHAR2"/>
+      <ARGUMENT DEFAULT="'%}'" MODE="IN" NAME="A_LOOP_PH_END" TYPE="VARCHAR2"/>
       <RETURN TYPE="STATIC FUNCTION TY_TE"/>
-      <SUMMARY END_COLUMN="104" END_LINE="6" LINES="1" START_COLUMN="21" START_LINE="6"/>
+      <SUMMARY END_COLUMN="14" END_LINE="15" LINES="8" START_COLUMN="21" START_LINE="8"/>
     </FUNCTION>
     <FUNCTION NAME="COMPILE_NAMED" SCOPE="STATIC" VERSION="1">
       <ARGUMENT MODE="IN" NAME="A_TEMPLATE_STRING" TYPE="CLOB"/>
       <ARGUMENT DEFAULT="'{$'" MODE="IN" NAME="A_PH_START" TYPE="VARCHAR2"/>
       <ARGUMENT DEFAULT="'}'" MODE="IN" NAME="A_PH_END" TYPE="VARCHAR2"/>
+      <ARGUMENT DEFAULT="'{%'" MODE="IN" NAME="A_LOOP_PH_BEGIN" TYPE="VARCHAR2"/>
+      <ARGUMENT DEFAULT="'%'" MODE="IN" NAME="A_LOOP_PH_BODY" TYPE="VARCHAR2"/>
+      <ARGUMENT DEFAULT="'%}'" MODE="IN" NAME="A_LOOP_PH_END" TYPE="VARCHAR2"/>
       <RETURN TYPE="STATIC FUNCTION TY_TE"/>
-      <SUMMARY END_COLUMN="101" END_LINE="8" LINES="2" START_COLUMN="21" START_LINE="7"/>
+      <SUMMARY END_COLUMN="14" END_LINE="23" LINES="8" START_COLUMN="21" START_LINE="16"/>
+    </FUNCTION>
+    <FUNCTION NAME="COMPILE_GENERIC" SCOPE="STATIC" VERSION="1">
+      <ARGUMENT MODE="IN" NAME="A_TEMPLATE_STRING" TYPE="CLOB"/>
+      <ARGUMENT MODE="IN" NAME="A_PH_START" TYPE="VARCHAR2"/>
+      <ARGUMENT MODE="IN" NAME="A_PH_END" TYPE="VARCHAR2"/>
+      <ARGUMENT MODE="IN" NAME="A_TYPE" TYPE="PLS_INTEGER"/>
+      <ARGUMENT DEFAULT="'{%'" MODE="IN" NAME="A_LOOP_PH_BEGIN" TYPE="VARCHAR2"/>
+      <ARGUMENT DEFAULT="'%'" MODE="IN" NAME="A_LOOP_PH_BODY" TYPE="VARCHAR2"/>
+      <ARGUMENT DEFAULT="'%}'" MODE="IN" NAME="A_LOOP_PH_END" TYPE="VARCHAR2"/>
+      <RETURN TYPE="STATIC FUNCTION TY_TE"/>
+      <SUMMARY END_COLUMN="14" END_LINE="32" LINES="9" START_COLUMN="21" START_LINE="24"/>
+    </FUNCTION>
+    <FUNCTION NAME="PROCESS_LOOP_" SCOPE="STATIC" VERSION="1">
+      <ARGUMENT MODE="IN" NAME="A_TEMPLATE_STRING" TYPE="CLOB"/>
+      <ARGUMENT MODE="IN" NAME="A_PH_START" TYPE="VARCHAR2"/>
+      <ARGUMENT MODE="IN" NAME="A_PH_END" TYPE="VARCHAR2"/>
+      <ARGUMENT MODE="IN" NAME="A_TYPE" TYPE="PLS_INTEGER"/>
+      <ARGUMENT DEFAULT="'{%'" MODE="IN" NAME="A_LOOP_PH_BEGIN" TYPE="VARCHAR2"/>
+      <ARGUMENT DEFAULT="'%'" MODE="IN" NAME="A_LOOP_PH_BODY" TYPE="VARCHAR2"/>
+      <ARGUMENT DEFAULT="'%}'" MODE="IN" NAME="A_LOOP_PH_END" TYPE="VARCHAR2"/>
+      <RETURN TYPE="STATIC FUNCTION TY_TE"/>
+      <SUMMARY END_COLUMN="14" END_LINE="41" LINES="9" START_COLUMN="21" START_LINE="33"/>
+    </FUNCTION>
+    <FUNCTION NAME="CONCAT" SCOPE="STATIC" VERSION="1">
+      <ARGUMENT MODE="IN" NAME="A_LHV" TYPE="TY_TE"/>
+      <ARGUMENT MODE="IN" NAME="A_RHV" TYPE="TY_TE"/>
+      <RETURN TYPE="STATIC FUNCTION TY_TE"/>
+      <SUMMARY END_COLUMN="69" END_LINE="43" LINES="1" START_COLUMN="21" START_LINE="43"/>
     </FUNCTION>
     <FUNCTION NAME="ESCAPE_REGEXP_SPECIAL" SCOPE="STATIC" VERSION="1">
       <ARGUMENT MODE="IN" NAME="A_NOT_ESCAPED" TYPE="VARCHAR2"/>
       <RETURN TYPE="STATIC FUNCTION VARCHAR2"/>
-      <SUMMARY END_COLUMN="79" END_LINE="9" LINES="1" START_COLUMN="21" START_LINE="9"/>
+      <SUMMARY END_COLUMN="79" END_LINE="45" LINES="1" START_COLUMN="21" START_LINE="45"/>
     </FUNCTION>
     <FUNCTION NAME="ESCAPE_BACKREFERENCE" SCOPE="STATIC" VERSION="1">
       <ARGUMENT MODE="IN" NAME="A_NOT_ESCAPED" TYPE="VARCHAR2"/>
       <RETURN TYPE="STATIC FUNCTION VARCHAR2"/>
-      <SUMMARY END_COLUMN="78" END_LINE="10" LINES="1" START_COLUMN="21" START_LINE="10"/>
+      <SUMMARY END_COLUMN="78" END_LINE="46" LINES="1" START_COLUMN="21" START_LINE="46"/>
     </FUNCTION>
-    <FUNCTION NAME="EL_NUMBERED" SCOPE="STATIC" VERSION="1">
-      <RETURN TYPE="STATIC FUNCTION PLS_INTEGER"/>
-      <SUMMARY END_COLUMN="40" END_LINE="11" LINES="1" START_COLUMN="21" START_LINE="11"/>
+    <FUNCTION NAME="TRANSLATE_OPTIONS_DELIM_" SCOPE="STATIC" VERSION="1">
+      <ARGUMENT MODE="IN" NAME="A_DELIM" TYPE="VARCHAR2"/>
+      <RETURN TYPE="STATIC FUNCTION VARCHAR2"/>
+      <SUMMARY END_COLUMN="76" END_LINE="48" LINES="1" START_COLUMN="21" START_LINE="48"/>
     </FUNCTION>
-    <FUNCTION NAME="EL_NAMED" SCOPE="STATIC" VERSION="1">
-      <RETURN TYPE="STATIC FUNCTION PLS_INTEGER"/>
-      <SUMMARY END_COLUMN="37" END_LINE="12" LINES="1" START_COLUMN="21" START_LINE="12"/>
-    </FUNCTION>
-    <SUMMARY END_COLUMN="2" END_LINE="13" LINES="13" START_COLUMN="24" START_LINE="1"/>
+    <SUMMARY END_COLUMN="2" END_LINE="49" LINES="49" START_COLUMN="24" START_LINE="1"/>
   </OBJECT_TYPE>
   <OBJECT_BODY NAME="TY_TE" SCHEMA="">
+    <FUNCTION NAME="EL_NUMBERED" SCOPE="STATIC" VERSION="1">
+      <COMMENT_FIRST_LINE><![CDATA[ Just to be used as class constant
+]]></COMMENT_FIRST_LINE>
+      <COMMENT><![CDATA[ Just to be used as class constant
+]]></COMMENT>
+      <RETURN TYPE="STATIC FUNCTION PLS_INTEGER"/>
+      <SUMMARY END_COLUMN="4" END_LINE="8" LINES="4" START_COLUMN="17" START_LINE="5"/>
+    </FUNCTION>
+    <FUNCTION NAME="EL_NAMED" SCOPE="STATIC" VERSION="1">
+      <COMMENT_FIRST_LINE><![CDATA[ Just to be used as class constant
+]]></COMMENT_FIRST_LINE>
+      <COMMENT><![CDATA[ Just to be used as class constant
+]]></COMMENT>
+      <RETURN TYPE="STATIC FUNCTION PLS_INTEGER"/>
+      <SUMMARY END_COLUMN="4" END_LINE="15" LINES="4" START_COLUMN="17" START_LINE="12"/>
+    </FUNCTION>
     <COMMENT><![CDATA[ TY_TE (Template Expression)<br/>
  A type that represents a compiled template expression.<br/>
  By template expression (TE) we understand a string with numbered or named placeholders.<br/>
@@ -503,7 +1338,7 @@
       <TAG TYPE="@RETURN">
         <COMMENT><![CDATA[self]]></COMMENT>
       </TAG>
-      <SUMMARY END_COLUMN="10" END_LINE="24" LINES="7" START_COLUMN="22" START_LINE="18"/>
+      <SUMMARY END_COLUMN="10" END_LINE="39" LINES="7" START_COLUMN="22" START_LINE="33"/>
     </FUNCTION>
     <FUNCTION NAME="ESCAPE_REGEXP_SPECIAL" SCOPE="STATIC" VERSION="1">
       <COMMENT_FIRST_LINE><![CDATA[ Escapes special chars to use as regexp pattern.]]></COMMENT_FIRST_LINE>
@@ -511,7 +1346,7 @@
 ]]></COMMENT>
       <ARGUMENT MODE="IN" NAME="A_NOT_ESCAPED" TYPE="VARCHAR2"/>
       <RETURN TYPE="STATIC FUNCTION VARCHAR2"/>
-      <SUMMARY END_COLUMN="4" END_LINE="32" LINES="5" START_COLUMN="17" START_LINE="28"/>
+      <SUMMARY END_COLUMN="4" END_LINE="47" LINES="5" START_COLUMN="17" START_LINE="43"/>
     </FUNCTION>
     <FUNCTION NAME="ESCAPE_BACKREFERENCE" SCOPE="STATIC" VERSION="1">
       <COMMENT_FIRST_LINE><![CDATA[ Escapes regexp backreference to prevent treating substrings of form '\1' ..]]></COMMENT_FIRST_LINE>
@@ -520,13 +1355,12 @@
 ]]></COMMENT>
       <ARGUMENT MODE="IN" NAME="A_NOT_ESCAPED" TYPE="VARCHAR2"/>
       <RETURN TYPE="STATIC FUNCTION VARCHAR2"/>
-      <SUMMARY END_COLUMN="4" END_LINE="41" LINES="5" START_COLUMN="17" START_LINE="37"/>
+      <SUMMARY END_COLUMN="4" END_LINE="56" LINES="5" START_COLUMN="17" START_LINE="52"/>
     </FUNCTION>
     <FUNCTION NAME="COMPILE_NUMBERED" SCOPE="STATIC" VERSION="1">
       <COMMENT_FIRST_LINE><![CDATA[ Parse string for numbered templates in the from $1, $2, etc.<br>
- Stores result of parsing in compiled_template_ nested table.]]></COMMENT_FIRST_LINE>
+]]></COMMENT_FIRST_LINE>
       <COMMENT><![CDATA[ Parse string for numbered templates in the from $1, $2, etc.<br>
- Stores result of parsing in compiled_template_ nested table.
 ]]></COMMENT>
       <ARGUMENT MODE="IN" NAME="A_TEMPLATE_STRING" TYPE="CLOB">
         <COMMENT><![CDATA[a template string]]></COMMENT>
@@ -534,6 +1368,10 @@
       <ARGUMENT DEFAULT="'$'" MODE="IN" NAME="A_PH_START" TYPE="VARCHAR2">
         <COMMENT><![CDATA[a string that denotes the beginning of numbered placeholder]]></COMMENT>
       </ARGUMENT>
+      <ARGUMENT DEFAULT="''" MODE="IN" NAME="A_PH_END" TYPE="VARCHAR2"/>
+      <ARGUMENT DEFAULT="'{%'" MODE="IN" NAME="A_LOOP_PH_BEGIN" TYPE="VARCHAR2"/>
+      <ARGUMENT DEFAULT="'%'" MODE="IN" NAME="A_LOOP_PH_BODY" TYPE="VARCHAR2"/>
+      <ARGUMENT DEFAULT="'%}'" MODE="IN" NAME="A_LOOP_PH_END" TYPE="VARCHAR2"/>
       <RETURN TYPE="STATIC FUNCTION TY_TE">
         <COMMENT><![CDATA[The instance of template expression (ty_te) or null if no placeholders were found or if a_ph_start is null]]></COMMENT>
       </RETURN>
@@ -546,13 +1384,12 @@
       <TAG TYPE="@RETURN">
         <COMMENT><![CDATA[The instance of template expression (ty_te) or null if no placeholders were found or if a_ph_start is null]]></COMMENT>
       </TAG>
-      <SUMMARY END_COLUMN="21" END_LINE="112" LINES="62" START_COLUMN="17" START_LINE="51"/>
+      <SUMMARY END_COLUMN="21" END_LINE="80" LINES="16" START_COLUMN="17" START_LINE="65"/>
     </FUNCTION>
     <FUNCTION NAME="COMPILE_NAMED" SCOPE="STATIC" VERSION="1">
       <COMMENT_FIRST_LINE><![CDATA[ Parse string for named templates in the from {$placehoder}<br/>
- Stores result of parsing in compiled_template_ nested table.]]></COMMENT_FIRST_LINE>
+]]></COMMENT_FIRST_LINE>
       <COMMENT><![CDATA[ Parse string for named templates in the from {$placehoder}<br/>
- Stores result of parsing in compiled_template_ nested table.
 ]]></COMMENT>
       <ARGUMENT MODE="IN" NAME="A_TEMPLATE_STRING" TYPE="CLOB">
         <COMMENT><![CDATA[a template string]]></COMMENT>
@@ -563,6 +1400,9 @@
       <ARGUMENT DEFAULT="'}'" MODE="IN" NAME="A_PH_END" TYPE="VARCHAR2">
         <COMMENT><![CDATA[a string that denotes the end of named placeholder]]></COMMENT>
       </ARGUMENT>
+      <ARGUMENT DEFAULT="'{%'" MODE="IN" NAME="A_LOOP_PH_BEGIN" TYPE="VARCHAR2"/>
+      <ARGUMENT DEFAULT="'%'" MODE="IN" NAME="A_LOOP_PH_BODY" TYPE="VARCHAR2"/>
+      <ARGUMENT DEFAULT="'%}'" MODE="IN" NAME="A_LOOP_PH_END" TYPE="VARCHAR2"/>
       <RETURN TYPE="STATIC FUNCTION TY_TE">
         <COMMENT><![CDATA[The instance of template expression (ty_te) or null if no placeholders were found or if or <br/>
  a_ph_start or a_ph_end is null]]></COMMENT>
@@ -580,25 +1420,134 @@
         <COMMENT><![CDATA[The instance of template expression (ty_te) or null if no placeholders were found or if or <br/>
  a_ph_start or a_ph_end is null]]></COMMENT>
       </TAG>
-      <SUMMARY END_COLUMN="4" END_LINE="192" LINES="69" START_COLUMN="17" START_LINE="124"/>
+      <SUMMARY END_COLUMN="4" END_LINE="105" LINES="15" START_COLUMN="17" START_LINE="91"/>
     </FUNCTION>
-    <FUNCTION NAME="EL_NUMBERED" SCOPE="STATIC" VERSION="1">
-      <COMMENT_FIRST_LINE><![CDATA[ Just to be used as class constant
+    <FUNCTION NAME="TRANSLATE_OPTIONS_DELIM_" SCOPE="STATIC" VERSION="1">
+      <COMMENT_FIRST_LINE><![CDATA[ Replaces special characters in delimiters part of loop structure options with coresponding character codes
 ]]></COMMENT_FIRST_LINE>
-      <COMMENT><![CDATA[ Just to be used as class constant
+      <COMMENT><![CDATA[ Replaces special characters in delimiters part of loop structure options with coresponding character codes
 ]]></COMMENT>
-      <RETURN TYPE="STATIC FUNCTION PLS_INTEGER"/>
-      <SUMMARY END_COLUMN="4" END_LINE="200" LINES="4" START_COLUMN="17" START_LINE="197"/>
+      <ARGUMENT MODE="IN" NAME="A_DELIM" TYPE="VARCHAR2">
+        <COMMENT><![CDATA[a delimiter string]]></COMMENT>
+      </ARGUMENT>
+      <RETURN TYPE="STATIC FUNCTION VARCHAR2">
+        <COMMENT><![CDATA[varchar2 a delimiter string with replaced special chars]]></COMMENT>
+      </RETURN>
+      <TAG TYPE="@PARAM">
+        <COMMENT><![CDATA[a_delim a delimiter string]]></COMMENT>
+      </TAG>
+      <TAG TYPE="@RETURN">
+        <COMMENT><![CDATA[varchar2 a delimiter string with replaced special chars]]></COMMENT>
+      </TAG>
+      <SUMMARY END_COLUMN="4" END_LINE="116" LINES="5" START_COLUMN="17" START_LINE="112"/>
     </FUNCTION>
-    <FUNCTION NAME="EL_NAMED" SCOPE="STATIC" VERSION="1">
-      <COMMENT_FIRST_LINE><![CDATA[ Just to be used as class constant
+    <FUNCTION NAME="PROCESS_LOOP_" SCOPE="STATIC" VERSION="1">
+      <COMMENT_FIRST_LINE><![CDATA[ Finds and compiles loop structures inside template expressions
 ]]></COMMENT_FIRST_LINE>
-      <COMMENT><![CDATA[ Just to be used as class constant
+      <COMMENT><![CDATA[ Finds and compiles loop structures inside template expressions
 ]]></COMMENT>
-      <RETURN TYPE="STATIC FUNCTION PLS_INTEGER"/>
-      <SUMMARY END_COLUMN="4" END_LINE="207" LINES="4" START_COLUMN="17" START_LINE="204"/>
+      <ARGUMENT MODE="IN" NAME="A_TEMPLATE_STRING" TYPE="CLOB">
+        <COMMENT><![CDATA[a template string]]></COMMENT>
+      </ARGUMENT>
+      <ARGUMENT MODE="IN" NAME="A_PH_START" TYPE="VARCHAR2">
+        <COMMENT><![CDATA[a string that denotes the beginning of placeholder]]></COMMENT>
+      </ARGUMENT>
+      <ARGUMENT MODE="IN" NAME="A_PH_END" TYPE="VARCHAR2">
+        <COMMENT><![CDATA[a string that denotes the end of placeholder]]></COMMENT>
+      </ARGUMENT>
+      <ARGUMENT MODE="IN" NAME="A_TYPE" TYPE="PLS_INTEGER">
+        <COMMENT><![CDATA[a type of placeholders to search in string. Actually just may be used to translate to inner loop structures]]></COMMENT>
+      </ARGUMENT>
+      <ARGUMENT DEFAULT="'{%'" MODE="IN" NAME="A_LOOP_PH_BEGIN" TYPE="VARCHAR2"/>
+      <ARGUMENT DEFAULT="'%'" MODE="IN" NAME="A_LOOP_PH_BODY" TYPE="VARCHAR2"/>
+      <ARGUMENT DEFAULT="'%}'" MODE="IN" NAME="A_LOOP_PH_END" TYPE="VARCHAR2"/>
+      <RETURN TYPE="STATIC FUNCTION TY_TE">
+        <COMMENT><![CDATA[The instance of template expression (ty_te) containing loop part or null if no loop structures were found]]></COMMENT>
+      </RETURN>
+      <TAG TYPE="@PARAM">
+        <COMMENT><![CDATA[a_template_string a template string]]></COMMENT>
+      </TAG>
+      <TAG TYPE="@PARAM">
+        <COMMENT><![CDATA[a_ph_start a string that denotes the beginning of placeholder]]></COMMENT>
+      </TAG>
+      <TAG TYPE="@PARAM">
+        <COMMENT><![CDATA[a_ph_end a string that denotes the end of placeholder]]></COMMENT>
+      </TAG>
+      <TAG TYPE="@PARAM">
+        <COMMENT><![CDATA[a_type a type of placeholders to search in string. Actually just may be used to translate to inner loop structures]]></COMMENT>
+      </TAG>
+      <TAG TYPE="@RETURN">
+        <COMMENT><![CDATA[The instance of template expression (ty_te) containing loop part or null if no loop structures were found]]></COMMENT>
+      </TAG>
+      <SUMMARY END_COLUMN="4" END_LINE="322" LINES="196" START_COLUMN="17" START_LINE="127"/>
     </FUNCTION>
-    <SUMMARY END_COLUMN="4" END_LINE="209" LINES="209" START_COLUMN="29" START_LINE="1"/>
+    <FUNCTION NAME="COMPILE_GENERIC" SCOPE="STATIC" VERSION="1">
+      <COMMENT_FIRST_LINE><![CDATA[ Parse string for named or numbered templates<br/>
+ Stores result of parsing in compiled_template_ nested table.]]></COMMENT_FIRST_LINE>
+      <COMMENT><![CDATA[ Parse string for named or numbered templates<br/>
+ Stores result of parsing in compiled_template_ nested table.
+]]></COMMENT>
+      <ARGUMENT MODE="IN" NAME="A_TEMPLATE_STRING" TYPE="CLOB">
+        <COMMENT><![CDATA[a template string]]></COMMENT>
+      </ARGUMENT>
+      <ARGUMENT MODE="IN" NAME="A_PH_START" TYPE="VARCHAR2">
+        <COMMENT><![CDATA[a string that denotes the beginning of placeholder]]></COMMENT>
+      </ARGUMENT>
+      <ARGUMENT MODE="IN" NAME="A_PH_END" TYPE="VARCHAR2">
+        <COMMENT><![CDATA[a string that denotes the end of placeholder]]></COMMENT>
+      </ARGUMENT>
+      <ARGUMENT MODE="IN" NAME="A_TYPE" TYPE="PLS_INTEGER">
+        <COMMENT><![CDATA[a type of placeholders to search in string. Accepts either ty_te.EL_NUMBERED() or ty_te.EL_NAMED()]]></COMMENT>
+      </ARGUMENT>
+      <ARGUMENT DEFAULT="'{%'" MODE="IN" NAME="A_LOOP_PH_BEGIN" TYPE="VARCHAR2"/>
+      <ARGUMENT DEFAULT="'%'" MODE="IN" NAME="A_LOOP_PH_BODY" TYPE="VARCHAR2"/>
+      <ARGUMENT DEFAULT="'%}'" MODE="IN" NAME="A_LOOP_PH_END" TYPE="VARCHAR2"/>
+      <RETURN TYPE="STATIC FUNCTION TY_TE">
+        <COMMENT><![CDATA[The instance of template expression (ty_te) or null if a_type != ty_te.EL_NUMBERED() and a_type != ty_te.EL_NAMED()<br/>
+ or if no teplate expressions were found in string]]></COMMENT>
+      </RETURN>
+      <TAG TYPE="@PARAM">
+        <COMMENT><![CDATA[a_template_string a template string]]></COMMENT>
+      </TAG>
+      <TAG TYPE="@PARAM">
+        <COMMENT><![CDATA[a_ph_start a string that denotes the beginning of placeholder]]></COMMENT>
+      </TAG>
+      <TAG TYPE="@PARAM">
+        <COMMENT><![CDATA[a_ph_end a string that denotes the end of placeholder]]></COMMENT>
+      </TAG>
+      <TAG TYPE="@PARAM">
+        <COMMENT><![CDATA[a_type a type of placeholders to search in string. Accepts either ty_te.EL_NUMBERED() or ty_te.EL_NAMED()]]></COMMENT>
+      </TAG>
+      <TAG TYPE="@RETURN">
+        <COMMENT><![CDATA[The instance of template expression (ty_te) or null if a_type != ty_te.EL_NUMBERED() and a_type != ty_te.EL_NAMED()<br/>
+ or if no teplate expressions were found in string]]></COMMENT>
+      </TAG>
+      <SUMMARY END_COLUMN="4" END_LINE="445" LINES="111" START_COLUMN="17" START_LINE="335"/>
+    </FUNCTION>
+    <FUNCTION NAME="CONCAT" SCOPE="STATIC" VERSION="1">
+      <COMMENT_FIRST_LINE><![CDATA[ Concatenates two instances of compiled template expressions to costruct new instance<br/>
+ with combined compiled_template_ tables peserving the order (values from a_lhv.compiled_template_ first<br/>
+ , from a_rhv.compiled_template_ second).]]></COMMENT_FIRST_LINE>
+      <COMMENT><![CDATA[ Concatenates two instances of compiled template expressions to costruct new instance<br/>
+ with combined compiled_template_ tables peserving the order (values from a_lhv.compiled_template_ first<br/>
+ , from a_rhv.compiled_template_ second).
+]]></COMMENT>
+      <ARGUMENT MODE="IN" NAME="A_LHV" TYPE="TY_TE">
+        <COMMENT><![CDATA[first template expression to combine]]></COMMENT>
+      </ARGUMENT>
+      <ARGUMENT MODE="IN" NAME="A_RHV" TYPE="TY_TE">
+        <COMMENT><![CDATA[second template expression to combine]]></COMMENT>
+      </ARGUMENT>
+      <RETURN TYPE="STATIC FUNCTION TY_TE"/>
+      <TAG TYPE="@PARAM">
+        <COMMENT><![CDATA[a_lhv first template expression to combine]]></COMMENT>
+      </TAG>
+      <TAG TYPE="@PARAM">
+        <COMMENT><![CDATA[a_rhv second template expression to combine]]></COMMENT>
+      </TAG>
+      <SUMMARY END_COLUMN="4" END_LINE="468" LINES="15" START_COLUMN="17" START_LINE="454"/>
+    </FUNCTION>
+    <SUMMARY END_COLUMN="4" END_LINE="471" LINES="471" START_COLUMN="29" START_LINE="1"/>
   </OBJECT_BODY>
   <PACKAGE NAME="PK_TE_UT" SCHEMA="">
     <PROCEDURE NAME="RUN_TESTS">
@@ -781,10 +1730,10 @@
   </PACKAGE_BODY>
   <GENERATOR>
     <OBJECTS>
-      <PROCESSED COUNT="13"/>
+      <PROCESSED COUNT="15"/>
       <SKIPPED COUNT="1"/>
     </OBJECTS>
-    <CREATED DATE="29.04.15" TIME="19:27"/>
+    <CREATED DATE="20.05.15" TIME="16:43"/>
     <SETTINGS DEFAULT_KEYWORDS_CASE="UPPER" DEFAULT_NAMES_CASE="UPPER" IGNORE_INFORMAL_COMMENTS="FALSE" INPUT_ENCODING="Cp1251" KEYWORDS_TO_DEFAULT_CASE="TRUE" KEYWORDS_TO_LOWER_CASE="FALSE" KEYWORDS_TO_UPPER_CASE="FALSE" NAMES_TO_DEFAULT_CASE="TRUE" NAMES_TO_LOWER_CASE="FALSE" NAMES_TO_UPPER_CASE="FALSE" SHOW_SKIPPED_PACKAGES="FALSE" VERBOSE="FALSE"/>
   </GENERATOR>
 </APPLICATION>

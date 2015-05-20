@@ -1,7 +1,7 @@
 <HTML xmlns:lxslt="http://xml.apache.org/xslt" xmlns:exslt="http://exslt.org/common">
 <HEAD>
 <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<TITLE>MyApplication</TITLE>
+<TITLE>ora_te</TITLE>
 <LINK TITLE="Style" HREF="../stylesheet.css" TYPE="text/css" REL="stylesheet">
 <!--
         sameCase=ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz
@@ -21,7 +21,7 @@
 <TD CLASS="NavBarRow1"><A HREF="../summary.html"><FONT CLASS="NavBarFont1"><B>Overview</B></FONT></A> &nbsp;</TD><TD CLASS="NavBarRow1"><A HREF="../deprecated-list.html"><FONT CLASS="NavBarFont1"><B>Deprecated</B></FONT></A> &nbsp;</TD><TD CLASS="NavBarRow1"><A HREF="../index-list.html"><FONT CLASS="NavBarFont1"><B>Index</B></FONT></A> &nbsp;</TD><TD CLASS="NavBarRow1"><A HREF="../generator.html"><FONT CLASS="NavBarFont1"><B>Generator</B></FONT></A> &nbsp;</TD>
 </TR>
 </TABLE>
-</TD><TD rowspan="3" VALIGN="top" ALIGN="right"><EM><b>MyApplication</b></EM></TD>
+</TD><TD rowspan="3" VALIGN="top" ALIGN="right"><EM><b>ora_te</b></EM></TD>
 </TR>
 <TR>
 <TD CLASS="NavBarRow3" VALIGN="top"><FONT SIZE="-2">
@@ -56,13 +56,49 @@
        synonymsFile=,,--><!--GenerateTypeLink: default reached-->STATIC FUNCTION TY_TE</CODE></FONT></TD>
 <!-- 
 		siblingCount=0 
-		argumentCount=3 
+		argumentCount=7 
 		predecessorCount=0 
-		siblingNoArgumentCount=0--><A NAME="COMPILE_NAMED"></A><TD><CODE><B><A HREF="#COMPILE_NAMED(CLOB,VARCHAR2,VARCHAR2)">COMPILE_NAMED</A></B>(A_TEMPLATE_STRING IN CLOB, A_PH_START IN VARCHAR2 DEFAULT '{$', A_PH_END IN VARCHAR2 DEFAULT '}')</CODE>
+		siblingNoArgumentCount=0--><A NAME="COMPILE_GENERIC"></A><TD><CODE><B><A HREF="#COMPILE_GENERIC(CLOB,VARCHAR2,VARCHAR2,PLS_INTEGER,VARCHAR2,VARCHAR2,VARCHAR2)">COMPILE_GENERIC</A></B>(A_TEMPLATE_STRING IN CLOB, A_PH_START IN VARCHAR2, A_PH_END IN VARCHAR2, A_TYPE IN PLS_INTEGER, A_LOOP_PH_BEGIN IN VARCHAR2 DEFAULT '{%', A_LOOP_PH_BODY IN VARCHAR2 DEFAULT '%', A_LOOP_PH_END IN VARCHAR2 DEFAULT '%}')</CODE>
+<BR>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+       Parse string for named or numbered templates<br/>
+ Stores result of parsing in compiled_template_ nested table.</TD>
+</TR>
+<TR CLASS="TableRowColor">
+<TD WIDTH="1%" VALIGN="top" ALIGN="right"><FONT SIZE="-1"><CODE>&nbsp;<!--
+       schemaName=
+       typeName=STATIC FUNCTION TY_TE
+       localTypeName=
+       schema=
+       fieldType=STATIC FUNCTION TY_TE
+       synonymsFile=,,--><!--GenerateTypeLink: default reached-->STATIC FUNCTION TY_TE</CODE></FONT></TD>
+<!-- 
+		siblingCount=0 
+		argumentCount=6 
+		predecessorCount=0 
+		siblingNoArgumentCount=0--><A NAME="COMPILE_NAMED"></A><TD><CODE><B><A HREF="#COMPILE_NAMED(CLOB,VARCHAR2,VARCHAR2,VARCHAR2,VARCHAR2,VARCHAR2)">COMPILE_NAMED</A></B>(A_TEMPLATE_STRING IN CLOB, A_PH_START IN VARCHAR2 DEFAULT '{$', A_PH_END IN VARCHAR2 DEFAULT '}', A_LOOP_PH_BEGIN IN VARCHAR2 DEFAULT '{%', A_LOOP_PH_BODY IN VARCHAR2 DEFAULT '%', A_LOOP_PH_END IN VARCHAR2 DEFAULT '%}')</CODE>
 <BR>
       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
        Parse string for named templates in the from {$placehoder}<br/>
- Stores result of parsing in compiled_template_ nested table.</TD>
+</TD>
+</TR>
+<TR CLASS="TableRowColor">
+<TD WIDTH="1%" VALIGN="top" ALIGN="right"><FONT SIZE="-1"><CODE>&nbsp;<!--
+       schemaName=
+       typeName=STATIC FUNCTION TY_TE
+       localTypeName=
+       schema=
+       fieldType=STATIC FUNCTION TY_TE
+       synonymsFile=,,--><!--GenerateTypeLink: default reached-->STATIC FUNCTION TY_TE</CODE></FONT></TD>
+<!-- 
+		siblingCount=0 
+		argumentCount=6 
+		predecessorCount=0 
+		siblingNoArgumentCount=0--><A NAME="COMPILE_NUMBERED"></A><TD><CODE><B><A HREF="#COMPILE_NUMBERED(CLOB,VARCHAR2,VARCHAR2,VARCHAR2,VARCHAR2,VARCHAR2)">COMPILE_NUMBERED</A></B>(A_TEMPLATE_STRING IN CLOB, A_PH_START IN VARCHAR2 DEFAULT '$', A_PH_END IN VARCHAR2 DEFAULT '', A_LOOP_PH_BEGIN IN VARCHAR2 DEFAULT '{%', A_LOOP_PH_BODY IN VARCHAR2 DEFAULT '%', A_LOOP_PH_END IN VARCHAR2 DEFAULT '%}')</CODE>
+<BR>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+       Parse string for numbered templates in the from $1, $2, etc.<br>
+</TD>
 </TR>
 <TR CLASS="TableRowColor">
 <TD WIDTH="1%" VALIGN="top" ALIGN="right"><FONT SIZE="-1"><CODE>&nbsp;<!--
@@ -76,11 +112,12 @@
 		siblingCount=0 
 		argumentCount=2 
 		predecessorCount=0 
-		siblingNoArgumentCount=0--><A NAME="COMPILE_NUMBERED"></A><TD><CODE><B><A HREF="#COMPILE_NUMBERED(CLOB,VARCHAR2)">COMPILE_NUMBERED</A></B>(A_TEMPLATE_STRING IN CLOB, A_PH_START IN VARCHAR2 DEFAULT '$')</CODE>
+		siblingNoArgumentCount=0--><A NAME="CONCAT"></A><TD><CODE><B><A HREF="#CONCAT(TY_TE,TY_TE)">CONCAT</A></B>(A_LHV IN TY_TE, A_RHV IN TY_TE)</CODE>
 <BR>
       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-       Parse string for numbered templates in the from $1, $2, etc.<br>
- Stores result of parsing in compiled_template_ nested table.</TD>
+       Concatenates two instances of compiled template expressions to costruct new instance<br/>
+ with combined compiled_template_ tables peserving the order (values from a_lhv.compiled_template_ first<br/>
+ , from a_rhv.compiled_template_ second).</TD>
 </TR>
 <TR CLASS="TableRowColor">
 <TD WIDTH="1%" VALIGN="top" ALIGN="right"><FONT SIZE="-1"><CODE>&nbsp;<!--
@@ -155,6 +192,42 @@
 <TR CLASS="TableRowColor">
 <TD WIDTH="1%" VALIGN="top" ALIGN="right"><FONT SIZE="-1"><CODE>&nbsp;<!--
        schemaName=
+       typeName=STATIC FUNCTION TY_TE
+       localTypeName=
+       schema=
+       fieldType=STATIC FUNCTION TY_TE
+       synonymsFile=,,--><!--GenerateTypeLink: default reached-->STATIC FUNCTION TY_TE</CODE></FONT></TD>
+<!-- 
+		siblingCount=0 
+		argumentCount=7 
+		predecessorCount=0 
+		siblingNoArgumentCount=0--><A NAME="PROCESS_LOOP_"></A><TD><CODE><B><A HREF="#PROCESS_LOOP_(CLOB,VARCHAR2,VARCHAR2,PLS_INTEGER,VARCHAR2,VARCHAR2,VARCHAR2)">PROCESS_LOOP_</A></B>(A_TEMPLATE_STRING IN CLOB, A_PH_START IN VARCHAR2, A_PH_END IN VARCHAR2, A_TYPE IN PLS_INTEGER, A_LOOP_PH_BEGIN IN VARCHAR2 DEFAULT '{%', A_LOOP_PH_BODY IN VARCHAR2 DEFAULT '%', A_LOOP_PH_END IN VARCHAR2 DEFAULT '%}')</CODE>
+<BR>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+       Finds and compiles loop structures inside template expressions
+</TD>
+</TR>
+<TR CLASS="TableRowColor">
+<TD WIDTH="1%" VALIGN="top" ALIGN="right"><FONT SIZE="-1"><CODE>&nbsp;<!--
+       schemaName=
+       typeName=STATIC FUNCTION VARCHAR2
+       localTypeName=
+       schema=
+       fieldType=STATIC FUNCTION VARCHAR2
+       synonymsFile=,,--><!--GenerateTypeLink: default reached-->STATIC FUNCTION VARCHAR2</CODE></FONT></TD>
+<!-- 
+		siblingCount=0 
+		argumentCount=1 
+		predecessorCount=0 
+		siblingNoArgumentCount=0--><A NAME="TRANSLATE_OPTIONS_DELIM_"></A><TD><CODE><B><A HREF="#TRANSLATE_OPTIONS_DELIM_(VARCHAR2)">TRANSLATE_OPTIONS_DELIM_</A></B>(A_DELIM IN VARCHAR2)</CODE>
+<BR>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+       Replaces special characters in delimiters part of loop structure options with coresponding character codes
+</TD>
+</TR>
+<TR CLASS="TableRowColor">
+<TD WIDTH="1%" VALIGN="top" ALIGN="right"><FONT SIZE="-1"><CODE>&nbsp;<!--
+       schemaName=
        typeName=CONSTRUCTOR FUNCTION SELF AS RESULT
        localTypeName=
        schema=
@@ -178,7 +251,46 @@
 <TD COLSPAN="1"><FONT SIZE="+2"><B>Method Detail</B></FONT></TD>
 </TR>
 </TABLE>
-<A NAME="COMPILE_NAMED(CLOB,VARCHAR2,VARCHAR2)"></A>
+<A NAME="COMPILE_GENERIC(CLOB,VARCHAR2,VARCHAR2,PLS_INTEGER,VARCHAR2,VARCHAR2,VARCHAR2)"></A>
+<H3>COMPILE_GENERIC</H3>
+<PRE> <!--
+       schemaName=
+       typeName=STATIC FUNCTION TY_TE
+       localTypeName=
+       schema=
+       fieldType=STATIC FUNCTION TY_TE
+       synonymsFile=,,--><!--GenerateTypeLink: default reached-->STATIC FUNCTION TY_TE <B>COMPILE_GENERIC</B>(A_TEMPLATE_STRING IN CLOB, <BR>                                       A_PH_START IN VARCHAR2, <BR>                                       A_PH_END IN VARCHAR2, <BR>                                       A_TYPE IN PLS_INTEGER, <BR>                                       A_LOOP_PH_BEGIN IN VARCHAR2 DEFAULT '{%', <BR>                                       A_LOOP_PH_BODY IN VARCHAR2 DEFAULT '%', <BR>                                       A_LOOP_PH_END IN VARCHAR2 DEFAULT '%}')</PRE>
+<DL>
+<DD> Parse string for named or numbered templates<br/>
+ Stores result of parsing in compiled_template_ nested table.
+</DD>
+<DD>
+<DL>
+<DT>Parameters:
+        <DD>
+<CODE>A_TEMPLATE_STRING</CODE> -
+              a template string</DD>
+<DD>
+<CODE>A_PH_START</CODE> -
+              a string that denotes the beginning of placeholder</DD>
+<DD>
+<CODE>A_PH_END</CODE> -
+              a string that denotes the end of placeholder</DD>
+<DD>
+<CODE>A_TYPE</CODE> -
+              a type of placeholders to search in string. Accepts either ty_te.EL_NUMBERED() or ty_te.EL_NAMED()</DD>
+</DT>
+<DT>Returns:
+          <DD>The instance of template expression (ty_te) or null if a_type != ty_te.EL_NUMBERED() and a_type != ty_te.EL_NAMED()<br/>
+ or if no teplate expressions were found in string</DD>
+</DT>
+</DL>
+</DD>
+<P></P>
+<DL></DL>
+</DL>
+<HR>
+<A NAME="COMPILE_NAMED(CLOB,VARCHAR2,VARCHAR2,VARCHAR2,VARCHAR2,VARCHAR2)"></A>
 <H3>COMPILE_NAMED</H3>
 <PRE> <!--
        schemaName=
@@ -186,10 +298,9 @@
        localTypeName=
        schema=
        fieldType=STATIC FUNCTION TY_TE
-       synonymsFile=,,--><!--GenerateTypeLink: default reached-->STATIC FUNCTION TY_TE <B>COMPILE_NAMED</B>(A_TEMPLATE_STRING IN CLOB, <BR>                                     A_PH_START IN VARCHAR2 DEFAULT '{$', <BR>                                     A_PH_END IN VARCHAR2 DEFAULT '}')</PRE>
+       synonymsFile=,,--><!--GenerateTypeLink: default reached-->STATIC FUNCTION TY_TE <B>COMPILE_NAMED</B>(A_TEMPLATE_STRING IN CLOB, <BR>                                     A_PH_START IN VARCHAR2 DEFAULT '{$', <BR>                                     A_PH_END IN VARCHAR2 DEFAULT '}', <BR>                                     A_LOOP_PH_BEGIN IN VARCHAR2 DEFAULT '{%', <BR>                                     A_LOOP_PH_BODY IN VARCHAR2 DEFAULT '%', <BR>                                     A_LOOP_PH_END IN VARCHAR2 DEFAULT '%}')</PRE>
 <DL>
 <DD> Parse string for named templates in the from {$placehoder}<br/>
- Stores result of parsing in compiled_template_ nested table.
 </DD>
 <DD>
 <DL>
@@ -214,7 +325,7 @@
 <DL></DL>
 </DL>
 <HR>
-<A NAME="COMPILE_NUMBERED(CLOB,VARCHAR2)"></A>
+<A NAME="COMPILE_NUMBERED(CLOB,VARCHAR2,VARCHAR2,VARCHAR2,VARCHAR2,VARCHAR2)"></A>
 <H3>COMPILE_NUMBERED</H3>
 <PRE> <!--
        schemaName=
@@ -222,10 +333,9 @@
        localTypeName=
        schema=
        fieldType=STATIC FUNCTION TY_TE
-       synonymsFile=,,--><!--GenerateTypeLink: default reached-->STATIC FUNCTION TY_TE <B>COMPILE_NUMBERED</B>(A_TEMPLATE_STRING IN CLOB, <BR>                                        A_PH_START IN VARCHAR2 DEFAULT '$')</PRE>
+       synonymsFile=,,--><!--GenerateTypeLink: default reached-->STATIC FUNCTION TY_TE <B>COMPILE_NUMBERED</B>(A_TEMPLATE_STRING IN CLOB, <BR>                                        A_PH_START IN VARCHAR2 DEFAULT '$', <BR>                                        A_PH_END IN VARCHAR2 DEFAULT '', <BR>                                        A_LOOP_PH_BEGIN IN VARCHAR2 DEFAULT '{%', <BR>                                        A_LOOP_PH_BODY IN VARCHAR2 DEFAULT '%', <BR>                                        A_LOOP_PH_END IN VARCHAR2 DEFAULT '%}')</PRE>
 <DL>
 <DD> Parse string for numbered templates in the from $1, $2, etc.<br>
- Stores result of parsing in compiled_template_ nested table.
 </DD>
 <DD>
 <DL>
@@ -239,6 +349,36 @@
 </DT>
 <DT>Returns:
           <DD>The instance of template expression (ty_te) or null if no placeholders were found or if a_ph_start is null</DD>
+</DT>
+</DL>
+</DD>
+<P></P>
+<DL></DL>
+</DL>
+<HR>
+<A NAME="CONCAT(TY_TE,TY_TE)"></A>
+<H3>CONCAT</H3>
+<PRE> <!--
+       schemaName=
+       typeName=STATIC FUNCTION TY_TE
+       localTypeName=
+       schema=
+       fieldType=STATIC FUNCTION TY_TE
+       synonymsFile=,,--><!--GenerateTypeLink: default reached-->STATIC FUNCTION TY_TE <B>CONCAT</B>(A_LHV IN TY_TE, <BR>                              A_RHV IN TY_TE)</PRE>
+<DL>
+<DD> Concatenates two instances of compiled template expressions to costruct new instance<br/>
+ with combined compiled_template_ tables peserving the order (values from a_lhv.compiled_template_ first<br/>
+ , from a_rhv.compiled_template_ second).
+</DD>
+<DD>
+<DL>
+<DT>Parameters:
+        <DD>
+<CODE>A_LHV</CODE> -
+              first template expression to combine</DD>
+<DD>
+<CODE>A_RHV</CODE> -
+              second template expression to combine</DD>
 </DT>
 </DL>
 </DD>
@@ -323,6 +463,71 @@
 <DL></DL>
 </DL>
 <HR>
+<A NAME="PROCESS_LOOP_(CLOB,VARCHAR2,VARCHAR2,PLS_INTEGER,VARCHAR2,VARCHAR2,VARCHAR2)"></A>
+<H3>PROCESS_LOOP_</H3>
+<PRE> <!--
+       schemaName=
+       typeName=STATIC FUNCTION TY_TE
+       localTypeName=
+       schema=
+       fieldType=STATIC FUNCTION TY_TE
+       synonymsFile=,,--><!--GenerateTypeLink: default reached-->STATIC FUNCTION TY_TE <B>PROCESS_LOOP_</B>(A_TEMPLATE_STRING IN CLOB, <BR>                                     A_PH_START IN VARCHAR2, <BR>                                     A_PH_END IN VARCHAR2, <BR>                                     A_TYPE IN PLS_INTEGER, <BR>                                     A_LOOP_PH_BEGIN IN VARCHAR2 DEFAULT '{%', <BR>                                     A_LOOP_PH_BODY IN VARCHAR2 DEFAULT '%', <BR>                                     A_LOOP_PH_END IN VARCHAR2 DEFAULT '%}')</PRE>
+<DL>
+<DD> Finds and compiles loop structures inside template expressions
+</DD>
+<DD>
+<DL>
+<DT>Parameters:
+        <DD>
+<CODE>A_TEMPLATE_STRING</CODE> -
+              a template string</DD>
+<DD>
+<CODE>A_PH_START</CODE> -
+              a string that denotes the beginning of placeholder</DD>
+<DD>
+<CODE>A_PH_END</CODE> -
+              a string that denotes the end of placeholder</DD>
+<DD>
+<CODE>A_TYPE</CODE> -
+              a type of placeholders to search in string. Actually just may be used to translate to inner loop structures</DD>
+</DT>
+<DT>Returns:
+          <DD>The instance of template expression (ty_te) containing loop part or null if no loop structures were found</DD>
+</DT>
+</DL>
+</DD>
+<P></P>
+<DL></DL>
+</DL>
+<HR>
+<A NAME="TRANSLATE_OPTIONS_DELIM_(VARCHAR2)"></A>
+<H3>TRANSLATE_OPTIONS_DELIM_</H3>
+<PRE> <!--
+       schemaName=
+       typeName=STATIC FUNCTION VARCHAR2
+       localTypeName=
+       schema=
+       fieldType=STATIC FUNCTION VARCHAR2
+       synonymsFile=,,--><!--GenerateTypeLink: default reached-->STATIC FUNCTION VARCHAR2 <B>TRANSLATE_OPTIONS_DELIM_</B>(A_DELIM IN VARCHAR2)</PRE>
+<DL>
+<DD> Replaces special characters in delimiters part of loop structure options with coresponding character codes
+</DD>
+<DD>
+<DL>
+<DT>Parameters:
+        <DD>
+<CODE>A_DELIM</CODE> -
+              a delimiter string</DD>
+</DT>
+<DT>Returns:
+          <DD>varchar2 a delimiter string with replaced special chars</DD>
+</DT>
+</DL>
+</DD>
+<P></P>
+<DL></DL>
+</DL>
+<HR>
 <A NAME="TY_TE(TY_TE,PLS_INTEGER)"></A>
 <H3>TY_TE</H3>
 <PRE> <!--
@@ -361,7 +566,7 @@
 <TD CLASS="NavBarRow1"><A HREF="../summary.html"><FONT CLASS="NavBarFont1"><B>Overview</B></FONT></A> &nbsp;</TD><TD CLASS="NavBarRow1"><A HREF="../deprecated-list.html"><FONT CLASS="NavBarFont1"><B>Deprecated</B></FONT></A> &nbsp;</TD><TD CLASS="NavBarRow1"><A HREF="../index-list.html"><FONT CLASS="NavBarFont1"><B>Index</B></FONT></A> &nbsp;</TD><TD CLASS="NavBarRow1"><A HREF="../generator.html"><FONT CLASS="NavBarFont1"><B>Generator</B></FONT></A> &nbsp;</TD>
 </TR>
 </TABLE>
-</TD><TD rowspan="3" VALIGN="top" ALIGN="right"><EM><b>MyApplication</b></EM></TD>
+</TD><TD rowspan="3" VALIGN="top" ALIGN="right"><EM><b>ora_te</b></EM></TD>
 </TR>
 <TR>
 <TD CLASS="NavBarRow3" VALIGN="top"><FONT SIZE="-2">

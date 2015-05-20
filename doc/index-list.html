@@ -1,7 +1,7 @@
 <HTML xmlns:lxslt="http://xml.apache.org/xslt" xmlns:exslt="http://exslt.org/common">
 <HEAD>
 <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<TITLE>MyApplication: Index-List</TITLE>
+<TITLE>ora_te: Index-List</TITLE>
 <LINK TITLE="Style" HREF="stylesheet.css" TYPE="text/css" REL="stylesheet">
 <!--
         sameCase=ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz
@@ -21,7 +21,7 @@
 <TD CLASS="NavBarRow1"><A HREF="summary.html"><FONT CLASS="NavBarFont1"><B>Overview</B></FONT></A> &nbsp;</TD><TD CLASS="NavBarRow1"><A HREF="deprecated-list.html"><FONT CLASS="NavBarFont1"><B>Deprecated</B></FONT></A> &nbsp;</TD><TD CLASS="NavBarRow1Chosen"><FONT CLASS="NavBarFont1Chosen"><B>Index</B></FONT> &nbsp;</TD><TD CLASS="NavBarRow1"><A HREF="generator.html"><FONT CLASS="NavBarFont1"><B>Generator</B></FONT></A> &nbsp;</TD>
 </TR>
 </TABLE>
-</TD><TD rowspan="3" VALIGN="top" ALIGN="right"><EM><b>MyApplication</b></EM></TD>
+</TD><TD rowspan="3" VALIGN="top" ALIGN="right"><EM><b>ora_te</b></EM></TD>
 </TR>
 </TABLE>
 <HR>
@@ -83,14 +83,21 @@
 <P></P>
 </DD>
 <DD>
-<A HREF="undefined/ty_te.html#compile_named(clob,varchar2,varchar2)">COMPILE_NAMED</A>
+<A HREF="undefined/ty_te.html#compile_generic(clob,varchar2,varchar2,pls_integer,varchar2,varchar2,varchar2)">COMPILE_GENERIC</A>
 					
 					&nbsp; <FONT SIZE="-1">(TY_TE)</FONT>
 <BR>
 <P></P>
 </DD>
 <DD>
-<A HREF="undefined/ty_te.html#compile_numbered(clob,varchar2)">COMPILE_NUMBERED</A>
+<A HREF="undefined/ty_te.html#compile_named(clob,varchar2,varchar2,varchar2,varchar2,varchar2)">COMPILE_NAMED</A>
+					
+					&nbsp; <FONT SIZE="-1">(TY_TE)</FONT>
+<BR>
+<P></P>
+</DD>
+<DD>
+<A HREF="undefined/ty_te.html#compile_numbered(clob,varchar2,varchar2,varchar2,varchar2,varchar2)">COMPILE_NUMBERED</A>
 					
 					&nbsp; <FONT SIZE="-1">(TY_TE)</FONT>
 <BR>
@@ -104,7 +111,28 @@
 <P></P>
 </DD>
 <DD>
+<A HREF="undefined/ty_te.html#concat(ty_te,ty_te)">CONCAT</A>
+					
+					&nbsp; <FONT SIZE="-1">(TY_TE)</FONT>
+<BR>
+<P></P>
+</DD>
+<DD>
+<A HREF="undefined/ty_sph.html#concat_by">CONCAT_BY</A>
+					
+					&nbsp; <FONT SIZE="-1">(TY_SPH)</FONT>
+<BR>
+<P></P>
+</DD>
+<DD>
 <A HREF="undefined/ty_sph.html#create_named_ph(varchar2)">CREATE_NAMED_PH</A>
+					
+					&nbsp; <FONT SIZE="-1">(TY_SPH)</FONT>
+<BR>
+<P></P>
+</DD>
+<DD>
+<A HREF="undefined/ty_sph.html#create_nested_te(pls_integer,pls_integer,varchar2)">CREATE_NESTED_TE</A>
 					
 					&nbsp; <FONT SIZE="-1">(TY_SPH)</FONT>
 <BR>
@@ -121,6 +149,13 @@
 <A HREF="undefined/ty_sph.html#create_wrapped_string(clob)">CREATE_WRAPPED_STRING</A>
 					
 					&nbsp; <FONT SIZE="-1">(TY_SPH)</FONT>
+<BR>
+<P></P>
+</DD>
+<DD>
+<A HREF="Undefined/PK_TE.html#CEX_CURSOR_OF_WRONG_TYPE">CEX_CURSOR_OF_WRONG_TYPE</A>
+					
+					&nbsp; <FONT SIZE="-1">(PK_TE)</FONT>
 <BR>
 <P></P>
 </DD>
@@ -146,18 +181,33 @@
 <P></P>
 </DD>
 <DD>
-<A HREF="Undefined/_TY_TE_body.html#COMPILE_NAMED(CLOB,VARCHAR2,VARCHAR2)">COMPILE_NAMED</A>
+<A HREF="Undefined/_TY_TE_body.html#COMPILE_GENERIC(CLOB,VARCHAR2,VARCHAR2,PLS_INTEGER,VARCHAR2,VARCHAR2,VARCHAR2)">COMPILE_GENERIC</A>
 					
 					&nbsp; <FONT SIZE="-1">(TY_TE body)</FONT>
-<BR> Parse string for named templates in the from {$placehoder}<br/>
+<BR> Parse string for named or numbered templates<br/>
  Stores result of parsing in compiled_template_ nested table.<P></P>
 </DD>
 <DD>
-<A HREF="Undefined/_TY_TE_body.html#COMPILE_NUMBERED(CLOB,VARCHAR2)">COMPILE_NUMBERED</A>
+<A HREF="Undefined/_TY_TE_body.html#COMPILE_NAMED(CLOB,VARCHAR2,VARCHAR2,VARCHAR2,VARCHAR2,VARCHAR2)">COMPILE_NAMED</A>
+					
+					&nbsp; <FONT SIZE="-1">(TY_TE body)</FONT>
+<BR> Parse string for named templates in the from {$placehoder}<br/>
+<P></P>
+</DD>
+<DD>
+<A HREF="Undefined/_TY_TE_body.html#COMPILE_NUMBERED(CLOB,VARCHAR2,VARCHAR2,VARCHAR2,VARCHAR2,VARCHAR2)">COMPILE_NUMBERED</A>
 					
 					&nbsp; <FONT SIZE="-1">(TY_TE body)</FONT>
 <BR> Parse string for numbered templates in the from $1, $2, etc.<br>
- Stores result of parsing in compiled_template_ nested table.<P></P>
+<P></P>
+</DD>
+<DD>
+<A HREF="Undefined/_TY_TE_body.html#CONCAT(TY_TE,TY_TE)">CONCAT</A>
+					
+					&nbsp; <FONT SIZE="-1">(TY_TE body)</FONT>
+<BR> Concatenates two instances of compiled template expressions to costruct new instance<br/>
+ with combined compiled_template_ tables peserving the order (values from a_lhv.compiled_template_ first<br/>
+ , from a_rhv.compiled_template_ second).<P></P>
 </DD>
 <DD>
 <A HREF="Undefined/_TY_SPH_body.html#CREATE_NAMED_PH(VARCHAR2)">CREATE_NAMED_PH</A>
@@ -165,6 +215,12 @@
 					&nbsp; <FONT SIZE="-1">(TY_SPH body)</FONT>
 <BR> Creates instance of ty_sph by wrapping numbered placeholder
 <P></P>
+</DD>
+<DD>
+<A HREF="Undefined/_TY_SPH_body.html#CREATE_NESTED_TE(PLS_INTEGER,PLS_INTEGER,VARCHAR2)">CREATE_NESTED_TE</A>
+					
+					&nbsp; <FONT SIZE="-1">(TY_SPH body)</FONT>
+<BR> Creates instance of ty_sph by wrapping an instance of ty_te.<P></P>
 </DD>
 <DD>
 <A HREF="Undefined/_TY_SPH_body.html#CREATE_NUMBERED_PH(PLS_INTEGER)">CREATE_NUMBERED_PH</A>
@@ -185,6 +241,28 @@
 <DT>
 <A NAME="D"></A>D</DT>
 <DD>
+<A HREF="Undefined/PK_TE_CROSSREF.html#DELETE_LOOP_TE(PLS_INTEGER)">DELETE_LOOP_TE</A>
+					
+					&nbsp; <FONT SIZE="-1">(PK_TE_CROSSREF)</FONT>
+<BR>
+<P></P>
+</DD>
+<DD>
+<A HREF="Undefined/_PK_TE_CROSSREF_body.html#DELETE_LOOP_TE(PLS_INTEGER)">DELETE_LOOP_TE</A>
+					
+					&nbsp; <FONT SIZE="-1">(PK_TE_CROSSREF body)</FONT>
+<BR> Delete instance of ty_te from global collection by given ID
+<P></P>
+</DD>
+<DD>
+<A HREF="Undefined/_PK_TE_body.html#DISPATCH_NESTED_TE_SUBST_(TY_P_CACHE,TY_M_CACHE,TY_TE,PLS_INTEGER,VARCHAR2,PK_TE.REFCUR,PK_TE.REFCUR,PK_TE.REFCUR,PK_TE.REFCUR,PK_TE.REFCUR,PK_TE.REFCUR,PK_TE.REFCUR,PK_TE.REFCUR,PK_TE.REFCUR)">DISPATCH_NESTED_TE_SUBST_</A>
+					
+					&nbsp; <FONT SIZE="-1">(PK_TE body)</FONT>
+<BR> Dispatches reqest to substitute cursor values into loop structure to the call of appropriate substitute_ function
+
+<P></P>
+</DD>
+<DD>
 <A HREF="Undefined/_PK_TE_UT_body.html#DOT_IN_NAMED_TE">DOT_IN_NAMED_TE</A>
 					
 					&nbsp; <FONT SIZE="-1">(PK_TE_UT body)</FONT>
@@ -199,6 +277,13 @@
 <A HREF="undefined/ty_te.html#el_named">EL_NAMED</A>
 					
 					&nbsp; <FONT SIZE="-1">(TY_TE)</FONT>
+<BR>
+<P></P>
+</DD>
+<DD>
+<A HREF="undefined/ty_sph.html#el_nested_te">EL_NESTED_TE</A>
+					
+					&nbsp; <FONT SIZE="-1">(TY_SPH)</FONT>
 <BR>
 <P></P>
 </DD>
@@ -245,6 +330,13 @@
 <P></P>
 </DD>
 <DD>
+<A HREF="Undefined/PK_TE.html#EX_CURSOR_OF_WRONG_TYPE">EX_CURSOR_OF_WRONG_TYPE</A>
+					
+					&nbsp; <FONT SIZE="-1">(PK_TE)</FONT>
+<BR>
+<P></P>
+</DD>
+<DD>
 <A HREF="Undefined/PK_TE.html#EX_TE_GENERAL">EX_TE_GENERAL</A>
 					
 					&nbsp; <FONT SIZE="-1">(PK_TE)</FONT>
@@ -287,10 +379,24 @@
 <P></P>
 </DD>
 <DD>
+<A HREF="Undefined/PK_TE.html#EXCEPTION_INIT">EXCEPTION_INIT</A>
+					
+					&nbsp; <FONT SIZE="-1">(PK_TE)</FONT>
+<BR>
+<P></P>
+</DD>
+<DD>
 <A HREF="Undefined/_TY_TE_body.html#EL_NAMED">EL_NAMED</A>
 					
 					&nbsp; <FONT SIZE="-1">(TY_TE body)</FONT>
 <BR> Just to be used as class constant
+<P></P>
+</DD>
+<DD>
+<A HREF="Undefined/_TY_SPH_body.html#EL_NESTED_TE">EL_NESTED_TE</A>
+					
+					&nbsp; <FONT SIZE="-1">(TY_SPH body)</FONT>
+<BR>
 <P></P>
 </DD>
 <DD>
@@ -342,12 +448,33 @@
 <DT>
 <A NAME="G"></A>G</DT>
 <DD>
+<A HREF="Undefined/PK_TE_CROSSREF.html#G_TE_TBL">G_TE_TBL</A>
+					
+					&nbsp; <FONT SIZE="-1">(PK_TE_CROSSREF)</FONT>
+<BR>
+<P></P>
+</DD>
+<DD>
+<A HREF="Undefined/PK_TE_CROSSREF.html#GET_LOOP_TE(PLS_INTEGER)">GET_LOOP_TE</A>
+					
+					&nbsp; <FONT SIZE="-1">(PK_TE_CROSSREF)</FONT>
+<BR>
+<P></P>
+</DD>
+<DD>
 <A HREF="Undefined/_PK_TE_UT_body.html#GET_CALLER_INFO(PLS_INTEGER,PLS_INTEGER,VARCHAR2,VARCHAR2,VARCHAR2,PLS_INTEGER)">GET_CALLER_INFO</A>
 					
 					&nbsp; <FONT SIZE="-1">(PK_TE_UT body)</FONT>
 <BR> Gets calling module info including owner, type, name, line at desired call stack depth
  The refactored version of one that
  <a href="http://tkyte.blogspot.com/2009/10/httpasktomoraclecomtkytewhocalledme.html">Tom Kyte wrote<a>
+<P></P>
+</DD>
+<DD>
+<A HREF="Undefined/_PK_TE_CROSSREF_body.html#GET_LOOP_TE(PLS_INTEGER)">GET_LOOP_TE</A>
+					
+					&nbsp; <FONT SIZE="-1">(PK_TE_CROSSREF body)</FONT>
+<BR> Get instance of ty_te from global collection
 <P></P>
 </DD>
 </DL>
@@ -366,10 +493,31 @@
 <P></P>
 </DD>
 <DD>
+<A HREF="Undefined/PK_TE_CROSSREF.html#INSERT_LOOP_TE(TY_TE)">INSERT_LOOP_TE</A>
+					
+					&nbsp; <FONT SIZE="-1">(PK_TE_CROSSREF)</FONT>
+<BR>
+<P></P>
+</DD>
+<DD>
 <A HREF="Undefined/_TY_SPH_body.html#IS_STRING">IS_STRING</A>
 					
 					&nbsp; <FONT SIZE="-1">(TY_SPH body)</FONT>
 <BR> Check if current instance is the wrapper of clob.<P></P>
+</DD>
+<DD>
+<A HREF="Undefined/_PK_TE_body.html#INIT_CACHE_(TY_P_CACHE,TY_M_CACHE)">INIT_CACHE_</A>
+					
+					&nbsp; <FONT SIZE="-1">(PK_TE body)</FONT>
+<BR> Initializes cache with empty collections
+<P></P>
+</DD>
+<DD>
+<A HREF="Undefined/_PK_TE_CROSSREF_body.html#INSERT_LOOP_TE(TY_TE)">INSERT_LOOP_TE</A>
+					
+					&nbsp; <FONT SIZE="-1">(PK_TE_CROSSREF body)</FONT>
+<BR> Store instance of ty_te in global collection
+<P></P>
 </DD>
 </DL>
 <DL>
@@ -383,6 +531,13 @@
 <DL>
 <DT>
 <A NAME="L"></A>L</DT>
+<DD>
+<A HREF="undefined/ty_sph.html#loop_number">LOOP_NUMBER</A>
+					
+					&nbsp; <FONT SIZE="-1">(TY_SPH)</FONT>
+<BR>
+<P></P>
+</DD>
 </DL>
 <DL>
 <DT>
@@ -398,6 +553,13 @@
 <DL>
 <DT>
 <A NAME="N"></A>N</DT>
+<DD>
+<A HREF="undefined/ty_sph.html#nested_te_id">NESTED_TE_ID</A>
+					
+					&nbsp; <FONT SIZE="-1">(TY_SPH)</FONT>
+<BR>
+<P></P>
+</DD>
 <DD>
 <A HREF="Undefined/_PK_TE_UT_body.html#NAMED_ENCAPSULATED_TE">NAMED_ENCAPSULATED_TE</A>
 					
@@ -505,10 +667,24 @@
 <P></P>
 </DD>
 <DD>
+<A HREF="undefined/ty_te.html#process_loop_(clob,varchar2,varchar2,pls_integer,varchar2,varchar2,varchar2)">PROCESS_LOOP_</A>
+					
+					&nbsp; <FONT SIZE="-1">(TY_TE)</FONT>
+<BR>
+<P></P>
+</DD>
+<DD>
 <A HREF="Undefined/PK_TE.html#P">P</A>
 					
 					&nbsp; <FONT SIZE="-1">(PK_TE)</FONT>
 <BR>
+<P></P>
+</DD>
+<DD>
+<A HREF="Undefined/_TY_TE_body.html#PROCESS_LOOP_(CLOB,VARCHAR2,VARCHAR2,PLS_INTEGER,VARCHAR2,VARCHAR2,VARCHAR2)">PROCESS_LOOP_</A>
+					
+					&nbsp; <FONT SIZE="-1">(TY_TE body)</FONT>
+<BR> Finds and compiles loop structures inside template expressions
 <P></P>
 </DD>
 <DD>
@@ -525,6 +701,13 @@
 <DL>
 <DT>
 <A NAME="R"></A>R</DT>
+<DD>
+<A HREF="Undefined/PK_TE.html#REFCUR">REFCUR</A>
+					
+					&nbsp; <FONT SIZE="-1">(PK_TE)</FONT>
+<BR>
+<P></P>
+</DD>
 <DD>
 <A HREF="Undefined/PK_TE_UT.html#RUN_TESTS">RUN_TESTS</A>
 					
@@ -550,21 +733,28 @@
 <P></P>
 </DD>
 <DD>
-<A HREF="Undefined/PK_TE.html#SUBSTITUTE(TY_TE,P)">SUBSTITUTE</A>
+<A HREF="Undefined/PK_TE.html#SUBSTITUTE(TY_TE,P,PK_TE.REFCUR,PK_TE.REFCUR,PK_TE.REFCUR,PK_TE.REFCUR,PK_TE.REFCUR,PK_TE.REFCUR,PK_TE.REFCUR,PK_TE.REFCUR,PK_TE.REFCUR)">SUBSTITUTE</A>
+					
+					&nbsp; <FONT SIZE="-1">(PK_TE)</FONT>
+<BR>end types for internal use only
+<P></P>
+</DD>
+<DD>
+<A HREF="Undefined/PK_TE.html#SUBSTITUTE(TY_TE,M,PK_TE.REFCUR,PK_TE.REFCUR,PK_TE.REFCUR,PK_TE.REFCUR,PK_TE.REFCUR,PK_TE.REFCUR,PK_TE.REFCUR,PK_TE.REFCUR,PK_TE.REFCUR)">SUBSTITUTE</A>
 					
 					&nbsp; <FONT SIZE="-1">(PK_TE)</FONT>
 <BR>
 <P></P>
 </DD>
 <DD>
-<A HREF="Undefined/PK_TE.html#SUBSTITUTE(TY_TE,M)">SUBSTITUTE</A>
+<A HREF="Undefined/PK_TE.html#SUBSTITUTE(TY_TE,PK_TE.REFCUR,VARCHAR2)">SUBSTITUTE</A>
 					
 					&nbsp; <FONT SIZE="-1">(PK_TE)</FONT>
 <BR>
 <P></P>
 </DD>
 <DD>
-<A HREF="Undefined/PK_TE.html#SUBSTITUTE(CLOB,P,VARCHAR2)">SUBSTITUTE</A>
+<A HREF="Undefined/PK_TE.html#SUBSTITUTE(CLOB,P,VARCHAR2,VARCHAR2)">SUBSTITUTE</A>
 					
 					&nbsp; <FONT SIZE="-1">(PK_TE)</FONT>
 <BR>
@@ -572,6 +762,19 @@
 </DD>
 <DD>
 <A HREF="Undefined/PK_TE.html#SUBSTITUTE(CLOB,M,VARCHAR2,VARCHAR2)">SUBSTITUTE</A>
+					
+					&nbsp; <FONT SIZE="-1">(PK_TE)</FONT>
+<BR>
+<P></P>
+</DD>
+<DD>
+<A HREF="Undefined/PK_TE.html#SUBSTITUTE_(TY_TE,P,PK_TE.REFCUR,PK_TE.REFCUR,PK_TE.REFCUR,PK_TE.REFCUR,PK_TE.REFCUR,PK_TE.REFCUR,PK_TE.REFCUR,PK_TE.REFCUR,PK_TE.REFCUR,TY_P_CACHE,TY_M_CACHE)">SUBSTITUTE_</A>
+					
+					&nbsp; <FONT SIZE="-1">(PK_TE)</FONT>
+<BR>Following functions are not to be directly called.<P></P>
+</DD>
+<DD>
+<A HREF="Undefined/PK_TE.html#SUBSTITUTE_(TY_TE,M,PK_TE.REFCUR,PK_TE.REFCUR,PK_TE.REFCUR,PK_TE.REFCUR,PK_TE.REFCUR,PK_TE.REFCUR,PK_TE.REFCUR,PK_TE.REFCUR,PK_TE.REFCUR,TY_P_CACHE,TY_M_CACHE)">SUBSTITUTE_</A>
 					
 					&nbsp; <FONT SIZE="-1">(PK_TE)</FONT>
 <BR>
@@ -648,7 +851,7 @@
 <P></P>
 </DD>
 <DD>
-<A HREF="Undefined/_PK_TE_body.html#SUBSTITUTE(TY_TE,P)">SUBSTITUTE</A>
+<A HREF="Undefined/_PK_TE_body.html#SUBSTITUTE(TY_TE,P,PK_TE.REFCUR,PK_TE.REFCUR,PK_TE.REFCUR,PK_TE.REFCUR,PK_TE.REFCUR,PK_TE.REFCUR,PK_TE.REFCUR,PK_TE.REFCUR,PK_TE.REFCUR)">SUBSTITUTE</A>
 					
 					&nbsp; <FONT SIZE="-1">(PK_TE body)</FONT>
 <BR> Replaces numbered placeholders in compiled Template Expression with values from nested table of varchar2 (p).<br/>
@@ -661,7 +864,7 @@
 <P></P>
 </DD>
 <DD>
-<A HREF="Undefined/_PK_TE_body.html#SUBSTITUTE(TY_TE,M)">SUBSTITUTE</A>
+<A HREF="Undefined/_PK_TE_body.html#SUBSTITUTE(TY_TE,M,PK_TE.REFCUR,PK_TE.REFCUR,PK_TE.REFCUR,PK_TE.REFCUR,PK_TE.REFCUR,PK_TE.REFCUR,PK_TE.REFCUR,PK_TE.REFCUR,PK_TE.REFCUR)">SUBSTITUTE</A>
 					
 					&nbsp; <FONT SIZE="-1">(PK_TE body)</FONT>
 <BR> Replaces named placeholders in compiled Template Expression with values from nested table of nested tables of varchar2 (m).<br/>
@@ -670,10 +873,20 @@
  makes it possible to use syntactic sugar for defining values to be placed instead of placeholders.<br/>
  So say if we want to substitute {$who} for 'Dolly' and {$how} for 'nice' in template expression<br/>
  'I said hello, {$who}, / Well, hello, {$who} / It's so {$how} to have you back where you belong'<br/>
- we just pass pk_te.m( pk_te.p( 'who', 'Dolly' ), pk_te.p( 'how' , 'back' ) ) into this version of substitute function.<P></P>
+ we just pass pk_te.m( pk_te.p( 'who', 'Dolly' ), pk_te.p( 'how' , 'back' ) ) into this version of substitute function.<br/>
+ Also accepts up to 9 optional cursor parameters what can be used to substitute values inside loop structures defined in<br/>
+ template expression.<P></P>
 </DD>
 <DD>
-<A HREF="Undefined/_PK_TE_body.html#SUBSTITUTE(CLOB,P,VARCHAR2)">SUBSTITUTE</A>
+<A HREF="Undefined/_PK_TE_body.html#SUBSTITUTE(TY_TE,PK_TE.REFCUR,VARCHAR2)">SUBSTITUTE</A>
+					
+					&nbsp; <FONT SIZE="-1">(PK_TE body)</FONT>
+<BR> Replaces placeholders in compiled Template Expression with values from cursor in iteration.<br/>
+ Each individual substitution is concatenated with the following with optional a_concat_by in between.<br/>
+ Cursor must return instances of ty_p or ty_m UDTs otherwise the function will throw.<P></P>
+</DD>
+<DD>
+<A HREF="Undefined/_PK_TE_body.html#SUBSTITUTE(CLOB,P,VARCHAR2,VARCHAR2)">SUBSTITUTE</A>
 					
 					&nbsp; <FONT SIZE="-1">(PK_TE body)</FONT>
 <BR> Substitutes values from p without 'compiling' template expression
@@ -685,6 +898,31 @@
 					&nbsp; <FONT SIZE="-1">(PK_TE body)</FONT>
 <BR> Substitutes values from m without 'compiling' template expression
 <P></P>
+</DD>
+<DD>
+<A HREF="Undefined/_PK_TE_body.html#SUBSTITUTE_(PLS_INTEGER,TY_TE,PK_TE.REFCUR,VARCHAR2,PK_TE.REFCUR,PK_TE.REFCUR,PK_TE.REFCUR,PK_TE.REFCUR,PK_TE.REFCUR,PK_TE.REFCUR,PK_TE.REFCUR,PK_TE.REFCUR,PK_TE.REFCUR,TY_P_CACHE,TY_M_CACHE)">SUBSTITUTE_</A>
+					
+					&nbsp; <FONT SIZE="-1">(PK_TE body)</FONT>
+<BR> Replaces placeholders in compiled Template Expression with values from cursor in iteration.<br/>
+ Caches results returned from cursor so there's no need to reopen it if more than one loop structures refering this cursor are defined in template expression.<br/>
+ Each individual substitution is concatenated with the following with optional a_concat_by in between.<br/>
+ Cursor must return instances of ty_p or ty_m UDTs (depending on ty_te type) otherwise the function will throw.<P></P>
+</DD>
+<DD>
+<A HREF="Undefined/_PK_TE_body.html#SUBSTITUTE_(TY_TE,P,PK_TE.REFCUR,PK_TE.REFCUR,PK_TE.REFCUR,PK_TE.REFCUR,PK_TE.REFCUR,PK_TE.REFCUR,PK_TE.REFCUR,PK_TE.REFCUR,PK_TE.REFCUR,TY_P_CACHE,TY_M_CACHE)">SUBSTITUTE_</A>
+					
+					&nbsp; <FONT SIZE="-1">(PK_TE body)</FONT>
+<BR> Replaces numbered placeholders in compiled Template Expression with values from nested table of varchar2 (p).<br/>
+ Simmilar to function substitute for numbered placeholders but is used in subsequent recursive calls to substitute values into loop structures<br/>
+ Redefines cursor parameters as required and adds two cache in out nocopy parameters.<P></P>
+</DD>
+<DD>
+<A HREF="Undefined/_PK_TE_body.html#SUBSTITUTE_(TY_TE,M,PK_TE.REFCUR,PK_TE.REFCUR,PK_TE.REFCUR,PK_TE.REFCUR,PK_TE.REFCUR,PK_TE.REFCUR,PK_TE.REFCUR,PK_TE.REFCUR,PK_TE.REFCUR,TY_P_CACHE,TY_M_CACHE)">SUBSTITUTE_</A>
+					
+					&nbsp; <FONT SIZE="-1">(PK_TE body)</FONT>
+<BR> Replaces named placeholders in compiled Template Expression with values from nested table of nested tables of varchar2 (m).<br/>
+ Simmilar to function substitute for named placeholders but is used in subsequent recursive calls to substitute values into loop structures<br/>
+ Redefines cursor parameters as required and adds two cache in out nocopy parameters.<P></P>
 </DD>
 <DD>
 <A HREF="Undefined/_PK_TE_UT_body.html#SUBSTITUTE_M_AND_NUMBERED">SUBSTITUTE_M_AND_NUMBERED</A>
@@ -733,6 +971,13 @@
 <P></P>
 </DD>
 <DD>
+<A HREF="undefined/ty_te.html#translate_options_delim_(varchar2)">TRANSLATE_OPTIONS_DELIM_</A>
+					
+					&nbsp; <FONT SIZE="-1">(TY_TE)</FONT>
+<BR>
+<P></P>
+</DD>
+<DD>
 <A HREF="undefined/ty_m.html#ty_p">TY_P</A>
 					
 					&nbsp; <FONT SIZE="-1">(TY_M)</FONT>
@@ -772,6 +1017,48 @@
 					
 					&nbsp; <FONT SIZE="-1">(TY_TE)</FONT>
 <BR>
+<P></P>
+</DD>
+<DD>
+<A HREF="Undefined/PK_TE.html#TY_M_CACHE">TY_M_CACHE</A>
+					
+					&nbsp; <FONT SIZE="-1">(PK_TE)</FONT>
+<BR>
+<P></P>
+</DD>
+<DD>
+<A HREF="Undefined/PK_TE.html#TY_M_TAB">TY_M_TAB</A>
+					
+					&nbsp; <FONT SIZE="-1">(PK_TE)</FONT>
+<BR>These types are for internal use only
+<P></P>
+</DD>
+<DD>
+<A HREF="Undefined/PK_TE.html#TY_P_CACHE">TY_P_CACHE</A>
+					
+					&nbsp; <FONT SIZE="-1">(PK_TE)</FONT>
+<BR>
+<P></P>
+</DD>
+<DD>
+<A HREF="Undefined/PK_TE.html#TY_P_TAB">TY_P_TAB</A>
+					
+					&nbsp; <FONT SIZE="-1">(PK_TE)</FONT>
+<BR>
+<P></P>
+</DD>
+<DD>
+<A HREF="Undefined/PK_TE_CROSSREF.html#TY_TE_TBL">TY_TE_TBL</A>
+					
+					&nbsp; <FONT SIZE="-1">(PK_TE_CROSSREF)</FONT>
+<BR>
+<P></P>
+</DD>
+<DD>
+<A HREF="Undefined/_TY_TE_body.html#TRANSLATE_OPTIONS_DELIM_(VARCHAR2)">TRANSLATE_OPTIONS_DELIM_</A>
+					
+					&nbsp; <FONT SIZE="-1">(TY_TE body)</FONT>
+<BR> Replaces special characters in delimiters part of loop structure options with coresponding character codes
 <P></P>
 </DD>
 <DD>
@@ -824,7 +1111,7 @@
 <TD CLASS="NavBarRow1"><A HREF="summary.html"><FONT CLASS="NavBarFont1"><B>Overview</B></FONT></A> &nbsp;</TD><TD CLASS="NavBarRow1"><A HREF="deprecated-list.html"><FONT CLASS="NavBarFont1"><B>Deprecated</B></FONT></A> &nbsp;</TD><TD CLASS="NavBarRow1Chosen"><FONT CLASS="NavBarFont1Chosen"><B>Index</B></FONT> &nbsp;</TD><TD CLASS="NavBarRow1"><A HREF="generator.html"><FONT CLASS="NavBarFont1"><B>Generator</B></FONT></A> &nbsp;</TD>
 </TR>
 </TABLE>
-</TD><TD rowspan="3" VALIGN="top" ALIGN="right"><EM><b>MyApplication</b></EM></TD>
+</TD><TD rowspan="3" VALIGN="top" ALIGN="right"><EM><b>ora_te</b></EM></TD>
 </TR>
 </TABLE>
 <HR>

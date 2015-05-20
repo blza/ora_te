@@ -1,7 +1,7 @@
 <HTML xmlns:lxslt="http://xml.apache.org/xslt" xmlns:exslt="http://exslt.org/common">
 <HEAD>
 <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<TITLE>MyApplication</TITLE>
+<TITLE>ora_te</TITLE>
 <LINK TITLE="Style" HREF="../stylesheet.css" TYPE="text/css" REL="stylesheet">
 <!--
         sameCase=ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz
@@ -21,7 +21,7 @@
 <TD CLASS="NavBarRow1"><A HREF="../summary.html"><FONT CLASS="NavBarFont1"><B>Overview</B></FONT></A> &nbsp;</TD><TD CLASS="NavBarRow1"><A HREF="../deprecated-list.html"><FONT CLASS="NavBarFont1"><B>Deprecated</B></FONT></A> &nbsp;</TD><TD CLASS="NavBarRow1"><A HREF="../index-list.html"><FONT CLASS="NavBarFont1"><B>Index</B></FONT></A> &nbsp;</TD><TD CLASS="NavBarRow1"><A HREF="../generator.html"><FONT CLASS="NavBarFont1"><B>Generator</B></FONT></A> &nbsp;</TD>
 </TR>
 </TABLE>
-</TD><TD rowspan="3" VALIGN="top" ALIGN="right"><EM><b>MyApplication</b></EM></TD>
+</TD><TD rowspan="3" VALIGN="top" ALIGN="right"><EM><b>ora_te</b></EM></TD>
 </TR>
 <TR>
 <TD CLASS="NavBarRow3" VALIGN="top"><FONT SIZE="-2">
@@ -73,6 +73,23 @@
        synonymsFile=,,--><!--GenerateTypeLink: default reached-->STATIC FUNCTION TY_SPH</CODE></FONT></TD>
 <!-- 
 		siblingCount=0 
+		argumentCount=3 
+		predecessorCount=0 
+		siblingNoArgumentCount=0--><A NAME="CREATE_NESTED_TE"></A><TD><CODE><B><A HREF="#CREATE_NESTED_TE(PLS_INTEGER,PLS_INTEGER,VARCHAR2)">CREATE_NESTED_TE</A></B>(A_TE_ID IN PLS_INTEGER, A_LOOP_NUMBER IN PLS_INTEGER DEFAULT 0, A_CONCAT_BY IN VARCHAR2 DEFAULT '')</CODE>
+<BR>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+       Creates instance of ty_sph by wrapping an instance of ty_te.</TD>
+</TR>
+<TR CLASS="TableRowColor">
+<TD WIDTH="1%" VALIGN="top" ALIGN="right"><FONT SIZE="-1"><CODE>&nbsp;<!--
+       schemaName=
+       typeName=STATIC FUNCTION TY_SPH
+       localTypeName=
+       schema=
+       fieldType=STATIC FUNCTION TY_SPH
+       synonymsFile=,,--><!--GenerateTypeLink: default reached-->STATIC FUNCTION TY_SPH</CODE></FONT></TD>
+<!-- 
+		siblingCount=0 
 		argumentCount=1 
 		predecessorCount=0 
 		siblingNoArgumentCount=0--><A NAME="CREATE_NUMBERED_PH"></A><TD><CODE><B><A HREF="#CREATE_NUMBERED_PH(PLS_INTEGER)">CREATE_NUMBERED_PH</A></B>(A_NUMBER IN PLS_INTEGER)</CODE>
@@ -98,6 +115,23 @@
       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
        Creates instance of ty_sph by wrapping string
 </TD>
+</TR>
+<TR CLASS="TableRowColor">
+<TD WIDTH="1%" VALIGN="top" ALIGN="right"><FONT SIZE="-1"><CODE>&nbsp;<!--
+       schemaName=
+       typeName=STATIC FUNCTION PLS_INTEGER
+       localTypeName=
+       schema=
+       fieldType=STATIC FUNCTION PLS_INTEGER
+       synonymsFile=,,--><!--GenerateTypeLink: default reached-->STATIC FUNCTION PLS_INTEGER</CODE></FONT></TD>
+<!-- 
+		siblingCount=0 
+		argumentCount=0 
+		predecessorCount=0 
+		siblingNoArgumentCount=0--><TD><CODE><B><A HREF="#EL_NESTED_TE">EL_NESTED_TE</A></B>()</CODE>
+<BR>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      </TD>
 </TR>
 <TR CLASS="TableRowColor">
 <TD WIDTH="1%" VALIGN="top" ALIGN="right"><FONT SIZE="-1"><CODE>&nbsp;<!--
@@ -224,6 +258,38 @@
 <DL></DL>
 </DL>
 <HR>
+<A NAME="CREATE_NESTED_TE(PLS_INTEGER,PLS_INTEGER,VARCHAR2)"></A>
+<H3>CREATE_NESTED_TE</H3>
+<PRE> <!--
+       schemaName=
+       typeName=STATIC FUNCTION TY_SPH
+       localTypeName=
+       schema=
+       fieldType=STATIC FUNCTION TY_SPH
+       synonymsFile=,,--><!--GenerateTypeLink: default reached-->STATIC FUNCTION TY_SPH <B>CREATE_NESTED_TE</B>(A_TE_ID IN PLS_INTEGER, <BR>                                         A_LOOP_NUMBER IN PLS_INTEGER DEFAULT 0, <BR>                                         A_CONCAT_BY IN VARCHAR2 DEFAULT '')</PRE>
+<DL>
+<DD> Creates instance of ty_sph by wrapping an instance of ty_te. Can also assign loop number if nested template expression comes <br/>
+ from loop declaration and the string that will be inserted between individual loop substitutions.
+</DD>
+<DD>
+<DL>
+<DT>Parameters:
+        <DD>
+<CODE>A_LOOP_NUMBER</CODE> -
+              an optional loop number if template expression comes from loop declaration</DD>
+<DD>
+<CODE>A_CONCAT_BY</CODE> -
+              a string that comes from loop declaration and that will be inserted between individual loop substitutions.</DD>
+</DT>
+<DT>Returns:
+          <DD>instance of ty_sph</DD>
+</DT>
+</DL>
+</DD>
+<P></P>
+<DL></DL>
+</DL>
+<HR>
 <A NAME="CREATE_NUMBERED_PH(PLS_INTEGER)"></A>
 <H3>CREATE_NUMBERED_PH</H3>
 <PRE> <!--
@@ -275,6 +341,24 @@
           <DD>instance of ty_sph</DD>
 </DT>
 </DL>
+</DD>
+<P></P>
+<DL></DL>
+</DL>
+<HR>
+<A NAME="EL_NESTED_TE"></A>
+<H3>EL_NESTED_TE</H3>
+<PRE> <!--
+       schemaName=
+       typeName=STATIC FUNCTION PLS_INTEGER
+       localTypeName=
+       schema=
+       fieldType=STATIC FUNCTION PLS_INTEGER
+       synonymsFile=,,--><!--GenerateTypeLink: default reached-->STATIC FUNCTION PLS_INTEGER <B>EL_NESTED_TE</B>()</PRE>
+<DL>
+<DD></DD>
+<DD>
+<DL></DL>
 </DD>
 <P></P>
 <DL></DL>
@@ -392,7 +476,7 @@
 <TD CLASS="NavBarRow1"><A HREF="../summary.html"><FONT CLASS="NavBarFont1"><B>Overview</B></FONT></A> &nbsp;</TD><TD CLASS="NavBarRow1"><A HREF="../deprecated-list.html"><FONT CLASS="NavBarFont1"><B>Deprecated</B></FONT></A> &nbsp;</TD><TD CLASS="NavBarRow1"><A HREF="../index-list.html"><FONT CLASS="NavBarFont1"><B>Index</B></FONT></A> &nbsp;</TD><TD CLASS="NavBarRow1"><A HREF="../generator.html"><FONT CLASS="NavBarFont1"><B>Generator</B></FONT></A> &nbsp;</TD>
 </TR>
 </TABLE>
-</TD><TD rowspan="3" VALIGN="top" ALIGN="right"><EM><b>MyApplication</b></EM></TD>
+</TD><TD rowspan="3" VALIGN="top" ALIGN="right"><EM><b>ora_te</b></EM></TD>
 </TR>
 <TR>
 <TD CLASS="NavBarRow3" VALIGN="top"><FONT SIZE="-2">

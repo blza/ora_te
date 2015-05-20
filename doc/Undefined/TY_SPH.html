@@ -1,7 +1,7 @@
 <HTML xmlns:lxslt="http://xml.apache.org/xslt" xmlns:exslt="http://exslt.org/common">
 <HEAD>
 <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<TITLE>MyApplication</TITLE>
+<TITLE>ora_te</TITLE>
 <LINK TITLE="Style" HREF="../stylesheet.css" TYPE="text/css" REL="stylesheet">
 <!--
         sameCase=ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz
@@ -21,7 +21,7 @@
 <TD CLASS="NavBarRow1"><A HREF="../summary.html"><FONT CLASS="NavBarFont1"><B>Overview</B></FONT></A> &nbsp;</TD><TD CLASS="NavBarRow1"><A HREF="../deprecated-list.html"><FONT CLASS="NavBarFont1"><B>Deprecated</B></FONT></A> &nbsp;</TD><TD CLASS="NavBarRow1"><A HREF="../index-list.html"><FONT CLASS="NavBarFont1"><B>Index</B></FONT></A> &nbsp;</TD><TD CLASS="NavBarRow1"><A HREF="../generator.html"><FONT CLASS="NavBarFont1"><B>Generator</B></FONT></A> &nbsp;</TD>
 </TR>
 </TABLE>
-</TD><TD rowspan="3" VALIGN="top" ALIGN="right"><EM><b>MyApplication</b></EM></TD>
+</TD><TD rowspan="3" VALIGN="top" ALIGN="right"><EM><b>ora_te</b></EM></TD>
 </TR>
 <TR>
 <TD CLASS="NavBarRow3" VALIGN="top"><FONT SIZE="-2">
@@ -41,6 +41,42 @@
 <TABLE WIDTH="100%" CELLSPACING="0" CELLPADDING="3" BORDER="1">
 <TR CLASS="TableHeadingColor">
 <TD COLSPAN="2"><FONT SIZE="+2"><B>Field Summary</B></FONT></TD>
+</TR>
+<TR CLASS="TableRowColor">
+<TD WIDTH="1%" VALIGN="top" ALIGN="right"><FONT SIZE="-1"><CODE>&nbsp;<!--
+       schemaName=
+       typeName=VARCHAR2(400 CHAR)
+       localTypeName=
+       schema=
+       fieldType=VARCHAR2(400 CHAR)
+       synonymsFile=,,--><!--GenerateTypeLink: default reached-->VARCHAR2(400 CHAR)</CODE></FONT></TD><TD><CODE><B><A HREF="#CONCAT_BY">CONCAT_BY</A></B></CODE>
+<BR>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      </TD>
+</TR>
+<TR CLASS="TableRowColor">
+<TD WIDTH="1%" VALIGN="top" ALIGN="right"><FONT SIZE="-1"><CODE>&nbsp;<!--
+       schemaName=
+       typeName=NUMBER(38,0)
+       localTypeName=
+       schema=
+       fieldType=NUMBER(38,0)
+       synonymsFile=,,--><!--GenerateTypeLink: default reached-->NUMBER(38,0)</CODE></FONT></TD><TD><CODE><B><A HREF="#LOOP_NUMBER">LOOP_NUMBER</A></B></CODE>
+<BR>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      </TD>
+</TR>
+<TR CLASS="TableRowColor">
+<TD WIDTH="1%" VALIGN="top" ALIGN="right"><FONT SIZE="-1"><CODE>&nbsp;<!--
+       schemaName=
+       typeName=NUMBER(38,0)
+       localTypeName=
+       schema=
+       fieldType=NUMBER(38,0)
+       synonymsFile=,,--><!--GenerateTypeLink: default reached-->NUMBER(38,0)</CODE></FONT></TD><TD><CODE><B><A HREF="#NESTED_TE_ID">NESTED_TE_ID</A></B></CODE>
+<BR>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      </TD>
 </TR>
 <TR CLASS="TableRowColor">
 <TD WIDTH="1%" VALIGN="top" ALIGN="right"><FONT SIZE="-1"><CODE>&nbsp;<!--
@@ -124,6 +160,23 @@
        synonymsFile=,,--><!--GenerateTypeLink: default reached-->STATIC FUNCTION TY_SPH</CODE></FONT></TD>
 <!-- 
 		siblingCount=0 
+		argumentCount=3 
+		predecessorCount=0 
+		siblingNoArgumentCount=0--><A NAME="CREATE_NESTED_TE"></A><TD><CODE><B><A HREF="#CREATE_NESTED_TE(PLS_INTEGER,PLS_INTEGER,VARCHAR2)">CREATE_NESTED_TE</A></B>(A_TE_ID IN PLS_INTEGER, A_LOOP_NUMBER IN PLS_INTEGER DEFAULT 0, A_CONCAT_BY IN VARCHAR2 DEFAULT '')</CODE>
+<BR>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      </TD>
+</TR>
+<TR CLASS="TableRowColor">
+<TD WIDTH="1%" VALIGN="top" ALIGN="right"><FONT SIZE="-1"><CODE>&nbsp;<!--
+       schemaName=
+       typeName=STATIC FUNCTION TY_SPH
+       localTypeName=
+       schema=
+       fieldType=STATIC FUNCTION TY_SPH
+       synonymsFile=,,--><!--GenerateTypeLink: default reached-->STATIC FUNCTION TY_SPH</CODE></FONT></TD>
+<!-- 
+		siblingCount=0 
 		argumentCount=1 
 		predecessorCount=0 
 		siblingNoArgumentCount=0--><A NAME="CREATE_NUMBERED_PH"></A><TD><CODE><B><A HREF="#CREATE_NUMBERED_PH(PLS_INTEGER)">CREATE_NUMBERED_PH</A></B>(A_NUMBER IN PLS_INTEGER)</CODE>
@@ -144,6 +197,23 @@
 		argumentCount=1 
 		predecessorCount=0 
 		siblingNoArgumentCount=0--><A NAME="CREATE_WRAPPED_STRING"></A><TD><CODE><B><A HREF="#CREATE_WRAPPED_STRING(CLOB)">CREATE_WRAPPED_STRING</A></B>(A_STRING IN CLOB)</CODE>
+<BR>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      </TD>
+</TR>
+<TR CLASS="TableRowColor">
+<TD WIDTH="1%" VALIGN="top" ALIGN="right"><FONT SIZE="-1"><CODE>&nbsp;<!--
+       schemaName=
+       typeName=STATIC FUNCTION PLS_INTEGER
+       localTypeName=
+       schema=
+       fieldType=STATIC FUNCTION PLS_INTEGER
+       synonymsFile=,,--><!--GenerateTypeLink: default reached-->STATIC FUNCTION PLS_INTEGER</CODE></FONT></TD>
+<!-- 
+		siblingCount=0 
+		argumentCount=0 
+		predecessorCount=0 
+		siblingNoArgumentCount=0--><TD><CODE><B><A HREF="#EL_NESTED_TE">EL_NESTED_TE</A></B>()</CODE>
 <BR>
       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
       </TD>
@@ -241,6 +311,42 @@
 <TD COLSPAN="1"><FONT SIZE="+2"><B>Field Detail</B></FONT></TD>
 </TR>
 </TABLE>
+<A NAME="CONCAT_BY"></A>
+<H3>CONCAT_BY</H3>
+<PRE>
+        public VARCHAR2(400 CHAR) <B>CONCAT_BY</B>
+</PRE>
+<DL>
+<DD></DD>
+<DD>
+<DL></DL>
+</DD>
+</DL>
+<HR>
+<A NAME="LOOP_NUMBER"></A>
+<H3>LOOP_NUMBER</H3>
+<PRE>
+        public NUMBER(38,0) <B>LOOP_NUMBER</B>
+</PRE>
+<DL>
+<DD></DD>
+<DD>
+<DL></DL>
+</DD>
+</DL>
+<HR>
+<A NAME="NESTED_TE_ID"></A>
+<H3>NESTED_TE_ID</H3>
+<PRE>
+        public NUMBER(38,0) <B>NESTED_TE_ID</B>
+</PRE>
+<DL>
+<DD></DD>
+<DD>
+<DL></DL>
+</DD>
+</DL>
+<HR>
 <A NAME="PH_NAME"></A>
 <H3>PH_NAME</H3>
 <PRE>
@@ -313,6 +419,24 @@
 <DL></DL>
 </DL>
 <HR>
+<A NAME="CREATE_NESTED_TE(PLS_INTEGER,PLS_INTEGER,VARCHAR2)"></A>
+<H3>CREATE_NESTED_TE</H3>
+<PRE>public <!--
+       schemaName=
+       typeName=STATIC FUNCTION TY_SPH
+       localTypeName=
+       schema=
+       fieldType=STATIC FUNCTION TY_SPH
+       synonymsFile=,,--><!--GenerateTypeLink: default reached-->STATIC FUNCTION TY_SPH <B>CREATE_NESTED_TE</B>(A_TE_ID IN PLS_INTEGER, <BR>                                               A_LOOP_NUMBER IN PLS_INTEGER DEFAULT 0, <BR>                                               A_CONCAT_BY IN VARCHAR2 DEFAULT '')</PRE>
+<DL>
+<DD></DD>
+<DD>
+<DL></DL>
+</DD>
+<P></P>
+<DL></DL>
+</DL>
+<HR>
 <A NAME="CREATE_NUMBERED_PH(PLS_INTEGER)"></A>
 <H3>CREATE_NUMBERED_PH</H3>
 <PRE>public <!--
@@ -340,6 +464,24 @@
        schema=
        fieldType=STATIC FUNCTION TY_SPH
        synonymsFile=,,--><!--GenerateTypeLink: default reached-->STATIC FUNCTION TY_SPH <B>CREATE_WRAPPED_STRING</B>(A_STRING IN CLOB)</PRE>
+<DL>
+<DD></DD>
+<DD>
+<DL></DL>
+</DD>
+<P></P>
+<DL></DL>
+</DL>
+<HR>
+<A NAME="EL_NESTED_TE"></A>
+<H3>EL_NESTED_TE</H3>
+<PRE>public <!--
+       schemaName=
+       typeName=STATIC FUNCTION PLS_INTEGER
+       localTypeName=
+       schema=
+       fieldType=STATIC FUNCTION PLS_INTEGER
+       synonymsFile=,,--><!--GenerateTypeLink: default reached-->STATIC FUNCTION PLS_INTEGER <B>EL_NESTED_TE</B>()</PRE>
 <DL>
 <DD></DD>
 <DD>
@@ -448,7 +590,7 @@
 <TD CLASS="NavBarRow1"><A HREF="../summary.html"><FONT CLASS="NavBarFont1"><B>Overview</B></FONT></A> &nbsp;</TD><TD CLASS="NavBarRow1"><A HREF="../deprecated-list.html"><FONT CLASS="NavBarFont1"><B>Deprecated</B></FONT></A> &nbsp;</TD><TD CLASS="NavBarRow1"><A HREF="../index-list.html"><FONT CLASS="NavBarFont1"><B>Index</B></FONT></A> &nbsp;</TD><TD CLASS="NavBarRow1"><A HREF="../generator.html"><FONT CLASS="NavBarFont1"><B>Generator</B></FONT></A> &nbsp;</TD>
 </TR>
 </TABLE>
-</TD><TD rowspan="3" VALIGN="top" ALIGN="right"><EM><b>MyApplication</b></EM></TD>
+</TD><TD rowspan="3" VALIGN="top" ALIGN="right"><EM><b>ora_te</b></EM></TD>
 </TR>
 <TR>
 <TD CLASS="NavBarRow3" VALIGN="top"><FONT SIZE="-2">

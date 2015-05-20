@@ -13,7 +13,7 @@ create or replace type body TY_SPH as
 CONSTRUCTOR FUNCTION TY_SPH( SELF IN OUT NOCOPY TY_SPH ) RETURN SELF AS RESULT
 as
 begin
-  	return;
+    return;
 end TY_SPH ;
 
 /** Creates instance of ty_sph by wrapping numbered placeholder
@@ -58,25 +58,52 @@ begin
   return v_instance;
 end;
 
+
+/** Creates instance of ty_sph by wrapping an instance of ty_te. Can also assign loop number if nested template expression comes <br/>
+* from loop declaration and the string that will be inserted between individual loop substitutions.
+* @param a_te a nested te
+* @param a_loop_number an optional loop number if template expression comes from loop declaration
+* @param a_concat_by a string that comes from loop declaration and that will be inserted between individual loop substitutions.
+* @return instance of ty_sph
+*/
+static function create_nested_te( a_te_id in pls_integer, a_loop_number in pls_integer := 0, a_concat_by in varchar2 := '' ) return ty_sph
+as
+  v_instance ty_sph;
+begin
+  v_instance := ty_sph();
+  v_instance.type_ := ty_sph.EL_NESTED_TE();
+  v_instance.nested_te_id := a_te_id;
+  v_instance.loop_number := a_loop_number;
+  v_instance.concat_by := a_concat_by;
+  return v_instance;
+end;
+
+
 /** Just to be used as class constant
-*/		
+*/    
 STATIC FUNCTION EL_STRING RETURN PLS_INTEGER as
 begin
-	return 1;
+  return 1;
 end;
 
 /** Just to be used as class constant
 */
 STATIC FUNCTION EL_PH_NUMBERED RETURN PLS_INTEGER as
 begin
-	return 2;
+  return 2;
 end;
 
 /** Just to be used as class constant
 */
 STATIC FUNCTION EL_PH_NAMED RETURN PLS_INTEGER as
 begin
-	return 3;
+  return 3;
+end;
+
+
+static function EL_NESTED_TE return pls_integer as 
+begin
+  return 4;
 end;
 
 /** Check if current instance is the wrapper of clob.
