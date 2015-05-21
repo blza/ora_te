@@ -82,7 +82,11 @@ insert( id_
 where t2.status_code <> 'D'
 ```
 
-Yes, this is where `ora_te` stands out. With the help of `ora_te` it becomes very convinient to dynamically generate dynamic SQL statements and other costructs at runtime. It improves development speed, code readability and maintainability. As functionality is cut to the bone it also has small learning curve.
+Yes, this is where `ora_te` stands out. With the help of `ora_te` it becomes very convinient to dynamically generate dynamic SQL statements and other costructs at runtime. 
+
+It improves development speed, code readability and maintainability. 
+
+As functionality is cut to the bone it also has small learning curve.
 
 ## Compatibility and requirements.
 Developed for and tested on Oracle 11r2.
