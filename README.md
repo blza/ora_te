@@ -18,11 +18,11 @@ begin
 merge into {$dest_table} t1
 using {$tmp_table} t2
   on ( t1.{$join_by} = t2.{$join_by} )
-when matched then
-  update set {%1%t1.{$column_name} = t2.{$column_name}%\r\n  , %}
-  delete where t2.status_code = ''D''
+when matched then 
+update set {%1%t1.{$column_name} = t2.{$column_name}%\r\n  , %}
+delete where t2.status_code = ''D''
 when not matched then 
-  insert( {$join_by}
+insert( {$join_by}
   , {%1%{$column_name}%\r\n  , %}
 ) values ( {$seq_name}.nextval
   , t2.{$join_by}
@@ -67,11 +67,11 @@ merge into dummy_test t1
 using tmp_dummy_test t2
   on ( t1.id_ = t2.id_ )
 when matched then
-  update set t1.COL1 = t2.COL1
+update set t1.COL1 = t2.COL1
   , t1.COL2 = t2.COL2
-  delete where t2.status_code = 'D'
+delete where t2.status_code = 'D'
 when not matched then 
-  insert( id_
+insert( id_
   , COL1
   , COL2
 ) values ( seq_dummy_id.nextval
