@@ -32,7 +32,7 @@
 <HR>
 <H2>
 <FONT SIZE="-1"></FONT>
-<BR>Package&nbsp;PK_TE</H2>
+<BR>Package&nbsp;PK_TE_IMPL</H2>
 <P></P>
 <DL></DL>
 <HR>
@@ -148,6 +148,74 @@
       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
       </TD>
 </TR>
+<TR CLASS="TableRowColor">
+<TD WIDTH="1%" VALIGN="top" ALIGN="right"><FONT SIZE="-1"><CODE>&nbsp;<!--
+       schemaName=
+       typeName=table OF ty_m_tab INDEX BY binary_integer
+       localTypeName=
+       schema=
+       fieldType=table OF ty_m_tab INDEX BY binary_integer
+       synonymsFile=,,--><!--GenerateTypeLink: default reached-->table OF ty_m_tab INDEX BY binary_integer</CODE></FONT></TD>
+<!-- 
+		siblingCount=0 
+		argumentCount=0 
+		predecessorCount=0 
+		siblingNoArgumentCount=0--><TD><CODE><B><A HREF="#TY_M_CACHE">TY_M_CACHE</A></B>()</CODE>
+<BR>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      </TD>
+</TR>
+<TR CLASS="TableRowColor">
+<TD WIDTH="1%" VALIGN="top" ALIGN="right"><FONT SIZE="-1"><CODE>&nbsp;<!--
+       schemaName=
+       typeName=table OF ty_m
+       localTypeName=
+       schema=
+       fieldType=table OF ty_m
+       synonymsFile=,,--><!--GenerateTypeLink: default reached-->table OF ty_m</CODE></FONT></TD>
+<!-- 
+		siblingCount=0 
+		argumentCount=0 
+		predecessorCount=0 
+		siblingNoArgumentCount=0--><TD><CODE><B><A HREF="#TY_M_TAB">TY_M_TAB</A></B>()</CODE>
+<BR>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      </TD>
+</TR>
+<TR CLASS="TableRowColor">
+<TD WIDTH="1%" VALIGN="top" ALIGN="right"><FONT SIZE="-1"><CODE>&nbsp;<!--
+       schemaName=
+       typeName=table OF ty_p_tab INDEX BY binary_integer
+       localTypeName=
+       schema=
+       fieldType=table OF ty_p_tab INDEX BY binary_integer
+       synonymsFile=,,--><!--GenerateTypeLink: default reached-->table OF ty_p_tab INDEX BY binary_integer</CODE></FONT></TD>
+<!-- 
+		siblingCount=0 
+		argumentCount=0 
+		predecessorCount=0 
+		siblingNoArgumentCount=0--><TD><CODE><B><A HREF="#TY_P_CACHE">TY_P_CACHE</A></B>()</CODE>
+<BR>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      </TD>
+</TR>
+<TR CLASS="TableRowColor">
+<TD WIDTH="1%" VALIGN="top" ALIGN="right"><FONT SIZE="-1"><CODE>&nbsp;<!--
+       schemaName=
+       typeName=table OF ty_p
+       localTypeName=
+       schema=
+       fieldType=table OF ty_p
+       synonymsFile=,,--><!--GenerateTypeLink: default reached-->table OF ty_p</CODE></FONT></TD>
+<!-- 
+		siblingCount=0 
+		argumentCount=0 
+		predecessorCount=0 
+		siblingNoArgumentCount=0--><TD><CODE><B><A HREF="#TY_P_TAB">TY_P_TAB</A></B>()</CODE>
+<BR>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      </TD>
+</TR>
 </TABLE>
 <P></P>
 <A NAME="method_summary"></A>
@@ -164,10 +232,10 @@
        fieldType=CLOB
        synonymsFile=,,--><!--GenerateTypeLink: default reached-->CLOB</CODE></FONT></TD>
 <!-- 
-		siblingCount=4 
-		argumentCount=11 
+		siblingCount=0 
+		argumentCount=14 
 		predecessorCount=0 
-		siblingNoArgumentCount=0--><A NAME="SUBSTITUTE"></A><TD><CODE><B><A HREF="#SUBSTITUTE(TY_TE,P,PK_TE.REFCUR,PK_TE.REFCUR,PK_TE.REFCUR,PK_TE.REFCUR,PK_TE.REFCUR,PK_TE.REFCUR,PK_TE.REFCUR,PK_TE.REFCUR,PK_TE.REFCUR)">SUBSTITUTE</A></B>(A_TE IN TY_TE, A_NUMBERED_REPLACEMENTS IN P, A_C1 IN PK_TE.REFCUR DEFAULT NULL, A_C2 IN PK_TE.REFCUR DEFAULT NULL, A_C3 IN PK_TE.REFCUR DEFAULT NULL, A_C4 IN PK_TE.REFCUR DEFAULT NULL, A_C5 IN PK_TE.REFCUR DEFAULT NULL, A_C6 IN PK_TE.REFCUR DEFAULT NULL, A_C7 IN PK_TE.REFCUR DEFAULT NULL, A_C8 IN PK_TE.REFCUR DEFAULT NULL, A_C9 IN PK_TE.REFCUR DEFAULT NULL)</CODE>
+		siblingNoArgumentCount=0--><A NAME="DISPATCH_NESTED_TE_SUBST_"></A><TD><CODE><B><A HREF="#DISPATCH_NESTED_TE_SUBST_(TY_P_CACHE,TY_M_CACHE,TY_TE,PLS_INTEGER,VARCHAR2,PK_TE.REFCUR,PK_TE.REFCUR,PK_TE.REFCUR,PK_TE.REFCUR,PK_TE.REFCUR,PK_TE.REFCUR,PK_TE.REFCUR,PK_TE.REFCUR,PK_TE.REFCUR)">DISPATCH_NESTED_TE_SUBST_</A></B>(A_P_CACHE IN OUT NOCOPY TY_P_CACHE, A_M_CACHE IN OUT NOCOPY TY_M_CACHE, A_LOOP_TE IN OUT NOCOPY TY_TE, A_LOOP_NUMBER IN PLS_INTEGER, A_CONCAT_BY IN VARCHAR2, A_C1 IN PK_TE.REFCUR, A_C2 IN PK_TE.REFCUR, A_C3 IN PK_TE.REFCUR, A_C4 IN PK_TE.REFCUR, A_C5 IN PK_TE.REFCUR, A_C6 IN PK_TE.REFCUR, A_C7 IN PK_TE.REFCUR, A_C8 IN PK_TE.REFCUR, A_C9 IN PK_TE.REFCUR)</CODE>
 <BR>
       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
       </TD>
@@ -181,61 +249,27 @@
        fieldType=CLOB
        synonymsFile=,,--><!--GenerateTypeLink: default reached-->CLOB</CODE></FONT></TD>
 <!-- 
-		siblingCount=4 
-		argumentCount=11 
+		siblingCount=1 
+		argumentCount=13 
+		predecessorCount=0 
+		siblingNoArgumentCount=0--><A NAME="SUBSTITUTE_"></A><TD><CODE><B><A HREF="#SUBSTITUTE_(TY_TE,P,PK_TE.REFCUR,PK_TE.REFCUR,PK_TE.REFCUR,PK_TE.REFCUR,PK_TE.REFCUR,PK_TE.REFCUR,PK_TE.REFCUR,PK_TE.REFCUR,PK_TE.REFCUR,TY_P_CACHE,TY_M_CACHE)">SUBSTITUTE_</A></B>(A_TE IN TY_TE, A_NUMBERED_REPLACEMENTS IN P, A_C1 IN PK_TE.REFCUR, A_C2 IN PK_TE.REFCUR, A_C3 IN PK_TE.REFCUR, A_C4 IN PK_TE.REFCUR, A_C5 IN PK_TE.REFCUR, A_C6 IN PK_TE.REFCUR, A_C7 IN PK_TE.REFCUR, A_C8 IN PK_TE.REFCUR, A_C9 IN PK_TE.REFCUR, A_P_CACHE IN OUT NOCOPY TY_P_CACHE, A_M_CACHE IN OUT NOCOPY TY_M_CACHE)</CODE>
+<BR>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      Following functions are not to be directly called.</TD>
+</TR>
+<TR CLASS="TableRowColor">
+<TD WIDTH="1%" VALIGN="top" ALIGN="right"><FONT SIZE="-1"><CODE>&nbsp;<!--
+       schemaName=
+       typeName=CLOB
+       localTypeName=
+       schema=
+       fieldType=CLOB
+       synonymsFile=,,--><!--GenerateTypeLink: default reached-->CLOB</CODE></FONT></TD>
+<!-- 
+		siblingCount=1 
+		argumentCount=13 
 		predecessorCount=1 
-		siblingNoArgumentCount=0--><TD><CODE><B><A HREF="#SUBSTITUTE(TY_TE,M,PK_TE.REFCUR,PK_TE.REFCUR,PK_TE.REFCUR,PK_TE.REFCUR,PK_TE.REFCUR,PK_TE.REFCUR,PK_TE.REFCUR,PK_TE.REFCUR,PK_TE.REFCUR)">SUBSTITUTE</A></B>(A_TE IN TY_TE, A_NAMED_REPLACEMENTS IN M, A_C1 IN PK_TE.REFCUR DEFAULT NULL, A_C2 IN PK_TE.REFCUR DEFAULT NULL, A_C3 IN PK_TE.REFCUR DEFAULT NULL, A_C4 IN PK_TE.REFCUR DEFAULT NULL, A_C5 IN PK_TE.REFCUR DEFAULT NULL, A_C6 IN PK_TE.REFCUR DEFAULT NULL, A_C7 IN PK_TE.REFCUR DEFAULT NULL, A_C8 IN PK_TE.REFCUR DEFAULT NULL, A_C9 IN PK_TE.REFCUR DEFAULT NULL)</CODE>
-<BR>
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      </TD>
-</TR>
-<TR CLASS="TableRowColor">
-<TD WIDTH="1%" VALIGN="top" ALIGN="right"><FONT SIZE="-1"><CODE>&nbsp;<!--
-       schemaName=
-       typeName=CLOB
-       localTypeName=
-       schema=
-       fieldType=CLOB
-       synonymsFile=,,--><!--GenerateTypeLink: default reached-->CLOB</CODE></FONT></TD>
-<!-- 
-		siblingCount=4 
-		argumentCount=3 
-		predecessorCount=2 
-		siblingNoArgumentCount=0--><TD><CODE><B><A HREF="#SUBSTITUTE(TY_TE,PK_TE.REFCUR,VARCHAR2)">SUBSTITUTE</A></B>(A_TE IN TY_TE, A_CURSOR IN PK_TE.REFCUR, A_CONCAT_BY IN VARCHAR2 DEFAULT NULL)</CODE>
-<BR>
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      </TD>
-</TR>
-<TR CLASS="TableRowColor">
-<TD WIDTH="1%" VALIGN="top" ALIGN="right"><FONT SIZE="-1"><CODE>&nbsp;<!--
-       schemaName=
-       typeName=CLOB
-       localTypeName=
-       schema=
-       fieldType=CLOB
-       synonymsFile=,,--><!--GenerateTypeLink: default reached-->CLOB</CODE></FONT></TD>
-<!-- 
-		siblingCount=4 
-		argumentCount=4 
-		predecessorCount=3 
-		siblingNoArgumentCount=0--><TD><CODE><B><A HREF="#SUBSTITUTE(CLOB,P,VARCHAR2,VARCHAR2)">SUBSTITUTE</A></B>(A_STRING IN CLOB, A_NUMBERED_REPLACEMENTS IN P, A_PH_START IN VARCHAR2 DEFAULT '$', A_PH_END IN VARCHAR2 DEFAULT '')</CODE>
-<BR>
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      </TD>
-</TR>
-<TR CLASS="TableRowColor">
-<TD WIDTH="1%" VALIGN="top" ALIGN="right"><FONT SIZE="-1"><CODE>&nbsp;<!--
-       schemaName=
-       typeName=CLOB
-       localTypeName=
-       schema=
-       fieldType=CLOB
-       synonymsFile=,,--><!--GenerateTypeLink: default reached-->CLOB</CODE></FONT></TD>
-<!-- 
-		siblingCount=4 
-		argumentCount=4 
-		predecessorCount=4 
-		siblingNoArgumentCount=0--><TD><CODE><B><A HREF="#SUBSTITUTE(CLOB,M,VARCHAR2,VARCHAR2)">SUBSTITUTE</A></B>(A_STRING IN CLOB, A_NAMED_REPLACEMENTS IN M, A_PH_START IN VARCHAR2 DEFAULT '{$', A_PH_END IN VARCHAR2 DEFAULT '}')</CODE>
+		siblingNoArgumentCount=0--><TD><CODE><B><A HREF="#SUBSTITUTE_(TY_TE,M,PK_TE.REFCUR,PK_TE.REFCUR,PK_TE.REFCUR,PK_TE.REFCUR,PK_TE.REFCUR,PK_TE.REFCUR,PK_TE.REFCUR,PK_TE.REFCUR,PK_TE.REFCUR,TY_P_CACHE,TY_M_CACHE)">SUBSTITUTE_</A></B>(A_TE IN TY_TE, A_NAMED_REPLACEMENTS IN M, A_C1 IN PK_TE.REFCUR, A_C2 IN PK_TE.REFCUR, A_C3 IN PK_TE.REFCUR, A_C4 IN PK_TE.REFCUR, A_C5 IN PK_TE.REFCUR, A_C6 IN PK_TE.REFCUR, A_C7 IN PK_TE.REFCUR, A_C8 IN PK_TE.REFCUR, A_C9 IN PK_TE.REFCUR, A_P_CACHE IN OUT NOCOPY TY_P_CACHE, A_M_CACHE IN OUT NOCOPY TY_M_CACHE)</CODE>
 <BR>
       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
       </TD>
@@ -352,21 +386,93 @@
 <DL></DL>
 </DL>
 <HR>
+<A NAME="TY_M_CACHE"></A>
+<H3>TY_M_CACHE</H3>
+<PRE>public <!--
+       schemaName=
+       typeName=table OF ty_m_tab INDEX BY binary_integer
+       localTypeName=
+       schema=
+       fieldType=table OF ty_m_tab INDEX BY binary_integer
+       synonymsFile=,,--><!--GenerateTypeLink: default reached-->table OF ty_m_tab INDEX BY binary_integer <B>TY_M_CACHE</B>()</PRE>
+<DL>
+<DD></DD>
+<DD>
+<DL></DL>
+</DD>
+<P></P>
+<DL></DL>
+</DL>
+<HR>
+<A NAME="TY_M_TAB"></A>
+<H3>TY_M_TAB</H3>
+<PRE>public <!--
+       schemaName=
+       typeName=table OF ty_m
+       localTypeName=
+       schema=
+       fieldType=table OF ty_m
+       synonymsFile=,,--><!--GenerateTypeLink: default reached-->table OF ty_m <B>TY_M_TAB</B>()</PRE>
+<DL>
+<DD></DD>
+<DD>
+<DL></DL>
+</DD>
+<P></P>
+<DL></DL>
+</DL>
+<HR>
+<A NAME="TY_P_CACHE"></A>
+<H3>TY_P_CACHE</H3>
+<PRE>public <!--
+       schemaName=
+       typeName=table OF ty_p_tab INDEX BY binary_integer
+       localTypeName=
+       schema=
+       fieldType=table OF ty_p_tab INDEX BY binary_integer
+       synonymsFile=,,--><!--GenerateTypeLink: default reached-->table OF ty_p_tab INDEX BY binary_integer <B>TY_P_CACHE</B>()</PRE>
+<DL>
+<DD></DD>
+<DD>
+<DL></DL>
+</DD>
+<P></P>
+<DL></DL>
+</DL>
+<HR>
+<A NAME="TY_P_TAB"></A>
+<H3>TY_P_TAB</H3>
+<PRE>public <!--
+       schemaName=
+       typeName=table OF ty_p
+       localTypeName=
+       schema=
+       fieldType=table OF ty_p
+       synonymsFile=,,--><!--GenerateTypeLink: default reached-->table OF ty_p <B>TY_P_TAB</B>()</PRE>
+<DL>
+<DD></DD>
+<DD>
+<DL></DL>
+</DD>
+<P></P>
+<DL></DL>
+</DL>
+<HR>
 <A NAME="method_detail"></A>
 <TABLE WIDTH="100%" CELLSPACING="0" CELLPADDING="3" BORDER="1">
 <TR CLASS="TableHeadingColor">
 <TD COLSPAN="1"><FONT SIZE="+2"><B>Method Detail</B></FONT></TD>
 </TR>
 </TABLE>
-<A NAME="SUBSTITUTE(TY_TE,P,PK_TE.REFCUR,PK_TE.REFCUR,PK_TE.REFCUR,PK_TE.REFCUR,PK_TE.REFCUR,PK_TE.REFCUR,PK_TE.REFCUR,PK_TE.REFCUR,PK_TE.REFCUR)"></A>
-<H3>SUBSTITUTE</H3>
+<A NAME="DISPATCH_NESTED_TE_SUBST_(TY_P_CACHE,TY_M_CACHE,TY_TE,PLS_INTEGER,VARCHAR2,PK_TE.REFCUR,PK_TE.REFCUR,PK_TE.REFCUR,PK_TE.REFCUR,PK_TE.REFCUR,PK_TE.REFCUR,PK_TE.REFCUR,PK_TE.REFCUR,PK_TE.REFCUR)"></A>
+<H3>DISPATCH_NESTED_TE_SUBST_</H3>
 <PRE>public <!--
        schemaName=
        typeName=CLOB
        localTypeName=
        schema=
        fieldType=CLOB
-       synonymsFile=,,--><!--GenerateTypeLink: default reached-->CLOB <B>SUBSTITUTE</B>(A_TE IN TY_TE, <BR>                       A_NUMBERED_REPLACEMENTS IN P, <BR>                       A_C1 IN PK_TE.REFCUR DEFAULT NULL, <BR>                       A_C2 IN PK_TE.REFCUR DEFAULT NULL, <BR>                       A_C3 IN PK_TE.REFCUR DEFAULT NULL, <BR>                       A_C4 IN PK_TE.REFCUR DEFAULT NULL, <BR>                       A_C5 IN PK_TE.REFCUR DEFAULT NULL, <BR>                       A_C6 IN PK_TE.REFCUR DEFAULT NULL, <BR>                       A_C7 IN PK_TE.REFCUR DEFAULT NULL, <BR>                       A_C8 IN PK_TE.REFCUR DEFAULT NULL, <BR>                       A_C9 IN PK_TE.REFCUR DEFAULT NULL)</PRE>
+       synonymsFile=,,--><!--GenerateTypeLink: default reached-->CLOB <B>DISPATCH_NESTED_TE_SUBST_</B>(A_P_CACHE IN OUT NOCOPY TY_P_CACHE, <BR>                                      A_M_CACHE IN OUT NOCOPY TY_M_CACHE, <BR>                                      A_LOOP_TE IN OUT NOCOPY TY_TE, <BR>                                      A_LOOP_NUMBER IN PLS_INTEGER, <BR>                                      A_CONCAT_BY IN VARCHAR2, <BR>                                      A_C1 IN PK_TE.REFCUR, <BR>                                      A_C2 IN PK_TE.REFCUR, <BR>                                      A_C3 IN PK_TE.REFCUR, <BR>                                      A_C4 IN PK_TE.REFCUR, <BR>                                      A_C5 IN PK_TE.REFCUR, <BR>                                      A_C6 IN PK_TE.REFCUR, <BR>                                      A_C7 IN PK_TE.REFCUR, <BR>                                      A_C8 IN PK_TE.REFCUR, <BR>                                      A_C9 IN PK_TE.REFCUR)</PRE>
 <DL>
 <DD></DD>
 <DD>
@@ -376,17 +482,18 @@
 <DL></DL>
 </DL>
 <HR>
-<A NAME="SUBSTITUTE(TY_TE,M,PK_TE.REFCUR,PK_TE.REFCUR,PK_TE.REFCUR,PK_TE.REFCUR,PK_TE.REFCUR,PK_TE.REFCUR,PK_TE.REFCUR,PK_TE.REFCUR,PK_TE.REFCUR)"></A>
-<H3>SUBSTITUTE</H3>
+<A NAME="SUBSTITUTE_(TY_TE,P,PK_TE.REFCUR,PK_TE.REFCUR,PK_TE.REFCUR,PK_TE.REFCUR,PK_TE.REFCUR,PK_TE.REFCUR,PK_TE.REFCUR,PK_TE.REFCUR,PK_TE.REFCUR,TY_P_CACHE,TY_M_CACHE)"></A>
+<H3>SUBSTITUTE_</H3>
 <PRE>public <!--
        schemaName=
        typeName=CLOB
        localTypeName=
        schema=
        fieldType=CLOB
-       synonymsFile=,,--><!--GenerateTypeLink: default reached-->CLOB <B>SUBSTITUTE</B>(A_TE IN TY_TE, <BR>                       A_NAMED_REPLACEMENTS IN M, <BR>                       A_C1 IN PK_TE.REFCUR DEFAULT NULL, <BR>                       A_C2 IN PK_TE.REFCUR DEFAULT NULL, <BR>                       A_C3 IN PK_TE.REFCUR DEFAULT NULL, <BR>                       A_C4 IN PK_TE.REFCUR DEFAULT NULL, <BR>                       A_C5 IN PK_TE.REFCUR DEFAULT NULL, <BR>                       A_C6 IN PK_TE.REFCUR DEFAULT NULL, <BR>                       A_C7 IN PK_TE.REFCUR DEFAULT NULL, <BR>                       A_C8 IN PK_TE.REFCUR DEFAULT NULL, <BR>                       A_C9 IN PK_TE.REFCUR DEFAULT NULL)</PRE>
+       synonymsFile=,,--><!--GenerateTypeLink: default reached-->CLOB <B>SUBSTITUTE_</B>(A_TE IN TY_TE, <BR>                        A_NUMBERED_REPLACEMENTS IN P, <BR>                        A_C1 IN PK_TE.REFCUR, <BR>                        A_C2 IN PK_TE.REFCUR, <BR>                        A_C3 IN PK_TE.REFCUR, <BR>                        A_C4 IN PK_TE.REFCUR, <BR>                        A_C5 IN PK_TE.REFCUR, <BR>                        A_C6 IN PK_TE.REFCUR, <BR>                        A_C7 IN PK_TE.REFCUR, <BR>                        A_C8 IN PK_TE.REFCUR, <BR>                        A_C9 IN PK_TE.REFCUR, <BR>                        A_P_CACHE IN OUT NOCOPY TY_P_CACHE, <BR>                        A_M_CACHE IN OUT NOCOPY TY_M_CACHE)</PRE>
 <DL>
-<DD></DD>
+<DD>Following functions are not to be directly called. Definition in specification is required to support compile order in the body of package
+</DD>
 <DD>
 <DL></DL>
 </DD>
@@ -394,51 +501,15 @@
 <DL></DL>
 </DL>
 <HR>
-<A NAME="SUBSTITUTE(TY_TE,PK_TE.REFCUR,VARCHAR2)"></A>
-<H3>SUBSTITUTE</H3>
+<A NAME="SUBSTITUTE_(TY_TE,M,PK_TE.REFCUR,PK_TE.REFCUR,PK_TE.REFCUR,PK_TE.REFCUR,PK_TE.REFCUR,PK_TE.REFCUR,PK_TE.REFCUR,PK_TE.REFCUR,PK_TE.REFCUR,TY_P_CACHE,TY_M_CACHE)"></A>
+<H3>SUBSTITUTE_</H3>
 <PRE>public <!--
        schemaName=
        typeName=CLOB
        localTypeName=
        schema=
        fieldType=CLOB
-       synonymsFile=,,--><!--GenerateTypeLink: default reached-->CLOB <B>SUBSTITUTE</B>(A_TE IN TY_TE, <BR>                       A_CURSOR IN PK_TE.REFCUR, <BR>                       A_CONCAT_BY IN VARCHAR2 DEFAULT NULL)</PRE>
-<DL>
-<DD></DD>
-<DD>
-<DL></DL>
-</DD>
-<P></P>
-<DL></DL>
-</DL>
-<HR>
-<A NAME="SUBSTITUTE(CLOB,P,VARCHAR2,VARCHAR2)"></A>
-<H3>SUBSTITUTE</H3>
-<PRE>public <!--
-       schemaName=
-       typeName=CLOB
-       localTypeName=
-       schema=
-       fieldType=CLOB
-       synonymsFile=,,--><!--GenerateTypeLink: default reached-->CLOB <B>SUBSTITUTE</B>(A_STRING IN CLOB, <BR>                       A_NUMBERED_REPLACEMENTS IN P, <BR>                       A_PH_START IN VARCHAR2 DEFAULT '$', <BR>                       A_PH_END IN VARCHAR2 DEFAULT '')</PRE>
-<DL>
-<DD></DD>
-<DD>
-<DL></DL>
-</DD>
-<P></P>
-<DL></DL>
-</DL>
-<HR>
-<A NAME="SUBSTITUTE(CLOB,M,VARCHAR2,VARCHAR2)"></A>
-<H3>SUBSTITUTE</H3>
-<PRE>public <!--
-       schemaName=
-       typeName=CLOB
-       localTypeName=
-       schema=
-       fieldType=CLOB
-       synonymsFile=,,--><!--GenerateTypeLink: default reached-->CLOB <B>SUBSTITUTE</B>(A_STRING IN CLOB, <BR>                       A_NAMED_REPLACEMENTS IN M, <BR>                       A_PH_START IN VARCHAR2 DEFAULT '{$', <BR>                       A_PH_END IN VARCHAR2 DEFAULT '}')</PRE>
+       synonymsFile=,,--><!--GenerateTypeLink: default reached-->CLOB <B>SUBSTITUTE_</B>(A_TE IN TY_TE, <BR>                        A_NAMED_REPLACEMENTS IN M, <BR>                        A_C1 IN PK_TE.REFCUR, <BR>                        A_C2 IN PK_TE.REFCUR, <BR>                        A_C3 IN PK_TE.REFCUR, <BR>                        A_C4 IN PK_TE.REFCUR, <BR>                        A_C5 IN PK_TE.REFCUR, <BR>                        A_C6 IN PK_TE.REFCUR, <BR>                        A_C7 IN PK_TE.REFCUR, <BR>                        A_C8 IN PK_TE.REFCUR, <BR>                        A_C9 IN PK_TE.REFCUR, <BR>                        A_P_CACHE IN OUT NOCOPY TY_P_CACHE, <BR>                        A_M_CACHE IN OUT NOCOPY TY_M_CACHE)</PRE>
 <DL>
 <DD></DD>
 <DD>

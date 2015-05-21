@@ -1,0 +1,450 @@
+<HTML xmlns:lxslt="http://xml.apache.org/xslt" xmlns:exslt="http://exslt.org/common">
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<TITLE>ora_te</TITLE>
+<LINK TITLE="Style" HREF="../stylesheet.css" TYPE="text/css" REL="stylesheet">
+<!--
+        sameCase=ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz
+        namesLowerCase=FALSE
+        namesUpperCase=FALSE
+        namesDefaultCase=TRUE
+        defaultNamesCase=UPPER
+        namesFromCase=ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz
+        namesToCase=ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz-->
+</HEAD>
+<BODY BGCOLOR="white">
+<TABLE CELLSPACING="0" CELLPADDING="1" WIDTH="100%" BORDER="0">
+<TR>
+<TD CLASS="NavBarRow1" COLSPAN="2">
+<TABLE CELLSPACING="3" CELLPADDING="0" BORDER="0">
+<TR VALIGN="top" ALIGN="center">
+<TD CLASS="NavBarRow1"><A HREF="../summary.html"><FONT CLASS="NavBarFont1"><B>Overview</B></FONT></A> &nbsp;</TD><TD CLASS="NavBarRow1"><A HREF="../deprecated-list.html"><FONT CLASS="NavBarFont1"><B>Deprecated</B></FONT></A> &nbsp;</TD><TD CLASS="NavBarRow1"><A HREF="../index-list.html"><FONT CLASS="NavBarFont1"><B>Index</B></FONT></A> &nbsp;</TD><TD CLASS="NavBarRow1"><A HREF="../generator.html"><FONT CLASS="NavBarFont1"><B>Generator</B></FONT></A> &nbsp;</TD>
+</TR>
+</TABLE>
+</TD><TD rowspan="3" VALIGN="top" ALIGN="right"><EM><b>ora_te</b></EM></TD>
+</TR>
+<TR>
+<TD CLASS="NavBarRow3" VALIGN="top"><FONT SIZE="-2">
+      SUMMARY:  <A HREF="#field_summary">FIELD</A> | <A HREF="#type_summary">TYPE</A> | <A HREF="#method_summary">METHOD</A></FONT></TD><TD CLASS="NavBarRow3" VALIGN="top"><FONT SIZE="-2">
+    DETAIL:  <A HREF="#field_detail">FIELD</A> | <A HREF="#type_detail">TYPE</A> | <A HREF="#method_detail">METHOD</A></FONT></TD>
+</TR>
+</TABLE>
+<HR>
+<H2>
+<FONT SIZE="-1"></FONT>
+<BR>Package&nbsp;PK_TE_IMPL</H2> Supporting functions that help to implement PK_TE functionality (mostly dealing with recursive calls to handle loop structures).
+ Moved to separate package to expose in PK_TE specification only those types and functions that are to be called by end user.
+<P></P>
+<DL></DL>
+<HR>
+<P></P>
+<A NAME="field_summary"></A><A NAME="type_summary"></A>
+<TABLE WIDTH="100%" CELLSPACING="0" CELLPADDING="3" BORDER="1">
+<TR CLASS="TableHeadingColor">
+<TD COLSPAN="2"><FONT SIZE="+2"><B>Type Summary</B></FONT></TD>
+</TR>
+<TR CLASS="TableRowColor">
+<TD WIDTH="1%" VALIGN="top" ALIGN="right"><FONT SIZE="-1"><CODE>&nbsp;<!--
+       schemaName=
+       typeName=table OF varchar2(32767 CHAR) INDEX BY varchar2(100 CHAR)
+       localTypeName=
+       schema=
+       fieldType=table OF varchar2(32767 CHAR) INDEX BY varchar2(100 CHAR)
+       synonymsFile=,,--><!--GenerateTypeLink: default reached-->table OF varchar2(32767 CHAR) INDEX BY varchar2(100 CHAR)</CODE></FONT></TD>
+<!-- 
+		siblingCount=0 
+		argumentCount=0 
+		predecessorCount=0 
+		siblingNoArgumentCount=0--><TD><CODE><B><A HREF="#TY_VCHAR_TO_VCHAR">TY_VCHAR_TO_VCHAR</A></B>()</CODE>
+<BR>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      </TD>
+</TR>
+</TABLE>
+<P></P>
+<A NAME="method_summary"></A>
+<TABLE WIDTH="100%" CELLSPACING="0" CELLPADDING="3" BORDER="1">
+<TR CLASS="TableHeadingColor">
+<TD COLSPAN="2"><FONT SIZE="+2"><B>Method Summary</B></FONT></TD>
+</TR>
+<TR CLASS="TableRowColor">
+<TD WIDTH="1%" VALIGN="top" ALIGN="right"><FONT SIZE="-1"><CODE>&nbsp;<!--
+       schemaName=
+       typeName=CLOB
+       localTypeName=
+       schema=
+       fieldType=CLOB
+       synonymsFile=,,--><!--GenerateTypeLink: default reached-->CLOB</CODE></FONT></TD>
+<!-- 
+		siblingCount=0 
+		argumentCount=14 
+		predecessorCount=0 
+		siblingNoArgumentCount=0--><A NAME="DISPATCH_NESTED_TE_SUBST_"></A><TD><CODE><B><A HREF="#DISPATCH_NESTED_TE_SUBST_(TY_P_CACHE,TY_M_CACHE,TY_TE,PLS_INTEGER,VARCHAR2,PK_TE.REFCUR,PK_TE.REFCUR,PK_TE.REFCUR,PK_TE.REFCUR,PK_TE.REFCUR,PK_TE.REFCUR,PK_TE.REFCUR,PK_TE.REFCUR,PK_TE.REFCUR)">DISPATCH_NESTED_TE_SUBST_</A></B>(A_P_CACHE IN OUT NOCOPY TY_P_CACHE, A_M_CACHE IN OUT NOCOPY TY_M_CACHE, A_LOOP_TE IN OUT NOCOPY TY_TE, A_LOOP_NUMBER IN PLS_INTEGER, A_CONCAT_BY IN VARCHAR2, A_C1 IN PK_TE.REFCUR, A_C2 IN PK_TE.REFCUR, A_C3 IN PK_TE.REFCUR, A_C4 IN PK_TE.REFCUR, A_C5 IN PK_TE.REFCUR, A_C6 IN PK_TE.REFCUR, A_C7 IN PK_TE.REFCUR, A_C8 IN PK_TE.REFCUR, A_C9 IN PK_TE.REFCUR)</CODE>
+<BR>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+       Dispatches reqest to substitute cursor values into loop structure to the call of appropriate substitute_ function
+
+</TD>
+</TR>
+<TR CLASS="TableRowColor">
+<TD WIDTH="1%" VALIGN="top" ALIGN="right"><FONT SIZE="-1"><CODE>&nbsp;<!--
+       schemaName=
+       typeName=CLOB
+       localTypeName=
+       schema=
+       fieldType=CLOB
+       synonymsFile=,,--><!--GenerateTypeLink: default reached-->CLOB</CODE></FONT></TD>
+<!-- 
+		siblingCount=2 
+		argumentCount=15 
+		predecessorCount=0 
+		siblingNoArgumentCount=0--><A NAME="SUBSTITUTE_"></A><TD><CODE><B><A HREF="#SUBSTITUTE_(PLS_INTEGER,TY_TE,PK_TE.REFCUR,VARCHAR2,PK_TE.REFCUR,PK_TE.REFCUR,PK_TE.REFCUR,PK_TE.REFCUR,PK_TE.REFCUR,PK_TE.REFCUR,PK_TE.REFCUR,PK_TE.REFCUR,PK_TE.REFCUR,TY_P_CACHE,TY_M_CACHE)">SUBSTITUTE_</A></B>(A_LOOP_IDX IN PLS_INTEGER, A_TE IN TY_TE, A_CURSOR IN PK_TE.REFCUR, A_CONCAT_BY IN VARCHAR2 DEFAULT NULL, A_C1 IN PK_TE.REFCUR, A_C2 IN PK_TE.REFCUR, A_C3 IN PK_TE.REFCUR, A_C4 IN PK_TE.REFCUR, A_C5 IN PK_TE.REFCUR, A_C6 IN PK_TE.REFCUR, A_C7 IN PK_TE.REFCUR, A_C8 IN PK_TE.REFCUR, A_C9 IN PK_TE.REFCUR, A_P_CACHE IN OUT NOCOPY TY_P_CACHE, A_M_CACHE IN OUT NOCOPY TY_M_CACHE)</CODE>
+<BR>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+       Replaces placeholders in compiled Template Expression with values from cursor in iteration.<br/>
+ Caches results returned from cursor so there's no need to reopen it if more than one loop structures refering this cursor are defined in template expression.<br/>
+ Each individual substitution is concatenated with the following with optional a_concat_by in between.<br/>
+ Cursor must return instances of ty_p or ty_m UDTs (depending on ty_te type) otherwise the function will throw.</TD>
+</TR>
+<TR CLASS="TableRowColor">
+<TD WIDTH="1%" VALIGN="top" ALIGN="right"><FONT SIZE="-1"><CODE>&nbsp;<!--
+       schemaName=
+       typeName=CLOB
+       localTypeName=
+       schema=
+       fieldType=CLOB
+       synonymsFile=,,--><!--GenerateTypeLink: default reached-->CLOB</CODE></FONT></TD>
+<!-- 
+		siblingCount=2 
+		argumentCount=13 
+		predecessorCount=1 
+		siblingNoArgumentCount=0--><TD><CODE><B><A HREF="#SUBSTITUTE_(TY_TE,P,PK_TE.REFCUR,PK_TE.REFCUR,PK_TE.REFCUR,PK_TE.REFCUR,PK_TE.REFCUR,PK_TE.REFCUR,PK_TE.REFCUR,PK_TE.REFCUR,PK_TE.REFCUR,TY_P_CACHE,TY_M_CACHE)">SUBSTITUTE_</A></B>(A_TE IN TY_TE, A_NUMBERED_REPLACEMENTS IN P, A_C1 IN PK_TE.REFCUR, A_C2 IN PK_TE.REFCUR, A_C3 IN PK_TE.REFCUR, A_C4 IN PK_TE.REFCUR, A_C5 IN PK_TE.REFCUR, A_C6 IN PK_TE.REFCUR, A_C7 IN PK_TE.REFCUR, A_C8 IN PK_TE.REFCUR, A_C9 IN PK_TE.REFCUR, A_P_CACHE IN OUT NOCOPY TY_P_CACHE, A_M_CACHE IN OUT NOCOPY TY_M_CACHE)</CODE>
+<BR>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+       Replaces numbered placeholders in compiled Template Expression with values from nested table of varchar2 (p).<br/>
+ Simmilar to function substitute for numbered placeholders but is used in subsequent recursive calls to substitute values into loop structures<br/>
+ Redefines cursor parameters as required and adds two cache in out nocopy parameters.</TD>
+</TR>
+<TR CLASS="TableRowColor">
+<TD WIDTH="1%" VALIGN="top" ALIGN="right"><FONT SIZE="-1"><CODE>&nbsp;<!--
+       schemaName=
+       typeName=CLOB
+       localTypeName=
+       schema=
+       fieldType=CLOB
+       synonymsFile=,,--><!--GenerateTypeLink: default reached-->CLOB</CODE></FONT></TD>
+<!-- 
+		siblingCount=2 
+		argumentCount=13 
+		predecessorCount=2 
+		siblingNoArgumentCount=0--><TD><CODE><B><A HREF="#SUBSTITUTE_(TY_TE,M,PK_TE.REFCUR,PK_TE.REFCUR,PK_TE.REFCUR,PK_TE.REFCUR,PK_TE.REFCUR,PK_TE.REFCUR,PK_TE.REFCUR,PK_TE.REFCUR,PK_TE.REFCUR,TY_P_CACHE,TY_M_CACHE)">SUBSTITUTE_</A></B>(A_TE IN TY_TE, A_NAMED_REPLACEMENTS IN M, A_C1 IN PK_TE.REFCUR, A_C2 IN PK_TE.REFCUR, A_C3 IN PK_TE.REFCUR, A_C4 IN PK_TE.REFCUR, A_C5 IN PK_TE.REFCUR, A_C6 IN PK_TE.REFCUR, A_C7 IN PK_TE.REFCUR, A_C8 IN PK_TE.REFCUR, A_C9 IN PK_TE.REFCUR, A_P_CACHE IN OUT NOCOPY TY_P_CACHE, A_M_CACHE IN OUT NOCOPY TY_M_CACHE)</CODE>
+<BR>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+       Replaces named placeholders in compiled Template Expression with values from nested table of nested tables of varchar2 (m).<br/>
+ Simmilar to function substitute for named placeholders but is used in subsequent recursive calls to substitute values into loop structures<br/>
+ Redefines cursor parameters as required and adds two cache in out nocopy parameters.</TD>
+</TR>
+</TABLE>
+<P></P>
+<A NAME="trigger_summary"></A><A NAME="field_detail"></A><A NAME="type_detail"></A>
+<TABLE WIDTH="100%" CELLSPACING="0" CELLPADDING="3" BORDER="1">
+<TR CLASS="TableHeadingColor">
+<TD COLSPAN="1"><FONT SIZE="+2"><B>Type Detail</B></FONT></TD>
+</TR>
+</TABLE>
+<A NAME="TY_VCHAR_TO_VCHAR"></A>
+<H3>TY_VCHAR_TO_VCHAR</H3>
+<PRE> <!--
+       schemaName=
+       typeName=table OF varchar2(32767 CHAR) INDEX BY varchar2(100 CHAR)
+       localTypeName=
+       schema=
+       fieldType=table OF varchar2(32767 CHAR) INDEX BY varchar2(100 CHAR)
+       synonymsFile=,,--><!--GenerateTypeLink: default reached-->table OF varchar2(32767 CHAR) INDEX BY varchar2(100 CHAR) <B>TY_VCHAR_TO_VCHAR</B>()</PRE>
+<DL>
+<DD></DD>
+<DD>
+<DL></DL>
+</DD>
+<P></P>
+<DL></DL>
+</DL>
+<HR>
+<A NAME="method_detail"></A>
+<TABLE WIDTH="100%" CELLSPACING="0" CELLPADDING="3" BORDER="1">
+<TR CLASS="TableHeadingColor">
+<TD COLSPAN="1"><FONT SIZE="+2"><B>Method Detail</B></FONT></TD>
+</TR>
+</TABLE>
+<A NAME="DISPATCH_NESTED_TE_SUBST_(TY_P_CACHE,TY_M_CACHE,TY_TE,PLS_INTEGER,VARCHAR2,PK_TE.REFCUR,PK_TE.REFCUR,PK_TE.REFCUR,PK_TE.REFCUR,PK_TE.REFCUR,PK_TE.REFCUR,PK_TE.REFCUR,PK_TE.REFCUR,PK_TE.REFCUR)"></A>
+<H3>DISPATCH_NESTED_TE_SUBST_</H3>
+<PRE> <!--
+       schemaName=
+       typeName=CLOB
+       localTypeName=
+       schema=
+       fieldType=CLOB
+       synonymsFile=,,--><!--GenerateTypeLink: default reached-->CLOB <B>DISPATCH_NESTED_TE_SUBST_</B>(A_P_CACHE IN OUT NOCOPY TY_P_CACHE, <BR>                                A_M_CACHE IN OUT NOCOPY TY_M_CACHE, <BR>                                A_LOOP_TE IN OUT NOCOPY TY_TE, <BR>                                A_LOOP_NUMBER IN PLS_INTEGER, <BR>                                A_CONCAT_BY IN VARCHAR2, <BR>                                A_C1 IN PK_TE.REFCUR, <BR>                                A_C2 IN PK_TE.REFCUR, <BR>                                A_C3 IN PK_TE.REFCUR, <BR>                                A_C4 IN PK_TE.REFCUR, <BR>                                A_C5 IN PK_TE.REFCUR, <BR>                                A_C6 IN PK_TE.REFCUR, <BR>                                A_C7 IN PK_TE.REFCUR, <BR>                                A_C8 IN PK_TE.REFCUR, <BR>                                A_C9 IN PK_TE.REFCUR)</PRE>
+<DL>
+<DD> Dispatches reqest to substitute cursor values into loop structure to the call of appropriate substitute_ function
+
+</DD>
+<DD>
+<DL></DL>
+</DD>
+<P></P>
+<DL></DL>
+</DL>
+<HR>
+<A NAME="SUBSTITUTE_(PLS_INTEGER,TY_TE,PK_TE.REFCUR,VARCHAR2,PK_TE.REFCUR,PK_TE.REFCUR,PK_TE.REFCUR,PK_TE.REFCUR,PK_TE.REFCUR,PK_TE.REFCUR,PK_TE.REFCUR,PK_TE.REFCUR,PK_TE.REFCUR,TY_P_CACHE,TY_M_CACHE)"></A>
+<H3>SUBSTITUTE_</H3>
+<PRE> <!--
+       schemaName=
+       typeName=CLOB
+       localTypeName=
+       schema=
+       fieldType=CLOB
+       synonymsFile=,,--><!--GenerateTypeLink: default reached-->CLOB <B>SUBSTITUTE_</B>(A_LOOP_IDX IN PLS_INTEGER, <BR>                  A_TE IN TY_TE, <BR>                  A_CURSOR IN PK_TE.REFCUR, <BR>                  A_CONCAT_BY IN VARCHAR2 DEFAULT NULL, <BR>                  A_C1 IN PK_TE.REFCUR, <BR>                  A_C2 IN PK_TE.REFCUR, <BR>                  A_C3 IN PK_TE.REFCUR, <BR>                  A_C4 IN PK_TE.REFCUR, <BR>                  A_C5 IN PK_TE.REFCUR, <BR>                  A_C6 IN PK_TE.REFCUR, <BR>                  A_C7 IN PK_TE.REFCUR, <BR>                  A_C8 IN PK_TE.REFCUR, <BR>                  A_C9 IN PK_TE.REFCUR, <BR>                  A_P_CACHE IN OUT NOCOPY TY_P_CACHE, <BR>                  A_M_CACHE IN OUT NOCOPY TY_M_CACHE)</PRE>
+<DL>
+<DD> Replaces placeholders in compiled Template Expression with values from cursor in iteration.<br/>
+ Caches results returned from cursor so there's no need to reopen it if more than one loop structures refering this cursor are defined in template expression.<br/>
+ Each individual substitution is concatenated with the following with optional a_concat_by in between.<br/>
+ Cursor must return instances of ty_p or ty_m UDTs (depending on ty_te type) otherwise the function will throw.
+</DD>
+<DD>
+<DL>
+<DT>Parameters:
+        <DD>
+<CODE>A_LOOP_IDX</CODE> -
+              loop index (1-9) to select appropriate cache</DD>
+<DD>
+<CODE>A_TE</CODE> -
+              ty_te compiled template expression</DD>
+<DD>
+<CODE>A_CURSOR</CODE> -
+              a cursor that must return instances of ty_p or of ty_m</DD>
+<DD>
+<CODE>A_CONCAT_BY</CODE> -
+              if present each individual substitutions are concatenated in a loop with a_concat_by in between</DD>
+<DD>
+<CODE>A_C1</CODE> -
+              a sys_refcursor to be used in loop structure substitution</DD>
+<DD>
+<CODE>A_C2</CODE> -
+              a sys_refcursor to be used in loop structure substitution</DD>
+<DD>
+<CODE>A_C3</CODE> -
+              a sys_refcursor to be used in loop structure substitution</DD>
+<DD>
+<CODE>A_C4</CODE> -
+              a sys_refcursor to be used in loop structure substitution</DD>
+<DD>
+<CODE>A_C5</CODE> -
+              a sys_refcursor to be used in loop structure substitution</DD>
+<DD>
+<CODE>A_C6</CODE> -
+              a sys_refcursor to be used in loop structure substitution</DD>
+<DD>
+<CODE>A_C7</CODE> -
+              a sys_refcursor to be used in loop structure substitution</DD>
+<DD>
+<CODE>A_C8</CODE> -
+              a sys_refcursor to be used in loop structure substitution</DD>
+<DD>
+<CODE>A_C9</CODE> -
+              a sys_refcursor to be used in loop structure substitution</DD>
+<DD>
+<CODE>A_P_CACHE</CODE> -
+              a cache that stores results of cursor fetches returning ty_p instances</DD>
+<DD>
+<CODE>A_M_CACHE</CODE> -
+              a cache that stores results of cursor fetches returning ty_m instances</DD>
+</DT>
+<DT>Returns:
+          <DD>clob - a large character lob with substituted values (if any)</DD>
+</DT>
+<DT>Throws:
+        <DD>
+<CODE>EX_TE_IS_NULL</CODE> -
+               if null template expression is passed</DD>
+<DD>
+<CODE>EX_CURSOR_OF_WRONG_TYPE</CODE> -
+               if passed cursor does not return instances of ty_p</DD>
+<DD>
+<CODE>CEX_TE_OF_WRONG_TYPE</CODE> -
+               if passed compiled template expression is not of type ty_te.EL_NUMBERED()</DD>
+</DT>
+</DL>
+</DD>
+<P></P>
+<DL></DL>
+</DL>
+<HR>
+<A NAME="SUBSTITUTE_(TY_TE,P,PK_TE.REFCUR,PK_TE.REFCUR,PK_TE.REFCUR,PK_TE.REFCUR,PK_TE.REFCUR,PK_TE.REFCUR,PK_TE.REFCUR,PK_TE.REFCUR,PK_TE.REFCUR,TY_P_CACHE,TY_M_CACHE)"></A>
+<H3>SUBSTITUTE_</H3>
+<PRE> <!--
+       schemaName=
+       typeName=CLOB
+       localTypeName=
+       schema=
+       fieldType=CLOB
+       synonymsFile=,,--><!--GenerateTypeLink: default reached-->CLOB <B>SUBSTITUTE_</B>(A_TE IN TY_TE, <BR>                  A_NUMBERED_REPLACEMENTS IN P, <BR>                  A_C1 IN PK_TE.REFCUR, <BR>                  A_C2 IN PK_TE.REFCUR, <BR>                  A_C3 IN PK_TE.REFCUR, <BR>                  A_C4 IN PK_TE.REFCUR, <BR>                  A_C5 IN PK_TE.REFCUR, <BR>                  A_C6 IN PK_TE.REFCUR, <BR>                  A_C7 IN PK_TE.REFCUR, <BR>                  A_C8 IN PK_TE.REFCUR, <BR>                  A_C9 IN PK_TE.REFCUR, <BR>                  A_P_CACHE IN OUT NOCOPY TY_P_CACHE, <BR>                  A_M_CACHE IN OUT NOCOPY TY_M_CACHE)</PRE>
+<DL>
+<DD> Replaces numbered placeholders in compiled Template Expression with values from nested table of varchar2 (p).<br/>
+ Simmilar to function substitute for numbered placeholders but is used in subsequent recursive calls to substitute values into loop structures<br/>
+ Redefines cursor parameters as required and adds two cache in out nocopy parameters.
+</DD>
+<DD>
+<DL>
+<DT>Parameters:
+        <DD>
+<CODE>A_TE</CODE> -
+              ty_te template expression compiled for numbered placeholders</DD>
+<DD>
+<CODE>A_NUMBERED_REPLACEMENTS</CODE> -
+              nested table of varchar2. Holds  values to place instead of placeholders</DD>
+<DD>
+<CODE>A_C1</CODE> -
+              a sys_refcursor to be used in loop structure substitution</DD>
+<DD>
+<CODE>A_C2</CODE> -
+              a sys_refcursor to be used in loop structure substitution</DD>
+<DD>
+<CODE>A_C3</CODE> -
+              a sys_refcursor to be used in loop structure substitution</DD>
+<DD>
+<CODE>A_C4</CODE> -
+              a sys_refcursor to be used in loop structure substitution</DD>
+<DD>
+<CODE>A_C5</CODE> -
+              a sys_refcursor to be used in loop structure substitution</DD>
+<DD>
+<CODE>A_C6</CODE> -
+              a sys_refcursor to be used in loop structure substitution</DD>
+<DD>
+<CODE>A_C7</CODE> -
+              a sys_refcursor to be used in loop structure substitution</DD>
+<DD>
+<CODE>A_C8</CODE> -
+              a sys_refcursor to be used in loop structure substitution</DD>
+<DD>
+<CODE>A_C9</CODE> -
+              a sys_refcursor to be used in loop structure substitution</DD>
+<DD>
+<CODE>A_P_CACHE</CODE> -
+              a cache that stores results of cursor fetches returning ty_p instances</DD>
+<DD>
+<CODE>A_M_CACHE</CODE> -
+              a cache that stores results of cursor fetches returning ty_m instances</DD>
+</DT>
+<DT>Returns:
+          <DD>clob - a large character lob with substituted values (if any)</DD>
+</DT>
+<DT>Throws:
+        <DD>
+<CODE>EX_TE_IS_NULL</CODE> -
+               if null template expression is passed</DD>
+<DD>
+<CODE>EX_TE_OF_WRONG_TYPE</CODE> -
+               if passed template expression was compiled for named placeholders</DD>
+</DT>
+</DL>
+</DD>
+<P></P>
+<DL></DL>
+</DL>
+<HR>
+<A NAME="SUBSTITUTE_(TY_TE,M,PK_TE.REFCUR,PK_TE.REFCUR,PK_TE.REFCUR,PK_TE.REFCUR,PK_TE.REFCUR,PK_TE.REFCUR,PK_TE.REFCUR,PK_TE.REFCUR,PK_TE.REFCUR,TY_P_CACHE,TY_M_CACHE)"></A>
+<H3>SUBSTITUTE_</H3>
+<PRE> <!--
+       schemaName=
+       typeName=CLOB
+       localTypeName=
+       schema=
+       fieldType=CLOB
+       synonymsFile=,,--><!--GenerateTypeLink: default reached-->CLOB <B>SUBSTITUTE_</B>(A_TE IN TY_TE, <BR>                  A_NAMED_REPLACEMENTS IN M, <BR>                  A_C1 IN PK_TE.REFCUR, <BR>                  A_C2 IN PK_TE.REFCUR, <BR>                  A_C3 IN PK_TE.REFCUR, <BR>                  A_C4 IN PK_TE.REFCUR, <BR>                  A_C5 IN PK_TE.REFCUR, <BR>                  A_C6 IN PK_TE.REFCUR, <BR>                  A_C7 IN PK_TE.REFCUR, <BR>                  A_C8 IN PK_TE.REFCUR, <BR>                  A_C9 IN PK_TE.REFCUR, <BR>                  A_P_CACHE IN OUT NOCOPY TY_P_CACHE, <BR>                  A_M_CACHE IN OUT NOCOPY TY_M_CACHE)</PRE>
+<DL>
+<DD> Replaces named placeholders in compiled Template Expression with values from nested table of nested tables of varchar2 (m).<br/>
+ Simmilar to function substitute for named placeholders but is used in subsequent recursive calls to substitute values into loop structures<br/>
+ Redefines cursor parameters as required and adds two cache in out nocopy parameters.
+</DD>
+<DD>
+<DL>
+<DT>Parameters:
+        <DD>
+<CODE>A_TE</CODE> -
+              ty_te template expression compiled for named placeholders</DD>
+<DD>
+<CODE>A_NAMED_REPLACEMENTS</CODE> -
+              a nested table of nested tables of varchar2 - named values to place instead of placeholders</DD>
+<DD>
+<CODE>A_C1</CODE> -
+              a sys_refcursor to be used in loop structure substitution</DD>
+<DD>
+<CODE>A_C2</CODE> -
+              a sys_refcursor to be used in loop structure substitution</DD>
+<DD>
+<CODE>A_C3</CODE> -
+              a sys_refcursor to be used in loop structure substitution</DD>
+<DD>
+<CODE>A_C4</CODE> -
+              a sys_refcursor to be used in loop structure substitution</DD>
+<DD>
+<CODE>A_C5</CODE> -
+              a sys_refcursor to be used in loop structure substitution</DD>
+<DD>
+<CODE>A_C6</CODE> -
+              a sys_refcursor to be used in loop structure substitution</DD>
+<DD>
+<CODE>A_C7</CODE> -
+              a sys_refcursor to be used in loop structure substitution</DD>
+<DD>
+<CODE>A_C8</CODE> -
+              a sys_refcursor to be used in loop structure substitution</DD>
+<DD>
+<CODE>A_C9</CODE> -
+              a sys_refcursor to be used in loop structure substitution</DD>
+<DD>
+<CODE>A_P_CACHE</CODE> -
+              a cache that stores results of cursor fetches returning ty_p instances</DD>
+<DD>
+<CODE>A_M_CACHE</CODE> -
+              a cache that stores results of cursor fetches returning ty_m instances</DD>
+</DT>
+<DT>Returns:
+          <DD>clob - a large character lob with substituted values (if any)</DD>
+</DT>
+<DT>Throws:
+        <DD>
+<CODE>EX_TE_IS_NULL</CODE> -
+               if null template expression is passed</DD>
+<DD>
+<CODE>EX_TE_OF_WRONG_TYPE</CODE> -
+               if passed template expression was compiled for numbered placeholders</DD>
+</DT>
+</DL>
+</DD>
+<P></P>
+<DL></DL>
+</DL>
+<HR>
+<A NAME="trigger_detail"></A>
+<TABLE CELLSPACING="0" CELLPADDING="1" WIDTH="100%" BORDER="0">
+<TR>
+<TD CLASS="NavBarRow1" COLSPAN="2">
+<TABLE CELLSPACING="3" CELLPADDING="0" BORDER="0">
+<TR VALIGN="top" ALIGN="center">
+<TD CLASS="NavBarRow1"><A HREF="../summary.html"><FONT CLASS="NavBarFont1"><B>Overview</B></FONT></A> &nbsp;</TD><TD CLASS="NavBarRow1"><A HREF="../deprecated-list.html"><FONT CLASS="NavBarFont1"><B>Deprecated</B></FONT></A> &nbsp;</TD><TD CLASS="NavBarRow1"><A HREF="../index-list.html"><FONT CLASS="NavBarFont1"><B>Index</B></FONT></A> &nbsp;</TD><TD CLASS="NavBarRow1"><A HREF="../generator.html"><FONT CLASS="NavBarFont1"><B>Generator</B></FONT></A> &nbsp;</TD>
+</TR>
+</TABLE>
+</TD><TD rowspan="3" VALIGN="top" ALIGN="right"><EM><b>ora_te</b></EM></TD>
+</TR>
+<TR>
+<TD CLASS="NavBarRow3" VALIGN="top"><FONT SIZE="-2">
+      SUMMARY:  <A HREF="#field_summary">FIELD</A> | <A HREF="#type_summary">TYPE</A> | <A HREF="#method_summary">METHOD</A></FONT></TD><TD CLASS="NavBarRow3" VALIGN="top"><FONT SIZE="-2">
+    DETAIL:  <A HREF="#field_detail">FIELD</A> | <A HREF="#type_detail">TYPE</A> | <A HREF="#method_detail">METHOD</A></FONT></TD>
+</TR>
+</TABLE>
+<HR>
+</BODY>
+</HTML>
