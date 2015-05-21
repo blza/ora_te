@@ -62,7 +62,7 @@ COL1          VARCHAR2(30 CHAR)
 COL2          NUMBER(38) 
 ```
 will be
-```
+```sql
 merge into dummy_test t1
 using tmp_dummy_test t2
   on ( t1.id_ = t2.id_ )
