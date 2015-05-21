@@ -9,12 +9,12 @@ This project is about developing a template engine to be used in Oracle SQL/PL S
 Consider following example code for generating merge statement
 ```plsql
 declare
-    v_te ty_te;
+  v_te ty_te;
   v_merge_stmt varchar2( 32767 char );
   v_join_by varchar2( 30 char ) := 'id_';
   v_dest_tbl varchar2( 30 char ) := 'dummy_test';
 begin
-    v_te := ty_te.compile_named( '
+  v_te := ty_te.compile_named( '
 merge into {$dest_table} t1
 using {$tmp_table} t2
 on ( t1.{$join_by} = t2.{$join_by} )
