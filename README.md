@@ -2,7 +2,7 @@
 ## Description
 Simple template engine for Oracle DBMS in a form of UDTs and packages.
 
-This project is about developing a template engine to be used in Oracle SQL/PL SQL.
+This project is about developing a template engine to be used in Oracle SQL / PL SQL.
 
 ## Where it excels?
 
