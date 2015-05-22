@@ -3,7 +3,7 @@ create or replace PACKAGE BODY PK_TE AS
 /** 
 * The package that provides functions to substitute values instead of placeholders.<br/>
 * Only functions and types that are to be called by end user are exposed. Some supporting functions are moved to PK_TE_IMPL.
-* @headcom 
+* @headcom  
 */
 
 type ty_vchar_to_vchar is table of varchar2( 32767 char ) index by varchar2( 100 char );
@@ -62,11 +62,11 @@ function substitute( a_te in ty_te, a_numbered_replacements p
   v_m_cache pk_te_impl.ty_m_cache;
 BEGIN
   if ( a_te is null ) then
-    raise_application_error( CEX_TE_IS_NULL, 'Null template expression passed' );
+    raise_application_error( pk_te_ex.CEX_TE_IS_NULL, 'Null template expression passed' );
   end if;
   
   if ( a_te.type_ != ty_te.EL_NUMBERED() ) then
-    raise_application_error( CEX_TE_OF_WRONG_TYPE, 'Template expression is of wrong type' );
+    raise_application_error( pk_te_ex.CEX_TE_OF_WRONG_TYPE, 'Template expression is of wrong type' );
   end if;
   
   init_cache_( v_p_cache, v_m_cache );
@@ -141,11 +141,11 @@ AS
   v_m_cache pk_te_impl.ty_m_cache;
 BEGIN
   if ( a_te is null ) then
-    raise_application_error( CEX_TE_IS_NULL, 'Null template expression passed' );
+    raise_application_error( pk_te_ex.CEX_TE_IS_NULL, 'Null template expression passed' );
   end if;
   
   if ( a_te.type_ != ty_te.EL_NAMED() ) then
-    raise_application_error( CEX_TE_OF_WRONG_TYPE, 'Template expression is of wrong type' );
+    raise_application_error( pk_te_ex.CEX_TE_OF_WRONG_TYPE, 'Template expression is of wrong type' );
   end if;
   
   init_cache_( v_p_cache, v_m_cache );
@@ -207,7 +207,7 @@ AS
   v_m m;
 BEGIN
   if ( a_te is null ) then
-    raise_application_error( CEX_TE_IS_NULL, 'Null template expression passed' );
+    raise_application_error( pk_te_ex.CEX_TE_IS_NULL, 'Null template expression passed' );
   end if;
   
   if ( a_te.type_ = ty_te.EL_NUMBERED() ) then
@@ -220,7 +220,7 @@ BEGIN
     exception
       when others then
         if sqlcode = -932 then
-          raise_application_error( CEX_CURSOR_OF_WRONG_TYPE, 'Cursor does not return ty_p instance' );
+          raise_application_error( pk_te_ex.CEX_CURSOR_OF_WRONG_TYPE, 'Cursor does not return ty_p instance' );
         else
           raise;
         end if;
@@ -241,7 +241,7 @@ BEGIN
     exception
       when others then
         if sqlcode = -932 then
-          raise_application_error( CEX_CURSOR_OF_WRONG_TYPE, 'Cursor does not return ty_m instance' );
+          raise_application_error( pk_te_ex.CEX_CURSOR_OF_WRONG_TYPE, 'Cursor does not return ty_m instance' );
         else
           raise;
         end if;

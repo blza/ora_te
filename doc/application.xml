@@ -4,26 +4,6 @@
   <OVERVIEW><![CDATA[This documentation is generated from source code. For subprogram descriptions navigate to 'Object and Package Bodies' section.
 ]]></OVERVIEW>
   <PACKAGE NAME="PK_TE" SCHEMA="">
-    <EXCEPTION NAME="EX_TE_GENERAL"/>
-    <CONSTANT DEFAULT="-20999" NAME="CEX_TE_GENERAL">
-      <RETURN TYPE="PLS_INTEGER"/>
-    </CONSTANT>
-    <PRAGMA NAME="EXCEPTION_INIT"/>
-    <EXCEPTION NAME="EX_TE_OF_WRONG_TYPE"/>
-    <CONSTANT DEFAULT="-20998" NAME="CEX_TE_OF_WRONG_TYPE">
-      <RETURN TYPE="PLS_INTEGER"/>
-    </CONSTANT>
-    <PRAGMA NAME="EXCEPTION_INIT"/>
-    <EXCEPTION NAME="EX_TE_IS_NULL"/>
-    <CONSTANT DEFAULT="-20997" NAME="CEX_TE_IS_NULL">
-      <RETURN TYPE="PLS_INTEGER"/>
-    </CONSTANT>
-    <PRAGMA NAME="EXCEPTION_INIT"/>
-    <EXCEPTION NAME="EX_CURSOR_OF_WRONG_TYPE"/>
-    <CONSTANT DEFAULT="-20996" NAME="CEX_CURSOR_OF_WRONG_TYPE">
-      <RETURN TYPE="PLS_INTEGER"/>
-    </CONSTANT>
-    <PRAGMA NAME="EXCEPTION_INIT"/>
     <TYPE NAME="P">
       <RETURN TYPE="ty_p"/>
     </TYPE>
@@ -46,7 +26,7 @@
       <ARGUMENT DEFAULT="NULL" MODE="IN" NAME="A_C8" TYPE="PK_TE.REFCUR"/>
       <ARGUMENT DEFAULT="NULL" MODE="IN" NAME="A_C9" TYPE="PK_TE.REFCUR"/>
       <RETURN TYPE="CLOB"/>
-      <SUMMARY END_COLUMN="16" END_LINE="25" LINES="3" START_COLUMN="12" START_LINE="23"/>
+      <SUMMARY END_COLUMN="16" END_LINE="10" LINES="3" START_COLUMN="12" START_LINE="8"/>
     </FUNCTION>
     <FUNCTION NAME="SUBSTITUTE">
       <ARGUMENT MODE="IN" NAME="A_TE" TYPE="TY_TE"/>
@@ -61,14 +41,14 @@
       <ARGUMENT DEFAULT="NULL" MODE="IN" NAME="A_C8" TYPE="PK_TE.REFCUR"/>
       <ARGUMENT DEFAULT="NULL" MODE="IN" NAME="A_C9" TYPE="PK_TE.REFCUR"/>
       <RETURN TYPE="CLOB"/>
-      <SUMMARY END_COLUMN="16" END_LINE="28" LINES="3" START_COLUMN="12" START_LINE="26"/>
+      <SUMMARY END_COLUMN="16" END_LINE="13" LINES="3" START_COLUMN="12" START_LINE="11"/>
     </FUNCTION>
     <FUNCTION NAME="SUBSTITUTE">
       <ARGUMENT MODE="IN" NAME="A_TE" TYPE="TY_TE"/>
       <ARGUMENT MODE="IN" NAME="A_CURSOR" TYPE="PK_TE.REFCUR"/>
       <ARGUMENT DEFAULT="NULL" MODE="IN" NAME="A_CONCAT_BY" TYPE="VARCHAR2"/>
       <RETURN TYPE="CLOB"/>
-      <SUMMARY END_COLUMN="115" END_LINE="29" LINES="1" START_COLUMN="12" START_LINE="29"/>
+      <SUMMARY END_COLUMN="115" END_LINE="14" LINES="1" START_COLUMN="12" START_LINE="14"/>
     </FUNCTION>
     <FUNCTION NAME="SUBSTITUTE">
       <ARGUMENT MODE="IN" NAME="A_STRING" TYPE="CLOB"/>
@@ -76,7 +56,7 @@
       <ARGUMENT DEFAULT="'$'" MODE="IN" NAME="A_PH_START" TYPE="VARCHAR2"/>
       <ARGUMENT DEFAULT="''" MODE="IN" NAME="A_PH_END" TYPE="VARCHAR2"/>
       <RETURN TYPE="CLOB"/>
-      <SUMMARY END_COLUMN="140" END_LINE="31" LINES="1" START_COLUMN="12" START_LINE="31"/>
+      <SUMMARY END_COLUMN="140" END_LINE="16" LINES="1" START_COLUMN="12" START_LINE="16"/>
     </FUNCTION>
     <FUNCTION NAME="SUBSTITUTE">
       <ARGUMENT MODE="IN" NAME="A_STRING" TYPE="CLOB"/>
@@ -84,9 +64,9 @@
       <ARGUMENT DEFAULT="'{$'" MODE="IN" NAME="A_PH_START" TYPE="VARCHAR2"/>
       <ARGUMENT DEFAULT="'}'" MODE="IN" NAME="A_PH_END" TYPE="VARCHAR2"/>
       <RETURN TYPE="CLOB"/>
-      <SUMMARY END_COLUMN="139" END_LINE="32" LINES="1" START_COLUMN="12" START_LINE="32"/>
+      <SUMMARY END_COLUMN="139" END_LINE="17" LINES="1" START_COLUMN="12" START_LINE="17"/>
     </FUNCTION>
-    <SUMMARY END_COLUMN="10" END_LINE="34" LINES="34" START_COLUMN="27" START_LINE="1"/>
+    <SUMMARY END_COLUMN="10" END_LINE="19" LINES="19" START_COLUMN="27" START_LINE="1"/>
   </PACKAGE>
   <PACKAGE_BODY NAME="PK_TE" SCHEMA="">
     <COMMENT><![CDATA[ The package that provides functions to substitute values instead of placeholders.<br/>
@@ -537,7 +517,7 @@
     </FUNCTION>
     <SUMMARY END_COLUMN="19" END_LINE="61" LINES="61" START_COLUMN="32" START_LINE="1"/>
   </PACKAGE_BODY>
-  <PACKAGE NAME="PK_TE_IMPL" SCHEMA="">
+  <PACKAGE NAME="PK_TE_EX" SCHEMA="">
     <EXCEPTION NAME="EX_TE_GENERAL"/>
     <CONSTANT DEFAULT="-20999" NAME="CEX_TE_GENERAL">
       <RETURN TYPE="PLS_INTEGER"/>
@@ -558,6 +538,19 @@
       <RETURN TYPE="PLS_INTEGER"/>
     </CONSTANT>
     <PRAGMA NAME="EXCEPTION_INIT"/>
+    <EXCEPTION NAME="EX_WRONG_PH_DENOTATION"/>
+    <CONSTANT DEFAULT="-20995" NAME="CEX_WRONG_PH_DENOTATION">
+      <RETURN TYPE="PLS_INTEGER"/>
+    </CONSTANT>
+    <PRAGMA NAME="EXCEPTION_INIT"/>
+    <EXCEPTION NAME="EX_TY_TE_TYPES_DO_NOT_MATCH"/>
+    <CONSTANT DEFAULT="-20994" NAME="CEX_TY_TE_TYPES_DO_NOT_MATCH">
+      <RETURN TYPE="PLS_INTEGER"/>
+    </CONSTANT>
+    <PRAGMA NAME="EXCEPTION_INIT"/>
+    <SUMMARY END_COLUMN="13" END_LINE="27" LINES="27" START_COLUMN="9" START_LINE="1"/>
+  </PACKAGE>
+  <PACKAGE NAME="PK_TE_IMPL" SCHEMA="">
     <TYPE NAME="P">
       <RETURN TYPE="ty_p"/>
     </TYPE>
@@ -597,7 +590,7 @@
       <ARGUMENT MODE="IN OUT NOCOPY" NAME="A_P_CACHE" TYPE="TY_P_CACHE"/>
       <ARGUMENT MODE="IN OUT NOCOPY" NAME="A_M_CACHE" TYPE="TY_M_CACHE"/>
       <RETURN TYPE="CLOB"/>
-      <SUMMARY END_COLUMN="16" END_LINE="33" LINES="4" START_COLUMN="12" START_LINE="30"/>
+      <SUMMARY END_COLUMN="16" END_LINE="17" LINES="4" START_COLUMN="12" START_LINE="14"/>
     </FUNCTION>
     <FUNCTION NAME="SUBSTITUTE_">
       <ARGUMENT MODE="IN" NAME="A_TE" TYPE="TY_TE"/>
@@ -614,7 +607,7 @@
       <ARGUMENT MODE="IN OUT NOCOPY" NAME="A_P_CACHE" TYPE="TY_P_CACHE"/>
       <ARGUMENT MODE="IN OUT NOCOPY" NAME="A_M_CACHE" TYPE="TY_M_CACHE"/>
       <RETURN TYPE="CLOB"/>
-      <SUMMARY END_COLUMN="16" END_LINE="37" LINES="4" START_COLUMN="12" START_LINE="34"/>
+      <SUMMARY END_COLUMN="16" END_LINE="21" LINES="4" START_COLUMN="12" START_LINE="18"/>
     </FUNCTION>
     <FUNCTION NAME="DISPATCH_NESTED_TE_SUBST_">
       <ARGUMENT MODE="IN OUT NOCOPY" NAME="A_P_CACHE" TYPE="TY_P_CACHE"/>
@@ -632,9 +625,9 @@
       <ARGUMENT MODE="IN" NAME="A_C8" TYPE="PK_TE.REFCUR"/>
       <ARGUMENT MODE="IN" NAME="A_C9" TYPE="PK_TE.REFCUR"/>
       <RETURN TYPE="CLOB"/>
-      <SUMMARY END_COLUMN="14" END_LINE="43" LINES="6" START_COLUMN="12" START_LINE="38"/>
+      <SUMMARY END_COLUMN="14" END_LINE="27" LINES="6" START_COLUMN="12" START_LINE="22"/>
     </FUNCTION>
-    <SUMMARY END_COLUMN="15" END_LINE="45" LINES="45" START_COLUMN="27" START_LINE="1"/>
+    <SUMMARY END_COLUMN="15" END_LINE="29" LINES="29" START_COLUMN="27" START_LINE="1"/>
   </PACKAGE>
   <PACKAGE_BODY NAME="PK_TE_IMPL" SCHEMA="">
     <COMMENT><![CDATA[ Supporting functions that help to implement PK_TE functionality (mostly dealing with recursive calls to handle loop structures).
@@ -1009,7 +1002,7 @@
       </TAG>
       <SUMMARY END_COLUMN="4" END_LINE="293" LINES="54" START_COLUMN="10" START_LINE="240"/>
     </FUNCTION>
-    <SUMMARY END_COLUMN="15" END_LINE="295" LINES="295" START_COLUMN="14" START_LINE="1"/>
+    <SUMMARY END_COLUMN="15" END_LINE="295" LINES="295" START_COLUMN="32" START_LINE="1"/>
   </PACKAGE_BODY>
   <OBJECT_TYPE NAME="TY_P" SCHEMA="">
     <COLLECTIONTYPE NAME="TABLE"/>
@@ -1302,7 +1295,7 @@
       <RETURN TYPE="STATIC FUNCTION TY_TE"/>
       <SUMMARY END_COLUMN="14" END_LINE="23" LINES="8" START_COLUMN="21" START_LINE="16"/>
     </FUNCTION>
-    <FUNCTION NAME="COMPILE_GENERIC" SCOPE="STATIC" VERSION="1">
+    <FUNCTION NAME="COMPILE_GENERIC_" SCOPE="STATIC" VERSION="1">
       <ARGUMENT MODE="IN" NAME="A_TEMPLATE_STRING" TYPE="CLOB"/>
       <ARGUMENT MODE="IN" NAME="A_PH_START" TYPE="VARCHAR2"/>
       <ARGUMENT MODE="IN" NAME="A_PH_END" TYPE="VARCHAR2"/>
@@ -1367,8 +1360,8 @@
     <COMMENT><![CDATA[ TY_TE (Template Expression)<br/>
  A type that represents a compiled template expression.<br/>
  By template expression (TE) we understand a string with numbered or named placeholders.<br/>
- By compiling TE we understand parsing it, finding numbered or named placeholders and storing the whole expression<br/>
- in the form of a nested table of ty_sph.<br/>
+ By compiling TE we understand parsing it, finding numbered or named placeholders and storing the whole expression in internal<br/>
+ structures (a nested table of ty_sph).
 ]]></COMMENT>
     <TAG TYPE="@HEADCOM">
       <COMMENT>
@@ -1381,20 +1374,18 @@
 ]]></COMMENT>
       <ARGUMENT MODE="IN OUT NOCOPY" NAME="SELF" TYPE="TY_TE"/>
       <ARGUMENT MODE="IN" NAME="A_TYPE" TYPE="PLS_INTEGER">
-        <COMMENT><![CDATA[Can be either ty_te.EL_NAMED() or ty_te.EL_NUMBERED(). Denotes the type of placehoders that were<br/>
- searched while compiling.]]></COMMENT>
+        <COMMENT><![CDATA[Can be either ty_te.EL_NAMED() or ty_te.EL_NUMBERED() - the type of placehoders that were searched while compiling.]]></COMMENT>
       </ARGUMENT>
       <RETURN TYPE="CONSTRUCTOR FUNCTION SELF AS RESULT">
         <COMMENT><![CDATA[self]]></COMMENT>
       </RETURN>
       <TAG TYPE="@PARAM">
-        <COMMENT><![CDATA[a_type Can be either ty_te.EL_NAMED() or ty_te.EL_NUMBERED(). Denotes the type of placehoders that were<br/>
- searched while compiling.]]></COMMENT>
+        <COMMENT><![CDATA[a_type Can be either ty_te.EL_NAMED() or ty_te.EL_NUMBERED() - the type of placehoders that were searched while compiling.]]></COMMENT>
       </TAG>
       <TAG TYPE="@RETURN">
         <COMMENT><![CDATA[self]]></COMMENT>
       </TAG>
-      <SUMMARY END_COLUMN="10" END_LINE="39" LINES="7" START_COLUMN="22" START_LINE="33"/>
+      <SUMMARY END_COLUMN="10" END_LINE="38" LINES="7" START_COLUMN="22" START_LINE="32"/>
     </FUNCTION>
     <FUNCTION NAME="ESCAPE_REGEXP_SPECIAL" SCOPE="STATIC" VERSION="1">
       <COMMENT_FIRST_LINE><![CDATA[ Escapes special chars to use as regexp pattern.]]></COMMENT_FIRST_LINE>
@@ -1402,7 +1393,7 @@
 ]]></COMMENT>
       <ARGUMENT MODE="IN" NAME="A_NOT_ESCAPED" TYPE="VARCHAR2"/>
       <RETURN TYPE="STATIC FUNCTION VARCHAR2"/>
-      <SUMMARY END_COLUMN="4" END_LINE="47" LINES="5" START_COLUMN="17" START_LINE="43"/>
+      <SUMMARY END_COLUMN="4" END_LINE="46" LINES="5" START_COLUMN="17" START_LINE="42"/>
     </FUNCTION>
     <FUNCTION NAME="ESCAPE_BACKREFERENCE" SCOPE="STATIC" VERSION="1">
       <COMMENT_FIRST_LINE><![CDATA[ Escapes regexp backreference to prevent treating substrings of form '\1' ..]]></COMMENT_FIRST_LINE>
@@ -1411,7 +1402,7 @@
 ]]></COMMENT>
       <ARGUMENT MODE="IN" NAME="A_NOT_ESCAPED" TYPE="VARCHAR2"/>
       <RETURN TYPE="STATIC FUNCTION VARCHAR2"/>
-      <SUMMARY END_COLUMN="4" END_LINE="56" LINES="5" START_COLUMN="17" START_LINE="52"/>
+      <SUMMARY END_COLUMN="4" END_LINE="55" LINES="5" START_COLUMN="17" START_LINE="51"/>
     </FUNCTION>
     <FUNCTION NAME="COMPILE_NUMBERED" SCOPE="STATIC" VERSION="1">
       <COMMENT_FIRST_LINE><![CDATA[ Parse string for numbered templates in the from $1, $2, etc.<br>
@@ -1425,9 +1416,15 @@
         <COMMENT><![CDATA[a string that denotes the beginning of numbered placeholder]]></COMMENT>
       </ARGUMENT>
       <ARGUMENT DEFAULT="''" MODE="IN" NAME="A_PH_END" TYPE="VARCHAR2"/>
-      <ARGUMENT DEFAULT="'{%'" MODE="IN" NAME="A_LOOP_PH_BEGIN" TYPE="VARCHAR2"/>
-      <ARGUMENT DEFAULT="'%'" MODE="IN" NAME="A_LOOP_PH_BODY" TYPE="VARCHAR2"/>
-      <ARGUMENT DEFAULT="'%}'" MODE="IN" NAME="A_LOOP_PH_END" TYPE="VARCHAR2"/>
+      <ARGUMENT DEFAULT="'{%'" MODE="IN" NAME="A_LOOP_PH_BEGIN" TYPE="VARCHAR2">
+        <COMMENT><![CDATA[a string that denotes the beginning of loop structure within template expression]]></COMMENT>
+      </ARGUMENT>
+      <ARGUMENT DEFAULT="'%'" MODE="IN" NAME="A_LOOP_PH_BODY" TYPE="VARCHAR2">
+        <COMMENT><![CDATA[a string that separates loop inner tempate expression from cursor number and from loop structure options]]></COMMENT>
+      </ARGUMENT>
+      <ARGUMENT DEFAULT="'%}'" MODE="IN" NAME="A_LOOP_PH_END" TYPE="VARCHAR2">
+        <COMMENT><![CDATA[a string that denotes the end of loop structure within template expression]]></COMMENT>
+      </ARGUMENT>
       <RETURN TYPE="STATIC FUNCTION TY_TE">
         <COMMENT><![CDATA[The instance of template expression (ty_te) or null if no placeholders were found or if a_ph_start is null]]></COMMENT>
       </RETURN>
@@ -1437,10 +1434,22 @@
       <TAG TYPE="@PARAM">
         <COMMENT><![CDATA[a_ph_start a string that denotes the beginning of numbered placeholder]]></COMMENT>
       </TAG>
+      <TAG TYPE="@PARAM">
+        <COMMENT><![CDATA[a_loop_ph_begin a string that denotes the beginning of loop structure within template expression]]></COMMENT>
+      </TAG>
+      <TAG TYPE="@PARAM">
+        <COMMENT><![CDATA[a_loop_ph_body a string that separates loop inner tempate expression from cursor number and from loop structure options]]></COMMENT>
+      </TAG>
+      <TAG TYPE="@PARAM">
+        <COMMENT><![CDATA[a_loop_ph_end a string that denotes the end of loop structure within template expression]]></COMMENT>
+      </TAG>
       <TAG TYPE="@RETURN">
         <COMMENT><![CDATA[The instance of template expression (ty_te) or null if no placeholders were found or if a_ph_start is null]]></COMMENT>
       </TAG>
-      <SUMMARY END_COLUMN="21" END_LINE="80" LINES="16" START_COLUMN="17" START_LINE="65"/>
+      <TAG TYPE="@THROW">
+        <COMMENT><![CDATA[pk_te_ex.EX_WRONG_PH_DENOTATION in case of ph denotation misuse]]></COMMENT>
+      </TAG>
+      <SUMMARY END_COLUMN="21" END_LINE="99" LINES="30" START_COLUMN="17" START_LINE="70"/>
     </FUNCTION>
     <FUNCTION NAME="COMPILE_NAMED" SCOPE="STATIC" VERSION="1">
       <COMMENT_FIRST_LINE><![CDATA[ Parse string for named templates in the from {$placehoder}<br/>
@@ -1456,9 +1465,15 @@
       <ARGUMENT DEFAULT="'}'" MODE="IN" NAME="A_PH_END" TYPE="VARCHAR2">
         <COMMENT><![CDATA[a string that denotes the end of named placeholder]]></COMMENT>
       </ARGUMENT>
-      <ARGUMENT DEFAULT="'{%'" MODE="IN" NAME="A_LOOP_PH_BEGIN" TYPE="VARCHAR2"/>
-      <ARGUMENT DEFAULT="'%'" MODE="IN" NAME="A_LOOP_PH_BODY" TYPE="VARCHAR2"/>
-      <ARGUMENT DEFAULT="'%}'" MODE="IN" NAME="A_LOOP_PH_END" TYPE="VARCHAR2"/>
+      <ARGUMENT DEFAULT="'{%'" MODE="IN" NAME="A_LOOP_PH_BEGIN" TYPE="VARCHAR2">
+        <COMMENT><![CDATA[a string that denotes the beginning of loop structure within template expression]]></COMMENT>
+      </ARGUMENT>
+      <ARGUMENT DEFAULT="'%'" MODE="IN" NAME="A_LOOP_PH_BODY" TYPE="VARCHAR2">
+        <COMMENT><![CDATA[a string that separates loop inner tempate expression from cursor number and from loop structure options]]></COMMENT>
+      </ARGUMENT>
+      <ARGUMENT DEFAULT="'%}'" MODE="IN" NAME="A_LOOP_PH_END" TYPE="VARCHAR2">
+        <COMMENT><![CDATA[a string that denotes the end of loop structure within template expression]]></COMMENT>
+      </ARGUMENT>
       <RETURN TYPE="STATIC FUNCTION TY_TE">
         <COMMENT><![CDATA[The instance of template expression (ty_te) or null if no placeholders were found or if or <br/>
  a_ph_start or a_ph_end is null]]></COMMENT>
@@ -1472,11 +1487,23 @@
       <TAG TYPE="@PARAM">
         <COMMENT><![CDATA[a_ph_end a string that denotes the end of named placeholder]]></COMMENT>
       </TAG>
+      <TAG TYPE="@PARAM">
+        <COMMENT><![CDATA[a_loop_ph_begin a string that denotes the beginning of loop structure within template expression]]></COMMENT>
+      </TAG>
+      <TAG TYPE="@PARAM">
+        <COMMENT><![CDATA[a_loop_ph_body a string that separates loop inner tempate expression from cursor number and from loop structure options]]></COMMENT>
+      </TAG>
+      <TAG TYPE="@PARAM">
+        <COMMENT><![CDATA[a_loop_ph_end a string that denotes the end of loop structure within template expression]]></COMMENT>
+      </TAG>
       <TAG TYPE="@RETURN">
         <COMMENT><![CDATA[The instance of template expression (ty_te) or null if no placeholders were found or if or <br/>
  a_ph_start or a_ph_end is null]]></COMMENT>
       </TAG>
-      <SUMMARY END_COLUMN="4" END_LINE="105" LINES="15" START_COLUMN="17" START_LINE="91"/>
+      <TAG TYPE="@THROW">
+        <COMMENT><![CDATA[pk_te_ex.EX_WRONG_PH_DENOTATION in case of ph denotation misuse]]></COMMENT>
+      </TAG>
+      <SUMMARY END_COLUMN="4" END_LINE="147" LINES="32" START_COLUMN="17" START_LINE="116"/>
     </FUNCTION>
     <FUNCTION NAME="TRANSLATE_OPTIONS_DELIM_" SCOPE="STATIC" VERSION="1">
       <COMMENT_FIRST_LINE><![CDATA[ Replaces special characters in delimiters part of loop structure options with coresponding character codes
@@ -1495,7 +1522,7 @@
       <TAG TYPE="@RETURN">
         <COMMENT><![CDATA[varchar2 a delimiter string with replaced special chars]]></COMMENT>
       </TAG>
-      <SUMMARY END_COLUMN="4" END_LINE="116" LINES="5" START_COLUMN="17" START_LINE="112"/>
+      <SUMMARY END_COLUMN="4" END_LINE="158" LINES="5" START_COLUMN="17" START_LINE="154"/>
     </FUNCTION>
     <FUNCTION NAME="PROCESS_LOOP_" SCOPE="STATIC" VERSION="1">
       <COMMENT_FIRST_LINE><![CDATA[ Finds and compiles loop structures inside template expressions
@@ -1514,9 +1541,15 @@
       <ARGUMENT MODE="IN" NAME="A_TYPE" TYPE="PLS_INTEGER">
         <COMMENT><![CDATA[a type of placeholders to search in string. Actually just may be used to translate to inner loop structures]]></COMMENT>
       </ARGUMENT>
-      <ARGUMENT DEFAULT="'{%'" MODE="IN" NAME="A_LOOP_PH_BEGIN" TYPE="VARCHAR2"/>
-      <ARGUMENT DEFAULT="'%'" MODE="IN" NAME="A_LOOP_PH_BODY" TYPE="VARCHAR2"/>
-      <ARGUMENT DEFAULT="'%}'" MODE="IN" NAME="A_LOOP_PH_END" TYPE="VARCHAR2"/>
+      <ARGUMENT DEFAULT="'{%'" MODE="IN" NAME="A_LOOP_PH_BEGIN" TYPE="VARCHAR2">
+        <COMMENT><![CDATA[a string that denotes the beginning of loop structure within template expression]]></COMMENT>
+      </ARGUMENT>
+      <ARGUMENT DEFAULT="'%'" MODE="IN" NAME="A_LOOP_PH_BODY" TYPE="VARCHAR2">
+        <COMMENT><![CDATA[a string that separates loop inner tempate expression from cursor number and from loop structure options]]></COMMENT>
+      </ARGUMENT>
+      <ARGUMENT DEFAULT="'%}'" MODE="IN" NAME="A_LOOP_PH_END" TYPE="VARCHAR2">
+        <COMMENT><![CDATA[a string that denotes the end of loop structure within template expression]]></COMMENT>
+      </ARGUMENT>
       <RETURN TYPE="STATIC FUNCTION TY_TE">
         <COMMENT><![CDATA[The instance of template expression (ty_te) containing loop part or null if no loop structures were found]]></COMMENT>
       </RETURN>
@@ -1532,12 +1565,21 @@
       <TAG TYPE="@PARAM">
         <COMMENT><![CDATA[a_type a type of placeholders to search in string. Actually just may be used to translate to inner loop structures]]></COMMENT>
       </TAG>
+      <TAG TYPE="@PARAM">
+        <COMMENT><![CDATA[a_loop_ph_begin a string that denotes the beginning of loop structure within template expression]]></COMMENT>
+      </TAG>
+      <TAG TYPE="@PARAM">
+        <COMMENT><![CDATA[a_loop_ph_body a string that separates loop inner tempate expression from cursor number and from loop structure options]]></COMMENT>
+      </TAG>
+      <TAG TYPE="@PARAM">
+        <COMMENT><![CDATA[a_loop_ph_end a string that denotes the end of loop structure within template expression]]></COMMENT>
+      </TAG>
       <TAG TYPE="@RETURN">
         <COMMENT><![CDATA[The instance of template expression (ty_te) containing loop part or null if no loop structures were found]]></COMMENT>
       </TAG>
-      <SUMMARY END_COLUMN="4" END_LINE="322" LINES="196" START_COLUMN="17" START_LINE="127"/>
+      <SUMMARY END_COLUMN="4" END_LINE="368" LINES="196" START_COLUMN="17" START_LINE="173"/>
     </FUNCTION>
-    <FUNCTION NAME="COMPILE_GENERIC" SCOPE="STATIC" VERSION="1">
+    <FUNCTION NAME="COMPILE_GENERIC_" SCOPE="STATIC" VERSION="1">
       <COMMENT_FIRST_LINE><![CDATA[ Parse string for named or numbered templates<br/>
  Stores result of parsing in compiled_template_ nested table.]]></COMMENT_FIRST_LINE>
       <COMMENT><![CDATA[ Parse string for named or numbered templates<br/>
@@ -1555,12 +1597,19 @@
       <ARGUMENT MODE="IN" NAME="A_TYPE" TYPE="PLS_INTEGER">
         <COMMENT><![CDATA[a type of placeholders to search in string. Accepts either ty_te.EL_NUMBERED() or ty_te.EL_NAMED()]]></COMMENT>
       </ARGUMENT>
-      <ARGUMENT DEFAULT="'{%'" MODE="IN" NAME="A_LOOP_PH_BEGIN" TYPE="VARCHAR2"/>
-      <ARGUMENT DEFAULT="'%'" MODE="IN" NAME="A_LOOP_PH_BODY" TYPE="VARCHAR2"/>
-      <ARGUMENT DEFAULT="'%}'" MODE="IN" NAME="A_LOOP_PH_END" TYPE="VARCHAR2"/>
+      <ARGUMENT DEFAULT="'{%'" MODE="IN" NAME="A_LOOP_PH_BEGIN" TYPE="VARCHAR2">
+        <COMMENT><![CDATA[a string that denotes the beginning of loop structure within template expression]]></COMMENT>
+      </ARGUMENT>
+      <ARGUMENT DEFAULT="'%'" MODE="IN" NAME="A_LOOP_PH_BODY" TYPE="VARCHAR2">
+        <COMMENT><![CDATA[a string that separates loop inner tempate expression from cursor number and from loop structure options]]></COMMENT>
+      </ARGUMENT>
+      <ARGUMENT DEFAULT="'%}'" MODE="IN" NAME="A_LOOP_PH_END" TYPE="VARCHAR2">
+        <COMMENT><![CDATA[a string that denotes the end of loop structure within template expression]]></COMMENT>
+      </ARGUMENT>
       <RETURN TYPE="STATIC FUNCTION TY_TE">
         <COMMENT><![CDATA[The instance of template expression (ty_te) or null if a_type != ty_te.EL_NUMBERED() and a_type != ty_te.EL_NAMED()<br/>
- or if no teplate expressions were found in string]]></COMMENT>
+ or if no teplate expressions were found in string.<br/>
+ Also returns null if there's misuse of placeholder denotation strings (a_ph_start, a_ph_end, a_loop_ph_begin, a_loop_ph_body, a_loop_ph_end).]]></COMMENT>
       </RETURN>
       <TAG TYPE="@PARAM">
         <COMMENT><![CDATA[a_template_string a template string]]></COMMENT>
@@ -1574,11 +1623,21 @@
       <TAG TYPE="@PARAM">
         <COMMENT><![CDATA[a_type a type of placeholders to search in string. Accepts either ty_te.EL_NUMBERED() or ty_te.EL_NAMED()]]></COMMENT>
       </TAG>
+      <TAG TYPE="@PARAM">
+        <COMMENT><![CDATA[a_loop_ph_begin a string that denotes the beginning of loop structure within template expression]]></COMMENT>
+      </TAG>
+      <TAG TYPE="@PARAM">
+        <COMMENT><![CDATA[a_loop_ph_body a string that separates loop inner tempate expression from cursor number and from loop structure options]]></COMMENT>
+      </TAG>
+      <TAG TYPE="@PARAM">
+        <COMMENT><![CDATA[a_loop_ph_end a string that denotes the end of loop structure within template expression]]></COMMENT>
+      </TAG>
       <TAG TYPE="@RETURN">
         <COMMENT><![CDATA[The instance of template expression (ty_te) or null if a_type != ty_te.EL_NUMBERED() and a_type != ty_te.EL_NAMED()<br/>
- or if no teplate expressions were found in string]]></COMMENT>
+ or if no teplate expressions were found in string.<br/>
+ Also returns null if there's misuse of placeholder denotation strings (a_ph_start, a_ph_end, a_loop_ph_begin, a_loop_ph_body, a_loop_ph_end).]]></COMMENT>
       </TAG>
-      <SUMMARY END_COLUMN="4" END_LINE="445" LINES="111" START_COLUMN="17" START_LINE="335"/>
+      <SUMMARY END_COLUMN="4" END_LINE="489" LINES="104" START_COLUMN="17" START_LINE="386"/>
     </FUNCTION>
     <FUNCTION NAME="CONCAT" SCOPE="STATIC" VERSION="1">
       <COMMENT_FIRST_LINE><![CDATA[ Concatenates two instances of compiled template expressions to costruct new instance<br/>
@@ -1594,16 +1653,27 @@
       <ARGUMENT MODE="IN" NAME="A_RHV" TYPE="TY_TE">
         <COMMENT><![CDATA[second template expression to combine]]></COMMENT>
       </ARGUMENT>
-      <RETURN TYPE="STATIC FUNCTION TY_TE"/>
+      <RETURN TYPE="STATIC FUNCTION TY_TE">
+        <COMMENT><![CDATA[ty_te the instance of ty_te with compiled_template_ nested table containg ty_sph instances from a_lhl and plus instances from a_rhv<br/>
+ or null if either of parameters is null]]></COMMENT>
+      </RETURN>
       <TAG TYPE="@PARAM">
         <COMMENT><![CDATA[a_lhv first template expression to combine]]></COMMENT>
       </TAG>
       <TAG TYPE="@PARAM">
         <COMMENT><![CDATA[a_rhv second template expression to combine]]></COMMENT>
       </TAG>
-      <SUMMARY END_COLUMN="4" END_LINE="468" LINES="15" START_COLUMN="17" START_LINE="454"/>
+      <TAG TYPE="@TROW">
+        <COMMENT>
+        </COMMENT>
+      </TAG>
+      <TAG TYPE="@RETURN">
+        <COMMENT><![CDATA[ty_te the instance of ty_te with compiled_template_ nested table containg ty_sph instances from a_lhl and plus instances from a_rhv<br/>
+ or null if either of parameters is null]]></COMMENT>
+      </TAG>
+      <SUMMARY END_COLUMN="4" END_LINE="517" LINES="15" START_COLUMN="17" START_LINE="503"/>
     </FUNCTION>
-    <SUMMARY END_COLUMN="4" END_LINE="471" LINES="471" START_COLUMN="29" START_LINE="1"/>
+    <SUMMARY END_COLUMN="4" END_LINE="520" LINES="520" START_COLUMN="29" START_LINE="1"/>
   </OBJECT_BODY>
   <PACKAGE NAME="PK_TE_UT" SCHEMA="">
     <PROCEDURE NAME="RUN_TESTS">
@@ -1701,95 +1771,131 @@
 ]]></COMMENT>
       <SUMMARY END_COLUMN="4" END_LINE="184" LINES="8" START_COLUMN="11" START_LINE="177"/>
     </PROCEDURE>
+    <PROCEDURE NAME="NUMBERED_WITH_PH_END">
+      <SUMMARY END_COLUMN="4" END_LINE="194" LINES="8" START_COLUMN="11" START_LINE="187"/>
+    </PROCEDURE>
+    <PROCEDURE NAME="NUMBERED_11_PH">
+      <SUMMARY END_COLUMN="4" END_LINE="204" LINES="8" START_COLUMN="11" START_LINE="197"/>
+    </PROCEDURE>
     <PROCEDURE NAME="NUMBERED_USER_START">
-      <SUMMARY END_COLUMN="4" END_LINE="193" LINES="8" START_COLUMN="11" START_LINE="186"/>
+      <SUMMARY END_COLUMN="4" END_LINE="214" LINES="8" START_COLUMN="11" START_LINE="207"/>
     </PROCEDURE>
     <PROCEDURE NAME="NUMBERED_REPEATED">
-      <SUMMARY END_COLUMN="4" END_LINE="204" LINES="9" START_COLUMN="11" START_LINE="196"/>
+      <SUMMARY END_COLUMN="4" END_LINE="225" LINES="9" START_COLUMN="11" START_LINE="217"/>
     </PROCEDURE>
     <PROCEDURE NAME="SKIPPED_$2_NULL_IN_MAP">
-      <SUMMARY END_COLUMN="4" END_LINE="215" LINES="9" START_COLUMN="11" START_LINE="207"/>
+      <SUMMARY END_COLUMN="4" END_LINE="236" LINES="9" START_COLUMN="11" START_LINE="228"/>
     </PROCEDURE>
     <PROCEDURE NAME="NO_$_TEMPLATES_NUMBERED">
-      <SUMMARY END_COLUMN="4" END_LINE="222" LINES="6" START_COLUMN="11" START_LINE="217"/>
+      <SUMMARY END_COLUMN="4" END_LINE="245" LINES="8" START_COLUMN="11" START_LINE="238"/>
     </PROCEDURE>
     <PROCEDURE NAME="NUMBERED_$1_FOLLEWED_BY_$2">
-      <SUMMARY END_COLUMN="4" END_LINE="232" LINES="9" START_COLUMN="11" START_LINE="224"/>
+      <SUMMARY END_COLUMN="4" END_LINE="255" LINES="9" START_COLUMN="11" START_LINE="247"/>
     </PROCEDURE>
     <PROCEDURE NAME="NUMBERED_EMPTY_P">
-      <SUMMARY END_COLUMN="4" END_LINE="242" LINES="9" START_COLUMN="11" START_LINE="234"/>
+      <SUMMARY END_COLUMN="4" END_LINE="265" LINES="9" START_COLUMN="11" START_LINE="257"/>
     </PROCEDURE>
     <PROCEDURE NAME="SUBSTITUTE_M_AND_NUMBERED">
-      <SUMMARY END_COLUMN="4" END_LINE="257" LINES="14" START_COLUMN="11" START_LINE="244"/>
+      <SUMMARY END_COLUMN="4" END_LINE="280" LINES="14" START_COLUMN="11" START_LINE="267"/>
     </PROCEDURE>
     <PROCEDURE NAME="SUBSTITUTE_NULL_TE">
-      <SUMMARY END_COLUMN="4" END_LINE="272" LINES="13" START_COLUMN="11" START_LINE="260"/>
+      <SUMMARY END_COLUMN="4" END_LINE="295" LINES="13" START_COLUMN="11" START_LINE="283"/>
     </PROCEDURE>
     <PROCEDURE NAME="NAMED_STRAIGHT">
-      <SUMMARY END_COLUMN="4" END_LINE="292" LINES="17" START_COLUMN="11" START_LINE="276"/>
+      <SUMMARY END_COLUMN="4" END_LINE="315" LINES="17" START_COLUMN="11" START_LINE="299"/>
     </PROCEDURE>
     <PROCEDURE NAME="NAMED_REPEATED">
-      <SUMMARY END_COLUMN="4" END_LINE="312" LINES="18" START_COLUMN="11" START_LINE="295"/>
+      <SUMMARY END_COLUMN="4" END_LINE="335" LINES="18" START_COLUMN="11" START_LINE="318"/>
+    </PROCEDURE>
+    <PROCEDURE NAME="DIGIT_IN_NAMED_TE">
+      <SUMMARY END_COLUMN="4" END_LINE="355" LINES="17" START_COLUMN="11" START_LINE="339"/>
     </PROCEDURE>
     <PROCEDURE NAME="DOT_IN_NAMED_TE">
-      <SUMMARY END_COLUMN="4" END_LINE="332" LINES="17" START_COLUMN="11" START_LINE="316"/>
+      <SUMMARY END_COLUMN="4" END_LINE="375" LINES="17" START_COLUMN="11" START_LINE="359"/>
     </PROCEDURE>
     <PROCEDURE NAME="NAMED_MISSING_IN_M">
-      <SUMMARY END_COLUMN="4" END_LINE="351" LINES="17" START_COLUMN="11" START_LINE="335"/>
+      <SUMMARY END_COLUMN="4" END_LINE="394" LINES="17" START_COLUMN="11" START_LINE="378"/>
     </PROCEDURE>
     <PROCEDURE NAME="SUBSTITUTE_P_AND_NAMED">
-      <SUMMARY END_COLUMN="4" END_LINE="367" LINES="14" START_COLUMN="11" START_LINE="354"/>
+      <SUMMARY END_COLUMN="4" END_LINE="410" LINES="14" START_COLUMN="11" START_LINE="397"/>
     </PROCEDURE>
     <PROCEDURE NAME="NAMED_ENCAPSULATED_TE">
-      <SUMMARY END_COLUMN="4" END_LINE="387" LINES="18" START_COLUMN="11" START_LINE="370"/>
+      <SUMMARY END_COLUMN="4" END_LINE="430" LINES="18" START_COLUMN="11" START_LINE="413"/>
     </PROCEDURE>
     <PROCEDURE NAME="NAMED_USER_START">
-      <SUMMARY END_COLUMN="4" END_LINE="406" LINES="17" START_COLUMN="11" START_LINE="390"/>
+      <SUMMARY END_COLUMN="4" END_LINE="449" LINES="17" START_COLUMN="11" START_LINE="433"/>
     </PROCEDURE>
     <PROCEDURE NAME="NAMED_USER_START_USER_END">
-      <SUMMARY END_COLUMN="4" END_LINE="424" LINES="17" START_COLUMN="11" START_LINE="408"/>
+      <SUMMARY END_COLUMN="4" END_LINE="467" LINES="17" START_COLUMN="11" START_LINE="451"/>
     </PROCEDURE>
     <PROCEDURE NAME="SUBST_NUM_STRAIGHT">
-      <SUMMARY END_COLUMN="4" END_LINE="432" LINES="7" START_COLUMN="11" START_LINE="426"/>
+      <SUMMARY END_COLUMN="4" END_LINE="475" LINES="7" START_COLUMN="11" START_LINE="469"/>
+    </PROCEDURE>
+    <PROCEDURE NAME="SUBST_NUM_STRAIGHT_PH_END">
+      <SUMMARY END_COLUMN="4" END_LINE="483" LINES="6" START_COLUMN="11" START_LINE="478"/>
     </PROCEDURE>
     <PROCEDURE NAME="SUBST_NUM_BACKREF">
-      <SUMMARY END_COLUMN="4" END_LINE="440" LINES="7" START_COLUMN="11" START_LINE="434"/>
+      <SUMMARY END_COLUMN="4" END_LINE="492" LINES="7" START_COLUMN="11" START_LINE="486"/>
     </PROCEDURE>
     <PROCEDURE NAME="SUBST_NUM_NULL_REPL">
-      <SUMMARY END_COLUMN="4" END_LINE="447" LINES="6" START_COLUMN="11" START_LINE="442"/>
+      <SUMMARY END_COLUMN="4" END_LINE="499" LINES="6" START_COLUMN="11" START_LINE="494"/>
     </PROCEDURE>
     <PROCEDURE NAME="SUBST_NUM_NO_TE_IN_MAP">
-      <SUMMARY END_COLUMN="4" END_LINE="455" LINES="7" START_COLUMN="11" START_LINE="449"/>
+      <SUMMARY END_COLUMN="4" END_LINE="507" LINES="7" START_COLUMN="11" START_LINE="501"/>
     </PROCEDURE>
     <PROCEDURE NAME="SUBST_NUM_USER_START">
-      <SUMMARY END_COLUMN="4" END_LINE="463" LINES="7" START_COLUMN="11" START_LINE="457"/>
+      <SUMMARY END_COLUMN="4" END_LINE="515" LINES="7" START_COLUMN="11" START_LINE="509"/>
     </PROCEDURE>
     <PROCEDURE NAME="SUBST_NAMED_STRAIGHT">
-      <SUMMARY END_COLUMN="4" END_LINE="479" LINES="14" START_COLUMN="11" START_LINE="466"/>
+      <SUMMARY END_COLUMN="4" END_LINE="531" LINES="14" START_COLUMN="11" START_LINE="518"/>
     </PROCEDURE>
     <PROCEDURE NAME="SUBST_NAMED_EMPTY_AND_NULL_P">
-      <SUMMARY END_COLUMN="4" END_LINE="495" LINES="14" START_COLUMN="11" START_LINE="482"/>
+      <SUMMARY END_COLUMN="4" END_LINE="547" LINES="14" START_COLUMN="11" START_LINE="534"/>
     </PROCEDURE>
     <PROCEDURE NAME="SUBST_NAMED_BACKREF">
-      <SUMMARY END_COLUMN="4" END_LINE="511" LINES="14" START_COLUMN="11" START_LINE="498"/>
+      <SUMMARY END_COLUMN="4" END_LINE="563" LINES="14" START_COLUMN="11" START_LINE="550"/>
     </PROCEDURE>
     <PROCEDURE NAME="SUBST_NAMED_REPEADTED">
-      <SUMMARY END_COLUMN="4" END_LINE="528" LINES="15" START_COLUMN="11" START_LINE="514"/>
+      <SUMMARY END_COLUMN="4" END_LINE="580" LINES="15" START_COLUMN="11" START_LINE="566"/>
+    </PROCEDURE>
+    <PROCEDURE NAME="CUR_NUMBERED">
+      <SUMMARY END_COLUMN="4" END_LINE="603" LINES="22" START_COLUMN="11" START_LINE="582"/>
+    </PROCEDURE>
+    <PROCEDURE NAME="CUR_NUMBERED_SQL">
+      <SUMMARY END_COLUMN="4" END_LINE="629" LINES="24" START_COLUMN="11" START_LINE="606"/>
+    </PROCEDURE>
+    <PROCEDURE NAME="CUR_NUMBERED_BREAK_WRONG_CUR">
+      <SUMMARY END_COLUMN="4" END_LINE="648" LINES="17" START_COLUMN="11" START_LINE="632"/>
+    </PROCEDURE>
+    <PROCEDURE NAME="CUR_NAMED">
+      <SUMMARY END_COLUMN="4" END_LINE="672" LINES="22" START_COLUMN="11" START_LINE="651"/>
+    </PROCEDURE>
+    <PROCEDURE NAME="CUR_NAMED_BREAK_WRONG_TE">
+      <SUMMARY END_COLUMN="4" END_LINE="692" LINES="17" START_COLUMN="11" START_LINE="676"/>
+    </PROCEDURE>
+    <PROCEDURE NAME="COMBINE_NAMED">
+      <SUMMARY END_COLUMN="4" END_LINE="716" LINES="20" START_COLUMN="11" START_LINE="697"/>
+    </PROCEDURE>
+    <PROCEDURE NAME="LOOP_MERGE">
+      <SUMMARY END_COLUMN="4" END_LINE="768" LINES="51" START_COLUMN="11" START_LINE="718"/>
+    </PROCEDURE>
+    <PROCEDURE NAME="LOOP_RECURSION">
+      <SUMMARY END_COLUMN="4" END_LINE="804" LINES="35" START_COLUMN="11" START_LINE="770"/>
     </PROCEDURE>
     <PROCEDURE NAME="RUN_TESTS">
       <COMMENT_FIRST_LINE><![CDATA[ Public package procedure that actually run tests.]]></COMMENT_FIRST_LINE>
       <COMMENT><![CDATA[ Public package procedure that actually run tests. Test results are stored in ut_report.
 ]]></COMMENT>
-      <SUMMARY END_COLUMN="4" END_LINE="560" LINES="29" START_COLUMN="11" START_LINE="532"/>
+      <SUMMARY END_COLUMN="4" END_LINE="849" LINES="41" START_COLUMN="11" START_LINE="809"/>
     </PROCEDURE>
-    <SUMMARY END_COLUMN="13" END_LINE="562" LINES="562" START_COLUMN="32" START_LINE="1"/>
+    <SUMMARY END_COLUMN="13" END_LINE="851" LINES="851" START_COLUMN="32" START_LINE="1"/>
   </PACKAGE_BODY>
   <GENERATOR>
     <OBJECTS>
-      <PROCESSED COUNT="17"/>
-      <SKIPPED COUNT="1"/>
+      <PROCESSED COUNT="19"/>
+      <SKIPPED COUNT="0"/>
     </OBJECTS>
-    <CREATED DATE="21.05.15" TIME="14:12"/>
+    <CREATED DATE="22.05.15" TIME="15:07"/>
     <SETTINGS DEFAULT_KEYWORDS_CASE="UPPER" DEFAULT_NAMES_CASE="UPPER" IGNORE_INFORMAL_COMMENTS="FALSE" INPUT_ENCODING="Cp1251" KEYWORDS_TO_DEFAULT_CASE="TRUE" KEYWORDS_TO_LOWER_CASE="FALSE" KEYWORDS_TO_UPPER_CASE="FALSE" NAMES_TO_DEFAULT_CASE="TRUE" NAMES_TO_LOWER_CASE="FALSE" NAMES_TO_UPPER_CASE="FALSE" SHOW_SKIPPED_PACKAGES="FALSE" VERBOSE="FALSE"/>
   </GENERATOR>
 </APPLICATION>

@@ -1,4 +1,5 @@
 @prereqs.sql
+@pk_te_ex.sql
 @ty_sph.sql
 @ty_sph_body.sql
 @ty_sph_tbl.sql

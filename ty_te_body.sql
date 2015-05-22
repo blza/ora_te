@@ -19,15 +19,14 @@ end;
 * TY_TE (Template Expression)<br/>
 * A type that represents a compiled template expression.<br/>
 * By template expression (TE) we understand a string with numbered or named placeholders.<br/>
-* By compiling TE we understand parsing it, finding numbered or named placeholders and storing the whole expression<br/>
-* in the form of a nested table of ty_sph.<br/>
+* By compiling TE we understand parsing it, finding numbered or named placeholders and storing the whole expression in internal<br/>
+* structures (a nested table of ty_sph).
 * @headcom
 */
 
 /** Constructor implementation
 *
-* @param a_type Can be either ty_te.EL_NAMED() or ty_te.EL_NUMBERED(). Denotes the type of placehoders that were<br/>
-* searched while compiling.
+* @param a_type Can be either ty_te.EL_NAMED() or ty_te.EL_NUMBERED() - the type of placehoders that were searched while compiling.
 * @return self
 */
 CONSTRUCTOR FUNCTION ty_te( SELF IN OUT NOCOPY ty_te, a_type in pls_integer ) 
@@ -60,7 +59,13 @@ end;
 *
 * @param a_template_string a template string
 * @param  a_ph_start a string that denotes the beginning of numbered placeholder 
+* @param a_loop_ph_begin a string that denotes the beginning of loop structure within template expression
+* @param a_loop_ph_body a string that separates loop inner tempate expression from cursor number and from loop structure options
+* @param a_loop_ph_end a string that denotes the end of loop structure within template expression
+*
 * @return The instance of template expression (ty_te) or null if no placeholders were found or if a_ph_start is null
+*
+* @throw pk_te_ex.EX_WRONG_PH_DENOTATION in case of ph denotation misuse
 */
 static function compile_numbered( 
   a_template_string in clob
@@ -73,9 +78,23 @@ static function compile_numbered(
 AS
 BEGIN
   if a_ph_start is null then
-    return null;
+    raise_application_error( pk_te_ex.CEX_WRONG_PH_DENOTATION, 'A_PH_START may not be null' );
   end if;
-  return ty_te.compile_generic( a_template_string, a_ph_start, a_ph_end, ty_te.EL_NUMBERED(), a_loop_ph_begin, a_loop_ph_body, a_loop_ph_end );
+  if ( a_loop_ph_begin is null or a_loop_ph_body is null or a_loop_ph_end is null ) then
+    raise_application_error( pk_te_ex.CEX_WRONG_PH_DENOTATION, 'A_LOOP_PH_BEGIN, A_LOOP_PH_BODY, A_LOOP_PH_END may not be null' );
+  end if;
+  if ( 
+    ( a_ph_start = a_loop_ph_begin ) 
+    or ( a_ph_start = a_loop_ph_body )
+    or ( a_ph_start = a_loop_ph_end ) 
+    or ( a_ph_end = a_loop_ph_begin ) 
+    or ( a_ph_end = a_loop_ph_body )
+    or ( a_ph_end = a_loop_ph_end ) 
+  ) then
+    raise_application_error( pk_te_ex.CEX_WRONG_PH_DENOTATION, 'A_PH_BEGIN, A_PH_END may not be equal to one of A_LOOP_PH_BEGIN, A_LOOP_PH_BODY, A_LOOP_PH_END' );
+  end if;
+  
+  return ty_te.compile_generic_( a_template_string, a_ph_start, a_ph_end, ty_te.EL_NUMBERED(), a_loop_ph_begin, a_loop_ph_body, a_loop_ph_end );
   
 END compile_numbered;
 
@@ -85,8 +104,14 @@ END compile_numbered;
 * @param a_template_string a template string
 * @param a_ph_start a string that denotes the beginning of named placeholder
 * @param a_ph_end a string that denotes the end of named placeholder
+* @param a_loop_ph_begin a string that denotes the beginning of loop structure within template expression
+* @param a_loop_ph_body a string that separates loop inner tempate expression from cursor number and from loop structure options
+* @param a_loop_ph_end a string that denotes the end of loop structure within template expression
+*
 * @return The instance of template expression (ty_te) or null if no placeholders were found or if or <br/>
 * a_ph_start or a_ph_end is null
+*
+* @throw pk_te_ex.EX_WRONG_PH_DENOTATION in case of ph denotation misuse
 */
 static function compile_named( 
   a_template_string in clob
@@ -98,10 +123,27 @@ static function compile_named(
 ) return ty_te 
 AS
 BEGIN
-  if a_ph_start is null or a_ph_end is null then
-    return null;
+  if a_ph_start is null then
+    raise_application_error( pk_te_ex.CEX_WRONG_PH_DENOTATION, 'A_PH_START may not be null' );
   end if;
-  return ty_te.compile_generic( a_template_string, a_ph_start, a_ph_end, ty_te.EL_NAMED(), a_loop_ph_begin, a_loop_ph_body, a_loop_ph_end );
+  if a_ph_end is null then
+    raise_application_error( pk_te_ex.CEX_WRONG_PH_DENOTATION, 'A_PH_END may not be null' );
+  end if;
+  if ( a_loop_ph_begin is null or a_loop_ph_body is null or a_loop_ph_end is null ) then
+    raise_application_error( pk_te_ex.CEX_WRONG_PH_DENOTATION, 'A_LOOP_PH_BEGIN, A_LOOP_PH_BODY, A_LOOP_PH_END may not be null' );
+  end if;
+  if ( 
+    ( a_ph_start = a_loop_ph_begin ) 
+    or ( a_ph_start = a_loop_ph_body )
+    or ( a_ph_start = a_loop_ph_end ) 
+    or ( a_ph_end = a_loop_ph_begin ) 
+    or ( a_ph_end = a_loop_ph_body )
+    or ( a_ph_end = a_loop_ph_end ) 
+  ) then
+    raise_application_error( pk_te_ex.CEX_WRONG_PH_DENOTATION, 'A_PH_BEGIN, A_PH_END may not be equal to one of A_LOOP_PH_BEGIN, A_LOOP_PH_BODY, A_LOOP_PH_END' );
+  end if;
+  
+  return ty_te.compile_generic_( a_template_string, a_ph_start, a_ph_end, ty_te.EL_NAMED(), a_loop_ph_begin, a_loop_ph_body, a_loop_ph_end );
 END;
 
 /** Replaces special characters in delimiters part of loop structure options with coresponding character codes
@@ -122,6 +164,10 @@ end;
 * @param a_ph_start a string that denotes the beginning of placeholder
 * @param a_ph_end a string that denotes the end of placeholder
 * @param a_type a type of placeholders to search in string. Actually just may be used to translate to inner loop structures
+* @param a_loop_ph_begin a string that denotes the beginning of loop structure within template expression
+* @param a_loop_ph_body a string that separates loop inner tempate expression from cursor number and from loop structure options
+* @param a_loop_ph_end a string that denotes the end of loop structure within template expression
+*
 * @return The instance of template expression (ty_te) containing loop part or null if no loop structures were found
 */
 static function process_loop_( 
@@ -292,7 +338,7 @@ begin
     end if;
   end if;
     
-  v_loop_te := ty_te.compile_generic( 
+  v_loop_te := ty_te.compile_generic_( 
       v_loop_body 
       , v_new_ph_start
       , v_new_ph_end
@@ -311,11 +357,11 @@ begin
     ); 
   end if;
   
-  v_head_te := ty_te.compile_generic( v_head_string, a_ph_start, a_ph_end, a_type, a_loop_ph_begin, a_loop_ph_body, a_loop_ph_end );
+  v_head_te := ty_te.compile_generic_( v_head_string, a_ph_start, a_ph_end, a_type, a_loop_ph_begin, a_loop_ph_body, a_loop_ph_end );
   v_head_te.compiled_template_.extend( 1 );
   v_head_te.compiled_template_( v_head_te.compiled_template_.last ) := v_loop_sph;
 
-  v_tail_te := ty_te.compile_generic( v_tail_string, a_ph_start, a_ph_end, a_type, a_loop_ph_begin, a_loop_ph_body, a_loop_ph_end );
+  v_tail_te := ty_te.compile_generic_( v_tail_string, a_ph_start, a_ph_end, a_type, a_loop_ph_begin, a_loop_ph_body, a_loop_ph_end );
 
   v_instance := ty_te.concat( v_head_te, v_tail_te );
   return v_instance;
@@ -329,10 +375,15 @@ end;
 * @param a_ph_start a string that denotes the beginning of placeholder
 * @param a_ph_end a string that denotes the end of placeholder
 * @param a_type a type of placeholders to search in string. Accepts either ty_te.EL_NUMBERED() or ty_te.EL_NAMED()
+* @param a_loop_ph_begin a string that denotes the beginning of loop structure within template expression
+* @param a_loop_ph_body a string that separates loop inner tempate expression from cursor number and from loop structure options
+* @param a_loop_ph_end a string that denotes the end of loop structure within template expression
+*
 * @return The instance of template expression (ty_te) or null if a_type != ty_te.EL_NUMBERED() and a_type != ty_te.EL_NAMED()<br/>
-* or if no teplate expressions were found in string
+* or if no teplate expressions were found in string.<br/>
+* Also returns null if there's misuse of placeholder denotation strings (a_ph_start, a_ph_end, a_loop_ph_begin, a_loop_ph_body, a_loop_ph_end).
 */
-static function compile_generic( 
+static function compile_generic_( 
   a_template_string in clob
   , a_ph_start in varchar2
   , a_ph_end in varchar2
@@ -355,13 +406,6 @@ AS
   v_sph_idx pls_integer := 0;
   v_match varchar2( 100 char );
 BEGIN
-  if 
-    ( a_type != ty_te.EL_NUMBERED() and a_type != ty_te.EL_NAMED() )
-    or a_loop_ph_begin is null or a_loop_ph_body is null or a_loop_ph_end is null 
-  then
-    return null;
-  end if;
-  
   v_instance := process_loop_( 
     a_template_string 
     , a_ph_start 
@@ -450,15 +494,20 @@ END;
 * , from a_rhv.compiled_template_ second).
 * @param a_lhv first template expression to combine
 * @param a_rhv second template expression to combine
+* 
+* @return ty_te the instance of ty_te with compiled_template_ nested table containg ty_sph instances from a_lhl and plus instances from a_rhv<br/>
+* or null if either of parameters is null
+*
+* @trow
 */
 static function concat( a_lhv in ty_te, a_rhv in ty_te ) return ty_te 
 as
    v_instance ty_te;
 begin
-  if ( a_lhv.type_ != a_rhv.type_ 
-    or a_lhv is null 
-    or a_rhv is null )
-  then
+  if a_lhv.type_ != a_rhv.type_ then
+    raise_application_error( pk_te_ex.CEX_WRONG_PH_DENOTATION, 'Types of TY_TE instances do not match' );
+  end if;
+  if a_lhv is null or a_rhv is null then
     return null;
   end if;
   

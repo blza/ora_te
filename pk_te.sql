@@ -1,20 +1,5 @@
 create or replace PACKAGE PK_TE AS 
-  EX_TE_GENERAL exception;
-  CEX_TE_GENERAL constant pls_integer := -20999;
-  pragma EXCEPTION_INIT( EX_TE_GENERAL, -20999 );
-  
-  EX_TE_OF_WRONG_TYPE exception;
-  CEX_TE_OF_WRONG_TYPE constant pls_integer := -20998;
-  pragma EXCEPTION_INIT( EX_TE_OF_WRONG_TYPE, -20998 );
-  
-  EX_TE_IS_NULL exception;
-  CEX_TE_IS_NULL constant pls_integer := -20997;
-  pragma EXCEPTION_INIT( EX_TE_IS_NULL, -20997 );
-  
-  EX_CURSOR_OF_WRONG_TYPE exception;
-  CEX_CURSOR_OF_WRONG_TYPE constant pls_integer := -20996;
-  pragma EXCEPTION_INIT( EX_CURSOR_OF_WRONG_TYPE, -20996 );
-  
+ 
   subtype p is ty_p;
   subtype m is ty_m;
   

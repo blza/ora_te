@@ -35,8 +35,8 @@
 <BR>Object Type&nbsp;TY_TE</H2> TY_TE (Template Expression)<br/>
  A type that represents a compiled template expression.<br/>
  By template expression (TE) we understand a string with numbered or named placeholders.<br/>
- By compiling TE we understand parsing it, finding numbered or named placeholders and storing the whole expression<br/>
- in the form of a nested table of ty_sph.<br/>
+ By compiling TE we understand parsing it, finding numbered or named placeholders and storing the whole expression in internal<br/>
+ structures (a nested table of ty_sph).
 <P></P>
 <DL></DL>
 <HR>
@@ -58,7 +58,7 @@
 		siblingCount=0 
 		argumentCount=7 
 		predecessorCount=0 
-		siblingNoArgumentCount=0--><A NAME="COMPILE_GENERIC"></A><TD><CODE><B><A HREF="#COMPILE_GENERIC(CLOB,VARCHAR2,VARCHAR2,PLS_INTEGER,VARCHAR2,VARCHAR2,VARCHAR2)">COMPILE_GENERIC</A></B>(A_TEMPLATE_STRING IN CLOB, A_PH_START IN VARCHAR2, A_PH_END IN VARCHAR2, A_TYPE IN PLS_INTEGER, A_LOOP_PH_BEGIN IN VARCHAR2 DEFAULT '{%', A_LOOP_PH_BODY IN VARCHAR2 DEFAULT '%', A_LOOP_PH_END IN VARCHAR2 DEFAULT '%}')</CODE>
+		siblingNoArgumentCount=0--><A NAME="COMPILE_GENERIC_"></A><TD><CODE><B><A HREF="#COMPILE_GENERIC_(CLOB,VARCHAR2,VARCHAR2,PLS_INTEGER,VARCHAR2,VARCHAR2,VARCHAR2)">COMPILE_GENERIC_</A></B>(A_TEMPLATE_STRING IN CLOB, A_PH_START IN VARCHAR2, A_PH_END IN VARCHAR2, A_TYPE IN PLS_INTEGER, A_LOOP_PH_BEGIN IN VARCHAR2 DEFAULT '{%', A_LOOP_PH_BODY IN VARCHAR2 DEFAULT '%', A_LOOP_PH_END IN VARCHAR2 DEFAULT '%}')</CODE>
 <BR>
       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
        Parse string for named or numbered templates<br/>
@@ -251,15 +251,15 @@
 <TD COLSPAN="1"><FONT SIZE="+2"><B>Method Detail</B></FONT></TD>
 </TR>
 </TABLE>
-<A NAME="COMPILE_GENERIC(CLOB,VARCHAR2,VARCHAR2,PLS_INTEGER,VARCHAR2,VARCHAR2,VARCHAR2)"></A>
-<H3>COMPILE_GENERIC</H3>
+<A NAME="COMPILE_GENERIC_(CLOB,VARCHAR2,VARCHAR2,PLS_INTEGER,VARCHAR2,VARCHAR2,VARCHAR2)"></A>
+<H3>COMPILE_GENERIC_</H3>
 <PRE> <!--
        schemaName=
        typeName=STATIC FUNCTION TY_TE
        localTypeName=
        schema=
        fieldType=STATIC FUNCTION TY_TE
-       synonymsFile=,,--><!--GenerateTypeLink: default reached-->STATIC FUNCTION TY_TE <B>COMPILE_GENERIC</B>(A_TEMPLATE_STRING IN CLOB, <BR>                                       A_PH_START IN VARCHAR2, <BR>                                       A_PH_END IN VARCHAR2, <BR>                                       A_TYPE IN PLS_INTEGER, <BR>                                       A_LOOP_PH_BEGIN IN VARCHAR2 DEFAULT '{%', <BR>                                       A_LOOP_PH_BODY IN VARCHAR2 DEFAULT '%', <BR>                                       A_LOOP_PH_END IN VARCHAR2 DEFAULT '%}')</PRE>
+       synonymsFile=,,--><!--GenerateTypeLink: default reached-->STATIC FUNCTION TY_TE <B>COMPILE_GENERIC_</B>(A_TEMPLATE_STRING IN CLOB, <BR>                                        A_PH_START IN VARCHAR2, <BR>                                        A_PH_END IN VARCHAR2, <BR>                                        A_TYPE IN PLS_INTEGER, <BR>                                        A_LOOP_PH_BEGIN IN VARCHAR2 DEFAULT '{%', <BR>                                        A_LOOP_PH_BODY IN VARCHAR2 DEFAULT '%', <BR>                                        A_LOOP_PH_END IN VARCHAR2 DEFAULT '%}')</PRE>
 <DL>
 <DD> Parse string for named or numbered templates<br/>
  Stores result of parsing in compiled_template_ nested table.
@@ -279,10 +279,20 @@
 <DD>
 <CODE>A_TYPE</CODE> -
               a type of placeholders to search in string. Accepts either ty_te.EL_NUMBERED() or ty_te.EL_NAMED()</DD>
+<DD>
+<CODE>A_LOOP_PH_BEGIN</CODE> -
+              a string that denotes the beginning of loop structure within template expression</DD>
+<DD>
+<CODE>A_LOOP_PH_BODY</CODE> -
+              a string that separates loop inner tempate expression from cursor number and from loop structure options</DD>
+<DD>
+<CODE>A_LOOP_PH_END</CODE> -
+              a string that denotes the end of loop structure within template expression</DD>
 </DT>
 <DT>Returns:
           <DD>The instance of template expression (ty_te) or null if a_type != ty_te.EL_NUMBERED() and a_type != ty_te.EL_NAMED()<br/>
- or if no teplate expressions were found in string</DD>
+ or if no teplate expressions were found in string.<br/>
+ Also returns null if there's misuse of placeholder denotation strings (a_ph_start, a_ph_end, a_loop_ph_begin, a_loop_ph_body, a_loop_ph_end).</DD>
 </DT>
 </DL>
 </DD>
@@ -314,6 +324,15 @@
 <DD>
 <CODE>A_PH_END</CODE> -
               a string that denotes the end of named placeholder</DD>
+<DD>
+<CODE>A_LOOP_PH_BEGIN</CODE> -
+              a string that denotes the beginning of loop structure within template expression</DD>
+<DD>
+<CODE>A_LOOP_PH_BODY</CODE> -
+              a string that separates loop inner tempate expression from cursor number and from loop structure options</DD>
+<DD>
+<CODE>A_LOOP_PH_END</CODE> -
+              a string that denotes the end of loop structure within template expression</DD>
 </DT>
 <DT>Returns:
           <DD>The instance of template expression (ty_te) or null if no placeholders were found or if or <br/>
@@ -346,6 +365,15 @@
 <DD>
 <CODE>A_PH_START</CODE> -
               a string that denotes the beginning of numbered placeholder</DD>
+<DD>
+<CODE>A_LOOP_PH_BEGIN</CODE> -
+              a string that denotes the beginning of loop structure within template expression</DD>
+<DD>
+<CODE>A_LOOP_PH_BODY</CODE> -
+              a string that separates loop inner tempate expression from cursor number and from loop structure options</DD>
+<DD>
+<CODE>A_LOOP_PH_END</CODE> -
+              a string that denotes the end of loop structure within template expression</DD>
 </DT>
 <DT>Returns:
           <DD>The instance of template expression (ty_te) or null if no placeholders were found or if a_ph_start is null</DD>
@@ -379,6 +407,10 @@
 <DD>
 <CODE>A_RHV</CODE> -
               second template expression to combine</DD>
+</DT>
+<DT>Returns:
+          <DD>ty_te the instance of ty_te with compiled_template_ nested table containg ty_sph instances from a_lhl and plus instances from a_rhv<br/>
+ or null if either of parameters is null</DD>
 </DT>
 </DL>
 </DD>
@@ -490,6 +522,15 @@
 <DD>
 <CODE>A_TYPE</CODE> -
               a type of placeholders to search in string. Actually just may be used to translate to inner loop structures</DD>
+<DD>
+<CODE>A_LOOP_PH_BEGIN</CODE> -
+              a string that denotes the beginning of loop structure within template expression</DD>
+<DD>
+<CODE>A_LOOP_PH_BODY</CODE> -
+              a string that separates loop inner tempate expression from cursor number and from loop structure options</DD>
+<DD>
+<CODE>A_LOOP_PH_END</CODE> -
+              a string that denotes the end of loop structure within template expression</DD>
 </DT>
 <DT>Returns:
           <DD>The instance of template expression (ty_te) containing loop part or null if no loop structures were found</DD>
@@ -545,8 +586,7 @@
 <DT>Parameters:
         <DD>
 <CODE>A_TYPE</CODE> -
-              Can be either ty_te.EL_NAMED() or ty_te.EL_NUMBERED(). Denotes the type of placehoders that were<br/>
- searched while compiling.</DD>
+              Can be either ty_te.EL_NAMED() or ty_te.EL_NUMBERED() - the type of placehoders that were searched while compiling.</DD>
 </DT>
 <DT>Returns:
           <DD>self</DD>

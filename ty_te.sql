@@ -21,7 +21,7 @@ create or replace type ty_te force as object (
       , a_loop_ph_body varchar2 := '%'
       , a_loop_ph_end varchar2 := '%}'
     ) return ty_te
-  , static function compile_generic( 
+  , static function compile_generic_( 
       a_template_string in clob
       , a_ph_start in varchar2
       , a_ph_end in varchar2

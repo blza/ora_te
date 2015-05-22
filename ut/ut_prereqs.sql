@@ -1,3 +1,7 @@
+truncate table ut_report;
+/
+drop table ut_report;
+/
 create global temporary table ut_report 
 ( ut_name varchar2( 30 char ) 
   , status varchar2( 30 char ) 
@@ -7,7 +11,7 @@ create global temporary table ut_report
   , line_number integer
   , order_ integer
 ) on commit preserve rows;
-
+/
 create or replace view ut_report_deciphered
 as 
 select substr( regexp_replace( text, '(procedure|function)\s+([a-zA-Z0-9_\$#]+)(\s|\W|$).*', '\2', 1, 0, 'imn' ), 1, 30 ) ut_name
@@ -34,3 +38,4 @@ from (
 ) 
 where rn = 1
 order by order_;
+/
