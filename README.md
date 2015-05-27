@@ -25,7 +25,6 @@ when not matched then
 insert( {$join_by}
   , {%1%{$column_name}%\r\n  , %}
 ) values ( {$seq_name}.nextval
-  , t2.{$join_by}
   , {%1%t2.{$column_name}%\r\n  , %}
 ) 
 where t2.status_code <> ''D''
@@ -75,7 +74,6 @@ insert( id_
   , COL1
   , COL2
 ) values ( seq_dummy_id.nextval
-  , t2.id_
   , t2.COL1
   , t2.COL2
 ) 
