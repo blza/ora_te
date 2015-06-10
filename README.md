@@ -105,7 +105,7 @@ To deploy unit tests run `ut/deploy_ut.sql`.
 To actually run unit tests run `ut/run_tests.sql`.
 
 ## Imposed cost of invocation
-Profiling info and comparison to standart concat are to come.
+Profiling info and comparison will be published later.
 
 ## Licence
 Mit licence applies (http://opensource.org/licenses/MIT).
