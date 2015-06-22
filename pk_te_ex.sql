@@ -1,5 +1,4 @@
-CREATE OR REPLACE 
-PACKAGE PK_TE_EX AS 
+create or replace PACKAGE PK_TE_EX AS 
 
 EX_TE_GENERAL exception;
 CEX_TE_GENERAL constant pls_integer := -20999;
@@ -25,4 +24,9 @@ EX_TY_TE_TYPES_DO_NOT_MATCH exception;
 CEX_TY_TE_TYPES_DO_NOT_MATCH constant pls_integer := -20994;
 pragma EXCEPTION_INIT( EX_TY_TE_TYPES_DO_NOT_MATCH, -20994 );
 
+EX_EVAL_FAILED exception;
+CEX_EVAL_FAILED constant pls_integer := -20993;
+pragma EXCEPTION_INIT( EX_EVAL_FAILED, -20993 );
+
 END PK_TE_EX;
+/

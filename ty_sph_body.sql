@@ -1,7 +1,7 @@
 create or replace type body TY_SPH as
 /**
 * TY_SPH (String Or Placeholder)<br/>
-* A type that represents wrapped clob or numbered/named placeholder.<br/>
+* A type that represents wrapped clob or numbered/named placeholder or contains references to nested compiled tempate expressions (ty_te).<br/>
 * You can create ty_sph of particular type by calling corresponding static functions.<br/>
 * This type is used in internals of TY_TE as a container of either string, or numbered/named placeholder<br/>
 * @headcom
@@ -66,15 +66,28 @@ end;
 * @param a_concat_by a string that comes from loop declaration and that will be inserted between individual loop substitutions.
 * @return instance of ty_sph
 */
-static function create_nested_te( a_te_id in pls_integer, a_loop_number in pls_integer := 0, a_concat_by in varchar2 := '' ) return ty_sph
+static function create_loop_construct( a_te_id in pls_integer, a_loop_number in pls_integer := 0, a_concat_by in varchar2 := '' ) return ty_sph
 as
   v_instance ty_sph;
 begin
   v_instance := ty_sph();
-  v_instance.type_ := ty_sph.EL_NESTED_TE();
-  v_instance.nested_te_id := a_te_id;
+  v_instance.type_ := ty_sph.EL_LOOP_CONSTRUCT();
+  v_instance.loop_construct_id := a_te_id;
   v_instance.loop_number := a_loop_number;
   v_instance.concat_by := a_concat_by;
+  return v_instance;
+end;
+
+
+static function create_if_construct( a_if_te_id in pls_integer, a_true_te_id in pls_integer, a_false_te_id in pls_integer ) return ty_sph
+as
+  v_instance ty_sph;
+begin
+  v_instance := ty_sph();
+  v_instance.type_ := ty_sph.EL_IF_CONSTRUCT();
+  v_instance.loop_construct_id := a_if_te_id;
+  v_instance.t_te_id := a_true_te_id;
+  v_instance.f_te_id := a_false_te_id;
   return v_instance;
 end;
 
@@ -100,11 +113,20 @@ begin
   return 3;
 end;
 
-
-static function EL_NESTED_TE return pls_integer as 
+/** Just to be used as class constant
+*/
+static function EL_LOOP_CONSTRUCT return pls_integer as 
 begin
   return 4;
 end;
+
+/** Just to be used as class constant
+*/
+static function EL_IF_CONSTRUCT return pls_integer as
+begin
+  return 5;
+end;
+
 
 /** Check if current instance is the wrapper of clob.
 * @return 1 if the instance is a wrapper of clob, 0 otherwise.
@@ -120,3 +142,4 @@ end;
 
 
 end;
+/

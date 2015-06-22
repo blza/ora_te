@@ -1,10 +1,13 @@
-create or replace PACKAGE BODY PK_TE AS
+create or replace PACKAGE BODY PK_TE AS 
 
 /** 
 * The package that provides functions to substitute values instead of placeholders.<br/>
 * Only functions and types that are to be called by end user are exposed. Some supporting functions are moved to PK_TE_IMPL.
 * @headcom  
 */
+
+g_old_syntax_proxy ty_te_old_proxy;
+
 
 type ty_vchar_to_vchar is table of varchar2( 32767 char ) index by varchar2( 100 char );
 
@@ -55,9 +58,12 @@ function substitute( a_te in ty_te, a_numbered_replacements p
   EL_STRING constant pls_integer := ty_sph.EL_STRING();
   EL_PH_NUMBERED constant pls_integer := ty_sph.EL_PH_NUMBERED();
   EL_PH_NAMED constant pls_integer := ty_sph.EL_PH_NAMED();
-  EL_NESTED_TE constant pls_integer := ty_sph.EL_NESTED_TE();
+  EL_LOOP_CONSTRUCT constant pls_integer := ty_sph.EL_LOOP_CONSTRUCT();
+  EL_IF_CONSTRUCT constant pls_integer := ty_sph.EL_IF_CONSTRUCT();
   v_sph ty_sph;
   v_loop_te ty_te;
+  v_if_te ty_te;
+  v_cond_subst_res clob;
   v_p_cache pk_te_impl.ty_p_cache;
   v_m_cache pk_te_impl.ty_m_cache;
 BEGIN
@@ -80,14 +86,30 @@ BEGIN
         if ( a_numbered_replacements.exists( v_sph.ph_number ) ) then
           v_res := v_res || a_numbered_replacements( v_sph.ph_number );
         end if;
-      elsif ( EL_NESTED_TE = v_sph.type_ ) then
-        v_loop_te := pk_te_crossref.get_loop_te( v_sph.nested_te_id );
+      elsif ( EL_LOOP_CONSTRUCT = v_sph.type_ ) then
+        v_loop_te := pk_te_crossref.get_te_ref( v_sph.loop_construct_id );
         if v_loop_te is not null then
           v_res := v_res || 
-            pk_te_impl.dispatch_nested_te_subst_( v_p_cache, v_m_cache, v_loop_te, v_sph.loop_number, v_sph.concat_by, 
+            pk_te_impl.dispatch_loop_construct_subst_( v_p_cache, v_m_cache, v_loop_te, v_sph.loop_number, v_sph.concat_by, 
               a_c1, a_c2, a_c3, a_c4, a_c5, a_c6, a_c7, a_c8, a_c9 )
           ;
         end if;
+      elsif ( EL_IF_CONSTRUCT = v_sph.type_ ) then
+        v_if_te := pk_te_crossref.get_te_ref( v_sph.loop_construct_id );
+        if v_if_te is not null then
+          v_cond_subst_res := pk_te.substitute( v_if_te, a_numbered_replacements, a_c1, a_c2, a_c3, a_c4, a_c5, a_c6, a_c7, a_c8, a_c9 );
+        end if;
+        if ( pk_te_impl.eval( v_cond_subst_res ) ) then
+          v_if_te := pk_te_crossref.get_te_ref( v_sph.t_te_id );
+        else
+          v_if_te := pk_te_crossref.get_te_ref( v_sph.f_te_id );
+        end if;
+        if v_if_te is not null then
+          v_res := v_res || 
+            pk_te.substitute( v_if_te, a_numbered_replacements, a_c1, a_c2, a_c3, a_c4, a_c5, a_c6, a_c7, a_c8, a_c9 )
+          ;
+        end if;
+        
       end if;
     end if;
   end loop;
@@ -132,11 +154,14 @@ AS
   EL_STRING constant pls_integer := ty_sph.EL_STRING();
   EL_PH_NUMBERED constant pls_integer := ty_sph.EL_PH_NUMBERED();
   EL_PH_NAMED constant pls_integer := ty_sph.EL_PH_NAMED();
-  EL_NESTED_TE constant pls_integer := ty_sph.EL_NESTED_TE();
+  EL_LOOP_CONSTRUCT constant pls_integer := ty_sph.EL_LOOP_CONSTRUCT();
+  EL_IF_CONSTRUCT constant pls_integer := ty_sph.EL_IF_CONSTRUCT();  
   v_sph ty_sph;
   v_dict ty_vchar_to_vchar; 
   v_p p;
   v_loop_te ty_te;
+  v_if_te ty_te;
+  v_cond_subst_res clob;
   v_p_cache pk_te_impl.ty_p_cache;
   v_m_cache pk_te_impl.ty_m_cache;
 BEGIN
@@ -149,6 +174,7 @@ BEGIN
   end if;
   
   init_cache_( v_p_cache, v_m_cache );
+  
   -- Make associative array from provided map
   for idx in a_named_replacements.first .. a_named_replacements.last loop
     v_p := a_named_replacements( idx );
@@ -166,12 +192,27 @@ BEGIN
         if ( v_dict.exists( v_sph.ph_name ) ) then
           v_res := v_res || v_dict( v_sph.ph_name );
         end if;
-      elsif ( EL_NESTED_TE = v_sph.type_ ) then
-        v_loop_te := pk_te_crossref.get_loop_te( v_sph.nested_te_id );
+      elsif ( EL_LOOP_CONSTRUCT = v_sph.type_ ) then
+        v_loop_te := pk_te_crossref.get_te_ref( v_sph.loop_construct_id );
         if v_loop_te is not null then
-           v_res := v_res || 
-            pk_te_impl.dispatch_nested_te_subst_( v_p_cache, v_m_cache, v_loop_te, v_sph.loop_number, v_sph.concat_by, 
+          v_res := v_res || 
+            pk_te_impl.dispatch_loop_construct_subst_( v_p_cache, v_m_cache, v_loop_te, v_sph.loop_number, v_sph.concat_by, 
               a_c1, a_c2, a_c3, a_c4, a_c5, a_c6, a_c7, a_c8, a_c9 )
+          ;
+        end if;
+      elsif ( EL_IF_CONSTRUCT = v_sph.type_ ) then
+        v_if_te := pk_te_crossref.get_te_ref( v_sph.loop_construct_id );
+        if v_if_te is not null then
+          v_cond_subst_res := pk_te.substitute( v_if_te, a_named_replacements, a_c1, a_c2, a_c3, a_c4, a_c5, a_c6, a_c7, a_c8, a_c9 );
+        end if;
+        if ( pk_te_impl.eval( v_cond_subst_res ) ) then
+          v_if_te := pk_te_crossref.get_te_ref( v_sph.t_te_id );
+        else
+          v_if_te := pk_te_crossref.get_te_ref( v_sph.f_te_id );
+        end if;
+        if v_if_te is not null then
+          v_res := v_res || 
+            pk_te.substitute( v_if_te, a_named_replacements, a_c1, a_c2, a_c3, a_c4, a_c5, a_c6, a_c7, a_c8, a_c9 )
           ;
         end if;
       end if;
@@ -257,9 +298,6 @@ BEGIN
   RETURN v_res;
 END;
 
-
-
-
 /** Substitutes values from p without 'compiling' template expression
 *
 * @param a_string a string representing not compiled template expression having numbered placeholders
@@ -267,7 +305,7 @@ END;
 * @param a_ph_start a string that denotes the beginning of numbered placeholder
 * @return clob - a large character lob with substituted values (if any)
 */
-function substitute( a_string in clob, a_numbered_replacements p, a_ph_start in varchar2 := '$', a_ph_end in varchar2 := '' ) return clob as
+function substitute( a_string in clob, a_numbered_replacements p, a_ph_start in varchar2 := '{$', a_ph_end in varchar2 := '}' ) return clob as
   v_res clob;
   v_pattern_head varchar2( 30 char ); 
   v_pattern_tail varchar2( 30 char ); 
@@ -314,7 +352,7 @@ end;
 * @param a_ph_end a string that denotes the end of named placeholder
 * @return clob - a large character lob with substituted values (if any)
 */
-function substitute( a_string in clob, a_named_replacements m, a_ph_start in varchar2 := '{$', a_ph_end in varchar2 := '}' ) return clob 
+function substitute( a_string in clob, a_named_replacements m, a_ph_start in varchar2 := '{{', a_ph_end in varchar2 := '}}' ) return clob 
 as
   v_res clob;
   v_pattern_head varchar2( 30 char );
@@ -345,5 +383,13 @@ begin
 end;
 
 
+function old return ty_te_old_proxy as 
+begin
+  if g_old_syntax_proxy is null then
+    g_old_syntax_proxy := ty_te_old_proxy();
+  end if;
+  return g_old_syntax_proxy;
+end;
 
 END PK_TE;
+/

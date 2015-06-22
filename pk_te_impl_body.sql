@@ -1,4 +1,4 @@
-create or replace PACKAGE BODY PK_TE_IMPL AS
+create or replace PACKAGE BODY PK_TE_IMPL AS 
 
 /** 
 * Supporting functions that help to implement PK_TE functionality (mostly dealing with recursive calls to handle loop structures).
@@ -13,7 +13,7 @@ type ty_vchar_to_vchar is table of varchar2( 32767 char ) index by varchar2( 100
 * Caches results returned from cursor so there's no need to reopen it if more than one loop structures refering this cursor are defined in template expression.<br/>
 * Each individual substitution is concatenated with the following with optional a_concat_by in between.<br/>
 * Cursor must return instances of ty_p or ty_m UDTs (depending on ty_te type) otherwise the function will throw. 
-*
+* 
 * @param a_loop_idx loop index (1-9) to select appropriate cache
 * @param a_te ty_te compiled template expression
 * @param a_cursor a cursor that must return instances of ty_p or of ty_m
@@ -113,7 +113,7 @@ END;
 /** Dispatches reqest to substitute cursor values into loop structure to the call of appropriate substitute_ function
 *
 */
-function dispatch_nested_te_subst_( 
+function dispatch_loop_construct_subst_( 
   a_p_cache in out nocopy ty_p_cache, a_m_cache in out nocopy ty_m_cache 
   , a_loop_te in out nocopy ty_te, a_loop_number pls_integer, a_concat_by varchar2
   , a_c1 in pk_te.refcur, a_c2 in pk_te.refcur, a_c3 in pk_te.refcur, a_c4 in pk_te.refcur, a_c5 in pk_te.refcur, a_c6 in pk_te.refcur, a_c7 in pk_te.refcur, a_c8 in pk_te.refcur, a_c9 in pk_te.refcur  
@@ -177,9 +177,12 @@ function substitute_( a_te in ty_te, a_numbered_replacements p
   EL_STRING constant pls_integer := ty_sph.EL_STRING();
   EL_PH_NUMBERED constant pls_integer := ty_sph.EL_PH_NUMBERED();
   EL_PH_NAMED constant pls_integer := ty_sph.EL_PH_NAMED();
-  EL_NESTED_TE constant pls_integer := ty_sph.EL_NESTED_TE();
+  EL_LOOP_CONSTRUCT constant pls_integer := ty_sph.EL_LOOP_CONSTRUCT();
+  EL_IF_CONSTRUCT constant pls_integer := ty_sph.EL_IF_CONSTRUCT();
   v_sph ty_sph;
   v_loop_te ty_te;
+  v_if_te ty_te;
+  v_cond_subst_res clob;
 BEGIN
   if ( a_te is null ) then
     raise_application_error( pk_te_ex.CEX_TE_IS_NULL, 'Null template expression passed' );
@@ -198,12 +201,27 @@ BEGIN
         if ( a_numbered_replacements.exists( v_sph.ph_number ) ) then
           v_res := v_res || a_numbered_replacements( v_sph.ph_number );
         end if;
-      elsif ( EL_NESTED_TE = v_sph.type_ ) then
-        v_loop_te := pk_te_crossref.get_loop_te( v_sph.nested_te_id );
+      elsif ( EL_LOOP_CONSTRUCT = v_sph.type_ ) then
+        v_loop_te := pk_te_crossref.get_te_ref( v_sph.loop_construct_id );
         if v_loop_te is not null then
           v_res := v_res || 
-            dispatch_nested_te_subst_( a_p_cache, a_m_cache, v_loop_te, v_sph.loop_number, v_sph.concat_by, 
+            dispatch_loop_construct_subst_( a_p_cache, a_m_cache, v_loop_te, v_sph.loop_number, v_sph.concat_by, 
               a_c1, a_c2, a_c3, a_c4, a_c5, a_c6, a_c7, a_c8, a_c9 )
+          ;
+        end if;
+      elsif ( EL_IF_CONSTRUCT = v_sph.type_ ) then
+        v_if_te := pk_te_crossref.get_te_ref( v_sph.loop_construct_id );
+        if v_if_te is not null then
+          v_cond_subst_res := pk_te.substitute( v_if_te, a_numbered_replacements, a_c1, a_c2, a_c3, a_c4, a_c5, a_c6, a_c7, a_c8, a_c9 );
+        end if;
+        if ( pk_te_impl.eval( v_cond_subst_res ) ) then
+          v_if_te := pk_te_crossref.get_te_ref( v_sph.t_te_id );
+        else
+          v_if_te := pk_te_crossref.get_te_ref( v_sph.f_te_id );
+        end if;
+        if v_if_te is not null then
+          v_res := v_res || 
+            pk_te.substitute( v_if_te, a_numbered_replacements, a_c1, a_c2, a_c3, a_c4, a_c5, a_c6, a_c7, a_c8, a_c9 )
           ;
         end if;
       end if;
@@ -246,9 +264,12 @@ AS
   EL_STRING constant pls_integer := ty_sph.EL_STRING();
   EL_PH_NUMBERED constant pls_integer := ty_sph.EL_PH_NUMBERED();
   EL_PH_NAMED constant pls_integer := ty_sph.EL_PH_NAMED();
-  EL_NESTED_TE constant pls_integer := ty_sph.EL_NESTED_TE();
+  EL_LOOP_CONSTRUCT constant pls_integer := ty_sph.EL_LOOP_CONSTRUCT();
+  EL_IF_CONSTRUCT constant pls_integer := ty_sph.EL_IF_CONSTRUCT();
   v_sph ty_sph;
   v_dict ty_vchar_to_vchar; 
+  v_if_te ty_te;
+  v_cond_subst_res clob;
   v_p p;
   v_loop_te ty_te;
 BEGIN
@@ -277,12 +298,27 @@ BEGIN
         if ( v_dict.exists( v_sph.ph_name ) ) then
           v_res := v_res || v_dict( v_sph.ph_name );
         end if;
-      elsif ( EL_NESTED_TE = v_sph.type_ ) then
-        v_loop_te := pk_te_crossref.get_loop_te( v_sph.nested_te_id );
+      elsif ( EL_LOOP_CONSTRUCT = v_sph.type_ ) then
+        v_loop_te := pk_te_crossref.get_te_ref( v_sph.loop_construct_id );
         if v_loop_te is not null then
            v_res := v_res || 
-            dispatch_nested_te_subst_( a_p_cache, a_m_cache, v_loop_te, v_sph.loop_number, v_sph.concat_by, 
+            dispatch_loop_construct_subst_( a_p_cache, a_m_cache, v_loop_te, v_sph.loop_number, v_sph.concat_by, 
               a_c1, a_c2, a_c3, a_c4, a_c5, a_c6, a_c7, a_c8, a_c9 )
+          ;
+        end if;
+      elsif ( EL_IF_CONSTRUCT = v_sph.type_ ) then
+        v_if_te := pk_te_crossref.get_te_ref( v_sph.loop_construct_id );
+        if v_if_te is not null then
+          v_cond_subst_res := pk_te.substitute( v_if_te, a_named_replacements, a_c1, a_c2, a_c3, a_c4, a_c5, a_c6, a_c7, a_c8, a_c9 );
+        end if;
+        if ( pk_te_impl.eval( v_cond_subst_res ) ) then
+          v_if_te := pk_te_crossref.get_te_ref( v_sph.t_te_id );
+        else
+          v_if_te := pk_te_crossref.get_te_ref( v_sph.f_te_id );
+        end if;
+        if v_if_te is not null then
+          v_res := v_res || 
+            pk_te.substitute( v_if_te, a_named_replacements, a_c1, a_c2, a_c3, a_c4, a_c5, a_c6, a_c7, a_c8, a_c9 )
           ;
         end if;
       end if;
@@ -292,4 +328,27 @@ BEGIN
   RETURN v_res;
 END;
 
+/** Evaluates passed expression
+* 
+* @param a_cond an expression that when evaluated must return true or false
+*
+* @return boolean value of evaluation
+* @trow pk_te_ex.CEX_EVAL_FAILED if evaluation resulted in an exception
+*/
+function eval( a_cond clob ) return boolean as
+  v_res pls_integer;
+begin
+  execute immediate 'begin :v_res := case when ' || a_cond || ' then 1 else 0 end; end;'
+  using out v_res;
+  return ( 1 = v_res );
+exception
+  when others then
+    raise_application_error( pk_te_ex.CEX_EVAL_FAILED, 'Evaluation of If condition failed with error code: ' || to_char( SQLCode )
+      || ', erorr stack: ' || trim( DBMS_UTILITY.FORMAT_ERROR_STACK ) 
+    );
+end;
+
+
+
 END PK_TE_IMPL;
+/
