@@ -97,7 +97,7 @@ UDTs and the packages are self contained, no additional dependencies. Only one s
 Just download all files and run `deploy_te.sql` from the `src` directory.
 
 ## Documentation
-For usage see https://github.com/blza/ora_te/wiki .
+For usage see https://github.com/blza/ora_te/wiki/Main .
 For packages and UDTs specifications see `doc` folder.
 
 ## Regression testing
