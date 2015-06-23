@@ -13,10 +13,10 @@
 @ty_te_body.sql
 @ty_te_old_proxy.sql
 @ty_te_old_proxy_body.sql
+@ty_te_twig_proxy.sql
+@ty_te_twig_proxy_body.sql
 @pk_te.sql
 @pk_te_body.sql
 @pk_te_impl.sql
 @pk_te_impl_body.sql
 @pk_te_crossref_body.sql
-@pk_te_ut.sql
-@pk_te_ut_body.sql

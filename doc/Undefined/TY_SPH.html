@@ -61,6 +61,18 @@
        localTypeName=
        schema=
        fieldType=NUMBER(38,0)
+       synonymsFile=,,--><!--GenerateTypeLink: default reached-->NUMBER(38,0)</CODE></FONT></TD><TD><CODE><B><A HREF="#F_TE_ID">F_TE_ID</A></B></CODE>
+<BR>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      </TD>
+</TR>
+<TR CLASS="TableRowColor">
+<TD WIDTH="1%" VALIGN="top" ALIGN="right"><FONT SIZE="-1"><CODE>&nbsp;<!--
+       schemaName=
+       typeName=NUMBER(38,0)
+       localTypeName=
+       schema=
+       fieldType=NUMBER(38,0)
        synonymsFile=,,--><!--GenerateTypeLink: default reached-->NUMBER(38,0)</CODE></FONT></TD><TD><CODE><B><A HREF="#LOOP_NUMBER">LOOP_NUMBER</A></B></CODE>
 <BR>
       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -117,6 +129,18 @@
 <TR CLASS="TableRowColor">
 <TD WIDTH="1%" VALIGN="top" ALIGN="right"><FONT SIZE="-1"><CODE>&nbsp;<!--
        schemaName=
+       typeName=NUMBER(38,0)
+       localTypeName=
+       schema=
+       fieldType=NUMBER(38,0)
+       synonymsFile=,,--><!--GenerateTypeLink: default reached-->NUMBER(38,0)</CODE></FONT></TD><TD><CODE><B><A HREF="#T_TE_ID">T_TE_ID</A></B></CODE>
+<BR>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      </TD>
+</TR>
+<TR CLASS="TableRowColor">
+<TD WIDTH="1%" VALIGN="top" ALIGN="right"><FONT SIZE="-1"><CODE>&nbsp;<!--
+       schemaName=
        typeName=NUMBER(1,0)
        localTypeName=
        schema=
@@ -143,9 +167,9 @@
        synonymsFile=,,--><!--GenerateTypeLink: default reached-->STATIC FUNCTION TY_SPH</CODE></FONT></TD>
 <!-- 
 		siblingCount=0 
-		argumentCount=1 
+		argumentCount=3 
 		predecessorCount=0 
-		siblingNoArgumentCount=0--><A NAME="CREATE_NAMED_PH"></A><TD><CODE><B><A HREF="#CREATE_NAMED_PH(VARCHAR2)">CREATE_NAMED_PH</A></B>(A_NAME IN VARCHAR2)</CODE>
+		siblingNoArgumentCount=0--><A NAME="CREATE_IF_CONSTRUCT"></A><TD><CODE><B><A HREF="#CREATE_IF_CONSTRUCT(PLS_INTEGER,PLS_INTEGER,PLS_INTEGER)">CREATE_IF_CONSTRUCT</A></B>(A_IF_TE_ID IN PLS_INTEGER, A_TRUE_TE_ID IN PLS_INTEGER, A_FALSE_TE_ID IN PLS_INTEGER)</CODE>
 <BR>
       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
       </TD>
@@ -162,7 +186,24 @@
 		siblingCount=0 
 		argumentCount=3 
 		predecessorCount=0 
-		siblingNoArgumentCount=0--><A NAME="CREATE_NESTED_TE"></A><TD><CODE><B><A HREF="#CREATE_NESTED_TE(PLS_INTEGER,PLS_INTEGER,VARCHAR2)">CREATE_NESTED_TE</A></B>(A_TE_ID IN PLS_INTEGER, A_LOOP_NUMBER IN PLS_INTEGER DEFAULT 0, A_CONCAT_BY IN VARCHAR2 DEFAULT '')</CODE>
+		siblingNoArgumentCount=0--><A NAME="CREATE_LOOP_CONSTRUCT"></A><TD><CODE><B><A HREF="#CREATE_LOOP_CONSTRUCT(PLS_INTEGER,PLS_INTEGER,VARCHAR2)">CREATE_LOOP_CONSTRUCT</A></B>(A_TE_ID IN PLS_INTEGER, A_LOOP_NUMBER IN PLS_INTEGER DEFAULT 0, A_CONCAT_BY IN VARCHAR2 DEFAULT '')</CODE>
+<BR>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      </TD>
+</TR>
+<TR CLASS="TableRowColor">
+<TD WIDTH="1%" VALIGN="top" ALIGN="right"><FONT SIZE="-1"><CODE>&nbsp;<!--
+       schemaName=
+       typeName=STATIC FUNCTION TY_SPH
+       localTypeName=
+       schema=
+       fieldType=STATIC FUNCTION TY_SPH
+       synonymsFile=,,--><!--GenerateTypeLink: default reached-->STATIC FUNCTION TY_SPH</CODE></FONT></TD>
+<!-- 
+		siblingCount=0 
+		argumentCount=1 
+		predecessorCount=0 
+		siblingNoArgumentCount=0--><A NAME="CREATE_NAMED_PH"></A><TD><CODE><B><A HREF="#CREATE_NAMED_PH(VARCHAR2)">CREATE_NAMED_PH</A></B>(A_NAME IN VARCHAR2)</CODE>
 <BR>
       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
       </TD>
@@ -213,7 +254,24 @@
 		siblingCount=0 
 		argumentCount=0 
 		predecessorCount=0 
-		siblingNoArgumentCount=0--><TD><CODE><B><A HREF="#EL_NESTED_TE">EL_NESTED_TE</A></B>()</CODE>
+		siblingNoArgumentCount=0--><TD><CODE><B><A HREF="#EL_IF_CONSTRUCT">EL_IF_CONSTRUCT</A></B>()</CODE>
+<BR>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      </TD>
+</TR>
+<TR CLASS="TableRowColor">
+<TD WIDTH="1%" VALIGN="top" ALIGN="right"><FONT SIZE="-1"><CODE>&nbsp;<!--
+       schemaName=
+       typeName=STATIC FUNCTION PLS_INTEGER
+       localTypeName=
+       schema=
+       fieldType=STATIC FUNCTION PLS_INTEGER
+       synonymsFile=,,--><!--GenerateTypeLink: default reached-->STATIC FUNCTION PLS_INTEGER</CODE></FONT></TD>
+<!-- 
+		siblingCount=0 
+		argumentCount=0 
+		predecessorCount=0 
+		siblingNoArgumentCount=0--><TD><CODE><B><A HREF="#EL_LOOP_CONSTRUCT">EL_LOOP_CONSTRUCT</A></B>()</CODE>
 <BR>
       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
       </TD>
@@ -323,6 +381,18 @@
 </DD>
 </DL>
 <HR>
+<A NAME="F_TE_ID"></A>
+<H3>F_TE_ID</H3>
+<PRE>
+        public NUMBER(38,0) <B>F_TE_ID</B>
+</PRE>
+<DL>
+<DD></DD>
+<DD>
+<DL></DL>
+</DD>
+</DL>
+<HR>
 <A NAME="LOOP_NUMBER"></A>
 <H3>LOOP_NUMBER</H3>
 <PRE>
@@ -383,6 +453,18 @@
 </DD>
 </DL>
 <HR>
+<A NAME="T_TE_ID"></A>
+<H3>T_TE_ID</H3>
+<PRE>
+        public NUMBER(38,0) <B>T_TE_ID</B>
+</PRE>
+<DL>
+<DD></DD>
+<DD>
+<DL></DL>
+</DD>
+</DL>
+<HR>
 <A NAME="TYPE_"></A>
 <H3>TYPE_</H3>
 <PRE>
@@ -401,15 +483,15 @@
 <TD COLSPAN="1"><FONT SIZE="+2"><B>Method Detail</B></FONT></TD>
 </TR>
 </TABLE>
-<A NAME="CREATE_NAMED_PH(VARCHAR2)"></A>
-<H3>CREATE_NAMED_PH</H3>
+<A NAME="CREATE_IF_CONSTRUCT(PLS_INTEGER,PLS_INTEGER,PLS_INTEGER)"></A>
+<H3>CREATE_IF_CONSTRUCT</H3>
 <PRE>public <!--
        schemaName=
        typeName=STATIC FUNCTION TY_SPH
        localTypeName=
        schema=
        fieldType=STATIC FUNCTION TY_SPH
-       synonymsFile=,,--><!--GenerateTypeLink: default reached-->STATIC FUNCTION TY_SPH <B>CREATE_NAMED_PH</B>(A_NAME IN VARCHAR2)</PRE>
+       synonymsFile=,,--><!--GenerateTypeLink: default reached-->STATIC FUNCTION TY_SPH <B>CREATE_IF_CONSTRUCT</B>(A_IF_TE_ID IN PLS_INTEGER, <BR>                                                  A_TRUE_TE_ID IN PLS_INTEGER, <BR>                                                  A_FALSE_TE_ID IN PLS_INTEGER)</PRE>
 <DL>
 <DD></DD>
 <DD>
@@ -419,15 +501,33 @@
 <DL></DL>
 </DL>
 <HR>
-<A NAME="CREATE_NESTED_TE(PLS_INTEGER,PLS_INTEGER,VARCHAR2)"></A>
-<H3>CREATE_NESTED_TE</H3>
+<A NAME="CREATE_LOOP_CONSTRUCT(PLS_INTEGER,PLS_INTEGER,VARCHAR2)"></A>
+<H3>CREATE_LOOP_CONSTRUCT</H3>
 <PRE>public <!--
        schemaName=
        typeName=STATIC FUNCTION TY_SPH
        localTypeName=
        schema=
        fieldType=STATIC FUNCTION TY_SPH
-       synonymsFile=,,--><!--GenerateTypeLink: default reached-->STATIC FUNCTION TY_SPH <B>CREATE_NESTED_TE</B>(A_TE_ID IN PLS_INTEGER, <BR>                                               A_LOOP_NUMBER IN PLS_INTEGER DEFAULT 0, <BR>                                               A_CONCAT_BY IN VARCHAR2 DEFAULT '')</PRE>
+       synonymsFile=,,--><!--GenerateTypeLink: default reached-->STATIC FUNCTION TY_SPH <B>CREATE_LOOP_CONSTRUCT</B>(A_TE_ID IN PLS_INTEGER, <BR>                                                    A_LOOP_NUMBER IN PLS_INTEGER DEFAULT 0, <BR>                                                    A_CONCAT_BY IN VARCHAR2 DEFAULT '')</PRE>
+<DL>
+<DD></DD>
+<DD>
+<DL></DL>
+</DD>
+<P></P>
+<DL></DL>
+</DL>
+<HR>
+<A NAME="CREATE_NAMED_PH(VARCHAR2)"></A>
+<H3>CREATE_NAMED_PH</H3>
+<PRE>public <!--
+       schemaName=
+       typeName=STATIC FUNCTION TY_SPH
+       localTypeName=
+       schema=
+       fieldType=STATIC FUNCTION TY_SPH
+       synonymsFile=,,--><!--GenerateTypeLink: default reached-->STATIC FUNCTION TY_SPH <B>CREATE_NAMED_PH</B>(A_NAME IN VARCHAR2)</PRE>
 <DL>
 <DD></DD>
 <DD>
@@ -473,15 +573,33 @@
 <DL></DL>
 </DL>
 <HR>
-<A NAME="EL_NESTED_TE"></A>
-<H3>EL_NESTED_TE</H3>
+<A NAME="EL_IF_CONSTRUCT"></A>
+<H3>EL_IF_CONSTRUCT</H3>
 <PRE>public <!--
        schemaName=
        typeName=STATIC FUNCTION PLS_INTEGER
        localTypeName=
        schema=
        fieldType=STATIC FUNCTION PLS_INTEGER
-       synonymsFile=,,--><!--GenerateTypeLink: default reached-->STATIC FUNCTION PLS_INTEGER <B>EL_NESTED_TE</B>()</PRE>
+       synonymsFile=,,--><!--GenerateTypeLink: default reached-->STATIC FUNCTION PLS_INTEGER <B>EL_IF_CONSTRUCT</B>()</PRE>
+<DL>
+<DD></DD>
+<DD>
+<DL></DL>
+</DD>
+<P></P>
+<DL></DL>
+</DL>
+<HR>
+<A NAME="EL_LOOP_CONSTRUCT"></A>
+<H3>EL_LOOP_CONSTRUCT</H3>
+<PRE>public <!--
+       schemaName=
+       typeName=STATIC FUNCTION PLS_INTEGER
+       localTypeName=
+       schema=
+       fieldType=STATIC FUNCTION PLS_INTEGER
+       synonymsFile=,,--><!--GenerateTypeLink: default reached-->STATIC FUNCTION PLS_INTEGER <B>EL_LOOP_CONSTRUCT</B>()</PRE>
 <DL>
 <DD></DD>
 <DD>

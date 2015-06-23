@@ -2,7 +2,9 @@
 ## Description
 Simple template engine for Oracle DBMS in a form of UDTs and packages.
 
-This project is about developing a template engine to be used in Oracle SQL/PL SQL.
+This project is about developing a template engine to be used in Oracle SQL / PL SQL.
+
+NOW with the support of IF construct and a new syntax for FOR construct!
 
 ## Where it excels?
 
@@ -14,21 +16,20 @@ declare
   v_join_by varchar2( 30 char ) := 'id_';
   v_dest_tbl varchar2( 30 char ) := 'dummy_test';
 begin
-  v_te := ty_te.compile_named( '
+  v_te := ty_te.compile_named( q'#
 merge into {$dest_table} t1
 using {$tmp_table} t2
   on ( t1.{$join_by} = t2.{$join_by} )
 when matched then 
-update set {%1%t1.{$column_name} = t2.{$column_name}%\r\n  , %}
-delete where t2.status_code = ''D''
+update set {% for cur:1 | join( '\r\n  , ' ) %}t1.{$column_name} = t2.{$column_name}{% endfor %}
+delete where t2.status_code = 'D'
 when not matched then 
 insert( {$join_by}
-  , {%1%{$column_name}%\r\n  , %}
+  , {% for cur:1 | join( '\r\n  , ' ) %}{$column_name}{% endfor %}
 ) values ( {$seq_name}.nextval
-  , t2.{$join_by}
-  , {%1%t2.{$column_name}%\r\n  , %}
+  , {% for cur:1 | join( '\r\n  , ' ) %}{$column_name}{% endfor %}
 ) 
-where t2.status_code <> ''D''
+where t2.status_code <> 'D'
 ' );
   v_join_by := 'id_';
   select pk_te.substitute( 
@@ -75,7 +76,6 @@ insert( id_
   , COL1
   , COL2
 ) values ( seq_dummy_id.nextval
-  , t2.id_
   , t2.COL1
   , t2.COL2
 ) 
@@ -107,7 +107,7 @@ To deploy unit tests run `ut/deploy_ut.sql`.
 To actually run unit tests run `ut/run_tests.sql`.
 
 ## Imposed cost of invocation
-Profiling info and comparison to standart concat are to come.
+Profiling info and comparison to simple replace will be published later.
 
 ## Licence
 Mit licence applies (http://opensource.org/licenses/MIT).

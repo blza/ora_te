@@ -174,102 +174,102 @@ end;
 -- Number self explanatory unit tests
 --
 
-procedure o_numbered_straight as
+procedure numbered_straight as
   v_te ty_te;
   v_clob clob;
 begin
-  v_te := pk_te.old().compile_numbered( '$4''ve been $1 $2 for $o $3' );
+  v_te := ty_te.compile_numbered( '$4''ve been $1 $2 for $o $3' );
   v_clob := pk_te.substitute( v_te, ty_p( 'missing', 'you', 'long.', 'I') );
   assert( v_clob = 'I''ve been missing you for $o long.' );
 end;
 
 
-procedure o_numbered_with_ph_end as
+procedure numbered_with_ph_end as
   v_te ty_te;
   v_clob clob;
 begin
-  v_te := pk_te.old().compile_numbered( '$4$''ve been $1$ $2$ for $o $3$', '$', '$' );
+  v_te := ty_te.compile_numbered( '$4$''ve been $1$ $2$ for $o $3$', '$', '$' );
   v_clob := pk_te.substitute( v_te, ty_p( 'missing', 'you', 'long.', 'I') );
   assert( v_clob = 'I''ve been missing you for $o long.' );
 end;
 
 
-procedure o_numbered_11_ph as
+procedure numbered_11_ph as
   v_te ty_te;
   v_clob clob;
 begin
-  v_te := pk_te.old().compile_numbered( '$10''ve been $1 $2 for $o $3$11' );
+  v_te := ty_te.compile_numbered( '$10''ve been $1 $2 for $o $3$11' );
   v_clob := pk_te.substitute( v_te, ty_p( 'missing', 'you', 'long.', '', '', '', '' ,'', '', 'I', '!') );
   assert( v_clob = 'I''ve been missing you for $o long.!' );
 end;
 
 
-procedure o_numbered_user_start as
+procedure numbered_user_start as
   v_te ty_te;
   v_clob clob;
 begin
-  v_te := pk_te.old().compile_numbered( '##4''ve been ##1 ##2 for $o ##3', '##' );
+  v_te := ty_te.compile_numbered( '##4''ve been ##1 ##2 for $o ##3', '##' );
   v_clob := pk_te.substitute( v_te, ty_p( 'missing', 'you', 'long.', 'I') );
   assert( v_clob = 'I''ve been missing you for $o long.' );
 end;
 
 
-procedure o_numbered_repeated as
+procedure numbered_repeated as
   v_te ty_te;
   v_clob clob;
 begin
-  v_te := pk_te.old().compile_numbered( '$4''ve been $1 $2 for $3 $3 long' );
+  v_te := ty_te.compile_numbered( '$4''ve been $1 $2 for $3 $3 long' );
   v_clob := pk_te.substitute( v_te, ty_p( 'missing', 'you', 'so', 'I') );
   -- 
   assert( v_clob = 'I''ve been missing you for so so long' );
 end;
 
 
-procedure o_skipped_$2_null_in_map as
+procedure skipped_$2_null_in_map as
   v_te ty_te;
   v_clob clob;
 begin
-  v_te := pk_te.old().compile_numbered( 'I''ve been $1 $3 for so $4.' );
+  v_te := ty_te.compile_numbered( 'I''ve been $1 $3 for so $4.' );
   v_clob := pk_te.substitute( v_te, ty_p( 'missing', null ,'you', 'long') );
 
   assert( v_clob = 'I''ve been missing you for so long.' );
 end;
 
-procedure o_no_$_templates_numbered as
+procedure no_$_templates_numbered as
   v_te ty_te;
   v_clob clob;
 begin
-  v_te := pk_te.old().compile_numbered( 'I''ve been missing you for so long' );
+  v_te := ty_te.compile_numbered( 'I''ve been missing you for so long' );
   v_clob := pk_te.substitute( v_te, ty_p( 'xxx' ) );
   assert( v_clob = 'I''ve been missing you for so long' );
 end;
 
-procedure o_numbered_$1_follewed_by_$2 as 
+procedure numbered_$1_follewed_by_$2 as 
   v_te ty_te;
   v_clob clob;
 begin
-  v_te := pk_te.old().compile_numbered( 'I''ve been $1$2 for so $3.' );
+  v_te := ty_te.compile_numbered( 'I''ve been $1$2 for so $3.' );
   v_clob := pk_te.substitute( v_te, ty_p( 'missing', ' you', 'long') );
 
   assert( v_clob = 'I''ve been missing you for so long.' );
 end;
 
-procedure o_numbered_empty_p as 
+procedure numbered_empty_p as 
   v_te ty_te;
   v_clob clob;
 begin
-  v_te := pk_te.old().compile_numbered( 'I''ve been $1$2 for so $3.' );
+  v_te := ty_te.compile_numbered( 'I''ve been $1$2 for so $3.' );
   v_clob := pk_te.substitute( v_te, ty_p() );
 
   assert( v_clob = 'I''ve been  for so .' );
 end;
 
-procedure o_substitute_m_and_numbered as 
+procedure substitute_m_and_numbered as 
   v_te ty_te;
   v_clob clob;
   v_sqlcode pls_integer;
 begin
-  v_te := pk_te.old().compile_numbered( 'I''ve been $1$2 for so $3.' );
+  v_te := ty_te.compile_numbered( 'I''ve been $1$2 for so $3.' );
   begin
     v_clob := pk_te.substitute( v_te, ty_m() );  
   exception
@@ -280,7 +280,7 @@ begin
 end;
 
 
-procedure o_substitute_null_te as 
+procedure substitute_null_te as 
   v_te ty_te;
   v_clob clob;
   v_sqlcode pls_integer;
@@ -296,11 +296,11 @@ end;
 
 
 
-procedure o_named_straight as
+procedure named_straight as
   v_te ty_te;
   v_clob clob;
 begin
-  v_te := pk_te.old().compile_named( '{$i}''ve been {$miSSing} {$you} for $o {$long}.' );
+  v_te := ty_te.compile_named( '{$i}''ve been {$miSSing} {$you} for $o {$long}.' );
   v_clob := pk_te.substitute( 
     v_te
     , ty_m (
@@ -315,11 +315,11 @@ begin
 end;
 
 
-procedure o_named_repeated as
+procedure named_repeated as
   v_te ty_te;
   v_clob clob;
 begin
-  v_te := pk_te.old().compile_named( '{$i}''ve been {$miSSing} {$you} for {$so} {$so} {$long}.' );
+  v_te := ty_te.compile_named( '{$i}''ve been {$miSSing} {$you} for {$so} {$so} {$long}.' );
   v_clob := pk_te.substitute( 
     v_te
     , ty_m (
@@ -336,11 +336,11 @@ end;
 
 
 
-procedure o_digit_in_named_te as
+procedure digit_in_named_te as
   v_te ty_te;
   v_clob clob;
 begin
-  v_te := pk_te.old().compile_named( '{$i}''ve been {$miSSing} {$you} for $o {$1long1}' );
+  v_te := ty_te.compile_named( '{$i}''ve been {$miSSing} {$you} for $o {$1long1}' );
   v_clob := pk_te.substitute( 
     v_te
     , ty_m (
@@ -356,11 +356,11 @@ end;
 
 
 
-procedure o_dot_in_named_te as
+procedure dot_in_named_te as
   v_te ty_te;
   v_clob clob;
 begin
-  v_te := pk_te.old().compile_named( '{$i}''ve been {$miSSing} {$you} for $o {$long.}' );
+  v_te := ty_te.compile_named( '{$i}''ve been {$miSSing} {$you} for $o {$long.}' );
   v_clob := pk_te.substitute( 
     v_te
     , ty_m (
@@ -375,11 +375,11 @@ begin
 end;
 
 
-procedure o_named_missing_in_m as
+procedure named_missing_in_m as
   v_te ty_te;
   v_clob clob;
 begin
-  v_te := pk_te.old().compile_named( '{$i}''ve been {$miSS} {$you} for $o {$long}' );
+  v_te := ty_te.compile_named( '{$i}''ve been {$miSS} {$you} for $o {$long}' );
   v_clob := pk_te.substitute( 
     v_te
     , ty_m (
@@ -394,12 +394,12 @@ begin
 end;
 
 
-procedure o_substitute_p_and_named as 
+procedure substitute_p_and_named as 
   v_te ty_te;
   v_clob clob;
   v_sqlcode pls_integer;
 begin
-  v_te := pk_te.old().compile_named( 'I''ve {$been} $1$2 for so $3.' );
+  v_te := ty_te.compile_named( 'I''ve {$been} $1$2 for so $3.' );
   begin
     v_clob := pk_te.substitute( v_te, ty_p() );  
   exception
@@ -410,11 +410,11 @@ begin
 end;
 
 
-procedure o_named_encapsulated_te as
+procedure named_encapsulated_te as
   v_te ty_te;
   v_clob clob;
 begin
-  v_te := pk_te.old().compile_named( '{$i}''ve been {$miS{$soso}Sing} {$you} for $o {$long}' );
+  v_te := ty_te.compile_named( '{$i}''ve been {$miS{$soso}Sing} {$you} for $o {$long}' );
   v_clob := pk_te.substitute( 
     v_te
     , ty_m (
@@ -430,11 +430,11 @@ begin
 end;
 
 
-procedure o_named_user_start as
+procedure named_user_start as
   v_te ty_te;
   v_clob clob;
 begin
-  v_te := pk_te.old().compile_named( '{?i}''ve been {?miSSing} {?you} for $o {?long}.', '{?' );
+  v_te := ty_te.compile_named( '{?i}''ve been {?miSSing} {?you} for $o {?long}.', '{?' );
   v_clob := pk_te.substitute( 
     v_te
     , ty_m (
@@ -448,11 +448,11 @@ begin
   assert( v_clob = 'I''ve been missing you for $o long.' );
 end;
 
-procedure o_named_user_start_user_end as
+procedure named_user_start_user_end as
   v_te ty_te;
   v_clob clob;
 begin
-  v_te := pk_te.old().compile_named( '[?i]]''ve been [?miSSing]] [?you]] for $o [?long]].', '[?', ']]' );
+  v_te := ty_te.compile_named( '[?i]]''ve been [?miSSing]] [?you]] for $o [?long]].', '[?', ']]' );
   v_clob := pk_te.substitute( 
     v_te
     , ty_m (
@@ -466,59 +466,59 @@ begin
   assert( v_clob = 'I''ve been missing you for $o long.' );
 end;
 
-procedure o_subst_num_straight as 
+procedure subst_num_straight as 
   v_clob clob;
 begin
-  v_clob := pk_te.old().substitute( '$4''ve been $1 $2 for $o $3', ty_p( 'missing', 'you', 'long.', 'I') );
+  v_clob := pk_te.substitute( '$4''ve been $1 $2 for $o $3', ty_p( 'missing', 'you', 'long.', 'I') );
 
   assert( v_clob = 'I''ve been missing you for $o long.' );
 end;
 
 
-procedure o_subst_num_straight_ph_end as 
+procedure subst_num_straight_ph_end as 
   v_clob clob;
 begin
-  v_clob := pk_te.old().substitute( '$4$''ve been $1$ $2$ for $o $3$', ty_p( 'missing', 'you', 'long.', 'I'), '$', '$' );
+  v_clob := pk_te.substitute( '$4$''ve been $1$ $2$ for $o $3$', ty_p( 'missing', 'you', 'long.', 'I'), '$', '$' );
   assert( v_clob = 'I''ve been missing you for $o long.' );
 end;
 
 
-procedure o_subst_num_backref as 
+procedure subst_num_backref as 
   v_clob clob;
 begin
-  v_clob := pk_te.old().substitute( '$4''ve been $1 $2 for $o $3', ty_p( 'missing', 'you', 'long.', '\1') );
+  v_clob := pk_te.substitute( '$4''ve been $1 $2 for $o $3', ty_p( 'missing', 'you', 'long.', '\1') );
 
   assert( v_clob = '\1''ve been missing you for $o long.' );
 end;
 
-procedure o_subst_num_null_repl as 
+procedure subst_num_null_repl as 
   v_clob clob;
 begin
-  v_clob := pk_te.old().substitute( '$4''ve been $1 $2 for $o $3', ty_p( null, 'you', 'long.', 'I') );
+  v_clob := pk_te.substitute( '$4''ve been $1 $2 for $o $3', ty_p( null, 'you', 'long.', 'I') );
   assert( v_clob = 'I''ve been  you for $o long.' );
 end;
 
-procedure o_subst_num_no_te_in_map as 
+procedure subst_num_no_te_in_map as 
   v_clob clob;
 begin
-  v_clob := pk_te.old().substitute( '$4''ve been $1 $2 for $o $3 $5', ty_p( null, 'you', 'long.', 'I') );
+  v_clob := pk_te.substitute( '$4''ve been $1 $2 for $o $3 $5', ty_p( null, 'you', 'long.', 'I') );
 
   assert( v_clob = 'I''ve been  you for $o long. ' );
 end;
 
-procedure o_subst_num_user_start as 
+procedure subst_num_user_start as 
   v_clob clob;
 begin
-  v_clob := pk_te.old().substitute( '??4''ve been ??1 ??2 for $o ??3 ??12', ty_p( 'missing', 'you', 'long.', 'I'), '??' );
+  v_clob := pk_te.substitute( '??4''ve been ??1 ??2 for $o ??3 ??12', ty_p( 'missing', 'you', 'long.', 'I'), '??' );
 
   assert( v_clob = 'I''ve been missing you for $o long. ' );
 end;
 
 
-procedure o_subst_named_straight as
+procedure subst_named_straight as
   v_clob clob;
 begin
-  v_clob := pk_te.old().substitute( '{$i}''ve been {$miSSing} {$you} for $o {$long}.' 
+  v_clob := pk_te.substitute( '{$i}''ve been {$miSSing} {$you} for $o {$long}.' 
     , ty_m (
       ty_p( 'i', 'I' )
       , ty_p( 'missing', 'missing' )
@@ -531,10 +531,10 @@ begin
 end;
 
 
-procedure o_subst_named_empty_and_null_p as
+procedure subst_named_empty_and_null_p as
   v_clob clob;
 begin
-  v_clob := pk_te.old().substitute( '{$i}''ve been {$miSSing} {$you} for $o {$long}.' 
+  v_clob := pk_te.substitute( '{$i}''ve been {$miSSing} {$you} for $o {$long}.' 
     , ty_m (
       ty_p( 'i', 'I' )
       , ty_p()
@@ -547,10 +547,10 @@ begin
 end;
 
 
-procedure o_subst_named_backref as
+procedure subst_named_backref as
   v_clob clob;
 begin
-  v_clob := pk_te.old().substitute( '{$i}''ve been {$miSSing} {$you} for $o {$long}.' 
+  v_clob := pk_te.substitute( '{$i}''ve been {$miSSing} {$you} for $o {$long}.' 
     , ty_m (
       ty_p( 'i', 'I' )
       , ty_p( 'missing', 'missing' )
@@ -563,10 +563,10 @@ begin
 end;
 
 
-procedure o_subst_named_repeadted as
+procedure subst_named_repeadted as
   v_clob clob;
 begin
-  v_clob := pk_te.old().substitute( '{$i}''ve been {$miSSing} {$you} for {$so} {$so} $o {$long}.' 
+  v_clob := pk_te.substitute( '{$i}''ve been {$miSSing} {$you} for {$so} {$so} $o {$long}.' 
     , ty_m (
       ty_p( 'i', 'I' )
       , ty_p( 'missing', 'missing' )
@@ -579,12 +579,12 @@ begin
   assert( v_clob = 'I''ve been missing you for so so $o long.' );
 end;
 
-procedure o_cur_numbered as
+procedure cur_numbered as
   v_clob clob;
   v_te ty_te;
   v_cur sys_refcursor;
 begin
-  v_te := pk_te.old().compile_numbered( 't1.$1 = t2.$1' );
+  v_te := ty_te.compile_numbered( 't1.$1 = t2.$1' );
   begin
     open v_cur for 
       select ty_p( 'field1' ) o from dual
@@ -603,11 +603,11 @@ begin
 end;
 
 
-procedure o_cur_numbered_sql as
+procedure cur_numbered_sql as
   v_clob clob;
   v_te ty_te;
 begin
-  v_te := pk_te.old().compile_numbered( 't1.$1 = t2.$1' );
+  v_te := ty_te.compile_numbered( 't1.$1 = t2.$1' );
   begin
     select pk_te.substitute(  
       v_te
@@ -629,12 +629,12 @@ begin
 end;
 
 
-procedure o_cur_numbered_break_wrong_cur as
+procedure cur_numbered_break_wrong_cur as
   v_clob clob;
   v_te ty_te;
   v_cur sys_refcursor;
 begin
-  v_te := pk_te.old().compile_numbered( 't1.$1 = t2.$1' );
+  v_te := ty_te.compile_numbered( 't1.$1 = t2.$1' );
   begin
     open v_cur for select 1 o from dual;
     v_clob := pk_te.substitute(  v_te, v_cur, ', '  );
@@ -648,12 +648,12 @@ begin
 end;
 
 
-procedure o_cur_named as
+procedure cur_named as
   v_clob clob;
   v_te ty_te;
   v_cur sys_refcursor;
 begin
-  v_te := pk_te.old().compile_named( 't1.{$column_name} = t2.{$column_name} --{$comment}' );
+  v_te := ty_te.compile_named( 't1.{$column_name} = t2.{$column_name} --{$comment}' );
   begin
     open v_cur for 
       select ty_m( ty_p( 'column_name', 'field1' ), ty_p( 'comment', 'comment1' ) ) o from dual
@@ -673,12 +673,12 @@ end;
 
 
 
-procedure o_cur_named_break_wrong_te as
+procedure cur_named_break_wrong_te as
   v_clob clob;
   v_te ty_te;
   v_cur sys_refcursor;
 begin
-  v_te := pk_te.old().compile_named( 't1.{$column_name} = t2.{$column_name}' );
+  v_te := ty_te.compile_named( 't1.{$column_name} = t2.{$column_name}' );
   begin
     open v_cur for select ty_p( 'field1' ) o from dual;
     v_clob := pk_te.substitute(  v_te, v_cur, ', '  );
@@ -694,14 +694,14 @@ end;
 
 
 
-procedure o_combine_named as
+procedure combine_named as
   v_lte ty_te;
   v_rte ty_te;
   v_cte ty_te;
   v_clob clob;
 begin
-  v_lte := pk_te.old().compile_named( '{$i}''ve been {$miSSing} ' );
-  v_rte := pk_te.old().compile_named( '{$you} for $o {$long}.' );
+  v_lte := ty_te.compile_named( '{$i}''ve been {$miSSing} ' );
+  v_rte := ty_te.compile_named( '{$you} for $o {$long}.' );
   v_cte := ty_te.concat( v_lte, v_rte );
   v_clob := pk_te.substitute( 
     v_cte
@@ -828,534 +828,9 @@ end;
          \/____/                  \/____/                  ~~        
 */
 
-
-
 --
--- Number self explanatory unit tests for new syntax
+-- Number self explanatory unit tests exclusively for the new syntax 
 --
-
-procedure numbered_straight as
-  v_te ty_te;
-  v_clob clob;
-begin
-  v_te := ty_te.compile_numbered( '{$4}''ve been {$1} {$2} for {$o} {$3}' );
-  v_clob := pk_te.substitute( v_te, ty_p( 'missing', 'you', 'long.', 'I') );
-  assert( v_clob = 'I''ve been missing you for {$o} long.' );
-end;
-
-
-procedure numbered_11_ph as
-  v_te ty_te;
-  v_clob clob;
-begin
-  v_te := ty_te.compile_numbered( '{$10}''ve been {$1} {$2} for $o {$3}{$11}' );
-  v_clob := pk_te.substitute( v_te, ty_p( 'missing', 'you', 'long.', '', '', '', '' ,'', '', 'I', '!') );
-  assert( v_clob = 'I''ve been missing you for $o long.!' );
-end;
-
-
-procedure numbered_user_start as
-  v_te ty_te;
-  v_clob clob;
-begin
-  v_te := ty_te.compile_numbered( '##4''ve been ##1 ##2 for $o ##3', '##' );
-  v_clob := pk_te.substitute( v_te, ty_p( 'missing', 'you', 'long.', 'I') );
-  assert( v_clob = 'I''ve been missing you for $o long.' );
-end;
-
-
-procedure numbered_repeated as
-  v_te ty_te;
-  v_clob clob;
-begin
-  v_te := ty_te.compile_numbered( '{$4}''ve been {$1} {$2} for {$3} {$3} long' );
-  v_clob := pk_te.substitute( v_te, ty_p( 'missing', 'you', 'so', 'I') );
-  -- 
-  assert( v_clob = 'I''ve been missing you for so so long' );
-end;
-
-
-procedure skipped_$2_null_in_map as
-  v_te ty_te;
-  v_clob clob;
-begin
-  v_te := ty_te.compile_numbered( 'I''ve been {$1} {$3} for so {$4}.' );
-  v_clob := pk_te.substitute( v_te, ty_p( 'missing', null ,'you', 'long') );
-
-  assert( v_clob = 'I''ve been missing you for so long.' );
-end;
-
-procedure no_$_templates_numbered as
-  v_te ty_te;
-  v_clob clob;
-begin
-  v_te := ty_te.compile_numbered( 'I''ve been missing you for so long' );
-  v_clob := pk_te.substitute( v_te, ty_p( 'xxx' ) );
-  assert( v_clob = 'I''ve been missing you for so long' );
-end;
-
-
-procedure numbered_empty_p as 
-  v_te ty_te;
-  v_clob clob;
-begin
-  v_te := ty_te.compile_numbered( 'I''ve been {$1}{$2} for so {$3}.' );
-  v_clob := pk_te.substitute( v_te, ty_p() );
-
-  assert( v_clob = 'I''ve been  for so .' );
-end;
-
-procedure substitute_m_and_numbered as 
-  v_te ty_te;
-  v_clob clob;
-  v_sqlcode pls_integer;
-begin
-  v_te := ty_te.compile_numbered( 'I''ve been {$1}{$2} for so {$3}.' );
-  begin
-    v_clob := pk_te.substitute( v_te, ty_m() );  
-  exception
-    when others then
-      v_sqlcode := sqlcode;
-  end;
-  assert( v_sqlcode = -20998 );
-end;
-
-
-procedure substitute_null_te as 
-  v_te ty_te;
-  v_clob clob;
-  v_sqlcode pls_integer;
-begin
-  begin
-    v_clob := pk_te.substitute( v_te, ty_m() );  
-  exception
-    when others then
-      v_sqlcode := sqlcode;
-  end;
-  assert( v_sqlcode = -20997 );
-end;
-
-
-
-procedure named_straight as
-  v_te ty_te;
-  v_clob clob;
-begin
-  v_te := ty_te.compile_named( '{{i}}''ve been {{miSSing}} {{you}} for $o {{long}}.' );
-  v_clob := pk_te.substitute( 
-    v_te
-    , ty_m (
-      ty_p( 'i', 'I' )
-      , ty_p( 'missing', 'missing' )
-      , ty_p( 'you', 'you' )
-      , ty_p( 'long', 'long' )
-    )
-  );
-
-  assert( v_clob = 'I''ve been missing you for $o long.' );
-end;
-
-
-procedure named_repeated as
-  v_te ty_te;
-  v_clob clob;
-begin
-  v_te := ty_te.compile_named( '{{i}}''ve been {{miSSing}} {{you}} for {{so}} {{so}} {{long}}.' );
-  v_clob := pk_te.substitute( 
-    v_te
-    , ty_m (
-      ty_p( 'i', 'I' )
-      , ty_p( 'missing', 'missing' )
-      , ty_p( 'you', 'you' )
-      , ty_p( 'long', 'long' )
-      , ty_p( 'so', 'so' )
-    )
-  );
-
-  assert( v_clob = 'I''ve been missing you for so so long.' );
-end;
-
-
-
-procedure digit_in_named_te as
-  v_te ty_te;
-  v_clob clob;
-begin
-  v_te := ty_te.compile_named( '{{i}}''ve been {{miSSing}} {{you}} for $o {{1long1}}' );
-  v_clob := pk_te.substitute( 
-    v_te
-    , ty_m (
-      ty_p( 'i', 'I' )
-      , ty_p( 'missing', 'missing' )
-      , ty_p( 'you', 'you' )
-      , ty_p( '1long1', 'long' )
-    )
-  );
-
-  assert( v_clob = 'I''ve been missing you for $o long' );
-end;
-
-
-
-procedure dot_in_named_te as
-  v_te ty_te;
-  v_clob clob;
-begin
-  v_te := ty_te.compile_named( '{{i}}''ve been {{miSSing}} {{you}} for $o {{long.}}' );
-  v_clob := pk_te.substitute( 
-    v_te
-    , ty_m (
-      ty_p( 'i', 'I' )
-      , ty_p( 'missing', 'missing' )
-      , ty_p( 'you', 'you' )
-      , ty_p( 'long', 'long' )
-    )
-  );
-
-  assert( v_clob = 'I''ve been missing you for $o {{long.}}' );
-end;
-
-
-procedure named_missing_in_m as
-  v_te ty_te;
-  v_clob clob;
-begin
-  v_te := ty_te.compile_named( '{{i}}''ve been {{miSS}} {{you}} for $o {{long}}' );
-  v_clob := pk_te.substitute( 
-    v_te
-    , ty_m (
-      ty_p( 'i', 'I' )
-      , ty_p( 'missing', 'missing' )
-      , ty_p( 'you', 'you' )
-      , ty_p( 'long', 'long' )
-    )
-  );
-
-  assert( v_clob = 'I''ve been  you for $o long' );
-end;
-
-
-procedure substitute_p_and_named as 
-  v_te ty_te;
-  v_clob clob;
-  v_sqlcode pls_integer;
-begin
-  v_te := ty_te.compile_named( 'I''ve {{been}} $1$2 for so $3.' );
-  begin
-    v_clob := pk_te.substitute( v_te, ty_p() );  
-  exception
-    when others then
-      v_sqlcode := sqlcode;
-  end;
-  assert( v_sqlcode = -20998 );
-end;
-
-
-procedure named_encapsulated_te as
-  v_te ty_te;
-  v_clob clob;
-begin
-  v_te := ty_te.compile_named( '{{i}}''ve been {{miS{{soso}}Sing}} {{you}} for $o {{long}}' );
-  v_clob := pk_te.substitute( 
-    v_te
-    , ty_m (
-      ty_p( 'i', 'I' )
-      , ty_p( 'missing', 'missing' )
-      , ty_p( 'you', 'you' )
-      , ty_p( 'long', 'long' )
-      , ty_p( 'soso', 'XXX' )
-    )
-  );
-
-  assert( v_clob = 'I''ve been {{miSXXXSing}} you for $o long' );
-end;
-
-
-procedure named_user_start as
-  v_te ty_te;
-  v_clob clob;
-begin
-  v_te := ty_te.compile_named( '{?i}}''ve been {?miSSing}} {?you}} for $o {?long}}.', '{?' );
-  v_clob := pk_te.substitute( 
-    v_te
-    , ty_m (
-      ty_p( 'i', 'I' )
-      , ty_p( 'missing', 'missing' )
-      , ty_p( 'you', 'you' )
-      , ty_p( 'long', 'long' )
-    )
-  );
-
-  assert( v_clob = 'I''ve been missing you for $o long.' );
-end;
-
-procedure named_user_start_user_end as
-  v_te ty_te;
-  v_clob clob;
-begin
-  v_te := ty_te.compile_named( '[?i]]''ve been [?miSSing]] [?you]] for $o [?long]].', '[?', ']]' );
-  v_clob := pk_te.substitute( 
-    v_te
-    , ty_m (
-      ty_p( 'i', 'I' )
-      , ty_p( 'missing', 'missing' )
-      , ty_p( 'you', 'you' )
-      , ty_p( 'long', 'long' )
-    )
-  );
-
-  assert( v_clob = 'I''ve been missing you for $o long.' );
-end;
-
-
-procedure subst_num_straight as 
-  v_clob clob;
-begin
-  v_clob := pk_te.substitute( '{$4}''ve been {$1} {$2} for $o {$3}', ty_p( 'missing', 'you', 'long.', 'I') );
-
-  assert( v_clob = 'I''ve been missing you for $o long.' );
-end;
-
-
-procedure subst_num_straight_ph_end as 
-  v_clob clob;
-begin
-  v_clob := pk_te.substitute( '$4$''ve been $1$ $2$ for $o $3$', ty_p( 'missing', 'you', 'long.', 'I'), '$', '$' );
-  assert( v_clob = 'I''ve been missing you for $o long.' );
-end;
-
-
-procedure subst_num_backref as 
-  v_clob clob;
-begin
-  v_clob := pk_te.substitute( '{$4}''ve been {$1} {$2} for $o {$3}', ty_p( 'missing', 'you', 'long.', '\1') );
-
-  assert( v_clob = '\1''ve been missing you for $o long.' );
-end;
-
-procedure subst_num_null_repl as 
-  v_clob clob;
-begin
-  v_clob := pk_te.substitute( '{$4}''ve been {$1} {$2} for $o {$3}', ty_p( null, 'you', 'long.', 'I') );
-  assert( v_clob = 'I''ve been  you for $o long.' );
-end;
-
-procedure subst_num_no_te_in_map as 
-  v_clob clob;
-begin
-  v_clob := pk_te.substitute( '{$4}''ve been {$1} {$2} for $o {$3} {$5}', ty_p( null, 'you', 'long.', 'I') );
-
-  assert( v_clob = 'I''ve been  you for $o long. ' );
-end;
-
-procedure subst_num_user_start as 
-  v_clob clob;
-begin
-  v_clob := pk_te.substitute( '??4''ve been ??1 ??2 for $o ??3 ??12', ty_p( 'missing', 'you', 'long.', 'I'), '??', '' );
-
-  assert( v_clob = 'I''ve been missing you for $o long. ' );
-end;
-
-
-procedure subst_named_straight as
-  v_clob clob;
-begin
-  v_clob := pk_te.substitute( '{{i}}''ve been {{miSSing}} {{you}} for $o {{long}}.' 
-    , ty_m (
-      ty_p( 'i', 'I' )
-      , ty_p( 'missing', 'missing' )
-      , ty_p( 'you', 'you' )
-      , ty_p( 'long', 'long' )
-    )
-  );
-
-  assert( v_clob = 'I''ve been missing you for $o long.' );
-end;
-
-
-procedure subst_named_empty_and_null_p as
-  v_clob clob;
-begin
-  v_clob := pk_te.substitute( '{{i}}''ve been {{miSSing}} {{you}} for $o {{long}}.' 
-    , ty_m (
-      ty_p( 'i', 'I' )
-      , ty_p()
-      , ty_p( 'you', 'you' )
-      , null
-    )
-  );
-
-  assert( v_clob = 'I''ve been  you for $o .' );
-end;
-
-
-procedure subst_named_backref as
-  v_clob clob;
-begin
-  v_clob := pk_te.substitute( '{{i}}''ve been {{miSSing}} {{you}} for $o {{long}}.' 
-    , ty_m (
-      ty_p( 'i', 'I' )
-      , ty_p( 'missing', 'missing' )
-      , ty_p( 'you', '\2' )
-      , ty_p( 'long', 'long' )
-    )
-  );
-
-  assert( v_clob = 'I''ve been missing \2 for $o long.' );
-end;
-
-
-procedure subst_named_repeadted as
-  v_clob clob;
-begin
-  v_clob := pk_te.substitute( '{{i}}''ve been {{miSSing}} {{you}} for {{so}} {{so}} $o {{long}}.' 
-    , ty_m (
-      ty_p( 'i', 'I' )
-      , ty_p( 'missing', 'missing' )
-      , ty_p( 'you', 'you' )
-      , ty_p( 'long', 'long' )
-      , ty_p( 'so', 'so' )
-    )
-  );
-
-  assert( v_clob = 'I''ve been missing you for so so $o long.' );
-end;
-
-procedure cur_numbered as
-  v_clob clob;
-  v_te ty_te;
-  v_cur sys_refcursor;
-begin
-  v_te := ty_te.compile_numbered( 't1.{$1} = t2.{$1}' );
-  begin
-    open v_cur for 
-      select ty_p( 'field1' ) o from dual
-      union all
-      select ty_p( 'field2' ) o from dual
-    ;
-    v_clob := pk_te.substitute(  v_te, v_cur, ', '  );
-  exception 
-    when others then
-      null;
-  end;
-  if v_cur%isopen then 
-    close v_cur;
-  end if;
-  assert( v_clob = 't1.field1 = t2.field1, t1.field2 = t2.field2' );
-end;
-
-
-procedure cur_numbered_sql as
-  v_clob clob;
-  v_te ty_te;
-begin
-  v_te := ty_te.compile_numbered( 't1.{$1} = t2.{$1}' );
-  begin
-    select pk_te.substitute(  
-      v_te
-      , cursor( 
-        select ty_p( 'field1' ) o from dual
-        union all
-        select ty_p( 'field2' ) o from dual 
-      ) 
-      , ', '  
-    )
-    into v_clob
-    from dual
-    ;
-  exception 
-    when others then
-      null;
-  end;
-  assert( v_clob = 't1.field1 = t2.field1, t1.field2 = t2.field2' );
-end;
-
-
-procedure cur_numbered_break_wrong_cur as
-  v_clob clob;
-  v_te ty_te;
-  v_cur sys_refcursor;
-begin
-  v_te := ty_te.compile_numbered( 't1.{$1} = t2.{$1}' );
-  begin
-    open v_cur for select 1 o from dual;
-    v_clob := pk_te.substitute(  v_te, v_cur, ', '  );
-  exception 
-    when others then
-      assert( sqlcode = -20996 );
-  end;
-  if v_cur%isopen then 
-    close v_cur;
-  end if;
-end;
-
-
-procedure cur_named as
-  v_clob clob;
-  v_te ty_te;
-  v_cur sys_refcursor;
-begin
-  v_te := ty_te.compile_named( 't1.{{column_name}} = t2.{{column_name}} --{{comment}}' );
-  begin
-    open v_cur for 
-      select ty_m( ty_p( 'column_name', 'field1' ), ty_p( 'comment', 'comment1' ) ) o from dual
-      union all
-      select ty_m( ty_p( 'column_name', 'field2' ), ty_p( 'comment', 'comment2' ) ) o from dual
-    ;
-    v_clob := pk_te.substitute(  v_te, v_cur, ', '  );
-  exception 
-    when others then
-      null;
-  end;
-  if v_cur%isopen then 
-    close v_cur;
-  end if;
-  assert( v_clob = 't1.field1 = t2.field1 --comment1, t1.field2 = t2.field2 --comment2' );
-end;
-
-
-
-procedure cur_named_break_wrong_te as
-  v_clob clob;
-  v_te ty_te;
-  v_cur sys_refcursor;
-begin
-  v_te := ty_te.compile_named( 't1.{{column_name}} = t2.{{column_name}}' );
-  begin
-    open v_cur for select ty_p( 'field1' ) o from dual;
-    v_clob := pk_te.substitute(  v_te, v_cur, ', '  );
-  exception 
-    when others then
-      assert( sqlcode = -20996 );
-  end;
-  if v_cur%isopen then 
-    close v_cur;
-  end if;
-end;
-
-
-
-
-procedure combine_named as
-  v_lte ty_te;
-  v_rte ty_te;
-  v_cte ty_te;
-  v_clob clob;
-begin
-  v_lte := ty_te.compile_named( '{{i}}''ve been {{miSSing}} ' );
-  v_rte := ty_te.compile_named( '{{you}} for $o {{long}}.' );
-  v_cte := ty_te.concat( v_lte, v_rte );
-  v_clob := pk_te.substitute( 
-    v_cte
-    , ty_m (
-      ty_p( 'i', 'I' )
-      , ty_p( 'missing', 'missing' )
-      , ty_p( 'you', 'you' )
-      , ty_p( 'long', 'long' )
-    )
-  );
-  assert( v_clob = 'I''ve been missing you for $o long.' );
-end;
 
 procedure loop_merge as 
 	v_te ty_te;
@@ -1363,16 +838,16 @@ procedure loop_merge as
   v_join_by varchar2( 30 char ) := 'ut_name';
   v_dest_tbl varchar2( 30 char ) := 'ut_report';
 begin
-	v_te := ty_te.compile_named( 'merge into {{dest_table}} t1
-using {{tmp_table}} t2
-on ( t1.{{join_by}} = t2.{{join_by}} )
+	v_te := ty_te.compile_named( 'merge into {$dest_table} t1
+using {$tmp_table} t2
+on ( t1.{$join_by} = t2.{$join_by} )
 when matched then
-  update set {% for cur:1 | join( '', '' ) %}t1.{{column_name}} = t2.{{column_name}}{% endfor %}
-when not matched then insert( {{join_by}}
-  , {% for cur:1 | join ( '', '' ) %}{{column_name}}{% endfor %}
-) values ( {{seq_name}}.nextval
-  , t2.{{join_by}}
-  , {% for cur:1 | join ( '', '' ) %}t2.{{column_name}}{% endfor %}
+  update set {% for cur:1 | join( '', '' ) %}t1.{$column_name} = t2.{$column_name}{% endfor %}
+when not matched then insert( {$join_by}
+  , {% for cur:1 | join ( '', '' ) %}{$column_name}{% endfor %}
+) values ( {$seq_name}.nextval
+  , t2.{$join_by}
+  , {% for cur:1 | join ( '', '' ) %}t2.{$column_name}{% endfor %}
 )');
   v_join_by := 'ut_name';
   select pk_te.substitute( 
@@ -1413,10 +888,10 @@ procedure loop_recursion as
   v_clob clob;
 begin
   with c as (
-    select ty_te.compile_named( q'#update {{table_name}}
-set {% for cur:1 | join( ', ' ) %}{{column_name}} = -{{column_name}}  /* all columns: {% for cur: 1 | join( ', ' ) %}{{column_name}}{% endfor %} */{% endfor %} 
-where {% for cur: 1 | join ( ' or ' ) %}{{column_name}} = 0{% endfor %}
-/* {% for cur:2 | join( '-' ) | n %}{$1}{% endfor %} */#' ) as te
+    select ty_te.compile_named( q'#update {$table_name}
+set {% for cur:1 | join( ', ' ) %}{$column_name} = -{$column_name}  /* all columns: {% for cur: 1 | join( ', ' ) %}{$column_name}{% endfor %} */{% endfor %} 
+where {% for cur: 1 | join ( ' or ' ) %}{$column_name} = 0{% endfor %}
+/* {% for cur:2 | join( '-' ) | n %}$1{% endfor %} */#' ) as te
     from dual
   )
   select pk_te.substitute( 
@@ -1451,7 +926,7 @@ procedure nested_if as
   v_clob clob;
 begin
   v_te := ty_te.compile_named( 
-    'truncate table {{table_name}}{% if ( ''{{dblink}}'' is not null )%}{% if ( ''{{dblink}}'' is null )%}/* t-2 */{% else %}@{{dblink}}{% endif %}{% else %}/* f-1 */{% endif %}; ' 
+    'truncate table {$table_name}{% if ( ''{$dblink}'' is not null )%}{% if ( ''{$dblink}'' is null )%}/* t-2 */{% else %}@{$dblink}{% endif %}{% else %}/* f-1 */{% endif %}; ' 
   ); 
   v_clob := pk_te.substitute( v_te, ty_m( ty_p( 'table_name', 'dummy' ), ty_p( 'dblink', 'superdome' ) ) ) || pk_te.substitute( v_te, ty_m( ty_p( 'table_name', 'dummy' ), ty_p( 'dblink', null ) ) );
   assert( v_clob = 'truncate table dummy@superdome; truncate table dummy/* f-1 */; ' );
@@ -1463,7 +938,7 @@ procedure loop_condenced as
   v_clob clob;
 begin
   with c as (
-    select ty_te.compile_named( q'#create table {{table_name}} ({%for cur: 1 | join( ', ' ) | n%}{$1} {$2}{%endfor%})#' ) o
+    select ty_te.compile_named( q'#create table {$table_name} ({%for cur: 1 | join( ', ' ) | n%}$1 $2{%endfor%})#' ) o
     from dual
   )
   select pk_te.substitute( 
@@ -1487,7 +962,7 @@ procedure if_condenced as
   v_te ty_te;
   v_clob clob;
 begin
-  v_te := ty_te.compile_numbered( q'#{$1} {$2} {%if ('{$3}' is not null)%}not null{%else%}null{%endif%}#' );
+  v_te := ty_te.compile_numbered( q'#$1 $2 {%if ('$3' is not null)%}not null{%else%}null{%endif%}#' );
   v_clob := pk_te.substitute( v_te, ty_p( 'col1', 'integer', null ) );
   assert( v_clob = 'col1 integer null' );
 end; 
@@ -1497,7 +972,7 @@ procedure loop_with_nested_if as
   v_clob clob;
 begin
   with c as (
-    select ty_te.compile_named( q'#create table {{table_name}} ({%for cur: 1 | join( ', ' ) | n%}{$1} {$2} {%if ('{$3}' is null)%}null{%else%}not null{%endif%}{%endfor%})#' ) o
+    select ty_te.compile_named( q'#create table {$table_name} ({%for cur: 1 | join( ', ' ) | n%}$1 $2 {%if ('$3' is null)%}null{%else%}not null{%endif%}{%endfor%})#' ) o
     from dual
   )
   select pk_te.substitute( 
@@ -1523,7 +998,7 @@ procedure loop_with_nested_if_broken as
   v_clob clob;
 begin
   with c as (
-    select ty_te.compile_named( q'#create table {{table_name}} ({%for cur: 1 | join( ', ' ) | n%}{$1} {$2} {%if ({$3} is null)%}null{%else%}not null{%endif%}{%endfor%})#' ) o
+    select ty_te.compile_named( q'#create table {$table_name} ({%for cur: 1 | join( ', ' ) | n%}$1 $2 {%if ($3 is null)%}null{%else%}not null{%endif%}{%endfor%})#' ) o
     from dual
   )
   select pk_te.substitute( 
@@ -1552,7 +1027,7 @@ procedure if_with_nested_loop as
   v_clob clob;
 begin
   with c as (
-    select ty_te.compile_named( q'#create {%if ('{{object}}' = 'table')%}table {{table_name}}({%for cur: 1 | join( ', ' ) | n%}{$1} {$2}{%endfor%}){%else%}{{object_name}}{%endif%}#' ) o
+    select ty_te.compile_named( q'#create {%if ('{$object}' = 'table')%}table {$table_name}({%for cur: 1 | join( ', ' ) | n%}$1 $2{%endfor%}){%else%}{$object_name}{%endif%}#' ) o
     from dual
   )
   select pk_te.substitute( 
@@ -1577,50 +1052,14 @@ end;
 */
 procedure run_tests as
 begin
-  o_numbered_straight;
-  o_numbered_with_ph_end;
-  o_numbered_11_ph;
-  o_numbered_user_start;
-  o_numbered_repeated;
-  o_skipped_$2_null_in_map;
-  o_no_$_templates_numbered;
-  o_numbered_$1_follewed_by_$2;
-  o_numbered_empty_p;
-  o_substitute_m_and_numbered;
-  o_substitute_null_te;
-  o_named_straight;
-  o_named_repeated;
-  o_dot_in_named_te;
-  o_digit_in_named_te;
-  o_named_missing_in_m;
-  o_substitute_p_and_named;
-  o_named_encapsulated_te;
-  o_named_user_start;
-  o_named_user_start_user_end;
-  o_subst_num_straight;
-  o_subst_num_straight_ph_end;
-  o_subst_num_null_repl;
-  o_subst_num_no_te_in_map;
-  o_subst_num_user_start;
-  o_subst_named_straight;
-  o_subst_named_empty_and_null_p;
-  o_subst_num_backref;
-  o_subst_named_backref;
-  o_subst_named_repeadted;
-  o_cur_numbered;
-  o_cur_numbered_sql;
-  o_cur_numbered_break_wrong_cur;
-  o_cur_named;
-  o_cur_named_break_wrong_te;
-  o_combine_named;
-  o_loop_merge;
-  o_loop_recursion;
-  /* new syntax */ 
   numbered_straight;
+  numbered_with_ph_end;
   numbered_11_ph;
+  numbered_user_start;
   numbered_repeated;
   skipped_$2_null_in_map;
   no_$_templates_numbered;
+  numbered_$1_follewed_by_$2;
   numbered_empty_p;
   substitute_m_and_numbered;
   substitute_null_te;
@@ -1649,6 +1088,9 @@ begin
   cur_named;
   cur_named_break_wrong_te;
   combine_named;
+  o_loop_merge;
+  o_loop_recursion;
+  /* new syntax */ 
   loop_merge;
   loop_recursion;
   nested_if;

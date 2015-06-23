@@ -5,7 +5,7 @@ create or replace type TY_SPH force as object (
 	, ph_number number(38, 0)
   , loop_number number(38, 0)
   , concat_by varchar2( 400 char )
-  , loop_construct_id number( 38, 0 )
+  , nested_te_id number( 38, 0 )
   , t_te_id number( 38, 0 )
   , f_te_id number( 38, 0 )
 	, CONSTRUCTOR FUNCTION TY_SPH( SELF IN OUT NOCOPY TY_SPH ) RETURN SELF AS RESULT

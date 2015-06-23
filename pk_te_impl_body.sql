@@ -202,7 +202,7 @@ BEGIN
           v_res := v_res || a_numbered_replacements( v_sph.ph_number );
         end if;
       elsif ( EL_LOOP_CONSTRUCT = v_sph.type_ ) then
-        v_loop_te := pk_te_crossref.get_te_ref( v_sph.loop_construct_id );
+        v_loop_te := pk_te_crossref.get_te_ref( v_sph.nested_te_id );
         if v_loop_te is not null then
           v_res := v_res || 
             dispatch_loop_construct_subst_( a_p_cache, a_m_cache, v_loop_te, v_sph.loop_number, v_sph.concat_by, 
@@ -210,7 +210,7 @@ BEGIN
           ;
         end if;
       elsif ( EL_IF_CONSTRUCT = v_sph.type_ ) then
-        v_if_te := pk_te_crossref.get_te_ref( v_sph.loop_construct_id );
+        v_if_te := pk_te_crossref.get_te_ref( v_sph.nested_te_id );
         if v_if_te is not null then
           v_cond_subst_res := pk_te.substitute( v_if_te, a_numbered_replacements, a_c1, a_c2, a_c3, a_c4, a_c5, a_c6, a_c7, a_c8, a_c9 );
         end if;
@@ -299,7 +299,7 @@ BEGIN
           v_res := v_res || v_dict( v_sph.ph_name );
         end if;
       elsif ( EL_LOOP_CONSTRUCT = v_sph.type_ ) then
-        v_loop_te := pk_te_crossref.get_te_ref( v_sph.loop_construct_id );
+        v_loop_te := pk_te_crossref.get_te_ref( v_sph.nested_te_id );
         if v_loop_te is not null then
            v_res := v_res || 
             dispatch_loop_construct_subst_( a_p_cache, a_m_cache, v_loop_te, v_sph.loop_number, v_sph.concat_by, 
@@ -307,7 +307,7 @@ BEGIN
           ;
         end if;
       elsif ( EL_IF_CONSTRUCT = v_sph.type_ ) then
-        v_if_te := pk_te_crossref.get_te_ref( v_sph.loop_construct_id );
+        v_if_te := pk_te_crossref.get_te_ref( v_sph.nested_te_id );
         if v_if_te is not null then
           v_cond_subst_res := pk_te.substitute( v_if_te, a_named_replacements, a_c1, a_c2, a_c3, a_c4, a_c5, a_c6, a_c7, a_c8, a_c9 );
         end if;

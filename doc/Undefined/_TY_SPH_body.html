@@ -33,7 +33,7 @@
 <H2>
 <FONT SIZE="-1"></FONT>
 <BR>Object Type&nbsp;TY_SPH</H2> TY_SPH (String Or Placeholder)<br/>
- A type that represents wrapped clob or numbered/named placeholder.<br/>
+ A type that represents wrapped clob or numbered/named placeholder or contains references to nested compiled tempate expressions (ty_te).<br/>
  You can create ty_sph of particular type by calling corresponding static functions.<br/>
  This type is used in internals of TY_TE as a container of either string, or numbered/named placeholder<br/>
 <P></P>
@@ -55,13 +55,12 @@
        synonymsFile=,,--><!--GenerateTypeLink: default reached-->STATIC FUNCTION TY_SPH</CODE></FONT></TD>
 <!-- 
 		siblingCount=0 
-		argumentCount=1 
+		argumentCount=3 
 		predecessorCount=0 
-		siblingNoArgumentCount=0--><A NAME="CREATE_NAMED_PH"></A><TD><CODE><B><A HREF="#CREATE_NAMED_PH(VARCHAR2)">CREATE_NAMED_PH</A></B>(A_NAME IN VARCHAR2)</CODE>
+		siblingNoArgumentCount=0--><A NAME="CREATE_IF_CONSTRUCT"></A><TD><CODE><B><A HREF="#CREATE_IF_CONSTRUCT(PLS_INTEGER,PLS_INTEGER,PLS_INTEGER)">CREATE_IF_CONSTRUCT</A></B>(A_IF_TE_ID IN PLS_INTEGER, A_TRUE_TE_ID IN PLS_INTEGER, A_FALSE_TE_ID IN PLS_INTEGER)</CODE>
 <BR>
       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-       Creates instance of ty_sph by wrapping numbered placeholder
-</TD>
+      </TD>
 </TR>
 <TR CLASS="TableRowColor">
 <TD WIDTH="1%" VALIGN="top" ALIGN="right"><FONT SIZE="-1"><CODE>&nbsp;<!--
@@ -75,10 +74,28 @@
 		siblingCount=0 
 		argumentCount=3 
 		predecessorCount=0 
-		siblingNoArgumentCount=0--><A NAME="CREATE_NESTED_TE"></A><TD><CODE><B><A HREF="#CREATE_NESTED_TE(PLS_INTEGER,PLS_INTEGER,VARCHAR2)">CREATE_NESTED_TE</A></B>(A_TE_ID IN PLS_INTEGER, A_LOOP_NUMBER IN PLS_INTEGER DEFAULT 0, A_CONCAT_BY IN VARCHAR2 DEFAULT '')</CODE>
+		siblingNoArgumentCount=0--><A NAME="CREATE_LOOP_CONSTRUCT"></A><TD><CODE><B><A HREF="#CREATE_LOOP_CONSTRUCT(PLS_INTEGER,PLS_INTEGER,VARCHAR2)">CREATE_LOOP_CONSTRUCT</A></B>(A_TE_ID IN PLS_INTEGER, A_LOOP_NUMBER IN PLS_INTEGER DEFAULT 0, A_CONCAT_BY IN VARCHAR2 DEFAULT '')</CODE>
 <BR>
       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
        Creates instance of ty_sph by wrapping an instance of ty_te.</TD>
+</TR>
+<TR CLASS="TableRowColor">
+<TD WIDTH="1%" VALIGN="top" ALIGN="right"><FONT SIZE="-1"><CODE>&nbsp;<!--
+       schemaName=
+       typeName=STATIC FUNCTION TY_SPH
+       localTypeName=
+       schema=
+       fieldType=STATIC FUNCTION TY_SPH
+       synonymsFile=,,--><!--GenerateTypeLink: default reached-->STATIC FUNCTION TY_SPH</CODE></FONT></TD>
+<!-- 
+		siblingCount=0 
+		argumentCount=1 
+		predecessorCount=0 
+		siblingNoArgumentCount=0--><A NAME="CREATE_NAMED_PH"></A><TD><CODE><B><A HREF="#CREATE_NAMED_PH(VARCHAR2)">CREATE_NAMED_PH</A></B>(A_NAME IN VARCHAR2)</CODE>
+<BR>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+       Creates instance of ty_sph by wrapping numbered placeholder
+</TD>
 </TR>
 <TR CLASS="TableRowColor">
 <TD WIDTH="1%" VALIGN="top" ALIGN="right"><FONT SIZE="-1"><CODE>&nbsp;<!--
@@ -128,10 +145,29 @@
 		siblingCount=0 
 		argumentCount=0 
 		predecessorCount=0 
-		siblingNoArgumentCount=0--><TD><CODE><B><A HREF="#EL_NESTED_TE">EL_NESTED_TE</A></B>()</CODE>
+		siblingNoArgumentCount=0--><TD><CODE><B><A HREF="#EL_IF_CONSTRUCT">EL_IF_CONSTRUCT</A></B>()</CODE>
 <BR>
       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      </TD>
+       Just to be used as class constant
+</TD>
+</TR>
+<TR CLASS="TableRowColor">
+<TD WIDTH="1%" VALIGN="top" ALIGN="right"><FONT SIZE="-1"><CODE>&nbsp;<!--
+       schemaName=
+       typeName=STATIC FUNCTION PLS_INTEGER
+       localTypeName=
+       schema=
+       fieldType=STATIC FUNCTION PLS_INTEGER
+       synonymsFile=,,--><!--GenerateTypeLink: default reached-->STATIC FUNCTION PLS_INTEGER</CODE></FONT></TD>
+<!-- 
+		siblingCount=0 
+		argumentCount=0 
+		predecessorCount=0 
+		siblingNoArgumentCount=0--><TD><CODE><B><A HREF="#EL_LOOP_CONSTRUCT">EL_LOOP_CONSTRUCT</A></B>()</CODE>
+<BR>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+       Just to be used as class constant
+</TD>
 </TR>
 <TR CLASS="TableRowColor">
 <TD WIDTH="1%" VALIGN="top" ALIGN="right"><FONT SIZE="-1"><CODE>&nbsp;<!--
@@ -230,6 +266,56 @@
 <TD COLSPAN="1"><FONT SIZE="+2"><B>Method Detail</B></FONT></TD>
 </TR>
 </TABLE>
+<A NAME="CREATE_IF_CONSTRUCT(PLS_INTEGER,PLS_INTEGER,PLS_INTEGER)"></A>
+<H3>CREATE_IF_CONSTRUCT</H3>
+<PRE> <!--
+       schemaName=
+       typeName=STATIC FUNCTION TY_SPH
+       localTypeName=
+       schema=
+       fieldType=STATIC FUNCTION TY_SPH
+       synonymsFile=,,--><!--GenerateTypeLink: default reached-->STATIC FUNCTION TY_SPH <B>CREATE_IF_CONSTRUCT</B>(A_IF_TE_ID IN PLS_INTEGER, <BR>                                            A_TRUE_TE_ID IN PLS_INTEGER, <BR>                                            A_FALSE_TE_ID IN PLS_INTEGER)</PRE>
+<DL>
+<DD></DD>
+<DD>
+<DL></DL>
+</DD>
+<P></P>
+<DL></DL>
+</DL>
+<HR>
+<A NAME="CREATE_LOOP_CONSTRUCT(PLS_INTEGER,PLS_INTEGER,VARCHAR2)"></A>
+<H3>CREATE_LOOP_CONSTRUCT</H3>
+<PRE> <!--
+       schemaName=
+       typeName=STATIC FUNCTION TY_SPH
+       localTypeName=
+       schema=
+       fieldType=STATIC FUNCTION TY_SPH
+       synonymsFile=,,--><!--GenerateTypeLink: default reached-->STATIC FUNCTION TY_SPH <B>CREATE_LOOP_CONSTRUCT</B>(A_TE_ID IN PLS_INTEGER, <BR>                                              A_LOOP_NUMBER IN PLS_INTEGER DEFAULT 0, <BR>                                              A_CONCAT_BY IN VARCHAR2 DEFAULT '')</PRE>
+<DL>
+<DD> Creates instance of ty_sph by wrapping an instance of ty_te. Can also assign loop number if nested template expression comes <br/>
+ from loop declaration and the string that will be inserted between individual loop substitutions.
+</DD>
+<DD>
+<DL>
+<DT>Parameters:
+        <DD>
+<CODE>A_LOOP_NUMBER</CODE> -
+              an optional loop number if template expression comes from loop declaration</DD>
+<DD>
+<CODE>A_CONCAT_BY</CODE> -
+              a string that comes from loop declaration and that will be inserted between individual loop substitutions.</DD>
+</DT>
+<DT>Returns:
+          <DD>instance of ty_sph</DD>
+</DT>
+</DL>
+</DD>
+<P></P>
+<DL></DL>
+</DL>
+<HR>
 <A NAME="CREATE_NAMED_PH(VARCHAR2)"></A>
 <H3>CREATE_NAMED_PH</H3>
 <PRE> <!--
@@ -248,38 +334,6 @@
         <DD>
 <CODE>A_NAME</CODE> -
               placeholder name</DD>
-</DT>
-<DT>Returns:
-          <DD>instance of ty_sph</DD>
-</DT>
-</DL>
-</DD>
-<P></P>
-<DL></DL>
-</DL>
-<HR>
-<A NAME="CREATE_NESTED_TE(PLS_INTEGER,PLS_INTEGER,VARCHAR2)"></A>
-<H3>CREATE_NESTED_TE</H3>
-<PRE> <!--
-       schemaName=
-       typeName=STATIC FUNCTION TY_SPH
-       localTypeName=
-       schema=
-       fieldType=STATIC FUNCTION TY_SPH
-       synonymsFile=,,--><!--GenerateTypeLink: default reached-->STATIC FUNCTION TY_SPH <B>CREATE_NESTED_TE</B>(A_TE_ID IN PLS_INTEGER, <BR>                                         A_LOOP_NUMBER IN PLS_INTEGER DEFAULT 0, <BR>                                         A_CONCAT_BY IN VARCHAR2 DEFAULT '')</PRE>
-<DL>
-<DD> Creates instance of ty_sph by wrapping an instance of ty_te. Can also assign loop number if nested template expression comes <br/>
- from loop declaration and the string that will be inserted between individual loop substitutions.
-</DD>
-<DD>
-<DL>
-<DT>Parameters:
-        <DD>
-<CODE>A_LOOP_NUMBER</CODE> -
-              an optional loop number if template expression comes from loop declaration</DD>
-<DD>
-<CODE>A_CONCAT_BY</CODE> -
-              a string that comes from loop declaration and that will be inserted between individual loop substitutions.</DD>
 </DT>
 <DT>Returns:
           <DD>instance of ty_sph</DD>
@@ -346,17 +400,37 @@
 <DL></DL>
 </DL>
 <HR>
-<A NAME="EL_NESTED_TE"></A>
-<H3>EL_NESTED_TE</H3>
+<A NAME="EL_IF_CONSTRUCT"></A>
+<H3>EL_IF_CONSTRUCT</H3>
 <PRE> <!--
        schemaName=
        typeName=STATIC FUNCTION PLS_INTEGER
        localTypeName=
        schema=
        fieldType=STATIC FUNCTION PLS_INTEGER
-       synonymsFile=,,--><!--GenerateTypeLink: default reached-->STATIC FUNCTION PLS_INTEGER <B>EL_NESTED_TE</B>()</PRE>
+       synonymsFile=,,--><!--GenerateTypeLink: default reached-->STATIC FUNCTION PLS_INTEGER <B>EL_IF_CONSTRUCT</B>()</PRE>
 <DL>
-<DD></DD>
+<DD> Just to be used as class constant
+</DD>
+<DD>
+<DL></DL>
+</DD>
+<P></P>
+<DL></DL>
+</DL>
+<HR>
+<A NAME="EL_LOOP_CONSTRUCT"></A>
+<H3>EL_LOOP_CONSTRUCT</H3>
+<PRE> <!--
+       schemaName=
+       typeName=STATIC FUNCTION PLS_INTEGER
+       localTypeName=
+       schema=
+       fieldType=STATIC FUNCTION PLS_INTEGER
+       synonymsFile=,,--><!--GenerateTypeLink: default reached-->STATIC FUNCTION PLS_INTEGER <B>EL_LOOP_CONSTRUCT</B>()</PRE>
+<DL>
+<DD> Just to be used as class constant
+</DD>
 <DD>
 <DL></DL>
 </DD>

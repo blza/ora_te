@@ -112,8 +112,8 @@ END compile_numbered_old;
 */
 static function compile_numbered( 
   a_template_string in clob
-  , a_ph_start in varchar2 := '{$'
-  , a_ph_end in varchar2 := '}'
+  , a_ph_start in varchar2 := '$'
+  , a_ph_end in varchar2 := ''
   , a_constr_ph_begin varchar2 := '{%'
   , a_constr_ph_end varchar2 := '%}' 
 ) return ty_te 
@@ -204,8 +204,8 @@ END;
 */
 static function compile_named( 
   a_template_string in clob
-  , a_ph_start in varchar2 := '{{'
-  , a_ph_end in varchar2 := '}}'
+  , a_ph_start in varchar2 := '{$'
+  , a_ph_end in varchar2 := '}'
   , a_constr_ph_begin varchar2 := '{%'
   , a_constr_ph_end varchar2 := '%}'
 ) return ty_te 
@@ -719,16 +719,16 @@ begin
     end
   ;
   -- determine new placehodlers begin and end
-  if v_options_array( 3 ) is not null and v_options_array( 3 ) != 'NOT_SET' then
+    if v_options_array( 3 ) is not null and v_options_array( 3 ) != 'NOT_SET' then
     v_new_ph_start := v_options_array( 3 );
   else
     if v_new_type = a_type then
       v_new_ph_start := a_ph_start;
     else
       if v_new_type = ty_te.EL_NUMBERED() then
-        v_new_ph_start := '{$';
+        v_new_ph_start := '$';
       else
-        v_new_ph_start := '{{';
+        v_new_ph_start := '{$';
       end if;
     end if;
   end if;
@@ -740,9 +740,9 @@ begin
       v_new_ph_end := a_ph_end;
     else
       if v_new_type = ty_te.EL_NUMBERED() then
-        v_new_ph_end := '}';
+        v_new_ph_end := '';
       else
-        v_new_ph_end := '}}';
+        v_new_ph_end := '}';
       end if;
     end if;
   end if;

@@ -72,7 +72,7 @@ as
 begin
   v_instance := ty_sph();
   v_instance.type_ := ty_sph.EL_LOOP_CONSTRUCT();
-  v_instance.loop_construct_id := a_te_id;
+  v_instance.nested_te_id := a_te_id;
   v_instance.loop_number := a_loop_number;
   v_instance.concat_by := a_concat_by;
   return v_instance;
@@ -85,7 +85,7 @@ as
 begin
   v_instance := ty_sph();
   v_instance.type_ := ty_sph.EL_IF_CONSTRUCT();
-  v_instance.loop_construct_id := a_if_te_id;
+  v_instance.nested_te_id := a_if_te_id;
   v_instance.t_te_id := a_true_te_id;
   v_instance.f_te_id := a_false_te_id;
   return v_instance;

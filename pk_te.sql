@@ -13,10 +13,12 @@ create or replace PACKAGE PK_TE AS
   ) return clob;
   function substitute( a_te in ty_te, a_cursor in pk_te.refcur, a_concat_by in varchar2 default null ) return clob;
    
-  function substitute( a_string in clob, a_numbered_replacements p, a_ph_start in varchar2 := '{$', a_ph_end in varchar2 := '}' ) return clob;
-  function substitute( a_string in clob, a_named_replacements m, a_ph_start in varchar2 := '{{', a_ph_end in varchar2 := '}}' ) return clob;
+  function substitute( a_string in clob, a_numbered_replacements p, a_ph_start in varchar2 := '$', a_ph_end in varchar2 := '' ) return clob;
+  function substitute( a_string in clob, a_named_replacements m, a_ph_start in varchar2 := '{$', a_ph_end in varchar2 := '}' ) return clob;
   
   function old return ty_te_old_proxy;
+  function twig return ty_te_twig_proxy; 
+  function django return ty_te_twig_proxy; 
   
 END PK_TE;
 /

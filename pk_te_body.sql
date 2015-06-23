@@ -7,6 +7,7 @@ create or replace PACKAGE BODY PK_TE AS
 */
 
 g_old_syntax_proxy ty_te_old_proxy;
+g_twig_syntax_proxy ty_te_twig_proxy;
 
 
 type ty_vchar_to_vchar is table of varchar2( 32767 char ) index by varchar2( 100 char );
@@ -87,7 +88,7 @@ BEGIN
           v_res := v_res || a_numbered_replacements( v_sph.ph_number );
         end if;
       elsif ( EL_LOOP_CONSTRUCT = v_sph.type_ ) then
-        v_loop_te := pk_te_crossref.get_te_ref( v_sph.loop_construct_id );
+        v_loop_te := pk_te_crossref.get_te_ref( v_sph.nested_te_id );
         if v_loop_te is not null then
           v_res := v_res || 
             pk_te_impl.dispatch_loop_construct_subst_( v_p_cache, v_m_cache, v_loop_te, v_sph.loop_number, v_sph.concat_by, 
@@ -95,7 +96,7 @@ BEGIN
           ;
         end if;
       elsif ( EL_IF_CONSTRUCT = v_sph.type_ ) then
-        v_if_te := pk_te_crossref.get_te_ref( v_sph.loop_construct_id );
+        v_if_te := pk_te_crossref.get_te_ref( v_sph.nested_te_id );
         if v_if_te is not null then
           v_cond_subst_res := pk_te.substitute( v_if_te, a_numbered_replacements, a_c1, a_c2, a_c3, a_c4, a_c5, a_c6, a_c7, a_c8, a_c9 );
         end if;
@@ -193,7 +194,7 @@ BEGIN
           v_res := v_res || v_dict( v_sph.ph_name );
         end if;
       elsif ( EL_LOOP_CONSTRUCT = v_sph.type_ ) then
-        v_loop_te := pk_te_crossref.get_te_ref( v_sph.loop_construct_id );
+        v_loop_te := pk_te_crossref.get_te_ref( v_sph.nested_te_id );
         if v_loop_te is not null then
           v_res := v_res || 
             pk_te_impl.dispatch_loop_construct_subst_( v_p_cache, v_m_cache, v_loop_te, v_sph.loop_number, v_sph.concat_by, 
@@ -201,7 +202,7 @@ BEGIN
           ;
         end if;
       elsif ( EL_IF_CONSTRUCT = v_sph.type_ ) then
-        v_if_te := pk_te_crossref.get_te_ref( v_sph.loop_construct_id );
+        v_if_te := pk_te_crossref.get_te_ref( v_sph.nested_te_id );
         if v_if_te is not null then
           v_cond_subst_res := pk_te.substitute( v_if_te, a_named_replacements, a_c1, a_c2, a_c3, a_c4, a_c5, a_c6, a_c7, a_c8, a_c9 );
         end if;
@@ -221,10 +222,6 @@ BEGIN
   
   RETURN v_res;
 END;
-
-
-
-
 
 
 /** Replaces placeholders in compiled Template Expression with values from cursor in iteration.<br/>
@@ -305,7 +302,7 @@ END;
 * @param a_ph_start a string that denotes the beginning of numbered placeholder
 * @return clob - a large character lob with substituted values (if any)
 */
-function substitute( a_string in clob, a_numbered_replacements p, a_ph_start in varchar2 := '{$', a_ph_end in varchar2 := '}' ) return clob as
+function substitute( a_string in clob, a_numbered_replacements p, a_ph_start in varchar2 := '$', a_ph_end in varchar2 := '' ) return clob as
   v_res clob;
   v_pattern_head varchar2( 30 char ); 
   v_pattern_tail varchar2( 30 char ); 
@@ -352,7 +349,7 @@ end;
 * @param a_ph_end a string that denotes the end of named placeholder
 * @return clob - a large character lob with substituted values (if any)
 */
-function substitute( a_string in clob, a_named_replacements m, a_ph_start in varchar2 := '{{', a_ph_end in varchar2 := '}}' ) return clob 
+function substitute( a_string in clob, a_named_replacements m, a_ph_start in varchar2 := '{$', a_ph_end in varchar2 := '}' ) return clob 
 as
   v_res clob;
   v_pattern_head varchar2( 30 char );
@@ -382,13 +379,38 @@ begin
   return regexp_replace( v_res, v_pattern_head || '\w+' || v_pattern_tail, '' );
 end;
 
-
+/** Returns a proxy object that can be used to easily envoke compile functions supporting<br/>
+* old syntax for loop structures
+*
+*/
 function old return ty_te_old_proxy as 
 begin
   if g_old_syntax_proxy is null then
     g_old_syntax_proxy := ty_te_old_proxy();
   end if;
   return g_old_syntax_proxy;
+end;
+
+/** Returns a proxy object that can be used to easily envoke compile functions for placeholders<br/>
+* resembling twig or django syntax
+*/
+function twig return ty_te_twig_proxy as 
+begin
+  if g_twig_syntax_proxy is null then
+    g_twig_syntax_proxy := ty_te_twig_proxy();
+  end if;
+  return g_twig_syntax_proxy;
+end;
+
+/** Returns a proxy object that can be used to easily envoke compile functions for placeholders<br/>
+* resembling twig or django syntax
+*/
+function django return ty_te_twig_proxy as 
+begin
+  if g_twig_syntax_proxy is null then
+    g_twig_syntax_proxy := ty_te_twig_proxy();
+  end if;
+  return g_twig_syntax_proxy;
 end;
 
 END PK_TE;

@@ -66,7 +66,19 @@
       <RETURN TYPE="CLOB"/>
       <SUMMARY END_COLUMN="139" END_LINE="17" LINES="1" START_COLUMN="12" START_LINE="17"/>
     </FUNCTION>
-    <SUMMARY END_COLUMN="10" END_LINE="19" LINES="19" START_COLUMN="27" START_LINE="1"/>
+    <FUNCTION NAME="OLD">
+      <RETURN TYPE="TY_TE_OLD_PROXY"/>
+      <SUMMARY END_COLUMN="38" END_LINE="19" LINES="1" START_COLUMN="12" START_LINE="19"/>
+    </FUNCTION>
+    <FUNCTION NAME="TWIG">
+      <RETURN TYPE="TY_TE_TWIG_PROXY"/>
+      <SUMMARY END_COLUMN="40" END_LINE="20" LINES="1" START_COLUMN="12" START_LINE="20"/>
+    </FUNCTION>
+    <FUNCTION NAME="DJANGO">
+      <RETURN TYPE="TY_TE_TWIG_PROXY"/>
+      <SUMMARY END_COLUMN="42" END_LINE="21" LINES="1" START_COLUMN="12" START_LINE="21"/>
+    </FUNCTION>
+    <SUMMARY END_COLUMN="10" END_LINE="23" LINES="23" START_COLUMN="27" START_LINE="1"/>
   </PACKAGE>
   <PACKAGE_BODY NAME="PK_TE" SCHEMA="">
     <COMMENT><![CDATA[ The package that provides functions to substitute values instead of placeholders.<br/>
@@ -76,6 +88,12 @@
       <COMMENT>
       </COMMENT>
     </TAG>
+    <VARIABLE NAME="G_OLD_SYNTAX_PROXY">
+      <RETURN TYPE="TY_TE_OLD_PROXY"/>
+    </VARIABLE>
+    <VARIABLE NAME="G_TWIG_SYNTAX_PROXY">
+      <RETURN TYPE="TY_TE_TWIG_PROXY"/>
+    </VARIABLE>
     <TYPE NAME="TY_VCHAR_TO_VCHAR">
       <RETURN TYPE="table OF varchar2(32767 CHAR) INDEX BY varchar2(100 CHAR)"/>
     </TYPE>
@@ -96,7 +114,7 @@
       <TAG TYPE="@PARAM">
         <COMMENT><![CDATA[a_m_cache a table of nested tables containg ty_m values]]></COMMENT>
       </TAG>
-      <SUMMARY END_COLUMN="4" END_LINE="23" LINES="8" START_COLUMN="11" START_LINE="16"/>
+      <SUMMARY END_COLUMN="4" END_LINE="27" LINES="8" START_COLUMN="11" START_LINE="20"/>
     </PROCEDURE>
     <FUNCTION NAME="SUBSTITUTE">
       <COMMENT_FIRST_LINE><![CDATA[ Replaces numbered placeholders in compiled Template Expression with values from nested table of varchar2 (p).<br/>
@@ -199,7 +217,7 @@
       <TAG TYPE="@RETURN">
         <COMMENT><![CDATA[clob - a large character lob with substituted values (if any)]]></COMMENT>
       </TAG>
-      <SUMMARY END_COLUMN="4" END_LINE="96" LINES="46" START_COLUMN="10" START_LINE="51"/>
+      <SUMMARY END_COLUMN="4" END_LINE="119" LINES="65" START_COLUMN="10" START_LINE="55"/>
     </FUNCTION>
     <FUNCTION NAME="SUBSTITUTE">
       <COMMENT_FIRST_LINE><![CDATA[ Replaces named placeholders in compiled Template Expression with values from nested table of nested tables of varchar2 (m).<br/>
@@ -306,7 +324,7 @@
       <TAG TYPE="@RETURN">
         <COMMENT><![CDATA[clob - a large character lob with substituted values (if any)]]></COMMENT>
       </TAG>
-      <SUMMARY END_COLUMN="4" END_LINE="182" LINES="56" START_COLUMN="10" START_LINE="127"/>
+      <SUMMARY END_COLUMN="4" END_LINE="224" LINES="75" START_COLUMN="10" START_LINE="150"/>
     </FUNCTION>
     <FUNCTION NAME="SUBSTITUTE">
       <COMMENT_FIRST_LINE><![CDATA[ Replaces placeholders in compiled Template Expression with values from cursor in iteration.<br/>
@@ -352,7 +370,7 @@
       <TAG TYPE="@RETURN">
         <COMMENT><![CDATA[clob - a large character lob with substituted values (if any)]]></COMMENT>
       </TAG>
-      <SUMMARY END_COLUMN="4" END_LINE="258" LINES="59" START_COLUMN="10" START_LINE="200"/>
+      <SUMMARY END_COLUMN="4" END_LINE="296" LINES="59" START_COLUMN="10" START_LINE="238"/>
     </FUNCTION>
     <FUNCTION NAME="SUBSTITUTE">
       <COMMENT_FIRST_LINE><![CDATA[ Substitutes values from p without 'compiling' template expression
@@ -384,7 +402,7 @@
       <TAG TYPE="@RETURN">
         <COMMENT><![CDATA[clob - a large character lob with substituted values (if any)]]></COMMENT>
       </TAG>
-      <SUMMARY END_COLUMN="4" END_LINE="307" LINES="38" START_COLUMN="10" START_LINE="270"/>
+      <SUMMARY END_COLUMN="4" END_LINE="342" LINES="38" START_COLUMN="10" START_LINE="305"/>
     </FUNCTION>
     <FUNCTION NAME="SUBSTITUTE">
       <COMMENT_FIRST_LINE><![CDATA[ Substitutes values from m without 'compiling' template expression
@@ -421,9 +439,41 @@
       <TAG TYPE="@RETURN">
         <COMMENT><![CDATA[clob - a large character lob with substituted values (if any)]]></COMMENT>
       </TAG>
-      <SUMMARY END_COLUMN="4" END_LINE="345" LINES="29" START_COLUMN="10" START_LINE="317"/>
+      <SUMMARY END_COLUMN="4" END_LINE="380" LINES="29" START_COLUMN="10" START_LINE="352"/>
     </FUNCTION>
-    <SUMMARY END_COLUMN="10" END_LINE="349" LINES="349" START_COLUMN="32" START_LINE="1"/>
+    <FUNCTION NAME="OLD">
+      <COMMENT_FIRST_LINE><![CDATA[ Returns a proxy object that can be used to easily envoke compile functions supporting<br/>
+ old syntax for loop structures
+
+]]></COMMENT_FIRST_LINE>
+      <COMMENT><![CDATA[ Returns a proxy object that can be used to easily envoke compile functions supporting<br/>
+ old syntax for loop structures
+
+]]></COMMENT>
+      <RETURN TYPE="TY_TE_OLD_PROXY"/>
+      <SUMMARY END_COLUMN="4" END_LINE="392" LINES="7" START_COLUMN="10" START_LINE="386"/>
+    </FUNCTION>
+    <FUNCTION NAME="TWIG">
+      <COMMENT_FIRST_LINE><![CDATA[ Returns a proxy object that can be used to easily envoke compile functions for placeholders<br/>
+ resembling twig or django syntax
+]]></COMMENT_FIRST_LINE>
+      <COMMENT><![CDATA[ Returns a proxy object that can be used to easily envoke compile functions for placeholders<br/>
+ resembling twig or django syntax
+]]></COMMENT>
+      <RETURN TYPE="TY_TE_TWIG_PROXY"/>
+      <SUMMARY END_COLUMN="4" END_LINE="403" LINES="7" START_COLUMN="10" START_LINE="397"/>
+    </FUNCTION>
+    <FUNCTION NAME="DJANGO">
+      <COMMENT_FIRST_LINE><![CDATA[ Returns a proxy object that can be used to easily envoke compile functions for placeholders<br/>
+ resembling twig or django syntax
+]]></COMMENT_FIRST_LINE>
+      <COMMENT><![CDATA[ Returns a proxy object that can be used to easily envoke compile functions for placeholders<br/>
+ resembling twig or django syntax
+]]></COMMENT>
+      <RETURN TYPE="TY_TE_TWIG_PROXY"/>
+      <SUMMARY END_COLUMN="4" END_LINE="414" LINES="7" START_COLUMN="10" START_LINE="408"/>
+    </FUNCTION>
+    <SUMMARY END_COLUMN="10" END_LINE="416" LINES="416" START_COLUMN="32" START_LINE="1"/>
   </PACKAGE_BODY>
   <PACKAGE NAME="PK_TE_CROSSREF" SCHEMA="">
     <TYPE NAME="TY_TE_TBL">
@@ -432,20 +482,20 @@
     <VARIABLE NAME="G_TE_TBL">
       <RETURN TYPE="TY_TE_TBL"/>
     </VARIABLE>
-    <FUNCTION NAME="INSERT_LOOP_TE">
+    <FUNCTION NAME="INSERT_TE_REF">
       <ARGUMENT MODE="IN" NAME="A_TE" TYPE="TY_TE"/>
       <RETURN TYPE="PLS_INTEGER"/>
-      <SUMMARY END_COLUMN="57" END_LINE="6" LINES="1" START_COLUMN="10" START_LINE="6"/>
+      <SUMMARY END_COLUMN="56" END_LINE="6" LINES="1" START_COLUMN="10" START_LINE="6"/>
     </FUNCTION>
-    <FUNCTION NAME="GET_LOOP_TE">
+    <FUNCTION NAME="GET_TE_REF">
       <ARGUMENT MODE="IN" NAME="A_ID" TYPE="PLS_INTEGER"/>
       <RETURN TYPE="TY_TE"/>
-      <SUMMARY END_COLUMN="54" END_LINE="7" LINES="1" START_COLUMN="10" START_LINE="7"/>
+      <SUMMARY END_COLUMN="53" END_LINE="7" LINES="1" START_COLUMN="10" START_LINE="7"/>
     </FUNCTION>
-    <FUNCTION NAME="DELETE_LOOP_TE">
+    <FUNCTION NAME="DELETE_TE_REF">
       <ARGUMENT MODE="IN" NAME="A_ID" TYPE="PLS_INTEGER"/>
       <RETURN TYPE="BOOLEAN"/>
-      <SUMMARY END_COLUMN="59" END_LINE="8" LINES="1" START_COLUMN="10" START_LINE="8"/>
+      <SUMMARY END_COLUMN="58" END_LINE="8" LINES="1" START_COLUMN="10" START_LINE="8"/>
     </FUNCTION>
     <SUMMARY END_COLUMN="19" END_LINE="10" LINES="10" START_COLUMN="27" START_LINE="1"/>
   </PACKAGE>
@@ -458,7 +508,7 @@
       <COMMENT>
       </COMMENT>
     </TAG>
-    <FUNCTION NAME="INSERT_LOOP_TE">
+    <FUNCTION NAME="INSERT_TE_REF">
       <COMMENT_FIRST_LINE><![CDATA[ Store instance of ty_te in global collection
 ]]></COMMENT_FIRST_LINE>
       <COMMENT><![CDATA[ Store instance of ty_te in global collection
@@ -475,9 +525,9 @@
       <TAG TYPE="@RETURN">
         <COMMENT><![CDATA[pls_integer -- an unique ID (within sesion) of stored ty_te]]></COMMENT>
       </TAG>
-      <SUMMARY END_COLUMN="19" END_LINE="27" LINES="13" START_COLUMN="10" START_LINE="15"/>
+      <SUMMARY END_COLUMN="4" END_LINE="27" LINES="13" START_COLUMN="10" START_LINE="15"/>
     </FUNCTION>
-    <FUNCTION NAME="GET_LOOP_TE">
+    <FUNCTION NAME="GET_TE_REF">
       <COMMENT_FIRST_LINE><![CDATA[ Get instance of ty_te from global collection
 ]]></COMMENT_FIRST_LINE>
       <COMMENT><![CDATA[ Get instance of ty_te from global collection
@@ -494,9 +544,9 @@
       <TAG TYPE="@RETURN">
         <COMMENT><![CDATA[ty_te or null if the instance of ty_te was not found in the global collection]]></COMMENT>
       </TAG>
-      <SUMMARY END_COLUMN="16" END_LINE="40" LINES="7" START_COLUMN="10" START_LINE="34"/>
+      <SUMMARY END_COLUMN="4" END_LINE="40" LINES="7" START_COLUMN="10" START_LINE="34"/>
     </FUNCTION>
-    <FUNCTION NAME="DELETE_LOOP_TE">
+    <FUNCTION NAME="DELETE_TE_REF">
       <COMMENT_FIRST_LINE><![CDATA[ Delete instance of ty_te from global collection by given ID
 ]]></COMMENT_FIRST_LINE>
       <COMMENT><![CDATA[ Delete instance of ty_te from global collection by given ID
@@ -513,7 +563,7 @@
       <TAG TYPE="@RETURN">
         <COMMENT><![CDATA[boolean -- true if the instance of ty_te was found in the global collection and deleted, false otherwise]]></COMMENT>
       </TAG>
-      <SUMMARY END_COLUMN="19" END_LINE="56" LINES="9" START_COLUMN="10" START_LINE="48"/>
+      <SUMMARY END_COLUMN="4" END_LINE="56" LINES="9" START_COLUMN="10" START_LINE="48"/>
     </FUNCTION>
     <SUMMARY END_COLUMN="19" END_LINE="61" LINES="61" START_COLUMN="32" START_LINE="1"/>
   </PACKAGE_BODY>
@@ -548,7 +598,12 @@
       <RETURN TYPE="PLS_INTEGER"/>
     </CONSTANT>
     <PRAGMA NAME="EXCEPTION_INIT"/>
-    <SUMMARY END_COLUMN="13" END_LINE="27" LINES="27" START_COLUMN="9" START_LINE="1"/>
+    <EXCEPTION NAME="EX_EVAL_FAILED"/>
+    <CONSTANT DEFAULT="-20993" NAME="CEX_EVAL_FAILED">
+      <RETURN TYPE="PLS_INTEGER"/>
+    </CONSTANT>
+    <PRAGMA NAME="EXCEPTION_INIT"/>
+    <SUMMARY END_COLUMN="13" END_LINE="31" LINES="31" START_COLUMN="27" START_LINE="1"/>
   </PACKAGE>
   <PACKAGE NAME="PK_TE_IMPL" SCHEMA="">
     <TYPE NAME="P">
@@ -609,7 +664,7 @@
       <RETURN TYPE="CLOB"/>
       <SUMMARY END_COLUMN="16" END_LINE="21" LINES="4" START_COLUMN="12" START_LINE="18"/>
     </FUNCTION>
-    <FUNCTION NAME="DISPATCH_NESTED_TE_SUBST_">
+    <FUNCTION NAME="DISPATCH_LOOP_CONSTRUCT_SUBST_">
       <ARGUMENT MODE="IN OUT NOCOPY" NAME="A_P_CACHE" TYPE="TY_P_CACHE"/>
       <ARGUMENT MODE="IN OUT NOCOPY" NAME="A_M_CACHE" TYPE="TY_M_CACHE"/>
       <ARGUMENT MODE="IN OUT NOCOPY" NAME="A_LOOP_TE" TYPE="TY_TE"/>
@@ -627,7 +682,12 @@
       <RETURN TYPE="CLOB"/>
       <SUMMARY END_COLUMN="14" END_LINE="27" LINES="6" START_COLUMN="12" START_LINE="22"/>
     </FUNCTION>
-    <SUMMARY END_COLUMN="15" END_LINE="29" LINES="29" START_COLUMN="27" START_LINE="1"/>
+    <FUNCTION NAME="EVAL">
+      <ARGUMENT MODE="IN" NAME="A_COND" TYPE="CLOB"/>
+      <RETURN TYPE="BOOLEAN"/>
+      <SUMMARY END_COLUMN="46" END_LINE="29" LINES="1" START_COLUMN="12" START_LINE="29"/>
+    </FUNCTION>
+    <SUMMARY END_COLUMN="15" END_LINE="31" LINES="31" START_COLUMN="27" START_LINE="1"/>
   </PACKAGE>
   <PACKAGE_BODY NAME="PK_TE_IMPL" SCHEMA="">
     <COMMENT><![CDATA[ Supporting functions that help to implement PK_TE functionality (mostly dealing with recursive calls to handle loop structures).
@@ -766,7 +826,7 @@
       </TAG>
       <SUMMARY END_COLUMN="4" END_LINE="109" LINES="71" START_COLUMN="10" START_LINE="39"/>
     </FUNCTION>
-    <FUNCTION NAME="DISPATCH_NESTED_TE_SUBST_">
+    <FUNCTION NAME="DISPATCH_LOOP_CONSTRUCT_SUBST_">
       <COMMENT_FIRST_LINE><![CDATA[ Dispatches reqest to substitute cursor values into loop structure to the call of appropriate substitute_ function
 
 ]]></COMMENT_FIRST_LINE>
@@ -894,7 +954,7 @@
       <TAG TYPE="@RETURN">
         <COMMENT><![CDATA[clob - a large character lob with substituted values (if any)]]></COMMENT>
       </TAG>
-      <SUMMARY END_COLUMN="4" END_LINE="214" LINES="43" START_COLUMN="10" START_LINE="172"/>
+      <SUMMARY END_COLUMN="4" END_LINE="232" LINES="61" START_COLUMN="10" START_LINE="172"/>
     </FUNCTION>
     <FUNCTION NAME="SUBSTITUTE_">
       <COMMENT_FIRST_LINE><![CDATA[ Replaces named placeholders in compiled Template Expression with values from nested table of nested tables of varchar2 (m).<br/>
@@ -1000,10 +1060,50 @@
       <TAG TYPE="@RETURN">
         <COMMENT><![CDATA[clob - a large character lob with substituted values (if any)]]></COMMENT>
       </TAG>
-      <SUMMARY END_COLUMN="4" END_LINE="293" LINES="54" START_COLUMN="10" START_LINE="240"/>
+      <SUMMARY END_COLUMN="4" END_LINE="329" LINES="72" START_COLUMN="10" START_LINE="258"/>
     </FUNCTION>
-    <SUMMARY END_COLUMN="15" END_LINE="295" LINES="295" START_COLUMN="32" START_LINE="1"/>
+    <FUNCTION NAME="EVAL">
+      <COMMENT_FIRST_LINE><![CDATA[ Evaluates passed expression
+]]></COMMENT_FIRST_LINE>
+      <COMMENT><![CDATA[ Evaluates passed expression
+]]></COMMENT>
+      <ARGUMENT MODE="IN" NAME="A_COND" TYPE="CLOB">
+        <COMMENT><![CDATA[an expression that when evaluated must return true or false]]></COMMENT>
+      </ARGUMENT>
+      <RETURN TYPE="BOOLEAN">
+        <COMMENT><![CDATA[boolean value of evaluation]]></COMMENT>
+      </RETURN>
+      <TAG TYPE="@PARAM">
+        <COMMENT><![CDATA[a_cond an expression that when evaluated must return true or false]]></COMMENT>
+      </TAG>
+      <TAG TYPE="@TROW">
+        <COMMENT><![CDATA[pk_te_ex.CEX_EVAL_FAILED if evaluation resulted in an exception]]></COMMENT>
+      </TAG>
+      <TAG TYPE="@RETURN">
+        <COMMENT><![CDATA[boolean value of evaluation]]></COMMENT>
+      </TAG>
+      <SUMMARY END_COLUMN="4" END_LINE="349" LINES="12" START_COLUMN="10" START_LINE="338"/>
+    </FUNCTION>
+    <SUMMARY END_COLUMN="15" END_LINE="353" LINES="353" START_COLUMN="32" START_LINE="1"/>
   </PACKAGE_BODY>
+  <OBJECT_TYPE NAME="TY_M" SCHEMA="">
+    <COLLECTIONTYPE NAME="TABLE"/>
+    <SUPERTYPE NAME="TY_P">
+      <RETURN COLLECTIONTYPE="TABLE" NAME="COLLECTION" SUPERTYPE="TY_P" TYPE="TABLE OF TY_P">
+        <COMMENT><![CDATA[Collection Type : table OF ty_p]]></COMMENT>
+      </RETURN>
+    </SUPERTYPE>
+    <SUMMARY END_COLUMN="51" END_LINE="1" LINES="1" START_COLUMN="24" START_LINE="1"/>
+  </OBJECT_TYPE>
+  <OBJECT_TYPE NAME="TY_M_TBL" SCHEMA="">
+    <COLLECTIONTYPE NAME="TABLE"/>
+    <SUPERTYPE NAME="TY_M">
+      <RETURN COLLECTIONTYPE="TABLE" NAME="COLLECTION" SUPERTYPE="TY_M" TYPE="TABLE OF TY_M">
+        <COMMENT><![CDATA[Collection Type : table OF ty_m]]></COMMENT>
+      </RETURN>
+    </SUPERTYPE>
+    <SUMMARY END_COLUMN="49" END_LINE="1" LINES="1" START_COLUMN="24" START_LINE="1"/>
+  </OBJECT_TYPE>
   <OBJECT_TYPE NAME="TY_P" SCHEMA="">
     <COLLECTIONTYPE NAME="TABLE"/>
     <SUPERTYPE NAME="CLOB">
@@ -1013,14 +1113,14 @@
     </SUPERTYPE>
     <SUMMARY END_COLUMN="51" END_LINE="1" LINES="1" START_COLUMN="24" START_LINE="1"/>
   </OBJECT_TYPE>
-  <OBJECT_TYPE NAME="TY_M" SCHEMA="">
+  <OBJECT_TYPE NAME="TY_P_TBL" SCHEMA="">
     <COLLECTIONTYPE NAME="TABLE"/>
     <SUPERTYPE NAME="TY_P">
       <RETURN COLLECTIONTYPE="TABLE" NAME="COLLECTION" SUPERTYPE="TY_P" TYPE="TABLE OF TY_P">
         <COMMENT><![CDATA[Collection Type : table OF ty_p]]></COMMENT>
       </RETURN>
     </SUPERTYPE>
-    <SUMMARY END_COLUMN="51" END_LINE="1" LINES="1" START_COLUMN="24" START_LINE="1"/>
+    <SUMMARY END_COLUMN="49" END_LINE="1" LINES="1" START_COLUMN="24" START_LINE="1"/>
   </OBJECT_TYPE>
   <OBJECT_TYPE NAME="TY_SPH" SCHEMA="">
     <VARIABLE NAME="TYPE_" VERSION="1">
@@ -1044,58 +1144,75 @@
     <VARIABLE NAME="NESTED_TE_ID" VERSION="1">
       <RETURN TYPE="NUMBER(38,0)"/>
     </VARIABLE>
+    <VARIABLE NAME="T_TE_ID" VERSION="1">
+      <RETURN TYPE="NUMBER(38,0)"/>
+    </VARIABLE>
+    <VARIABLE NAME="F_TE_ID" VERSION="1">
+      <RETURN TYPE="NUMBER(38,0)"/>
+    </VARIABLE>
     <FUNCTION NAME="TY_SPH" SCOPE="CONSTRUCTOR" VERSION="1">
       <ARGUMENT MODE="IN OUT NOCOPY" NAME="SELF" TYPE="TY_SPH"/>
       <RETURN TYPE="CONSTRUCTOR FUNCTION SELF AS RESULT"/>
-      <SUMMARY END_COLUMN="83" END_LINE="9" LINES="1" START_COLUMN="32" START_LINE="9"/>
+      <SUMMARY END_COLUMN="83" END_LINE="11" LINES="1" START_COLUMN="32" START_LINE="11"/>
     </FUNCTION>
     <FUNCTION NAME="EL_STRING" SCOPE="STATIC" VERSION="1">
       <RETURN TYPE="STATIC FUNCTION PLS_INTEGER"/>
-      <SUMMARY END_COLUMN="44" END_LINE="10" LINES="1" START_COLUMN="27" START_LINE="10"/>
+      <SUMMARY END_COLUMN="44" END_LINE="12" LINES="1" START_COLUMN="27" START_LINE="12"/>
     </FUNCTION>
     <FUNCTION NAME="EL_PH_NUMBERED" SCOPE="STATIC" VERSION="1">
       <RETURN TYPE="STATIC FUNCTION PLS_INTEGER"/>
-      <SUMMARY END_COLUMN="49" END_LINE="11" LINES="1" START_COLUMN="27" START_LINE="11"/>
+      <SUMMARY END_COLUMN="49" END_LINE="13" LINES="1" START_COLUMN="27" START_LINE="13"/>
     </FUNCTION>
     <FUNCTION NAME="EL_PH_NAMED" SCOPE="STATIC" VERSION="1">
       <RETURN TYPE="STATIC FUNCTION PLS_INTEGER"/>
-      <SUMMARY END_COLUMN="46" END_LINE="12" LINES="1" START_COLUMN="27" START_LINE="12"/>
+      <SUMMARY END_COLUMN="46" END_LINE="14" LINES="1" START_COLUMN="27" START_LINE="14"/>
     </FUNCTION>
-    <FUNCTION NAME="EL_NESTED_TE" SCOPE="STATIC" VERSION="1">
+    <FUNCTION NAME="EL_LOOP_CONSTRUCT" SCOPE="STATIC" VERSION="1">
       <RETURN TYPE="STATIC FUNCTION PLS_INTEGER"/>
-      <SUMMARY END_COLUMN="47" END_LINE="13" LINES="1" START_COLUMN="27" START_LINE="13"/>
+      <SUMMARY END_COLUMN="52" END_LINE="15" LINES="1" START_COLUMN="27" START_LINE="15"/>
+    </FUNCTION>
+    <FUNCTION NAME="EL_IF_CONSTRUCT" SCOPE="STATIC" VERSION="1">
+      <RETURN TYPE="STATIC FUNCTION PLS_INTEGER"/>
+      <SUMMARY END_COLUMN="44" END_LINE="16" LINES="1" START_COLUMN="21" START_LINE="16"/>
     </FUNCTION>
     <FUNCTION NAME="CREATE_NUMBERED_PH" SCOPE="STATIC" VERSION="1">
       <ARGUMENT MODE="IN" NAME="A_NUMBER" TYPE="PLS_INTEGER"/>
       <RETURN TYPE="STATIC FUNCTION TY_SPH"/>
-      <SUMMARY END_COLUMN="80" END_LINE="14" LINES="1" START_COLUMN="27" START_LINE="14"/>
+      <SUMMARY END_COLUMN="80" END_LINE="17" LINES="1" START_COLUMN="27" START_LINE="17"/>
     </FUNCTION>
     <FUNCTION NAME="CREATE_NAMED_PH" SCOPE="STATIC" VERSION="1">
       <ARGUMENT MODE="IN" NAME="A_NAME" TYPE="VARCHAR2"/>
       <RETURN TYPE="STATIC FUNCTION TY_SPH"/>
-      <SUMMARY END_COLUMN="72" END_LINE="15" LINES="1" START_COLUMN="27" START_LINE="15"/>
+      <SUMMARY END_COLUMN="72" END_LINE="18" LINES="1" START_COLUMN="27" START_LINE="18"/>
     </FUNCTION>
     <FUNCTION NAME="CREATE_WRAPPED_STRING" SCOPE="STATIC" VERSION="1">
       <ARGUMENT MODE="IN" NAME="A_STRING" TYPE="CLOB"/>
       <RETURN TYPE="STATIC FUNCTION TY_SPH"/>
-      <SUMMARY END_COLUMN="76" END_LINE="16" LINES="1" START_COLUMN="27" START_LINE="16"/>
+      <SUMMARY END_COLUMN="76" END_LINE="19" LINES="1" START_COLUMN="27" START_LINE="19"/>
     </FUNCTION>
-    <FUNCTION NAME="CREATE_NESTED_TE" SCOPE="STATIC" VERSION="1">
+    <FUNCTION NAME="CREATE_LOOP_CONSTRUCT" SCOPE="STATIC" VERSION="1">
       <ARGUMENT MODE="IN" NAME="A_TE_ID" TYPE="PLS_INTEGER"/>
       <ARGUMENT DEFAULT="0" MODE="IN" NAME="A_LOOP_NUMBER" TYPE="PLS_INTEGER"/>
       <ARGUMENT DEFAULT="''" MODE="IN" NAME="A_CONCAT_BY" TYPE="VARCHAR2"/>
       <RETURN TYPE="STATIC FUNCTION TY_SPH"/>
-      <SUMMARY END_COLUMN="137" END_LINE="17" LINES="1" START_COLUMN="21" START_LINE="17"/>
+      <SUMMARY END_COLUMN="142" END_LINE="20" LINES="1" START_COLUMN="21" START_LINE="20"/>
+    </FUNCTION>
+    <FUNCTION NAME="CREATE_IF_CONSTRUCT" SCOPE="STATIC" VERSION="1">
+      <ARGUMENT MODE="IN" NAME="A_IF_TE_ID" TYPE="PLS_INTEGER"/>
+      <ARGUMENT MODE="IN" NAME="A_TRUE_TE_ID" TYPE="PLS_INTEGER"/>
+      <ARGUMENT MODE="IN" NAME="A_FALSE_TE_ID" TYPE="PLS_INTEGER"/>
+      <RETURN TYPE="STATIC FUNCTION TY_SPH"/>
+      <SUMMARY END_COLUMN="136" END_LINE="21" LINES="1" START_COLUMN="21" START_LINE="21"/>
     </FUNCTION>
     <FUNCTION NAME="IS_STRING" SCOPE="MEMBER" VERSION="1">
       <RETURN TYPE="MEMBER FUNCTION PLS_INTEGER"/>
-      <SUMMARY END_COLUMN="38" END_LINE="18" LINES="1" START_COLUMN="21" START_LINE="18"/>
+      <SUMMARY END_COLUMN="38" END_LINE="22" LINES="1" START_COLUMN="21" START_LINE="22"/>
     </FUNCTION>
-    <SUMMARY END_COLUMN="2" END_LINE="19" LINES="19" START_COLUMN="24" START_LINE="1"/>
+    <SUMMARY END_COLUMN="2" END_LINE="23" LINES="23" START_COLUMN="24" START_LINE="1"/>
   </OBJECT_TYPE>
   <OBJECT_BODY NAME="TY_SPH" SCHEMA="">
     <COMMENT><![CDATA[ TY_SPH (String Or Placeholder)<br/>
- A type that represents wrapped clob or numbered/named placeholder.<br/>
+ A type that represents wrapped clob or numbered/named placeholder or contains references to nested compiled tempate expressions (ty_te).<br/>
  You can create ty_sph of particular type by calling corresponding static functions.<br/>
  This type is used in internals of TY_TE as a container of either string, or numbered/named placeholder<br/>
 ]]></COMMENT>
@@ -1174,7 +1291,7 @@
       </TAG>
       <SUMMARY END_COLUMN="4" END_LINE="59" LINES="9" START_COLUMN="17" START_LINE="51"/>
     </FUNCTION>
-    <FUNCTION NAME="CREATE_NESTED_TE" SCOPE="STATIC" VERSION="1">
+    <FUNCTION NAME="CREATE_LOOP_CONSTRUCT" SCOPE="STATIC" VERSION="1">
       <COMMENT_FIRST_LINE><![CDATA[ Creates instance of ty_sph by wrapping an instance of ty_te.]]></COMMENT_FIRST_LINE>
       <COMMENT><![CDATA[ Creates instance of ty_sph by wrapping an instance of ty_te. Can also assign loop number if nested template expression comes <br/>
  from loop declaration and the string that will be inserted between individual loop substitutions.
@@ -1203,13 +1320,20 @@
       </TAG>
       <SUMMARY END_COLUMN="4" END_LINE="79" LINES="11" START_COLUMN="17" START_LINE="69"/>
     </FUNCTION>
+    <FUNCTION NAME="CREATE_IF_CONSTRUCT" SCOPE="STATIC" VERSION="1">
+      <ARGUMENT MODE="IN" NAME="A_IF_TE_ID" TYPE="PLS_INTEGER"/>
+      <ARGUMENT MODE="IN" NAME="A_TRUE_TE_ID" TYPE="PLS_INTEGER"/>
+      <ARGUMENT MODE="IN" NAME="A_FALSE_TE_ID" TYPE="PLS_INTEGER"/>
+      <RETURN TYPE="STATIC FUNCTION TY_SPH"/>
+      <SUMMARY END_COLUMN="4" END_LINE="92" LINES="11" START_COLUMN="17" START_LINE="82"/>
+    </FUNCTION>
     <FUNCTION NAME="EL_STRING" SCOPE="STATIC" VERSION="1">
       <COMMENT_FIRST_LINE><![CDATA[ Just to be used as class constant
 ]]></COMMENT_FIRST_LINE>
       <COMMENT><![CDATA[ Just to be used as class constant
 ]]></COMMENT>
       <RETURN TYPE="STATIC FUNCTION PLS_INTEGER"/>
-      <SUMMARY END_COLUMN="4" END_LINE="87" LINES="4" START_COLUMN="17" START_LINE="84"/>
+      <SUMMARY END_COLUMN="4" END_LINE="100" LINES="4" START_COLUMN="17" START_LINE="97"/>
     </FUNCTION>
     <FUNCTION NAME="EL_PH_NUMBERED" SCOPE="STATIC" VERSION="1">
       <COMMENT_FIRST_LINE><![CDATA[ Just to be used as class constant
@@ -1217,7 +1341,7 @@
       <COMMENT><![CDATA[ Just to be used as class constant
 ]]></COMMENT>
       <RETURN TYPE="STATIC FUNCTION PLS_INTEGER"/>
-      <SUMMARY END_COLUMN="4" END_LINE="94" LINES="4" START_COLUMN="17" START_LINE="91"/>
+      <SUMMARY END_COLUMN="4" END_LINE="107" LINES="4" START_COLUMN="17" START_LINE="104"/>
     </FUNCTION>
     <FUNCTION NAME="EL_PH_NAMED" SCOPE="STATIC" VERSION="1">
       <COMMENT_FIRST_LINE><![CDATA[ Just to be used as class constant
@@ -1225,11 +1349,23 @@
       <COMMENT><![CDATA[ Just to be used as class constant
 ]]></COMMENT>
       <RETURN TYPE="STATIC FUNCTION PLS_INTEGER"/>
-      <SUMMARY END_COLUMN="4" END_LINE="101" LINES="4" START_COLUMN="17" START_LINE="98"/>
+      <SUMMARY END_COLUMN="4" END_LINE="114" LINES="4" START_COLUMN="17" START_LINE="111"/>
     </FUNCTION>
-    <FUNCTION NAME="EL_NESTED_TE" SCOPE="STATIC" VERSION="1">
+    <FUNCTION NAME="EL_LOOP_CONSTRUCT" SCOPE="STATIC" VERSION="1">
+      <COMMENT_FIRST_LINE><![CDATA[ Just to be used as class constant
+]]></COMMENT_FIRST_LINE>
+      <COMMENT><![CDATA[ Just to be used as class constant
+]]></COMMENT>
       <RETURN TYPE="STATIC FUNCTION PLS_INTEGER"/>
-      <SUMMARY END_COLUMN="4" END_LINE="107" LINES="4" START_COLUMN="17" START_LINE="104"/>
+      <SUMMARY END_COLUMN="4" END_LINE="121" LINES="4" START_COLUMN="17" START_LINE="118"/>
+    </FUNCTION>
+    <FUNCTION NAME="EL_IF_CONSTRUCT" SCOPE="STATIC" VERSION="1">
+      <COMMENT_FIRST_LINE><![CDATA[ Just to be used as class constant
+]]></COMMENT_FIRST_LINE>
+      <COMMENT><![CDATA[ Just to be used as class constant
+]]></COMMENT>
+      <RETURN TYPE="STATIC FUNCTION PLS_INTEGER"/>
+      <SUMMARY END_COLUMN="4" END_LINE="128" LINES="4" START_COLUMN="17" START_LINE="125"/>
     </FUNCTION>
     <FUNCTION NAME="IS_STRING" SCOPE="MEMBER" VERSION="1">
       <COMMENT_FIRST_LINE><![CDATA[ Check if current instance is the wrapper of clob.]]></COMMENT_FIRST_LINE>
@@ -1241,9 +1377,9 @@
       <TAG TYPE="@RETURN">
         <COMMENT><![CDATA[1 if the instance is a wrapper of clob, 0 otherwise.]]></COMMENT>
       </TAG>
-      <SUMMARY END_COLUMN="4" END_LINE="119" LINES="8" START_COLUMN="17" START_LINE="112"/>
+      <SUMMARY END_COLUMN="4" END_LINE="141" LINES="8" START_COLUMN="17" START_LINE="134"/>
     </FUNCTION>
-    <SUMMARY END_COLUMN="4" END_LINE="122" LINES="122" START_COLUMN="29" START_LINE="1"/>
+    <SUMMARY END_COLUMN="4" END_LINE="144" LINES="144" START_COLUMN="29" START_LINE="1"/>
   </OBJECT_BODY>
   <OBJECT_TYPE NAME="TY_SPH_TBL" SCHEMA="">
     <COLLECTIONTYPE NAME="TABLE"/>
@@ -1279,13 +1415,31 @@
       <ARGUMENT MODE="IN" NAME="A_TEMPLATE_STRING" TYPE="CLOB"/>
       <ARGUMENT DEFAULT="'$'" MODE="IN" NAME="A_PH_START" TYPE="VARCHAR2"/>
       <ARGUMENT DEFAULT="''" MODE="IN" NAME="A_PH_END" TYPE="VARCHAR2"/>
+      <ARGUMENT DEFAULT="'{%'" MODE="IN" NAME="A_CONSTR_PH_BEGIN" TYPE="VARCHAR2"/>
+      <ARGUMENT DEFAULT="'%}'" MODE="IN" NAME="A_CONSTR_PH_END" TYPE="VARCHAR2"/>
+      <RETURN TYPE="STATIC FUNCTION TY_TE"/>
+      <SUMMARY END_COLUMN="87" END_LINE="10" LINES="3" START_COLUMN="21" START_LINE="8"/>
+    </FUNCTION>
+    <FUNCTION NAME="COMPILE_NAMED" SCOPE="STATIC" VERSION="1">
+      <ARGUMENT MODE="IN" NAME="A_TEMPLATE_STRING" TYPE="CLOB"/>
+      <ARGUMENT DEFAULT="'{$'" MODE="IN" NAME="A_PH_START" TYPE="VARCHAR2"/>
+      <ARGUMENT DEFAULT="'}'" MODE="IN" NAME="A_PH_END" TYPE="VARCHAR2"/>
+      <ARGUMENT DEFAULT="'{%'" MODE="IN" NAME="A_CONSTR_PH_BEGIN" TYPE="VARCHAR2"/>
+      <ARGUMENT DEFAULT="'%}'" MODE="IN" NAME="A_CONSTR_PH_END" TYPE="VARCHAR2"/>
+      <RETURN TYPE="STATIC FUNCTION TY_TE"/>
+      <SUMMARY END_COLUMN="87" END_LINE="13" LINES="3" START_COLUMN="21" START_LINE="11"/>
+    </FUNCTION>
+    <FUNCTION NAME="COMPILE_NUMBERED_OLD" SCOPE="STATIC" VERSION="1">
+      <ARGUMENT MODE="IN" NAME="A_TEMPLATE_STRING" TYPE="CLOB"/>
+      <ARGUMENT DEFAULT="'$'" MODE="IN" NAME="A_PH_START" TYPE="VARCHAR2"/>
+      <ARGUMENT DEFAULT="''" MODE="IN" NAME="A_PH_END" TYPE="VARCHAR2"/>
       <ARGUMENT DEFAULT="'{%'" MODE="IN" NAME="A_LOOP_PH_BEGIN" TYPE="VARCHAR2"/>
       <ARGUMENT DEFAULT="'%'" MODE="IN" NAME="A_LOOP_PH_BODY" TYPE="VARCHAR2"/>
       <ARGUMENT DEFAULT="'%}'" MODE="IN" NAME="A_LOOP_PH_END" TYPE="VARCHAR2"/>
       <RETURN TYPE="STATIC FUNCTION TY_TE"/>
-      <SUMMARY END_COLUMN="14" END_LINE="15" LINES="8" START_COLUMN="21" START_LINE="8"/>
+      <SUMMARY END_COLUMN="115" END_LINE="16" LINES="3" START_COLUMN="21" START_LINE="14"/>
     </FUNCTION>
-    <FUNCTION NAME="COMPILE_NAMED" SCOPE="STATIC" VERSION="1">
+    <FUNCTION NAME="COMPILE_NAMED_OLD" SCOPE="STATIC" VERSION="1">
       <ARGUMENT MODE="IN" NAME="A_TEMPLATE_STRING" TYPE="CLOB"/>
       <ARGUMENT DEFAULT="'{$'" MODE="IN" NAME="A_PH_START" TYPE="VARCHAR2"/>
       <ARGUMENT DEFAULT="'}'" MODE="IN" NAME="A_PH_END" TYPE="VARCHAR2"/>
@@ -1293,52 +1447,62 @@
       <ARGUMENT DEFAULT="'%'" MODE="IN" NAME="A_LOOP_PH_BODY" TYPE="VARCHAR2"/>
       <ARGUMENT DEFAULT="'%}'" MODE="IN" NAME="A_LOOP_PH_END" TYPE="VARCHAR2"/>
       <RETURN TYPE="STATIC FUNCTION TY_TE"/>
-      <SUMMARY END_COLUMN="14" END_LINE="23" LINES="8" START_COLUMN="21" START_LINE="16"/>
+      <SUMMARY END_COLUMN="115" END_LINE="19" LINES="3" START_COLUMN="21" START_LINE="17"/>
     </FUNCTION>
     <FUNCTION NAME="COMPILE_GENERIC_" SCOPE="STATIC" VERSION="1">
       <ARGUMENT MODE="IN" NAME="A_TEMPLATE_STRING" TYPE="CLOB"/>
       <ARGUMENT MODE="IN" NAME="A_PH_START" TYPE="VARCHAR2"/>
       <ARGUMENT MODE="IN" NAME="A_PH_END" TYPE="VARCHAR2"/>
       <ARGUMENT MODE="IN" NAME="A_TYPE" TYPE="PLS_INTEGER"/>
-      <ARGUMENT DEFAULT="'{%'" MODE="IN" NAME="A_LOOP_PH_BEGIN" TYPE="VARCHAR2"/>
-      <ARGUMENT DEFAULT="'%'" MODE="IN" NAME="A_LOOP_PH_BODY" TYPE="VARCHAR2"/>
-      <ARGUMENT DEFAULT="'%}'" MODE="IN" NAME="A_LOOP_PH_END" TYPE="VARCHAR2"/>
+      <ARGUMENT MODE="IN" NAME="A_CONSTR_PH_BEGIN" TYPE="VARCHAR2"/>
+      <ARGUMENT MODE="IN" NAME="A_CONSTR_PH_END" TYPE="VARCHAR2"/>
+      <ARGUMENT DEFAULT="NULL" MODE="IN" NAME="A_CONSTR_PH_BODY" TYPE="VARCHAR2"/>
       <RETURN TYPE="STATIC FUNCTION TY_TE"/>
-      <SUMMARY END_COLUMN="14" END_LINE="32" LINES="9" START_COLUMN="21" START_LINE="24"/>
+      <SUMMARY END_COLUMN="14" END_LINE="28" LINES="9" START_COLUMN="21" START_LINE="20"/>
     </FUNCTION>
     <FUNCTION NAME="PROCESS_LOOP_" SCOPE="STATIC" VERSION="1">
       <ARGUMENT MODE="IN" NAME="A_TEMPLATE_STRING" TYPE="CLOB"/>
       <ARGUMENT MODE="IN" NAME="A_PH_START" TYPE="VARCHAR2"/>
       <ARGUMENT MODE="IN" NAME="A_PH_END" TYPE="VARCHAR2"/>
       <ARGUMENT MODE="IN" NAME="A_TYPE" TYPE="PLS_INTEGER"/>
-      <ARGUMENT DEFAULT="'{%'" MODE="IN" NAME="A_LOOP_PH_BEGIN" TYPE="VARCHAR2"/>
-      <ARGUMENT DEFAULT="'%'" MODE="IN" NAME="A_LOOP_PH_BODY" TYPE="VARCHAR2"/>
-      <ARGUMENT DEFAULT="'%}'" MODE="IN" NAME="A_LOOP_PH_END" TYPE="VARCHAR2"/>
+      <ARGUMENT MODE="IN" NAME="A_LOOP_PH_BEGIN" TYPE="VARCHAR2"/>
+      <ARGUMENT MODE="IN" NAME="A_LOOP_PH_BODY" TYPE="VARCHAR2"/>
+      <ARGUMENT MODE="IN" NAME="A_LOOP_PH_END" TYPE="VARCHAR2"/>
       <RETURN TYPE="STATIC FUNCTION TY_TE"/>
-      <SUMMARY END_COLUMN="14" END_LINE="41" LINES="9" START_COLUMN="21" START_LINE="33"/>
+      <SUMMARY END_COLUMN="14" END_LINE="37" LINES="9" START_COLUMN="21" START_LINE="29"/>
+    </FUNCTION>
+    <FUNCTION NAME="PROCESS_CTRL_TW_" SCOPE="STATIC" VERSION="1">
+      <ARGUMENT MODE="IN" NAME="A_TEMPLATE_STRING" TYPE="CLOB"/>
+      <ARGUMENT MODE="IN" NAME="A_PH_START" TYPE="VARCHAR2"/>
+      <ARGUMENT MODE="IN" NAME="A_PH_END" TYPE="VARCHAR2"/>
+      <ARGUMENT MODE="IN" NAME="A_TYPE" TYPE="PLS_INTEGER"/>
+      <ARGUMENT MODE="IN" NAME="A_CONSTR_PH_BEGIN" TYPE="VARCHAR2"/>
+      <ARGUMENT MODE="IN" NAME="A_CONSTR_PH_END" TYPE="VARCHAR2"/>
+      <RETURN TYPE="STATIC FUNCTION TY_TE"/>
+      <SUMMARY END_COLUMN="14" END_LINE="45" LINES="8" START_COLUMN="21" START_LINE="38"/>
     </FUNCTION>
     <FUNCTION NAME="CONCAT" SCOPE="STATIC" VERSION="1">
       <ARGUMENT MODE="IN" NAME="A_LHV" TYPE="TY_TE"/>
       <ARGUMENT MODE="IN" NAME="A_RHV" TYPE="TY_TE"/>
       <RETURN TYPE="STATIC FUNCTION TY_TE"/>
-      <SUMMARY END_COLUMN="69" END_LINE="43" LINES="1" START_COLUMN="21" START_LINE="43"/>
+      <SUMMARY END_COLUMN="69" END_LINE="47" LINES="1" START_COLUMN="21" START_LINE="47"/>
     </FUNCTION>
     <FUNCTION NAME="ESCAPE_REGEXP_SPECIAL" SCOPE="STATIC" VERSION="1">
       <ARGUMENT MODE="IN" NAME="A_NOT_ESCAPED" TYPE="VARCHAR2"/>
       <RETURN TYPE="STATIC FUNCTION VARCHAR2"/>
-      <SUMMARY END_COLUMN="79" END_LINE="45" LINES="1" START_COLUMN="21" START_LINE="45"/>
+      <SUMMARY END_COLUMN="79" END_LINE="49" LINES="1" START_COLUMN="21" START_LINE="49"/>
     </FUNCTION>
     <FUNCTION NAME="ESCAPE_BACKREFERENCE" SCOPE="STATIC" VERSION="1">
       <ARGUMENT MODE="IN" NAME="A_NOT_ESCAPED" TYPE="VARCHAR2"/>
       <RETURN TYPE="STATIC FUNCTION VARCHAR2"/>
-      <SUMMARY END_COLUMN="78" END_LINE="46" LINES="1" START_COLUMN="21" START_LINE="46"/>
+      <SUMMARY END_COLUMN="78" END_LINE="50" LINES="1" START_COLUMN="21" START_LINE="50"/>
     </FUNCTION>
     <FUNCTION NAME="TRANSLATE_OPTIONS_DELIM_" SCOPE="STATIC" VERSION="1">
       <ARGUMENT MODE="IN" NAME="A_DELIM" TYPE="VARCHAR2"/>
       <RETURN TYPE="STATIC FUNCTION VARCHAR2"/>
-      <SUMMARY END_COLUMN="76" END_LINE="48" LINES="1" START_COLUMN="21" START_LINE="48"/>
+      <SUMMARY END_COLUMN="76" END_LINE="52" LINES="1" START_COLUMN="21" START_LINE="52"/>
     </FUNCTION>
-    <SUMMARY END_COLUMN="2" END_LINE="49" LINES="49" START_COLUMN="24" START_LINE="1"/>
+    <SUMMARY END_COLUMN="2" END_LINE="53" LINES="53" START_COLUMN="24" START_LINE="1"/>
   </OBJECT_TYPE>
   <OBJECT_BODY NAME="TY_TE" SCHEMA="">
     <FUNCTION NAME="EL_NUMBERED" SCOPE="STATIC" VERSION="1">
@@ -1404,7 +1568,7 @@
       <RETURN TYPE="STATIC FUNCTION VARCHAR2"/>
       <SUMMARY END_COLUMN="4" END_LINE="55" LINES="5" START_COLUMN="17" START_LINE="51"/>
     </FUNCTION>
-    <FUNCTION NAME="COMPILE_NUMBERED" SCOPE="STATIC" VERSION="1">
+    <FUNCTION NAME="COMPILE_NUMBERED_OLD" SCOPE="STATIC" VERSION="1">
       <COMMENT_FIRST_LINE><![CDATA[ Parse string for numbered templates in the from $1, $2, etc.<br>
 ]]></COMMENT_FIRST_LINE>
       <COMMENT><![CDATA[ Parse string for numbered templates in the from $1, $2, etc.<br>
@@ -1426,7 +1590,7 @@
         <COMMENT><![CDATA[a string that denotes the end of loop structure within template expression]]></COMMENT>
       </ARGUMENT>
       <RETURN TYPE="STATIC FUNCTION TY_TE">
-        <COMMENT><![CDATA[The instance of template expression (ty_te) or null if no placeholders were found or if a_ph_start is null]]></COMMENT>
+        <COMMENT><![CDATA[The instance of template expression (ty_te)]]></COMMENT>
       </RETURN>
       <TAG TYPE="@PARAM">
         <COMMENT><![CDATA[a_template_string a template string]]></COMMENT>
@@ -1444,14 +1608,55 @@
         <COMMENT><![CDATA[a_loop_ph_end a string that denotes the end of loop structure within template expression]]></COMMENT>
       </TAG>
       <TAG TYPE="@RETURN">
-        <COMMENT><![CDATA[The instance of template expression (ty_te) or null if no placeholders were found or if a_ph_start is null]]></COMMENT>
+        <COMMENT><![CDATA[The instance of template expression (ty_te)]]></COMMENT>
       </TAG>
       <TAG TYPE="@THROW">
         <COMMENT><![CDATA[pk_te_ex.EX_WRONG_PH_DENOTATION in case of ph denotation misuse]]></COMMENT>
       </TAG>
-      <SUMMARY END_COLUMN="21" END_LINE="99" LINES="30" START_COLUMN="17" START_LINE="70"/>
+      <SUMMARY END_COLUMN="25" END_LINE="99" LINES="30" START_COLUMN="17" START_LINE="70"/>
     </FUNCTION>
-    <FUNCTION NAME="COMPILE_NAMED" SCOPE="STATIC" VERSION="1">
+    <FUNCTION NAME="COMPILE_NUMBERED" SCOPE="STATIC" VERSION="1">
+      <COMMENT_FIRST_LINE><![CDATA[ Parse string for numbered templates in the from {$1}, {$2}, etc.<br>
+]]></COMMENT_FIRST_LINE>
+      <COMMENT><![CDATA[ Parse string for numbered templates in the from {$1}, {$2}, etc.<br>
+]]></COMMENT>
+      <ARGUMENT MODE="IN" NAME="A_TEMPLATE_STRING" TYPE="CLOB">
+        <COMMENT><![CDATA[a template string]]></COMMENT>
+      </ARGUMENT>
+      <ARGUMENT DEFAULT="'$'" MODE="IN" NAME="A_PH_START" TYPE="VARCHAR2">
+        <COMMENT><![CDATA[a string that denotes the beginning of numbered placeholder]]></COMMENT>
+      </ARGUMENT>
+      <ARGUMENT DEFAULT="''" MODE="IN" NAME="A_PH_END" TYPE="VARCHAR2"/>
+      <ARGUMENT DEFAULT="'{%'" MODE="IN" NAME="A_CONSTR_PH_BEGIN" TYPE="VARCHAR2">
+        <COMMENT><![CDATA[a string that denotes the beginning of control structure within template expression]]></COMMENT>
+      </ARGUMENT>
+      <ARGUMENT DEFAULT="'%}'" MODE="IN" NAME="A_CONSTR_PH_END" TYPE="VARCHAR2">
+        <COMMENT><![CDATA[a string that denotes the end of control structure within template expression]]></COMMENT>
+      </ARGUMENT>
+      <RETURN TYPE="STATIC FUNCTION TY_TE">
+        <COMMENT><![CDATA[The instance of template expression (ty_te)]]></COMMENT>
+      </RETURN>
+      <TAG TYPE="@PARAM">
+        <COMMENT><![CDATA[a_template_string a template string]]></COMMENT>
+      </TAG>
+      <TAG TYPE="@PARAM">
+        <COMMENT><![CDATA[a_ph_start a string that denotes the beginning of numbered placeholder]]></COMMENT>
+      </TAG>
+      <TAG TYPE="@PARAM">
+        <COMMENT><![CDATA[a_constr_ph_begin a string that denotes the beginning of control structure within template expression]]></COMMENT>
+      </TAG>
+      <TAG TYPE="@PARAM">
+        <COMMENT><![CDATA[a_constr_ph_end a string that denotes the end of control structure within template expression]]></COMMENT>
+      </TAG>
+      <TAG TYPE="@RETURN">
+        <COMMENT><![CDATA[The instance of template expression (ty_te)]]></COMMENT>
+      </TAG>
+      <TAG TYPE="@THROW">
+        <COMMENT><![CDATA[pk_te_ex.EX_WRONG_PH_DENOTATION in case of placeholder denotation misuse]]></COMMENT>
+      </TAG>
+      <SUMMARY END_COLUMN="4" END_LINE="139" LINES="27" START_COLUMN="17" START_LINE="113"/>
+    </FUNCTION>
+    <FUNCTION NAME="COMPILE_NAMED_OLD" SCOPE="STATIC" VERSION="1">
       <COMMENT_FIRST_LINE><![CDATA[ Parse string for named templates in the from {$placehoder}<br/>
 ]]></COMMENT_FIRST_LINE>
       <COMMENT><![CDATA[ Parse string for named templates in the from {$placehoder}<br/>
@@ -1475,8 +1680,7 @@
         <COMMENT><![CDATA[a string that denotes the end of loop structure within template expression]]></COMMENT>
       </ARGUMENT>
       <RETURN TYPE="STATIC FUNCTION TY_TE">
-        <COMMENT><![CDATA[The instance of template expression (ty_te) or null if no placeholders were found or if or <br/>
- a_ph_start or a_ph_end is null]]></COMMENT>
+        <COMMENT><![CDATA[The instance of template expression (ty_te)]]></COMMENT>
       </RETURN>
       <TAG TYPE="@PARAM">
         <COMMENT><![CDATA[a_template_string a template string]]></COMMENT>
@@ -1497,13 +1701,62 @@
         <COMMENT><![CDATA[a_loop_ph_end a string that denotes the end of loop structure within template expression]]></COMMENT>
       </TAG>
       <TAG TYPE="@RETURN">
-        <COMMENT><![CDATA[The instance of template expression (ty_te) or null if no placeholders were found or if or <br/>
- a_ph_start or a_ph_end is null]]></COMMENT>
+        <COMMENT><![CDATA[The instance of template expression (ty_te)]]></COMMENT>
       </TAG>
       <TAG TYPE="@THROW">
         <COMMENT><![CDATA[pk_te_ex.EX_WRONG_PH_DENOTATION in case of ph denotation misuse]]></COMMENT>
       </TAG>
-      <SUMMARY END_COLUMN="4" END_LINE="147" LINES="32" START_COLUMN="17" START_LINE="116"/>
+      <SUMMARY END_COLUMN="4" END_LINE="187" LINES="32" START_COLUMN="17" START_LINE="156"/>
+    </FUNCTION>
+    <FUNCTION NAME="COMPILE_NAMED" SCOPE="STATIC" VERSION="1">
+      <COMMENT_FIRST_LINE><![CDATA[ Parse string for named templates in the from {$placehoder}<br/>
+ Placeholders and control structures resemble Twig.]]></COMMENT_FIRST_LINE>
+      <COMMENT><![CDATA[ Parse string for named templates in the from {$placehoder}<br/>
+ Placeholders and control structures resemble Twig.
+]]></COMMENT>
+      <ARGUMENT MODE="IN" NAME="A_TEMPLATE_STRING" TYPE="CLOB">
+        <COMMENT><![CDATA[a template string]]></COMMENT>
+      </ARGUMENT>
+      <ARGUMENT DEFAULT="'{$'" MODE="IN" NAME="A_PH_START" TYPE="VARCHAR2">
+        <COMMENT><![CDATA[a string that denotes the beginning of named placeholder]]></COMMENT>
+      </ARGUMENT>
+      <ARGUMENT DEFAULT="'}'" MODE="IN" NAME="A_PH_END" TYPE="VARCHAR2">
+        <COMMENT><![CDATA[a string that denotes the end of named placeholder]]></COMMENT>
+      </ARGUMENT>
+      <ARGUMENT DEFAULT="'{%'" MODE="IN" NAME="A_CONSTR_PH_BEGIN" TYPE="VARCHAR2">
+        <COMMENT><![CDATA[a string that denotes the beginning of constr structure within template expression]]></COMMENT>
+      </ARGUMENT>
+      <ARGUMENT DEFAULT="'%}'" MODE="IN" NAME="A_CONSTR_PH_END" TYPE="VARCHAR2">
+        <COMMENT><![CDATA[a string that denotes the end of constr structure within template expression]]></COMMENT>
+      </ARGUMENT>
+      <RETURN TYPE="STATIC FUNCTION TY_TE">
+        <COMMENT><![CDATA[The instance of template expression (ty_te)]]></COMMENT>
+      </RETURN>
+      <TAG TYPE="@PARAM">
+        <COMMENT><![CDATA[a_template_string a template string]]></COMMENT>
+      </TAG>
+      <TAG TYPE="@PARAM">
+        <COMMENT><![CDATA[a_ph_start a string that denotes the beginning of named placeholder]]></COMMENT>
+      </TAG>
+      <TAG TYPE="@PARAM">
+        <COMMENT><![CDATA[a_ph_end a string that denotes the end of named placeholder]]></COMMENT>
+      </TAG>
+      <TAG TYPE="@PARAM">
+        <COMMENT><![CDATA[a_constr_ph_begin a string that denotes the beginning of constr structure within template expression]]></COMMENT>
+      </TAG>
+      <TAG TYPE="@PARAM">
+        <COMMENT><![CDATA[a_constr_ph_body a string that separates constr inner tempate expression from cursor number and from constr structure options]]></COMMENT>
+      </TAG>
+      <TAG TYPE="@PARAM">
+        <COMMENT><![CDATA[a_constr_ph_end a string that denotes the end of constr structure within template expression]]></COMMENT>
+      </TAG>
+      <TAG TYPE="@RETURN">
+        <COMMENT><![CDATA[The instance of template expression (ty_te)]]></COMMENT>
+      </TAG>
+      <TAG TYPE="@THROW">
+        <COMMENT><![CDATA[pk_te_ex.EX_WRONG_PH_DENOTATION in case of ph denotation misuse]]></COMMENT>
+      </TAG>
+      <SUMMARY END_COLUMN="4" END_LINE="233" LINES="29" START_COLUMN="17" START_LINE="205"/>
     </FUNCTION>
     <FUNCTION NAME="TRANSLATE_OPTIONS_DELIM_" SCOPE="STATIC" VERSION="1">
       <COMMENT_FIRST_LINE><![CDATA[ Replaces special characters in delimiters part of loop structure options with coresponding character codes
@@ -1522,7 +1775,7 @@
       <TAG TYPE="@RETURN">
         <COMMENT><![CDATA[varchar2 a delimiter string with replaced special chars]]></COMMENT>
       </TAG>
-      <SUMMARY END_COLUMN="4" END_LINE="158" LINES="5" START_COLUMN="17" START_LINE="154"/>
+      <SUMMARY END_COLUMN="4" END_LINE="253" LINES="13" START_COLUMN="17" START_LINE="241"/>
     </FUNCTION>
     <FUNCTION NAME="PROCESS_LOOP_" SCOPE="STATIC" VERSION="1">
       <COMMENT_FIRST_LINE><![CDATA[ Finds and compiles loop structures inside template expressions
@@ -1541,13 +1794,13 @@
       <ARGUMENT MODE="IN" NAME="A_TYPE" TYPE="PLS_INTEGER">
         <COMMENT><![CDATA[a type of placeholders to search in string. Actually just may be used to translate to inner loop structures]]></COMMENT>
       </ARGUMENT>
-      <ARGUMENT DEFAULT="'{%'" MODE="IN" NAME="A_LOOP_PH_BEGIN" TYPE="VARCHAR2">
+      <ARGUMENT MODE="IN" NAME="A_LOOP_PH_BEGIN" TYPE="VARCHAR2">
         <COMMENT><![CDATA[a string that denotes the beginning of loop structure within template expression]]></COMMENT>
       </ARGUMENT>
-      <ARGUMENT DEFAULT="'%'" MODE="IN" NAME="A_LOOP_PH_BODY" TYPE="VARCHAR2">
+      <ARGUMENT MODE="IN" NAME="A_LOOP_PH_BODY" TYPE="VARCHAR2">
         <COMMENT><![CDATA[a string that separates loop inner tempate expression from cursor number and from loop structure options]]></COMMENT>
       </ARGUMENT>
-      <ARGUMENT DEFAULT="'%}'" MODE="IN" NAME="A_LOOP_PH_END" TYPE="VARCHAR2">
+      <ARGUMENT MODE="IN" NAME="A_LOOP_PH_END" TYPE="VARCHAR2">
         <COMMENT><![CDATA[a string that denotes the end of loop structure within template expression]]></COMMENT>
       </ARGUMENT>
       <RETURN TYPE="STATIC FUNCTION TY_TE">
@@ -1577,7 +1830,56 @@
       <TAG TYPE="@RETURN">
         <COMMENT><![CDATA[The instance of template expression (ty_te) containing loop part or null if no loop structures were found]]></COMMENT>
       </TAG>
-      <SUMMARY END_COLUMN="4" END_LINE="368" LINES="196" START_COLUMN="17" START_LINE="173"/>
+      <SUMMARY END_COLUMN="4" END_LINE="462" LINES="195" START_COLUMN="17" START_LINE="268"/>
+    </FUNCTION>
+    <FUNCTION NAME="PROCESS_CTRL_TW_" SCOPE="STATIC" VERSION="1">
+      <COMMENT_FIRST_LINE><![CDATA[ Finds and compiles control structures inside Twig-like template expressions
+]]></COMMENT_FIRST_LINE>
+      <COMMENT><![CDATA[ Finds and compiles control structures inside Twig-like template expressions
+]]></COMMENT>
+      <ARGUMENT MODE="IN" NAME="A_TEMPLATE_STRING" TYPE="CLOB">
+        <COMMENT><![CDATA[a template string]]></COMMENT>
+      </ARGUMENT>
+      <ARGUMENT MODE="IN" NAME="A_PH_START" TYPE="VARCHAR2">
+        <COMMENT><![CDATA[a string that denotes the beginning of placeholder]]></COMMENT>
+      </ARGUMENT>
+      <ARGUMENT MODE="IN" NAME="A_PH_END" TYPE="VARCHAR2">
+        <COMMENT><![CDATA[a string that denotes the end of placeholder]]></COMMENT>
+      </ARGUMENT>
+      <ARGUMENT MODE="IN" NAME="A_TYPE" TYPE="PLS_INTEGER">
+        <COMMENT><![CDATA[a type of placeholders to search in string. Actually just may be used to translate to inner constr structures]]></COMMENT>
+      </ARGUMENT>
+      <ARGUMENT MODE="IN" NAME="A_CONSTR_PH_BEGIN" TYPE="VARCHAR2">
+        <COMMENT><![CDATA[a string that denotes the beginning of control structure within template expression]]></COMMENT>
+      </ARGUMENT>
+      <ARGUMENT MODE="IN" NAME="A_CONSTR_PH_END" TYPE="VARCHAR2">
+        <COMMENT><![CDATA[a string that denotes the end of control structure within template expression]]></COMMENT>
+      </ARGUMENT>
+      <RETURN TYPE="STATIC FUNCTION TY_TE">
+        <COMMENT><![CDATA[The instance of template expression (ty_te) containing control structure part or null if no control structures were found]]></COMMENT>
+      </RETURN>
+      <TAG TYPE="@PARAM">
+        <COMMENT><![CDATA[a_template_string a template string]]></COMMENT>
+      </TAG>
+      <TAG TYPE="@PARAM">
+        <COMMENT><![CDATA[a_ph_start a string that denotes the beginning of placeholder]]></COMMENT>
+      </TAG>
+      <TAG TYPE="@PARAM">
+        <COMMENT><![CDATA[a_ph_end a string that denotes the end of placeholder]]></COMMENT>
+      </TAG>
+      <TAG TYPE="@PARAM">
+        <COMMENT><![CDATA[a_type a type of placeholders to search in string. Actually just may be used to translate to inner constr structures]]></COMMENT>
+      </TAG>
+      <TAG TYPE="@PARAM">
+        <COMMENT><![CDATA[a_constr_ph_begin a string that denotes the beginning of control structure within template expression]]></COMMENT>
+      </TAG>
+      <TAG TYPE="@PARAM">
+        <COMMENT><![CDATA[a_constr_ph_end a string that denotes the end of control structure within template expression]]></COMMENT>
+      </TAG>
+      <TAG TYPE="@RETURN">
+        <COMMENT><![CDATA[The instance of template expression (ty_te) containing control structure part or null if no control structures were found]]></COMMENT>
+      </TAG>
+      <SUMMARY END_COLUMN="4" END_LINE="816" LINES="341" START_COLUMN="17" START_LINE="476"/>
     </FUNCTION>
     <FUNCTION NAME="COMPILE_GENERIC_" SCOPE="STATIC" VERSION="1">
       <COMMENT_FIRST_LINE><![CDATA[ Parse string for named or numbered templates<br/>
@@ -1597,15 +1899,9 @@
       <ARGUMENT MODE="IN" NAME="A_TYPE" TYPE="PLS_INTEGER">
         <COMMENT><![CDATA[a type of placeholders to search in string. Accepts either ty_te.EL_NUMBERED() or ty_te.EL_NAMED()]]></COMMENT>
       </ARGUMENT>
-      <ARGUMENT DEFAULT="'{%'" MODE="IN" NAME="A_LOOP_PH_BEGIN" TYPE="VARCHAR2">
-        <COMMENT><![CDATA[a string that denotes the beginning of loop structure within template expression]]></COMMENT>
-      </ARGUMENT>
-      <ARGUMENT DEFAULT="'%'" MODE="IN" NAME="A_LOOP_PH_BODY" TYPE="VARCHAR2">
-        <COMMENT><![CDATA[a string that separates loop inner tempate expression from cursor number and from loop structure options]]></COMMENT>
-      </ARGUMENT>
-      <ARGUMENT DEFAULT="'%}'" MODE="IN" NAME="A_LOOP_PH_END" TYPE="VARCHAR2">
-        <COMMENT><![CDATA[a string that denotes the end of loop structure within template expression]]></COMMENT>
-      </ARGUMENT>
+      <ARGUMENT MODE="IN" NAME="A_CONSTR_PH_BEGIN" TYPE="VARCHAR2"/>
+      <ARGUMENT MODE="IN" NAME="A_CONSTR_PH_END" TYPE="VARCHAR2"/>
+      <ARGUMENT DEFAULT="NULL" MODE="IN" NAME="A_CONSTR_PH_BODY" TYPE="VARCHAR2"/>
       <RETURN TYPE="STATIC FUNCTION TY_TE">
         <COMMENT><![CDATA[The instance of template expression (ty_te) or null if a_type != ty_te.EL_NUMBERED() and a_type != ty_te.EL_NAMED()<br/>
  or if no teplate expressions were found in string.<br/>
@@ -1637,7 +1933,7 @@
  or if no teplate expressions were found in string.<br/>
  Also returns null if there's misuse of placeholder denotation strings (a_ph_start, a_ph_end, a_loop_ph_begin, a_loop_ph_body, a_loop_ph_end).]]></COMMENT>
       </TAG>
-      <SUMMARY END_COLUMN="4" END_LINE="489" LINES="104" START_COLUMN="17" START_LINE="386"/>
+      <SUMMARY END_COLUMN="4" END_LINE="953" LINES="119" START_COLUMN="17" START_LINE="835"/>
     </FUNCTION>
     <FUNCTION NAME="CONCAT" SCOPE="STATIC" VERSION="1">
       <COMMENT_FIRST_LINE><![CDATA[ Concatenates two instances of compiled template expressions to costruct new instance<br/>
@@ -1671,9 +1967,187 @@
         <COMMENT><![CDATA[ty_te the instance of ty_te with compiled_template_ nested table containg ty_sph instances from a_lhl and plus instances from a_rhv<br/>
  or null if either of parameters is null]]></COMMENT>
       </TAG>
-      <SUMMARY END_COLUMN="4" END_LINE="517" LINES="15" START_COLUMN="17" START_LINE="503"/>
+      <SUMMARY END_COLUMN="4" END_LINE="981" LINES="15" START_COLUMN="17" START_LINE="967"/>
     </FUNCTION>
-    <SUMMARY END_COLUMN="4" END_LINE="520" LINES="520" START_COLUMN="29" START_LINE="1"/>
+    <SUMMARY END_COLUMN="4" END_LINE="984" LINES="984" START_COLUMN="29" START_LINE="1"/>
+  </OBJECT_BODY>
+  <OBJECT_TYPE NAME="TY_TE_OLD_PROXY" SCHEMA="">
+    <VARIABLE NAME="C_" VERSION="1">
+      <RETURN TYPE="NUMBER(1,0)"/>
+    </VARIABLE>
+    <FUNCTION NAME="TY_TE_OLD_PROXY" SCOPE="CONSTRUCTOR" VERSION="1">
+      <ARGUMENT MODE="IN OUT NOCOPY" NAME="SELF" TYPE="TY_TE_OLD_PROXY"/>
+      <RETURN TYPE="CONSTRUCTOR FUNCTION SELF AS RESULT"/>
+      <SUMMARY END_COLUMN="95" END_LINE="3" LINES="1" START_COLUMN="26" START_LINE="3"/>
+    </FUNCTION>
+    <FUNCTION NAME="COMPILE_NUMBERED" SCOPE="MEMBER" VERSION="1">
+      <ARGUMENT MODE="IN" NAME="A_TEMPLATE_STRING" TYPE="CLOB"/>
+      <ARGUMENT DEFAULT="'$'" MODE="IN" NAME="A_PH_START" TYPE="VARCHAR2"/>
+      <ARGUMENT DEFAULT="''" MODE="IN" NAME="A_PH_END" TYPE="VARCHAR2"/>
+      <ARGUMENT DEFAULT="'{%'" MODE="IN" NAME="A_LOOP_PH_BEGIN" TYPE="VARCHAR2"/>
+      <ARGUMENT DEFAULT="'%'" MODE="IN" NAME="A_LOOP_PH_BODY" TYPE="VARCHAR2"/>
+      <ARGUMENT DEFAULT="'%}'" MODE="IN" NAME="A_LOOP_PH_END" TYPE="VARCHAR2"/>
+      <RETURN TYPE="MEMBER FUNCTION TY_TE"/>
+      <SUMMARY END_COLUMN="115" END_LINE="7" LINES="3" START_COLUMN="21" START_LINE="5"/>
+    </FUNCTION>
+    <FUNCTION NAME="COMPILE_NAMED" SCOPE="MEMBER" VERSION="1">
+      <ARGUMENT MODE="IN" NAME="A_TEMPLATE_STRING" TYPE="CLOB"/>
+      <ARGUMENT DEFAULT="'{$'" MODE="IN" NAME="A_PH_START" TYPE="VARCHAR2"/>
+      <ARGUMENT DEFAULT="'}'" MODE="IN" NAME="A_PH_END" TYPE="VARCHAR2"/>
+      <ARGUMENT DEFAULT="'{%'" MODE="IN" NAME="A_LOOP_PH_BEGIN" TYPE="VARCHAR2"/>
+      <ARGUMENT DEFAULT="'%'" MODE="IN" NAME="A_LOOP_PH_BODY" TYPE="VARCHAR2"/>
+      <ARGUMENT DEFAULT="'%}'" MODE="IN" NAME="A_LOOP_PH_END" TYPE="VARCHAR2"/>
+      <RETURN TYPE="MEMBER FUNCTION TY_TE"/>
+      <SUMMARY END_COLUMN="115" END_LINE="10" LINES="3" START_COLUMN="21" START_LINE="8"/>
+    </FUNCTION>
+    <FUNCTION NAME="SUBSTITUTE" SCOPE="MEMBER" VERSION="1">
+      <ARGUMENT MODE="IN" NAME="A_STRING" TYPE="CLOB"/>
+      <ARGUMENT MODE="IN" NAME="A_NUMBERED_REPLACEMENTS" TYPE="TY_P"/>
+      <ARGUMENT DEFAULT="'$'" MODE="IN" NAME="A_PH_START" TYPE="VARCHAR2"/>
+      <ARGUMENT DEFAULT="''" MODE="IN" NAME="A_PH_END" TYPE="VARCHAR2"/>
+      <RETURN TYPE="MEMBER FUNCTION CLOB"/>
+      <SUMMARY END_COLUMN="148" END_LINE="12" LINES="1" START_COLUMN="21" START_LINE="12"/>
+    </FUNCTION>
+    <FUNCTION NAME="SUBSTITUTE" SCOPE="MEMBER" VERSION="1">
+      <ARGUMENT MODE="IN" NAME="A_STRING" TYPE="CLOB"/>
+      <ARGUMENT MODE="IN" NAME="A_NAMED_REPLACEMENTS" TYPE="TY_M"/>
+      <ARGUMENT DEFAULT="'{$'" MODE="IN" NAME="A_PH_START" TYPE="VARCHAR2"/>
+      <ARGUMENT DEFAULT="'}'" MODE="IN" NAME="A_PH_END" TYPE="VARCHAR2"/>
+      <RETURN TYPE="MEMBER FUNCTION CLOB"/>
+      <SUMMARY END_COLUMN="147" END_LINE="13" LINES="1" START_COLUMN="21" START_LINE="13"/>
+    </FUNCTION>
+    <SUMMARY END_COLUMN="2" END_LINE="14" LINES="14" START_COLUMN="24" START_LINE="1"/>
+  </OBJECT_TYPE>
+  <OBJECT_BODY NAME="TY_TE_OLD_PROXY" SCHEMA="">
+    <FUNCTION NAME="TY_TE_OLD_PROXY" SCOPE="CONSTRUCTOR" VERSION="1">
+      <ARGUMENT MODE="IN OUT NOCOPY" NAME="SELF" TYPE="TY_TE_OLD_PROXY"/>
+      <RETURN TYPE="CONSTRUCTOR FUNCTION SELF AS RESULT"/>
+      <SUMMARY END_COLUMN="20" END_LINE="6" LINES="4" START_COLUMN="22" START_LINE="3"/>
+    </FUNCTION>
+    <FUNCTION NAME="COMPILE_NUMBERED" SCOPE="MEMBER" VERSION="1">
+      <ARGUMENT MODE="IN" NAME="A_TEMPLATE_STRING" TYPE="CLOB"/>
+      <ARGUMENT DEFAULT="'$'" MODE="IN" NAME="A_PH_START" TYPE="VARCHAR2"/>
+      <ARGUMENT DEFAULT="''" MODE="IN" NAME="A_PH_END" TYPE="VARCHAR2"/>
+      <ARGUMENT DEFAULT="'{%'" MODE="IN" NAME="A_LOOP_PH_BEGIN" TYPE="VARCHAR2"/>
+      <ARGUMENT DEFAULT="'%'" MODE="IN" NAME="A_LOOP_PH_BODY" TYPE="VARCHAR2"/>
+      <ARGUMENT DEFAULT="'%}'" MODE="IN" NAME="A_LOOP_PH_END" TYPE="VARCHAR2"/>
+      <RETURN TYPE="MEMBER FUNCTION TY_TE"/>
+      <SUMMARY END_COLUMN="21" END_LINE="13" LINES="6" START_COLUMN="17" START_LINE="8"/>
+    </FUNCTION>
+    <FUNCTION NAME="COMPILE_NAMED" SCOPE="MEMBER" VERSION="1">
+      <ARGUMENT MODE="IN" NAME="A_TEMPLATE_STRING" TYPE="CLOB"/>
+      <ARGUMENT DEFAULT="'{$'" MODE="IN" NAME="A_PH_START" TYPE="VARCHAR2"/>
+      <ARGUMENT DEFAULT="'}'" MODE="IN" NAME="A_PH_END" TYPE="VARCHAR2"/>
+      <ARGUMENT DEFAULT="'{%'" MODE="IN" NAME="A_LOOP_PH_BEGIN" TYPE="VARCHAR2"/>
+      <ARGUMENT DEFAULT="'%'" MODE="IN" NAME="A_LOOP_PH_BODY" TYPE="VARCHAR2"/>
+      <ARGUMENT DEFAULT="'%}'" MODE="IN" NAME="A_LOOP_PH_END" TYPE="VARCHAR2"/>
+      <RETURN TYPE="MEMBER FUNCTION TY_TE"/>
+      <SUMMARY END_COLUMN="18" END_LINE="20" LINES="6" START_COLUMN="17" START_LINE="15"/>
+    </FUNCTION>
+    <FUNCTION NAME="SUBSTITUTE" SCOPE="MEMBER" VERSION="1">
+      <ARGUMENT MODE="IN" NAME="A_STRING" TYPE="CLOB"/>
+      <ARGUMENT MODE="IN" NAME="A_NUMBERED_REPLACEMENTS" TYPE="TY_P"/>
+      <ARGUMENT DEFAULT="'$'" MODE="IN" NAME="A_PH_START" TYPE="VARCHAR2"/>
+      <ARGUMENT DEFAULT="''" MODE="IN" NAME="A_PH_END" TYPE="VARCHAR2"/>
+      <RETURN TYPE="MEMBER FUNCTION CLOB"/>
+      <SUMMARY END_COLUMN="4" END_LINE="28" LINES="7" START_COLUMN="17" START_LINE="22"/>
+    </FUNCTION>
+    <FUNCTION NAME="SUBSTITUTE" SCOPE="MEMBER" VERSION="1">
+      <ARGUMENT MODE="IN" NAME="A_STRING" TYPE="CLOB"/>
+      <ARGUMENT MODE="IN" NAME="A_NAMED_REPLACEMENTS" TYPE="TY_M"/>
+      <ARGUMENT DEFAULT="'{$'" MODE="IN" NAME="A_PH_START" TYPE="VARCHAR2"/>
+      <ARGUMENT DEFAULT="'}'" MODE="IN" NAME="A_PH_END" TYPE="VARCHAR2"/>
+      <RETURN TYPE="MEMBER FUNCTION CLOB"/>
+      <SUMMARY END_COLUMN="4" END_LINE="36" LINES="7" START_COLUMN="17" START_LINE="30"/>
+    </FUNCTION>
+    <SUMMARY END_COLUMN="4" END_LINE="38" LINES="38" START_COLUMN="29" START_LINE="1"/>
+  </OBJECT_BODY>
+  <OBJECT_TYPE NAME="TY_TE_TWIG_PROXY" SCHEMA="">
+    <VARIABLE NAME="C_" VERSION="1">
+      <RETURN TYPE="NUMBER(1,0)"/>
+    </VARIABLE>
+    <FUNCTION NAME="TY_TE_TWIG_PROXY" SCOPE="CONSTRUCTOR" VERSION="1">
+      <ARGUMENT MODE="IN OUT NOCOPY" NAME="SELF" TYPE="TY_TE_TWIG_PROXY"/>
+      <RETURN TYPE="CONSTRUCTOR FUNCTION SELF AS RESULT"/>
+      <SUMMARY END_COLUMN="98" END_LINE="3" LINES="1" START_COLUMN="26" START_LINE="3"/>
+    </FUNCTION>
+    <FUNCTION NAME="COMPILE_NUMBERED" SCOPE="MEMBER" VERSION="1">
+      <ARGUMENT MODE="IN" NAME="A_TEMPLATE_STRING" TYPE="CLOB"/>
+      <ARGUMENT DEFAULT="'{{'" MODE="IN" NAME="A_PH_START" TYPE="VARCHAR2"/>
+      <ARGUMENT DEFAULT="'}}'" MODE="IN" NAME="A_PH_END" TYPE="VARCHAR2"/>
+      <ARGUMENT DEFAULT="'{%'" MODE="IN" NAME="A_CONSTR_PH_BEGIN" TYPE="VARCHAR2"/>
+      <ARGUMENT DEFAULT="'%}'" MODE="IN" NAME="A_CONSTR_PH_END" TYPE="VARCHAR2"/>
+      <RETURN TYPE="MEMBER FUNCTION TY_TE"/>
+      <SUMMARY END_COLUMN="87" END_LINE="6" LINES="3" START_COLUMN="21" START_LINE="4"/>
+    </FUNCTION>
+    <FUNCTION NAME="COMPILE_NAMED" SCOPE="MEMBER" VERSION="1">
+      <ARGUMENT MODE="IN" NAME="A_TEMPLATE_STRING" TYPE="CLOB"/>
+      <ARGUMENT DEFAULT="'{{'" MODE="IN" NAME="A_PH_START" TYPE="VARCHAR2"/>
+      <ARGUMENT DEFAULT="'}}'" MODE="IN" NAME="A_PH_END" TYPE="VARCHAR2"/>
+      <ARGUMENT DEFAULT="'{%'" MODE="IN" NAME="A_CONSTR_PH_BEGIN" TYPE="VARCHAR2"/>
+      <ARGUMENT DEFAULT="'%}'" MODE="IN" NAME="A_CONSTR_PH_END" TYPE="VARCHAR2"/>
+      <RETURN TYPE="MEMBER FUNCTION TY_TE"/>
+      <SUMMARY END_COLUMN="87" END_LINE="9" LINES="3" START_COLUMN="21" START_LINE="7"/>
+    </FUNCTION>
+    <FUNCTION NAME="SUBSTITUTE" SCOPE="MEMBER" VERSION="1">
+      <ARGUMENT MODE="IN" NAME="A_STRING" TYPE="CLOB"/>
+      <ARGUMENT MODE="IN" NAME="A_NUMBERED_REPLACEMENTS" TYPE="TY_P"/>
+      <ARGUMENT DEFAULT="'{{'" MODE="IN" NAME="A_PH_START" TYPE="VARCHAR2"/>
+      <ARGUMENT DEFAULT="'}}'" MODE="IN" NAME="A_PH_END" TYPE="VARCHAR2"/>
+      <RETURN TYPE="MEMBER FUNCTION CLOB"/>
+      <SUMMARY END_COLUMN="151" END_LINE="10" LINES="1" START_COLUMN="21" START_LINE="10"/>
+    </FUNCTION>
+    <FUNCTION NAME="SUBSTITUTE" SCOPE="MEMBER" VERSION="1">
+      <ARGUMENT MODE="IN" NAME="A_STRING" TYPE="CLOB"/>
+      <ARGUMENT MODE="IN" NAME="A_NAMED_REPLACEMENTS" TYPE="TY_M"/>
+      <ARGUMENT DEFAULT="'{{'" MODE="IN" NAME="A_PH_START" TYPE="VARCHAR2"/>
+      <ARGUMENT DEFAULT="'}}'" MODE="IN" NAME="A_PH_END" TYPE="VARCHAR2"/>
+      <RETURN TYPE="MEMBER FUNCTION CLOB"/>
+      <SUMMARY END_COLUMN="148" END_LINE="11" LINES="1" START_COLUMN="21" START_LINE="11"/>
+    </FUNCTION>
+    <SUMMARY END_COLUMN="2" END_LINE="12" LINES="12" START_COLUMN="24" START_LINE="1"/>
+  </OBJECT_TYPE>
+  <OBJECT_BODY NAME="TY_TE_TWIG_PROXY" SCHEMA="">
+    <FUNCTION NAME="TY_TE_TWIG_PROXY" SCOPE="CONSTRUCTOR" VERSION="1">
+      <ARGUMENT MODE="IN OUT NOCOPY" NAME="SELF" TYPE="TY_TE_TWIG_PROXY"/>
+      <RETURN TYPE="CONSTRUCTOR FUNCTION SELF AS RESULT"/>
+      <SUMMARY END_COLUMN="21" END_LINE="6" LINES="4" START_COLUMN="22" START_LINE="3"/>
+    </FUNCTION>
+    <FUNCTION NAME="COMPILE_NUMBERED" SCOPE="MEMBER" VERSION="1">
+      <ARGUMENT MODE="IN" NAME="A_TEMPLATE_STRING" TYPE="CLOB"/>
+      <ARGUMENT DEFAULT="'{{'" MODE="IN" NAME="A_PH_START" TYPE="VARCHAR2"/>
+      <ARGUMENT DEFAULT="'}}'" MODE="IN" NAME="A_PH_END" TYPE="VARCHAR2"/>
+      <ARGUMENT DEFAULT="'{%'" MODE="IN" NAME="A_CONSTR_PH_BEGIN" TYPE="VARCHAR2"/>
+      <ARGUMENT DEFAULT="'%}'" MODE="IN" NAME="A_CONSTR_PH_END" TYPE="VARCHAR2"/>
+      <RETURN TYPE="MEMBER FUNCTION TY_TE"/>
+      <SUMMARY END_COLUMN="21" END_LINE="13" LINES="6" START_COLUMN="17" START_LINE="8"/>
+    </FUNCTION>
+    <FUNCTION NAME="COMPILE_NAMED" SCOPE="MEMBER" VERSION="1">
+      <ARGUMENT MODE="IN" NAME="A_TEMPLATE_STRING" TYPE="CLOB"/>
+      <ARGUMENT DEFAULT="'{{'" MODE="IN" NAME="A_PH_START" TYPE="VARCHAR2"/>
+      <ARGUMENT DEFAULT="'}}'" MODE="IN" NAME="A_PH_END" TYPE="VARCHAR2"/>
+      <ARGUMENT DEFAULT="'{%'" MODE="IN" NAME="A_CONSTR_PH_BEGIN" TYPE="VARCHAR2"/>
+      <ARGUMENT DEFAULT="'%}'" MODE="IN" NAME="A_CONSTR_PH_END" TYPE="VARCHAR2"/>
+      <RETURN TYPE="MEMBER FUNCTION TY_TE"/>
+      <SUMMARY END_COLUMN="18" END_LINE="20" LINES="6" START_COLUMN="17" START_LINE="15"/>
+    </FUNCTION>
+    <FUNCTION NAME="SUBSTITUTE" SCOPE="MEMBER" VERSION="1">
+      <ARGUMENT MODE="IN" NAME="A_STRING" TYPE="CLOB"/>
+      <ARGUMENT MODE="IN" NAME="A_NUMBERED_REPLACEMENTS" TYPE="TY_P"/>
+      <ARGUMENT DEFAULT="'{{'" MODE="IN" NAME="A_PH_START" TYPE="VARCHAR2"/>
+      <ARGUMENT DEFAULT="'}}'" MODE="IN" NAME="A_PH_END" TYPE="VARCHAR2"/>
+      <RETURN TYPE="MEMBER FUNCTION CLOB"/>
+      <SUMMARY END_COLUMN="15" END_LINE="25" LINES="4" START_COLUMN="17" START_LINE="22"/>
+    </FUNCTION>
+    <FUNCTION NAME="SUBSTITUTE" SCOPE="MEMBER" VERSION="1">
+      <ARGUMENT MODE="IN" NAME="A_STRING" TYPE="CLOB"/>
+      <ARGUMENT MODE="IN" NAME="A_NAMED_REPLACEMENTS" TYPE="TY_M"/>
+      <ARGUMENT DEFAULT="'{{'" MODE="IN" NAME="A_PH_START" TYPE="VARCHAR2"/>
+      <ARGUMENT DEFAULT="'}}'" MODE="IN" NAME="A_PH_END" TYPE="VARCHAR2"/>
+      <RETURN TYPE="MEMBER FUNCTION CLOB"/>
+      <SUMMARY END_COLUMN="15" END_LINE="30" LINES="4" START_COLUMN="17" START_LINE="27"/>
+    </FUNCTION>
+    <SUMMARY END_COLUMN="4" END_LINE="32" LINES="32" START_COLUMN="29" START_LINE="1"/>
   </OBJECT_BODY>
   <PACKAGE NAME="PK_TE_UT" SCHEMA="">
     <PROCEDURE NAME="RUN_TESTS">
@@ -1744,10 +2218,10 @@
  be infered during analysis of package body source code. This analysis is done when accessing ut_report_deciphered view
 ]]></COMMENT>
       <ARGUMENT MODE="IN" NAME="A" TYPE="BOOLEAN">
-        <COMMENT><![CDATA[accertion as a boolean value. If accertion is true, 'Passed' is inserted in ut_report along with caller info, 'Failed' otherwise.]]></COMMENT>
+        <COMMENT><![CDATA[accertion as a boolean value. If accertion is true, 'Passed' is inserted in ut_report along with caller info, 'Failed!' otherwise.]]></COMMENT>
       </ARGUMENT>
       <TAG TYPE="@PARAM">
-        <COMMENT><![CDATA[a accertion as a boolean value. If accertion is true, 'Passed' is inserted in ut_report along with caller info, 'Failed' otherwise.]]></COMMENT>
+        <COMMENT><![CDATA[a accertion as a boolean value. If accertion is true, 'Passed' is inserted in ut_report along with caller info, 'Failed!' otherwise.]]></COMMENT>
       </TAG>
       <SUMMARY END_COLUMN="4" END_LINE="151" LINES="44" START_COLUMN="11" START_LINE="108"/>
     </PROCEDURE>
@@ -1876,26 +2350,54 @@
     <PROCEDURE NAME="COMBINE_NAMED">
       <SUMMARY END_COLUMN="4" END_LINE="716" LINES="20" START_COLUMN="11" START_LINE="697"/>
     </PROCEDURE>
-    <PROCEDURE NAME="LOOP_MERGE">
+    <PROCEDURE NAME="O_LOOP_MERGE">
       <SUMMARY END_COLUMN="4" END_LINE="768" LINES="51" START_COLUMN="11" START_LINE="718"/>
     </PROCEDURE>
-    <PROCEDURE NAME="LOOP_RECURSION">
+    <PROCEDURE NAME="O_LOOP_RECURSION">
       <SUMMARY END_COLUMN="4" END_LINE="804" LINES="35" START_COLUMN="11" START_LINE="770"/>
     </PROCEDURE>
-    <PROCEDURE NAME="RUN_TESTS">
-      <COMMENT_FIRST_LINE><![CDATA[ Public package procedure that actually run tests.]]></COMMENT_FIRST_LINE>
-      <COMMENT><![CDATA[ Public package procedure that actually run tests. Test results are stored in ut_report.
+    <PROCEDURE NAME="LOOP_MERGE">
+      <COMMENT_FIRST_LINE><![CDATA[
+]]></COMMENT_FIRST_LINE>
+      <COMMENT><![CDATA[
 ]]></COMMENT>
-      <SUMMARY END_COLUMN="4" END_LINE="849" LINES="41" START_COLUMN="11" START_LINE="809"/>
+      <SUMMARY END_COLUMN="4" END_LINE="885" LINES="51" START_COLUMN="11" START_LINE="835"/>
     </PROCEDURE>
-    <SUMMARY END_COLUMN="13" END_LINE="851" LINES="851" START_COLUMN="32" START_LINE="1"/>
+    <PROCEDURE NAME="LOOP_RECURSION">
+      <SUMMARY END_COLUMN="4" END_LINE="921" LINES="35" START_COLUMN="11" START_LINE="887"/>
+    </PROCEDURE>
+    <PROCEDURE NAME="NESTED_IF">
+      <SUMMARY END_COLUMN="4" END_LINE="933" LINES="10" START_COLUMN="11" START_LINE="924"/>
+    </PROCEDURE>
+    <PROCEDURE NAME="LOOP_CONDENCED">
+      <SUMMARY END_COLUMN="4" END_LINE="959" LINES="24" START_COLUMN="11" START_LINE="936"/>
+    </PROCEDURE>
+    <PROCEDURE NAME="IF_CONDENCED">
+      <SUMMARY END_COLUMN="4" END_LINE="968" LINES="8" START_COLUMN="11" START_LINE="961"/>
+    </PROCEDURE>
+    <PROCEDURE NAME="LOOP_WITH_NESTED_IF">
+      <SUMMARY END_COLUMN="4" END_LINE="993" LINES="24" START_COLUMN="11" START_LINE="970"/>
+    </PROCEDURE>
+    <PROCEDURE NAME="LOOP_WITH_NESTED_IF_BROKEN">
+      <SUMMARY END_COLUMN="4" END_LINE="1022" LINES="27" START_COLUMN="11" START_LINE="996"/>
+    </PROCEDURE>
+    <PROCEDURE NAME="IF_WITH_NESTED_LOOP">
+      <SUMMARY END_COLUMN="4" END_LINE="1049" LINES="25" START_COLUMN="11" START_LINE="1025"/>
+    </PROCEDURE>
+    <PROCEDURE NAME="RUN_TESTS">
+      <COMMENT_FIRST_LINE><![CDATA[ Public package procedure that actually runs tests.]]></COMMENT_FIRST_LINE>
+      <COMMENT><![CDATA[ Public package procedure that actually runs tests. Test results are stored in ut_report.
+]]></COMMENT>
+      <SUMMARY END_COLUMN="4" END_LINE="1102" LINES="50" START_COLUMN="11" START_LINE="1053"/>
+    </PROCEDURE>
+    <SUMMARY END_COLUMN="13" END_LINE="1104" LINES="1104" START_COLUMN="32" START_LINE="1"/>
   </PACKAGE_BODY>
   <GENERATOR>
     <OBJECTS>
-      <PROCESSED COUNT="19"/>
+      <PROCESSED COUNT="27"/>
       <SKIPPED COUNT="0"/>
     </OBJECTS>
-    <CREATED DATE="22.05.15" TIME="15:07"/>
+    <CREATED DATE="23.06.15" TIME="21:10"/>
     <SETTINGS DEFAULT_KEYWORDS_CASE="UPPER" DEFAULT_NAMES_CASE="UPPER" IGNORE_INFORMAL_COMMENTS="FALSE" INPUT_ENCODING="Cp1251" KEYWORDS_TO_DEFAULT_CASE="TRUE" KEYWORDS_TO_LOWER_CASE="FALSE" KEYWORDS_TO_UPPER_CASE="FALSE" NAMES_TO_DEFAULT_CASE="TRUE" NAMES_TO_LOWER_CASE="FALSE" NAMES_TO_UPPER_CASE="FALSE" SHOW_SKIPPED_PACKAGES="FALSE" VERBOSE="FALSE"/>
   </GENERATOR>
 </APPLICATION>
