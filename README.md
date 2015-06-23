@@ -30,7 +30,7 @@ insert( {$join_by}
   , {% for cur:1 | join( '\r\n  , ' ) %}{$column_name}{% endfor %}
 ) 
 where t2.status_code <> 'D'
-' );
+#' );
   v_join_by := 'id_';
   select pk_te.substitute( 
       v_te
