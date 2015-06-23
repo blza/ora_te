@@ -3,8 +3,11 @@
 Simple template engine for Oracle DBMS in a form of UDTs and packages.
 
 This project is about developing a template engine to be used in Oracle SQL / PL SQL.
+<<<<<<< HEAD
 
 NOW with the support of IF construct and a new syntax for FOR construct!
+=======
+>>>>>>> origin/master
 
 ## Where it excels?
 
@@ -27,7 +30,11 @@ when not matched then
 insert( {$join_by}
   , {% for cur:1 | join( '\r\n  , ' ) %}{$column_name}{% endfor %}
 ) values ( {$seq_name}.nextval
+<<<<<<< HEAD
   , {% for cur:1 | join( '\r\n  , ' ) %}{$column_name}{% endfor %}
+=======
+  , {%1%t2.{$column_name}%\r\n  , %}
+>>>>>>> origin/master
 ) 
 where t2.status_code <> 'D'
 ' );
@@ -107,7 +114,11 @@ To deploy unit tests run `ut/deploy_ut.sql`.
 To actually run unit tests run `ut/run_tests.sql`.
 
 ## Imposed cost of invocation
+<<<<<<< HEAD
 Profiling info and comparison to simple replace will be published later.
+=======
+Profiling info and comparison will be published later.
+>>>>>>> origin/master
 
 ## Licence
 Mit licence applies (http://opensource.org/licenses/MIT).
