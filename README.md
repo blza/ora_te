@@ -94,7 +94,7 @@ Developed for and tested on Oracle 11r2.
 UDTs and the packages are self contained, no additional dependencies. Only one sequence is created during deployment. You only have to have Resource role to deploy `ora_te`.
 
 ## Installation
-Just download all files and run `deploy_te.sql` from the root directory.
+Just download all files and run `deploy_te.sql` from the `src` directory.
 
 ## Documentation
 For usage see https://github.com/blza/ora_te/wiki .
