@@ -109,6 +109,8 @@ To actually run unit tests run `ut/run_tests.sql`.
 ## Imposed cost of invocation
 Profiling info and comparison to simple replace will be published later.
 
-
 ## Licence
 Mit licence applies (http://opensource.org/licenses/MIT).
+
+## Other implementations of template engines in Oracle DB
+Those looking for a solution that uses template engine to generate and compile source code based on Oracle metadata (read info from Oracle dictionary views) please check (https://github.com/ftldb/ftldb). Have not touched it by myself, but it seams promising.
