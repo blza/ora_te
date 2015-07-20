@@ -97,7 +97,7 @@ UDTs and the packages are self contained, no additional dependencies. Only one s
 Just download all files and run `deploy_te.sql` from the `src` directory.
 
 ## Documentation
-For usage see https://github.com/blza/ora_te/wiki .
+For usage see [Wiki](https://github.com/blza/ora_te/wiki) .
 For packages and UDTs specifications see `doc` folder.
 
 ## Regression testing
@@ -113,4 +113,4 @@ Profiling info and comparison to simple replace will be published later.
 Mit licence applies (http://opensource.org/licenses/MIT).
 
 ## Other implementations of template engines in Oracle DB
-Those looking for a solution that uses template engine to generate and compile source code based on Oracle metadata (read info from Oracle dictionary views) please check (https://github.com/ftldb/ftldb). Have not touched it by myself, but it seams promising.
+Those looking for a solution that uses template engine to generate and compile source code based on Oracle metadata (read info from Oracle dictionary views) please check [FTLDB](https://github.com/ftldb/ftldb). Have not touched it by myself, but it seams promising.
