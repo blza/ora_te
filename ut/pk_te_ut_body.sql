@@ -315,6 +315,20 @@ begin
 end;
 
 
+procedure named_empty_ty_m as
+  v_te ty_te;
+  v_clob clob;
+begin
+  v_te := ty_te.compile_named( '{$i}''ve been {$miSSing} {$you} for $o {$long}.' );
+  v_clob := pk_te.substitute( 
+    v_te
+    , ty_m ()
+  );
+
+  assert( v_clob = '''ve been   for $o .' );
+end;
+
+
 procedure named_repeated as
   v_te ty_te;
   v_clob clob;
@@ -1048,6 +1062,8 @@ begin
   assert( v_clob = 'create table test(col1 integer, col2 integer)' );
 end;
 
+
+
 /** Public package procedure that actually runs tests. Test results are stored in ut_report.
 */
 procedure run_tests as
@@ -1064,6 +1080,7 @@ begin
   substitute_m_and_numbered;
   substitute_null_te;
   named_straight;
+  named_empty_ty_m;
   named_repeated;
   dot_in_named_te;
   digit_in_named_te;

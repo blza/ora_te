@@ -177,12 +177,14 @@ BEGIN
   init_cache_( v_p_cache, v_m_cache );
   
   -- Make associative array from provided map
-  for idx in a_named_replacements.first .. a_named_replacements.last loop
-    v_p := a_named_replacements( idx );
-    if ( v_p is not null and v_p is not empty and v_p.count = 2 ) then 
-      v_dict( v_p( 1 ) ) := v_p( 2 );
-    end if;
-  end loop;
+  if a_named_replacements is not empty then
+    for idx in a_named_replacements.first .. a_named_replacements.last loop
+      v_p := a_named_replacements( idx );
+      if ( v_p is not null and v_p is not empty and v_p.count = 2 ) then 
+        v_dict( v_p( 1 ) ) := v_p( 2 );
+      end if;
+    end loop;
+  end if;
   
   for idx in a_te.compiled_template_.first .. a_te.compiled_template_.last loop
     v_sph := a_te.compiled_template_( idx );
