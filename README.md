@@ -13,7 +13,7 @@ Consider following example code for generating merge statement
 declare
   v_te ty_te;
   v_merge_stmt varchar2( 32767 char );
-  v_join_by varchar2( 30 char ) := 'id_';
+  v_join_by varchar2( 30 char ) := 'id';
   v_dest_tbl varchar2( 30 char ) := 'dummy_test';
 begin
   v_te := ty_te.compile_named( q'#
@@ -31,7 +31,7 @@ insert( {$join_by}
 ) 
 where t2.status_code <> 'D'
 #' );
-  v_join_by := 'id_';
+  v_join_by := 'id';
   select pk_te.substitute( 
       v_te
       , ty_m( 
@@ -58,7 +58,7 @@ And the result for given arbitrary table
 desc dummy_test
 Name Null     Type              
 ---- -------- ----------------- 
-ID_  NOT NULL NUMBER(38)        
+ID  NOT NULL NUMBER(38)        
 COL1          VARCHAR2(30 CHAR) 
 COL2          NUMBER(38) 
 ```
@@ -66,13 +66,13 @@ will be
 ```sql
 merge into dummy_test t1
 using tmp_dummy_test t2
-  on ( t1.id_ = t2.id_ )
+  on ( t1.id = t2.id )
 when matched then
 update set t1.COL1 = t2.COL1
   , t1.COL2 = t2.COL2
 delete where t2.status_code = 'D'
 when not matched then 
-insert( id_
+insert( id
   , COL1
   , COL2
 ) values ( seq_dummy_id.nextval
