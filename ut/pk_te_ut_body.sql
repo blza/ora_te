@@ -976,7 +976,7 @@ procedure if_condenced as
   v_te ty_te;
   v_clob clob;
 begin
-  v_te := ty_te.compile_numbered( q'#$1 $2 {%if ('$3' is not null)%}not null{%else%}null{%endif%}#' );
+  v_te := ty_te.compile_numbered( q'#$1 $2 {%if('$3' is not null)%}not null{%else%}null{%endif%}#' );
   v_clob := pk_te.substitute( v_te, ty_p( 'col1', 'integer', null ) );
   assert( v_clob = 'col1 integer null' );
 end; 
