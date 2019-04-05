@@ -684,7 +684,7 @@ begin
     else 
       v_cond_search := v_constr_head;
     end if;
-    v_cond := regexp_replace( v_cond_search, '.*if\W(.*?)(' || CONSTR_PH_END_ESCAPED || '?)', '\1', 1, 1, 'imn' );
+    v_cond := regexp_replace( v_cond_search, '.*if(\W.*?)(' || CONSTR_PH_END_ESCAPED || '?)', '\1', 1, 1, 'imn' );
     
   end if;
   
